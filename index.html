@@ -1,0 +1,2428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paschim Banga Vigyan Mancha (Uluberia Vigyan Kendra)</title>
+<!-- Added Font Awesome for icons (sun/moon, menu, scroll-up, bell) -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+<!-- UPDATED: qrcode.js CDN using the specific 1.0.0 version -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+ /* Gruvbox-inspired custom theme colors based on image */
+        :root {
+            /* Light Theme */
+            --background-color: #fbf0d8; /* Very light beige-yellow */
+            --surface-color: #fbf1e2;   /* Slightly darker beige for cards */
+            --surface-color-rgb: 251, 241, 226; /* ADDED for arrow button bg */
+            --surface-color-alpha: #fbf1e2;   /* Slightly darker beige for cards alpha */
+            --text-color-primary: #3c3836;
+            --text-color-secondary: #504945;
+            --background-gradient: #3c3836b3;
+            
+            --primary-color: #d79921;   /* Yellow/Orange for headings */
+            --primary-color-rgb: 215, 153, 33; /* RGB for #d79921 for use in rgba() */
+            --primary-color-alpha: 215, 153, 33, 0.6;
+            
+            /* Language toggle colors */
+            --lang-bg-active: var(--primary-color);
+            --lang-text-active: var(--text-color-primary);
+            --lang-bg-inactive: var(--surface-color);
+            --lang-text-inactive: var(--text-color-primary);
+            --lang-border: var(--primary-color);
+
+            /* Consistent corner radius and shadow */
+            --border-radius-large: 28px;
+            --border-radius-medium: 20px;
+            --button-radius: var(--border-radius-large);
+            --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark-theme {
+            /* Dark Gruvbox Theme */
+            --background-color: #282828;
+            --surface-color: #3c3836;
+            --surface-color-rgb: 60, 56, 54; /* ADDED for arrow button bg */
+            --text-color-primary: #ebdbb2;
+            --text-color-secondary: #d4c4a4;
+
+            --primary-color: #b8bb26;
+            --primary-color-rgb: 184, 187, 38; /* RGB for #b8bb26 for use in rgba() */
+            --primary-color-alpha: 184, 187, 38, 0.6;
+            
+            /* Language toggle colors */
+            --lang-bg-active: var(--primary-color);
+            --lang-text-active: var(--surface-color);
+            --lang-border: var(--primary-color);
+
+            --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            background: var(--background-color); 
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; 
+            overflow-x: hidden; 
+            transition: background-color 0.3s ease;
+        }
+        
+        a:link {
+            display: inline-block;
+            text-decoration: none;
+            padding: 5px;
+            background-color: rgba(var(--primary-color-rgb), 0.1); 
+            color: var(--primary-color);
+            border-radius: var(--border-radius-medium);           
+        }
+
+        /* visited link */
+        a:visited {
+           background-color: rgba(var(--primary-color-rgb), 0.1); 
+           color: var(--primary-color);
+        }
+
+        /* mouse over link */
+        a:hover {
+            color: var(--surface-color);
+            background: var(--primary-color);
+        }
+
+        /* selected link */
+        a:active {
+          color: var(--text-color-secondary);
+        }
+        
+        /* Updated Logo style when placed in the nav bar */
+        .nav-logo {
+            width: 40px; 
+            height: 40px;
+            object-fit: contain;
+            transition: filter 0.3s ease;
+            /* Invert filter is applied to the image to ensure visibility in dark theme,
+               as the original image is dark text on a light background. */
+            filter: invert(0.7) saturate(0.7); 
+            flex-shrink: 0;
+        }
+
+        .dark-theme .nav-logo {
+             /* Remove filter in dark theme if logo is already light, or adjust if needed */
+            filter: none;
+        }
+
+        /* Header controls combined into the nav bar */
+        .header-controls {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        /* New Single Icon Theme Toggle Style */
+        .theme-icon-button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.5rem; /* Larger icon size */
+            color: var(--text-color-primary);
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: color 0.3s ease, background-color 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            line-height: 1; /* Fix vertical alignment */
+        }
+        
+        .theme-icon-button:hover {
+            /* Using the RGB variable for the transparent hover effect */
+            background-color: rgba(var(--primary-color-rgb), 0.1); 
+            color: var(--primary-color);
+        }
+
+        /* Styling for the icons within the button */
+        .theme-icon {
+            font-size: 1.2rem;
+            line-height: 1;
+        }
+
+        /* Show sun icon by default (Light Mode) */
+        .moon-icon { display: none; }
+        .sun-icon { display: block; }
+        
+        /* Show moon icon in Dark Mode */
+        .dark-theme .sun-icon { display: none; }
+        .dark-theme .moon-icon { display: block; }
+
+        .lang-toggle {
+            height: 1.5rem;
+            display: flex;
+            font-size: 0.8rem;
+            border: 2px solid var(--lang-border);
+            border-radius: var(--button-radius);
+            overflow: hidden;
+            color: var(--lang-text-inactive);
+            box-sizing: border-box;
+        }
+
+        .lang-toggle span {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 0.5rem;
+            background: var(--lang-bg-inactive);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .lang-toggle #langEn {
+            border-right: 2px solid var(--lang-border);
+        }
+
+        .lang-toggle .active {
+            background: var(--lang-bg-active);
+            color: var(--lang-text-active);
+            font-weight: 700;
+        }
+      
+        /* ------------------------- TAB STYLING START (MOBILE-FIRST) ------------------------- */
+        
+        /* Tab container style (responsive base) */
+        nav.menu {
+            position: sticky; /* Keep the menu visible */
+            top: 0;
+            width: 100%; /* Full width */
+            height: 10vh; /* Fixed height for calculating offset */
+            background-color: var(--surface-color);
+            box-shadow: var(--card-shadow);
+            display: flex; 
+            align-items: center;
+            justify-content: space-between; 
+            padding: 0.5rem 2.5%; 
+            z-index: 1000;
+        }
+
+        /* NEW: Container for Menu Label, Icon, and Active Label */
+        .menu-controls-mobile {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem; /* Space between elements */
+            flex-shrink: 0;
+            margin-right: auto; /* Push the rest of the content to the right */
+            padding-left: 1rem; /* Space it from the logo */
+        }
+
+        /* Style for the "Menu" and active menu text */
+        .menu-label-text {
+            color: var(--text-color-primary);
+            font-size: 1rem;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        /* Style for the current active label */
+        .current-menu-label {
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        /* Hamburger Menu Button (Visible by default on small screens) */
+        .hamburger-menu {
+            display: block; 
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: var(--text-color-primary);
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: color 0.3s ease, background-color 0.3s ease;
+            line-height: 1;
+            margin: 0; /* Removed old margin-left: 1rem; */
+            flex-shrink: 0;
+        }
+        
+        .hamburger-menu:hover {
+            background-color: rgba(var(--primary-color-rgb), 0.1); 
+            color: var(--primary-color);
+        }
+
+        /* Menu Links - Default (Mobile/Vertical) */
+        .nav-links {
+            display: none; /* Hidden by default */
+            flex-grow: 1;
+            flex-direction: column; /* Vertical alignment when open */
+            position: absolute;
+            top: min(10vh, 100px); /* Below the nav bar */
+            left: 0;
+            width: 100%;
+            background-color: var(--surface-color);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15); /* Drop shadow for menu panel */
+            padding: 1rem 2.5%;
+            z-index: 999;
+            height: auto;
+            max-height: 90vh; /* Ensure it doesn't cover the whole screen */
+            overflow-y: auto;
+            gap: 0.25rem;
+            transition: all 0.3s ease-in-out;
+        }
+        
+        /* Show the menu when the 'open' class is applied */
+        .nav-links.open {
+            display: flex; 
+        }
+
+        /* Tab link styling - Adapted for vertical full-width links */
+        .nav-links a {
+            width: 100%; /* Full width for vertical menu */
+            text-align: left;
+            flex-shrink: 0; 
+            text-decoration: none;
+            color: var(--text-color-primary);
+            font-size: clamp(0.9rem, 1.5vw, 1.1rem); 
+            font-weight: 500;
+            padding: 0.75rem 1.25rem;
+            border-radius: 12px; 
+            transition: all 0.3s ease;
+            background-color: transparent;
+            white-space: nowrap; 
+        }
+
+        .nav-links a:hover {
+            background-color: rgba(var(--primary-color-rgb), 0.1); 
+            color: var(--primary-color);
+        }
+
+        /* Active Tab Styling - Updated */
+        .nav-links a.active-tab {
+            background-color: var(--primary-color);
+            color: var(--surface-color); 
+            font-weight: 700;
+            transform: none; /* No transform on mobile active links */
+            border-radius: 12px; /* Set border radius back to rounded on vertical menu */
+        }
+        
+        /* ------------------------- DESKTOP/LANDSCAPE STYLES ------------------------- */
+        @media (min-width: 1366px), (orientation: landscape) {
+            
+            /* Hide the entire mobile control group on large screens, 
+               as the full nav links are visible. */
+            .menu-controls-mobile {
+                display: none;
+            }
+
+            /* Restore horizontal nav-links on large screens/landscape */
+            .nav-links {
+                display: flex !important; /* Override JS toggle and default 'display: none' */
+                position: static;
+                flex-direction: row; /* Horizontal */
+                flex-grow: 1;
+                justify-content: center;
+                gap: 0.5rem;
+                padding: 0 1rem;
+                box-shadow: none;
+                height: auto;
+                overflow: hidden;
+            }
+            
+            /* Restore individual link width */
+            .nav-links a {
+                width: auto; 
+                text-align: center;
+                font-size: 1rem;
+                /* Active tab styling for horizontal menu (flat border bottom) */
+                border-radius: var(--border-radius-medium); 
+            }
+            
+            .nav-links a.active-tab {
+                border-radius: 0; /* Set border radius to 0 as requested */
+                transform: translateY(-2px); /* Re-apply subtle lift */
+                border-radius: var(--border-radius-medium); 
+            }
+        }
+
+        /* ------------------------- TAB STYLING END ------------------------- */
+
+        /* Existing slide styles modified to allow scrolling */
+        .container { 
+            /* Kept absolute positioning for the carousel mechanism to work */
+            position: relative; 
+            top: 0;
+            left: 0;
+            transform: none;
+            width: 100vw; 
+            height: 70vh; /* Changed from 100vh to allow content below */
+            background: #f5f5f5; 
+            overflow: hidden; /* Keep slide overflow hidden */
+            /* Added cursor style for drag-ability feedback */
+            cursor: grab;
+            user-select: none; /* Prevent text selection during drag */
+        }
+        .container .slide { 
+            position: relative; 
+            height: 100%; 
+        }
+        .container .slide .item { 
+            width: min(40vw, 200px); 
+            height: min(50vw, 250px); 
+            position: absolute; 
+            top: 70%; 
+            transform: translate(0, -50%); 
+            border-radius: 20px; 
+            box-shadow: 0 30px 50px #505050; 
+            background-position: 50% 50%; 
+            background-image: linear-gradient(to bottom,
+            		      var(--background-gradient) 0%, 
+                              rgba(0, 0, 0, 0) 100%),   /* Fully Transparent on the right */
+                              var(--bg-image); /* The actual image from the inline style */
+            background-size: cover; 
+            background-repeat: no-repeat;
+            display: inline-block; 
+            transition: all 0.5s; 
+        }
+        
+        @media (min-width: 1366px), (orientation: landscape) {
+        
+            .container .slide .item { 
+                background-image: linear-gradient(to right,
+            		          var(--background-gradient) 0%, 
+                                  rgba(0, 0, 0, 0) 100%),       /* Fully Transparent on the right */
+                                  var(--bg-image); /* The actual image from the line style */
+                                  }
+                              }
+        
+        /* Styles for the two largest (and moving) items */
+        .slide .item:nth-child(1), .slide .item:nth-child(2) { 
+            top: 0; 
+            left: 0; 
+            transform: translate(0, 0); 
+            border-radius: 20px; 
+            width: 100%; 
+            height: 100%; 
+            transition: all 0.5s; 
+        }
+
+        /* Active item (which is always :nth-child(2) in this script) border-radius should be 0 */
+        .slide .item:nth-child(2) {
+            border-radius: 0;
+        }
+
+        .slide .item:nth-child(3) { left: 50%; }
+        .slide .item:nth-child(4) { left: calc(50% + 220px); }
+        .slide .item:nth-child(5) { left: calc(50% + 440px); }
+        .slide .item:nth-child(n + 6) { left: calc(50% + 660px); opacity: 0; }
+        .item .content { position: absolute; padding-top: clamp(300px, 20%, 500px); padding-left: clamp(10px, 10vw, 100px); width: 300px; text-align: left; color: var(--primary-color); transform: translate(0, -50%); display: none; }
+        .slide .item:nth-child(2) .content { display: block; }
+        .content .name { font-size: 40px; text-transform: uppercase; font-weight: bold; opacity: 0; color: var(--primary-color); animation: animate 1s ease-in-out 1 forwards; }
+        .content .des { margin-top: 10px; margin-bottom: 20px; opacity: 0; animation: animate 1s ease-in-out 0.3s 1 forwards; }
+        
+        /* New button style for "Read More" */
+        .content button { 
+            padding: 10px 20px; 
+            border: none; 
+            cursor: pointer; 
+            opacity: 0; 
+            border-radius: 10px; 
+            background-color: var(--primary-color); /* Use primary color */
+            color: var(--surface-color); /* Dark text for contrast */
+            font-weight: 600;
+            animation: animate 1s ease-in-out 0.6s 1 forwards; 
+            transition: all 0.3s; 
+            box-shadow: 0 4px 10px rgba(var(--primary-color-rgb), 0.3);
+            margin-top: 10px; /* Space from description */
+        }
+        .content button:hover { 
+            filter: brightness(1.1);
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(var(--primary-color-rgb), 0.5);
+        }
+
+        @keyframes animate { from { opacity: 0; transform: translateY(100px); filter: blur(33px); } to { opacity: 1; transform: translateY(0); filter: blur(0); } }
+
+        /* Style for the new content area */
+        .main-content {
+            padding: 50px 5%;
+            min-height: 100vh; /* Ensure there is enough scrollable content */
+            background: var(--background-color);
+            color: var(--text-color-primary);
+            text-align: justify;
+            width: 100%;
+        }
+        .main-content h1 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 0.5rem;
+        }
+        .main-content p {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+            max-width: 100%;
+        }
+        .main-content h2 {
+            font-size: 1.8rem;
+            color: var(--text-color-primary);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+        .main-content ul {
+            list-style: disc;
+            padding-left: 20px;
+            margin-bottom: 1rem;
+        }
+        .main-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* ------------------------- PUBLICATION SECTION STYLES (NEW) ------------------------- */
+        
+        /* --- START NEW CAROUSEL STYLES --- */
+        .book-carousel-wrapper {
+            position: relative;
+            width: 100%;
+            /* margin-bottom is now on .book-covers-container */
+        }
+
+        /* This is the MODIFIED class. Now explicitly optimized for touch/horizontal scrolling. */
+        .book-covers-container {
+            display: flex; /* Horizontal layout */
+            gap: 2rem;
+            padding-top: 1rem;
+            padding-bottom: 1rem; /* Added for visual buffer */
+            max-width: 100%; 
+            margin-bottom: 2rem;
+            
+            overflow-x: auto; /* <-- This enables MOUSE WHEEL and SCROLL BAR scrolling */
+            scroll-behavior: smooth; 
+            
+            /* ADDED: Scroll snap for better touch experience */
+            scroll-snap-type: x mandatory;
+            
+            /* ADDED: Better touch handling */
+            -webkit-overflow-scrolling: touch; 
+            
+            /* ADDED: Hide scrollbar */
+            -ms-overflow-style: none;  /* IE and Edge */
+            scrollbar-width: none;  /* Firefox */
+        }
+        /* ADDED: Hide scrollbar for Chrome, Safari and Opera */
+        .book-covers-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* The cards inside the carousel need a fixed/min width */
+        .book-covers-container .book-card {
+            flex-shrink: 0; /* Keep cards from shrinking */
+            width: 150px; /* Explicit width for flex items */
+            /* ADDED: Scroll snap point */
+            scroll-snap-align: start; 
+        }
+
+
+        .carousel-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 20;
+            background-color: rgba(var(--surface-color-rgb), 0.9); /* Use surface color with opacity */
+            color: var(--text-color-primary);
+            border: 1px solid var(--primary-color);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .carousel-arrow:hover {
+            background-color: var(--primary-color);
+            color: var(--surface-color);
+        }
+
+        .carousel-arrow.left-arrow {
+            left: 10px;
+        }
+
+        .carousel-arrow.right-arrow {
+            right: 10px;
+        }
+        /* --- END NEW CAROUSEL STYLES --- */
+
+
+        .book-card {
+            position: relative; /* Needed for the badge */
+            display: flex;
+            text-align: justify;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            background: var(--surface-color);
+            padding: 1rem;
+            border-radius: var(--border-radius-medium);
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer; /* Indicate it's clickable */
+        }
+
+        .book-card:hover {
+            transform: translateY(-5px) scale(1.02); /* Subtle hover lift and zoom */
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .book-card img {
+            width: 100%;
+            max-width: 150px;
+            height: auto;
+            aspect-ratio: 2 / 3; /* Standard book aspect ratio */
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 0.75rem;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+            pointer-events: none; /* Prevents image from blocking card click event */
+        }
+
+        .book-card h3 {
+            font-size: 1rem;
+            color: var(--text-color-primary);
+            margin: 0;
+            line-height: 1.3;
+            pointer-events: none;
+        }
+        
+        /* Magazine/Price Badge Styling */
+        .magazine-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #e65100; /* Darker orange for the badge */
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+            pointer-events: none;
+        }
+        
+        /* New Styles for Subscriber Button */
+        .subscribe-button-container {
+            background-color: var(--surface-color);
+            border: 2px solid var(--primary-color);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: var(--border-radius-medium);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(var(--primary-color-rgb), 0.1);
+        }
+        .subscribe-text {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--text-color-primary);
+            margin-bottom: 1rem;
+        }
+        .subscribe-button {
+            padding: 12px 25px; 
+            border: none; 
+            cursor: pointer; 
+            border-radius: 12px; 
+            background-color: var(--primary-color);
+            color: var(--text-color-primary);
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s; 
+            box-shadow: 0 4px 10px rgba(var(--primary-color-rgb), 0.5);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .subscribe-button:hover {
+            filter: brightness(1.1);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(var(--primary-color-rgb), 0.7);
+        }
+
+        /* Custom Message Box for Subscription */
+        #messageBox {
+            position: fixed;
+            top: 10vh; /* Below the nav bar */
+            left: 50%;
+            transform: translateX(-50%) translateY(-20px);
+            opacity: 0;
+            visibility: hidden;
+            padding: 15px 30px;
+            background-color: #3c3836; /* Dark surface for high contrast */
+            color: #ebdbb2; /* Light text */
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+            z-index: 2000;
+            transition: all 0.5s ease-in-out;
+            font-weight: 600;
+            text-align: center;
+            /* Ensure it wraps nicely on small screens */
+            max-width: 90%; 
+            white-space: nowrap;
+        }
+        #messageBox.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+        
+        /* ------------------------- DONATE BUTTON STYLE (NEW) ------------------------- */
+        /* Note: action-btn is used in carousel content and book detail modal */
+        .donate-btn {
+            /* Inherit the primary button padding/sizing for consistency */
+            padding: 10px 20px; 
+            border: none; 
+            border-radius: 10px; 
+            cursor: pointer; 
+            
+            /* Use secondary color theme (lighter) for contrast */
+            background-color: rgba(var(--primary-color-rgb), 0.15); 
+            color: var(--primary-color); /* Primary color text */
+            font-weight: 600;
+            
+            margin-top: 10px; /* Space from button above it */
+            transition: all 0.3s;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            
+            /* Carousel button specific animation inheritance */
+            opacity: 0; 
+            animation: animate 1s ease-in-out 0.9s 1 forwards; /* Delay longer than action-btn */
+        }
+        
+        /* Style for donate button in detail modal where animation is not used */
+        .detail-text .donate-btn {
+            display: inline-block; /* Flows correctly in column layout */
+            margin-top: 10px; /* Space from button above it */
+            align-self: flex-start; /* Aligns to the left */
+            opacity: 1; /* Always visible in modal */
+            animation: none; /* No animation needed in modal */
+        }
+
+
+        .donate-btn:hover {
+            background-color: var(--primary-color);
+            color: var(--surface-color);
+            transform: scale(1.05); /* Same hover effect as carousel buttons */
+            box-shadow: 0 4px 10px rgba(var(--primary-color-rgb), 0.5);
+        }
+        /* ------------------------- END DONATE BUTTON STYLE ------------------------- */
+
+        /* ------------------------- END PUBLICATION SECTION STYLES ------------------------- */
+
+
+        /* ------------------------- BOOK DETAIL MODAL STYLES (ZOOM POP-UP) ------------------------- */
+        
+        .book-detail-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 3000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease;
+        }
+
+        .book-detail-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .book-detail-card {
+            background-color: var(--surface-color);
+            color: var(--text-color-primary);
+            padding: 20px;
+            border-radius: var(--border-radius-large);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            max-width: 90%;
+            max-height: 90%;
+            width: 600px;
+            position: relative;
+            
+            /* Initial state for pop-up animation */
+            transform: scale(0.8);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.27);
+            opacity: 0;
+            overflow-y: auto;
+        }
+
+        .book-detail-card.show {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            font-size: 2rem;
+            color: var(--text-color-secondary);
+            cursor: pointer;
+            transition: color 0.2s;
+            line-height: 1;
+        }
+        .close-btn:hover {
+            color: var(--primary-color);
+        }
+
+        .detail-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            text-align: justify;
+            padding-top: 10px;
+        }
+
+        .detail-cover {
+            width: 100%;
+            max-width: 200px;
+            aspect-ratio: 2 / 3;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .detail-text {
+             /* Set to block layout so the button inside flows correctly below the text */
+            display: flex;
+            flex-direction: column; 
+            align-items: flex-start; /* Align text content to the left */
+        }
+        
+        .detail-text h2 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .detail-text p {
+            font-size: 0.8rem;
+            color: var(--text-color-secondary);
+            margin-bottom: 0; /* Removed bottom margin from description */
+        }
+        
+        /* MODIFIED: This class is still used for styling, but the content is set by JS */
+        .description-placeholder {
+            font-style: italic;
+            text-align: justify;
+            border-left: 3px solid var(--primary-color);
+            padding-left: 10px;
+            margin-top: 1.5rem;
+            font-size: 0.95rem;
+            width: 100%; /* Ensure it takes full width for wrapping */
+        }
+
+        /* MODIFIED: Changed from absolute positioning to flowing naturally */
+        .action-btn {
+            /* Removed absolute positioning that caused overlap */
+            display: inline-block; /* Make it respect margin/padding */
+            margin-top: 1.5rem;    /* Added spacing above the button */
+            align-self: flex-start; /* Aligns the button to the left within the detail-text flex container */
+            
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            background-color: var(--primary-color);
+            color: var(--surface-color);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .action-btn:hover {
+            filter: brightness(1.1);
+            transform: translateY(-1px);
+        }
+
+        /* Responsive layout for detail card (side-by-side on larger screens) */
+        @media (min-width: 600px) {
+            .detail-content {
+                flex-direction: row;
+                text-align: justify;
+            }
+            .detail-cover {
+                flex-shrink: 0;
+            }
+            .detail-text {
+                flex-grow: 1;
+            }
+        }
+        /* ------------------------- END BOOK DETAIL MODAL STYLES ------------------------- */
+        
+        /* ------------------------- DONATION MODAL STYLES (NEW) ------------------------- */
+
+        .donation-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 4000; /* Higher Z-index than book modal */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease;
+        }
+
+        .donation-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .donation-card {
+            background-color: var(--surface-color);
+            color: var(--text-color-primary);
+            padding: 30px 20px;
+            border-radius: var(--border-radius-large);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            max-width: 90%;
+            width: 450px; /* Focused width for QR code */
+            position: relative;
+            text-align: center;
+            
+            transform: scale(0.8);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.27);
+            opacity: 0;
+        }
+
+        .donation-card.show {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .donation-content h2 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        /* UPDATED: This class now targets the container div for qrcode.js */
+        .qr-code-container {
+            width: min(100%, 250px);
+            /* Remove height, let content define it */
+            height: 250px; 
+            margin: 1.5rem auto 1rem; /* Adjusted margin */
+            /* Add some visual styling to the container itself */
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            background-color: white; /* QR code needs a light background */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden; /* Ensure QR code elements stay inside */
+        }
+        
+        /* Target the canvas/img element generated by qrcode.js */
+        .qr-code-container canvas, .qr-code-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            /* Override border-radius applied by parent if needed, but not strictly necessary */
+        }
+        
+        /* Donation amount selection styles (NEW) */
+        .amount-btn {
+            padding: 8px 15px;
+            border: 1px solid var(--primary-color);
+            border-radius: 8px;
+            background-color: var(--surface-color);
+            color: var(--primary-color);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .amount-btn.active {
+            background-color: var(--primary-color);
+            color: var(--surface-color);
+            box-shadow: 0 2px 5px rgba(var(--primary-color-rgb), 0.5);
+        }
+
+        .amount-btn:hover:not(.active) {
+            background-color: rgba(var(--primary-color-rgb), 0.1);
+        }
+        
+        .amount-input {
+            padding: 8px;
+            border: 1px solid var(--text-color-secondary);
+            border-radius: 8px;
+            width: 100%;
+            max-width: 300px;
+            text-align: center;
+            background-color: var(--background-color);
+            color: var(--text-color-primary);
+            transition: border-color 0.3s;
+        }
+        
+        .amount-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        .upi-id-label {
+            font-weight: 500;
+            color: var(--text-color-secondary);
+            margin-bottom: 0.25rem;
+        }
+
+        .upi-id-value {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--text-color-primary);
+            margin-bottom: 1rem;
+            padding: 0.5rem 0;
+            background-color: rgba(var(--primary-color-rgb), 0.1);
+            border-radius: 8px;
+            display: inline-block;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        .copy-upi-btn {
+            /* Reuse action-btn style but make it a bit narrower/flatter */
+            padding: 10px 15px;
+            border: none;
+            border-radius: 8px;
+            background-color: var(--primary-color);
+            color: var(--surface-color);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-bottom: 0.5rem; /* Adjusted margin */
+            margin-top: 10px; /* Separator from UPI ID */
+        }
+        .copy-upi-btn:hover {
+            filter: brightness(1.1);
+            transform: translateY(-1px);
+        }
+        
+        /* NEW: Deep link button styles re-added */
+        .deep-link-btn {
+            padding: 12px 20px;
+            border: none;
+            border-radius: 10px;
+            background-color: #4CAF50; /* Green for Call to Action */
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 20px; /* Increased top margin for separation */
+            margin-bottom: 20px;
+            display: inline-flex; /* Use flex to align icon and text */
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .deep-link-btn:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
+
+
+        .donation-note {
+            font-size: 0.85rem;
+            color: var(--text-color-secondary);
+            font-style: italic;
+        }
+        /* ------------------------- END DONATION MODAL STYLES ------------------------- */
+
+
+        /* ------------------------- SCROLL TO TOP BUTTON STYLES ------------------------- */
+
+        #scrollToTopBtn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            /* Use a larger size for better mobile touch target */
+            width: 50px; 
+            height: 50px;
+            background-color: var(--primary-color);
+            color: var(--surface-color); /* Light color for icon */
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            opacity: 0; /* Hidden by default */
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.2s ease;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        #scrollToTopBtn.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        #scrollToTopBtn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+        }
+        
+</style>
+</head>
+<body onload="loadDataAndInit()">
+<nav class="menu">
+  <img src="https://raw.githubusercontent.com/t4saha/PBVM-Uluberia-Vigyan-Kendra/main/Logo/pvbm_logo_gold.png" alt="Logo" class="nav-logo" onerror="this.onerror=null; this.src='https://placehold.co/50x50/d79921/3c3836?text=LOGO'">
+  
+  <!-- NEW: Container for Menu Label, Hamburger Icon, and Active Label (Mobile Only) -->
+  <div class="menu-controls-mobile">
+      <!-- MODIFIED: Added data-translate-key -->
+      <span class="menu-label-text" data-translate-key="nav_menu">Menu</span>
+      <!-- Hamburger Menu Button -->
+      <button class="hamburger-menu" id="hamburgerBtn" onclick="toggleMenu()" aria-label="Toggle menu" aria-expanded="false">
+          <i class="fa-solid fa-bars"></i>
+      </button>
+      <!-- Current Selected Menu Label - Defaulted to Home in HTML -->
+      <span class="menu-label-text current-menu-label" id="currentMenuLabel">Home</span>
+  </div>
+  
+  <!-- Navigation Links Container with ID -->
+  <div class="nav-links" id="navLinks">
+    <!-- MODIFIED: Added data-translate-key -->
+    <a href="#home" data-translate-key="nav_home">Home</a>
+    <a href="#about" data-translate-key="nav_about">About</a>
+    <a href="#projects" data-translate-key="nav_projects">Projects</a>
+    <a href="#publications" data-translate-key="nav_publications">Publications</a>
+    <a href="#download" data-translate-key="nav_download">Download</a>
+    <a href="#contact" data-translate-key="nav_contact">Contact</a>
+  </div>
+  
+  <div class="header-controls">
+      <!-- New Single Icon Theme Toggle -->
+      <button id="themeToggleIcon" onclick="toggleTheme()" aria-label="Toggle dark mode" class="theme-icon-button">
+          <i class="fa-solid fa-sun theme-icon sun-icon"></i>
+          <i class="fa-solid fa-moon theme-icon moon-icon"></i>
+      </button>
+      
+      <div class="lang-toggle">
+          <span id="langEn" onclick="setLang('en')">EN</span>
+          <span id="langBn" onclick="setLang('bn')">বা</span>
+      </div>
+  </div>
+</nav>
+
+<!-- Custom message box element for subscription feedback -->
+<div id="messageBox"></div>
+
+<!-- Added ID to container for drag logic -->
+<div class="container" id="carouselContainer">
+  <div class="slide">
+    <!-- Updated: Content-aware button text -->
+    <div class="item" id="home" style="--bg-image: url('https://raw.githubusercontent.com/pbvmuluberia/pbvmuluberia.github.io/refs/heads/main/src/background/projects.jpg');">
+      <div class="content">
+        <!-- MODIFIED: Added data-translate-key -->
+        <h2 class="name" data-translate-key="carousel_home_name">Welcome</h2>
+        <p class="des" data-translate-key="carousel_home_des">Uluberia Vigyan Kendra</p>
+        <button class="action-btn" onclick="readMore('Home')" data-translate-key="carousel_home_btn">See What's New</button>
+        <button class="donate-btn" onclick="showDonationPopup()" data-translate-key="carousel_donate_btn">Donate to us</button>
+      </div>
+    </div>
+    <div class="item" id="about" style="--bg-image: url('https://raw.githubusercontent.com/pbvmuluberia/pbvmuluberia.github.io/refs/heads/main/src/background/about.jpeg');">
+      <div class="content">
+        <!-- MODIFIED: Added data-translate-key -->
+        <h2 class="name" data-translate-key="carousel_about_name">About</h2>
+        <p class="des" data-translate-key="carousel_about_des">Learn about us here.</p>
+        <button class="action-btn" onclick="readMore('About')" data-translate-key="carousel_about_btn">Learn About Us</button>
+        <button class="donate-btn" onclick="showDonationPopup()" data-translate-key="carousel_donate_btn">Donate to us</button>
+      </div>
+    </div>
+    <div class="item" id="projects" style="--bg-image: url('https://raw.githubusercontent.com/pbvmuluberia/pbvmuluberia.github.io/refs/heads/main/src/background/project.jpeg');">
+      <div class="content">
+        <!-- MODIFIED: Added data-translate-key -->
+        <h2 class="name" data-translate-key="carousel_projects_name">Projects</h2>
+        <p class="des" data-translate-key="carousel_projects_des">Our ongoing and past projects.</p>
+        <button class="action-btn" onclick="readMore('Projects')" data-translate-key="carousel_projects_btn">View Projects</button>
+        <button class="donate-btn" onclick="showDonationPopup()" data-translate-key="carousel_donate_btn">Donate to us</button>
+      </div>
+    </div>
+    <div class="item" id="publications" style="--bg-image: url('https://raw.githubusercontent.com/pbvmuluberia/pbvmuluberia.github.io/refs/heads/main/src/background/library.jpeg');">
+      <div class="content">
+        <!-- MODIFIED: Added data-translate-key -->
+        <h2 class="name" data-translate-key="carousel_publications_name">Publications</h2>
+        <p class="des" data-translate-key="carousel_publications_des">Read our publications and research.</p>
+        <button class="action-btn" onclick="readMore('Publications')" data-translate-key="carousel_publications_btn">Read Publications</button>
+        <button class="donate-btn" onclick="showDonationPopup()" data-translate-key="carousel_donate_btn">Donate to us</button>
+      </div>
+    </div>
+    <div class="item" id="download" style="--bg-image: url('https://raw.githubusercontent.com/pbvmuluberia/pbvmuluberia.github.io/refs/heads/main/src/background/download.jpeg');">
+      <div class="content">
+        <!-- MODIFIED: Added data-translate-key -->
+        <h2 class="name" data-translate-key="carousel_download_name">Download</h2>
+        <p class="des" data-translate-key="carousel_download_des">Get downloadable resources here.</p>
+        <button class="action-btn" onclick="readMore('Download')" data-translate-key="carousel_download_btn">Get Resources</button>
+        <button class="donate-btn" onclick="showDonationPopup()" data-translate-key="carousel_donate_btn">Donate to us</button>
+      </div>
+    </div>
+    <div class="item" id="contact" style="--bg-image: url('https://picsum.photos/id/1032/800/400');">
+      <div class="content">
+        <!-- MODIFIED: Added data-translate-key -->
+        <h2 class="name" data-translate-key="carousel_contact_name">Contact</h2>
+        <p class="des" data-translate-key="carousel_contact_des">Reach out to us anytime.</p>
+        <button class="action-btn" onclick="readMore('Contact')" data-translate-key="carousel_contact_btn">Get in Touch</button>
+        <button class="donate-btn" onclick="showDonationPopup()" data-translate-key="carousel_donate_btn">Donate to us</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- New scrollable content area -->
+<div class="main-content" id="main-content">
+    <h1 id="content-heading">Welcome!</h1>
+    <div id="content-body">
+        <!-- This content is now replaced by updateMainContent() -->
+    </div>
+</div>
+
+<!-- Book Detail Modal (Pop-up Zoom) -->
+<div id="bookDetailOverlay" class="book-detail-overlay" onclick="hideBookDetails()">
+    <div id="bookDetailCard" class="book-detail-card" onclick="event.stopPropagation()">
+        
+        <!-- BADGE: Using magazine-badge class but overriding position with inline style to avoid close button -->
+        <span id="detailBookBadge" class="magazine-badge" style="display: none; top: 20px; left: 20px; right: auto; z-index: 10;"></span>
+
+        <button class="close-btn" onclick="hideBookDetails()">&times;</button>
+        <div class="detail-content">
+            <img id="detailBookCover" src="" alt="Book Cover" class="detail-cover"
+                 onerror="this.onerror=null;this.src='https://placehold.co/200x300/d79921/3c3836?text=Cover+Not+Found';">
+            <div class="detail-text">
+                <h2 id="detailBookTitle"></h2>
+                <p id="detailBookType"></p>
+                
+                <p id="detailBookDescription" class="description-placeholder"></p>
+                
+                <!-- MOVED: The button is now inside .detail-text to flow with the content -->
+                <button id="detailActionBtn" class="action-btn" onclick="showSubscriptionMessage('msg_purchase_dev')">Subscribe / Buy</button>
+                <!-- UPDATED: Donate button calls showDonationPopup -->
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Donation Modal (UPDATED) -->
+<div id="donationOverlay" class="donation-overlay" onclick="hideDonationPopup()">
+    <div id="donationCard" class="donation-card" onclick="event.stopPropagation()">
+        <button class="close-btn" onclick="hideDonationPopup()">&times;</button>
+        <div class="donation-content">
+            <!-- MODIFIED: Added data-translate-key -->
+            <h2 data-translate-key="donate_title">Support Our Mission</h2>
+            <p class="upi-id-label" data-translate-key="donate_choose_amount">Choose Amount:</p>
+            <div id="donationAmountSelectors" style="display: flex; justify-content: center; gap: 10px; margin-bottom: 15px;">
+                <!-- Buttons for fixed amounts -->
+                <button class="amount-btn active" data-amount="100" onclick="selectAmount(100)">₹100</button>
+                <button class="amount-btn" data-amount="500" onclick="selectAmount(500)">₹500</button>
+            </div>
+
+            <div style="display: flex; justify-content: center; align-items: center; gap: 10px; margin-bottom: 20px;">
+                <!-- MODIFIED: Added data-translate-key for placeholder -->
+                <input type="number" id="customAmountInput" placeholder="Other Amount (e.g., 250)" 
+                    class="amount-input" 
+                    oninput="selectAmount(this.value)"
+                    min="1" step="1"
+                    data-translate-key="donate_other_amount">
+            </div>
+
+            <!-- MODIFIED: Added data-translate-key -->
+            <p data-translate-key="donate_scan_qr">Scan the **QR code** below.</p>
+            <!-- UPDATED: Replaced img with a div container for qrcode.js to render into -->
+            <div id="upiQrCodeContainer" class="qr-code-container">
+                <!-- QR code will be dynamically rendered here by JavaScript -->
+            </div>
+            
+            <!-- RE-ADDED: UPI Deep Link Button -->
+            <!-- MODIFIED: Added data-translate-key -->
+            <a id="deepLinkBtn" class="deep-link-btn" href="#" target="_blank" onclick="hideDonationPopup()">
+                 <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                 <!-- This span will be translated by JS -->
+                 <span data-translate-key="donate_open_upi">Open in UPI App</span>
+            </a>
+            
+            <!-- MODIFIED: Added data-translate-key -->
+            <p class="upi-id-label" data-translate-key="donate_upi_id_label">UPI ID:</p>
+            <p id="upiId" class="upi-id-value">9433361030@ucobank</p>
+            <!-- MODIFIED: Added data-translate-key -->
+            <button class="copy-upi-btn" onclick="copyUpiId()" data-translate-key="donate_copy_upi">Copy UPI ID</button>
+            <!-- MODIFIED: Added data-translate-key -->
+            <p class="donation-note" data-translate-key="donate_note">Your generous contribution directly funds our science popularization and community projects.</p>
+        </div>
+    </div>
+</div>
+
+
+<!-- SCROLL TO TOP BUTTON -->
+<button id="scrollToTopBtn" onclick="scrollToTop()" aria-label="Scroll to top">
+    <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<script>
+"use strict";
+
+// --- START: NEW TRANSLATION DICTIONARY ---
+const translations = {
+    'en': {
+        'nav_menu': 'Menu',
+        'nav_home': 'Home',
+        'nav_about': 'About',
+        'nav_projects': 'Projects',
+        'nav_publications': 'Publications',
+        'nav_download': 'Download',
+        'nav_contact': 'Contact',
+        'carousel_home_name': 'Welcome',
+        'carousel_home_des': 'Uluberia Vigyan Kendra',
+        'carousel_home_btn': "See What's New",
+        'carousel_donate_btn': 'Donate to us',
+        'carousel_about_name': 'About',
+        'carousel_about_des': 'Learn about us here.',
+        'carousel_about_btn': 'Learn About Us',
+        'carousel_projects_name': 'Projects',
+        'carousel_projects_des': 'Our ongoing and past projects.',
+        'carousel_projects_btn': 'View Projects',
+        'carousel_publications_name': 'Publications',
+        'carousel_publications_des': 'Read our publications and research.',
+        'carousel_publications_btn': 'Read Publications',
+        'carousel_download_name': 'Download',
+        'carousel_download_des': 'Get downloadable resources here.',
+        'carousel_download_btn': 'Get Resources',
+        'carousel_contact_name': 'Contact',
+        'carousel_contact_des': 'Reach out to us anytime.',
+        'carousel_contact_btn': 'Get in Touch',
+        'donate_title': 'Support Our Mission',
+        'donate_choose_amount': 'Choose Amount:',
+        'donate_other_amount': 'Other Amount (e.g., 250)',
+        'donate_scan_qr': 'Scan the **QR code** below.',
+        'donate_open_upi': 'Open in UPI App',
+        'donate_upi_id_label': 'UPI ID:',
+        'donate_copy_upi': 'Copy UPI ID',
+        'donate_note': 'Your generous contribution directly funds our science popularization and community projects.',
+        'book_type_magazine': 'Type: Recurring Magazine',
+        'book_type_standard': 'Type: Standard Publication',
+        'book_no_description': 'No description available for this publication.',
+        'book_btn_buy': 'Buy Now',
+        'book_btn_subscribe': 'Subscribe',
+        'book_btn_download': 'Download / Read More',
+        'msg_purchase_dev': 'Purchase/Download feature is under development.',
+        'msg_subscribe_dev': 'Subscription feature is under development. Thank you for your interest!',
+        'msg_upi_copied': 'UPI ID copied to clipboard!',
+        'msg_upi_fail': 'Failed to copy UPI ID.',
+        'pub_subscribe_prompt': 'Want to enjoy our regular magazines? Subscribe today!',
+        'pub_subscribe_btn': 'Become a Subscriber',
+        'pub_featured_title': 'Featured Publications',
+        'pub_error_loading': 'Error loading publications. Please check your connection and try again.'
+    },
+    'bn': {
+        'nav_menu': 'মেনু',
+        'nav_home': 'হোম',
+        'nav_about': 'পরিচিতি',
+        'nav_projects': 'প্রকল্প',
+        'nav_publications': 'প্রকাশনা',
+        'nav_download': 'ডাউনলোড',
+        'nav_contact': 'যোগাযোগ',
+        'carousel_home_name': 'অভিনন্দন',
+        'carousel_home_des': 'উলুবেড়িয়া বিজ্ঞান কেন্দ্র',
+        'carousel_home_btn': 'নতুন কি দেখুন',
+        'carousel_donate_btn': 'অর্থসাহায্য করুন',
+        'carousel_about_name': 'পরিচিতি',
+        'carousel_about_des': 'আমাদের সম্পর্কে এখানে জানুন।',
+        'carousel_about_btn': 'আমাদের সম্পর্কে জানুন',
+        'carousel_projects_name': 'কর্মকলাপ',
+        'carousel_projects_des': 'আমাদের চলমান এবং অতীত কর্মকলাপ সমুহ।',
+        'carousel_projects_btn': 'কর্মকলাপ সম্পর্কে জানুন',
+        'carousel_publications_name': 'প্রকাশনা',
+        'carousel_publications_des': 'আমাদের প্রকাশনাগুলি পড়ুন।',
+        'carousel_publications_btn': 'প্রকাশনা পড়ুন',
+        'carousel_download_name': 'ডাউনলোড',
+        'carousel_download_des': 'ডাউনলোডযোগ্য নথিগুলি এখানে পান।',
+        'carousel_download_btn': 'বিস্তারিত দেখুন',
+        'carousel_contact_name': 'যোগাযোগ',
+        'carousel_contact_des': 'যেকোনো সময় আমাদের সাথে যোগাযোগ করুন।',
+        'carousel_contact_btn': 'যোগাযোগ করুন',
+        'donate_title': 'আমাদের সহায়তা করুন',
+        'donate_choose_amount': 'পরিমাণ চয়ন করুন:',
+        'donate_other_amount': 'অন্যান্য পরিমাণ (যেমন, ২৫০)',
+        'donate_scan_qr': 'নীচের QR কোড স্ক্যান করুন।',
+        'donate_open_upi': 'UPI অ্যাপে খুলুন',
+        'donate_upi_id_label': 'UPI ID:',
+        'donate_copy_upi': 'UPI ID কপি করুন',
+        'donate_note': 'আপনার সহযোগীতা সরাসরি আমাদের বিজ্ঞান জনপ্রিয়করণ এবং কার্যকলাপগুলিকে অর্থায়ন করে।',
+        'book_type_magazine': 'ধরন: ধারাবাহিক পত্রিকা',
+        'book_type_standard': 'ধরন: বই',
+        'book_no_description': 'এই প্রকাশনার জন্য কোন বিবরণ উপলব্ধ নেই।',
+        'book_btn_buy': 'এখনই কিনুন',
+        'book_btn_subscribe': 'গ্রাহক হন',
+        'book_btn_download': 'ডাউনলোড / আরও পড়ুন',
+        'msg_purchase_dev': 'ক্রয়/ডাউনলোড বৈশিষ্ট্যটি নির্মাণাধীন।',
+        'msg_subscribe_dev': 'সাবস্ক্রিপশন বৈশিষ্ট্যটি নির্মাণাধীন। আপনার আগ্রহের জন্য ধন্যবাদ!',
+        'msg_upi_copied': 'UPI ID ক্লিপবোর্ডে কপি করা হয়েছে!',
+        'msg_upi_fail': 'UPI ID কপি করতে ব্যর্থ।',
+        'pub_subscribe_prompt': 'আপনি কি আমাদের নিয়মিত পত্রিকা উপভোগ করতে চান? আজই গ্রাহক হন!',
+        'pub_subscribe_btn': 'গ্রাহক হন',
+        'pub_featured_title': ' পত্রিকা ও বই',
+        'pub_error_loading': 'প্রকাশনা লোড করতে ত্রুটি। অনুগ্রহ করে আপনার সংযোগ পরীক্ষা করুন এবং আবার চেষ্টা করুন।'
+    }
+};
+
+/**
+ * Gets the current language from localStorage or defaults to 'en'.
+ * @returns {string} The current language code ('en' or 'bn').
+ */
+function getLang() {
+    return localStorage.getItem('language') || 'en';
+}
+
+/**
+ * Applies translations to all elements with data-translate-key.
+ */
+function applyTranslations() {
+    const lang = getLang();
+    const langDict = translations[lang] || translations['en'];
+
+    document.querySelectorAll('[data-translate-key]').forEach(element => {
+        const key = element.getAttribute('data-translate-key');
+        if (langDict[key]) {
+            if (element.tagName === 'INPUT' && element.hasAttribute('placeholder')) {
+                element.setAttribute('placeholder', langDict[key]);
+            } else {
+                // Handle nested elements like the deep link button icon
+                const icon = element.querySelector('i');
+                if (icon && element.classList.contains('deep-link-btn')) {
+                    // Reconstruct content with icon
+                    element.innerHTML = ''; // Clear existing
+                    element.appendChild(icon.cloneNode()); // Add icon back
+                    element.appendChild(document.createTextNode(' ' + langDict[key])); // Add translated text
+                } else {
+                    element.textContent = langDict[key];
+                }
+            }
+        }
+    });
+}
+// --- END: NEW TRANSLATION LOGIC ---
+
+// --- START: NEW DATA FETCHING CONSTANTS ---
+// This is the URL from your original code, assumed to be English.
+const JSON_URL_EN = "https://gist.githubusercontent.com/pbvmuluberia/b6bf520cce8c1b0167a6657b2c60e4d2/raw/eb327ee9d32d9f3e57f45c4dd0c6c2ec16c4d895/book.json";
+// !!! IMPORTANT: Please replace this with the correct URL for your Bengali book_bn.json file !!!
+const JSON_URL_BN = "https://gist.githubusercontent.com/pbvmuluberia/e5e2122ddf3ac7489e61be9f81e475fd/raw/211d2029afbc4e1785f7bc22e552f459493b64e1/book_bn.json"; // <-- UPDATE THIS URL
+
+// Global cache for book data
+window.bookData = {
+    en: null,
+    bn: null
+};
+// --- END: NEW DATA FETCHING CONSTANTS ---
+
+
+// --- UPI CONSTANTS (UPDATED) ---
+const UPI_ID = '9433361030@ucobank';
+const VPA_NAME = 'Paschim Banga Vigyan Mancha (Uluberia Vigyan Kendra)'; 
+let currentDonationAmount = 100; // Initialize default amount
+// --------------------------------
+
+const slide = document.querySelector(".slide");
+const carousel = document.getElementById("carouselContainer"); // Get the carousel container
+const navMenu = document.querySelector('nav.menu'); // Get the sticky nav bar
+const scrollToTopBtn = document.getElementById('scrollToTopBtn'); // Get the new button
+const contentHeading = document.getElementById('content-heading'); // Main content heading
+const contentBody = document.getElementById('content-body'); // Main content body container
+const messageBox = document.getElementById('messageBox'); // Custom message box
+
+// NEW: Global QR Code instance placeholder
+let qrCodeInstance = null;
+
+// --- Drag/Swipe State Variables for MAIN CAROUSEL ---
+let isDragging = false;
+let startX = 0;
+let moved = 0;
+const DRAG_THRESHOLD = 50; // Pixels needed to trigger a slide change
+// ---------------------------------------------------
+
+
+// --- Book Data and Generator Functions (MODIFIED) ---
+
+/**
+ * Generates HTML for the book cards carousel.
+ * This function now receives a language-specific book array.
+ * @param {Array} bookArray - The array of book objects (e.g., from book_en.json).
+ * @returns {string} The HTML string for the carousel.
+ */
+function generateBookCardsHtml(bookArray) {
+    const containerId = 'book-covers-carousel-1';
+    let cardsHtml = ''; // Just the cards
+
+    if (!bookArray) return ''; // Safety check
+
+    bookArray.forEach(book => {
+        // Data is now simple, not multilingual
+        const bookJsonString = JSON.stringify(book).replace(/"/g, '&quot;');
+        
+        // Fallback placeholder image in case the remote URL fails
+        const fallbackUrl = `https://placehold.co/150x225/d79921/3c3836?text=Book+Cover`;
+        
+        // Conditional badge rendering
+        const badgeHtml = book.isMagazine 
+            ? '<span class="magazine-badge">MAGAZINE</span>' 
+            : '';
+            
+        cardsHtml += `
+            <div class="book-card" onclick="showBookDetails(this)" data-book-json="${bookJsonString}">
+                ${badgeHtml}
+                <img src="${book.url}" alt="Cover of ${book.title}" 
+                     onerror="this.onerror=null;this.src='${fallbackUrl}';">
+                <h3>${book.title}</h3>
+            </div>
+        `;
+    });
+
+    // CHANGED: Wrap the cards in the carousel wrapper and add buttons
+    let html = `
+        <div class="book-carousel-wrapper">
+            <button class="carousel-arrow left-arrow" onclick="scrollCarousel('${containerId}', 'left')" aria-label="Scroll left">
+                <i class="fa-solid fa-chevron-left"></i>
+            </button>
+            <div class="book-covers-container" id="${containerId}">
+                ${cardsHtml}
+            </div>
+            <button class="carousel-arrow right-arrow" onclick="scrollCarousel('${containerId}', 'right')" aria-label="Scroll right">
+                <i class="fa-solid fa-chevron-right"></i>
+            </button>
+        </div>
+    `;
+    
+    return html;
+}
+
+
+/**
+ * Generates the content object for the Publications section.
+ * @param {Array} bookArray - The language-specific array of book objects.
+ * @returns {Object} An object with {title, body} for the contentData.
+ */
+function generatePublicationsContent(bookArray) {
+    const lang = getLang();
+    const langDict = translations[lang];
+
+    // 1. Check if there are any magazines to warrant a subscribe button
+    const hasMagazines = bookArray.some(book => book.isMagazine);
+    let subscribeButtonHtml = '';
+
+    if (hasMagazines) {
+        subscribeButtonHtml = `
+            <div class="subscribe-button-container">
+                <p class="subscribe-text">${langDict.pub_subscribe_prompt}</p>
+                <button class="subscribe-button" onclick="showSubscriptionMessage('msg_subscribe_dev')">
+                    <i class="fa-solid fa-bell"></i> ${langDict.pub_subscribe_btn}
+                </button>
+            </div>
+        `;
+    }
+
+    // 2. Generate book cards HTML (now uses the simple book array)
+    const bookCardsHtml = generateBookCardsHtml(bookArray);
+
+    // 3. Assemble the full publications body
+    return {
+        title: langDict.nav_publications, // "Publications" or "প্রকাশনা"
+        body: `
+            <h2>${langDict.pub_featured_title}</h2>
+            ${bookCardsHtml}
+            ${subscribeButtonHtml}
+        `
+    };
+}
+// --- End Book Data and Generator Functions ---
+
+
+// --- Content Data (MODIFIED: Now multi-lingual) ---
+const contentData = {
+    'home': {
+        'en': {
+            title: "Welcome",
+            body: `
+                <p>Our organization is dedicated to fostering innovation and community growth. We offer a variety of services and initiatives designed to support our mission.</p>
+                <p>Explore our site using the carousel above or the navigation menu. Each section provides unique insights into our work, from educational projects to various publications.</p>
+                <p><strong>PBVM has been awarded National Award for best effort in Science Popularization in India during the period 1985-89, by the Department. of Science and Technology, Govt. of India.</strong></p>
+                <h2>Current Events</h2>
+                <ul>
+                    <li>Howrah Zilla Vigyan Manosikota-o-Medha Aviksha 2025 has been successfully completed.</li>
+                    <a href="https://www.w3schools.com">Result will be published Soon.</a>
+                    <p></p>
+                    <li><a href="https://script.google.com/macros/s/AKfycbyoM-UWki3lnK_esoNkjXyWh9JLt6YSwTYfaKUdidvlwdrMnGZxlNbmJNoE9Mx-XnpodA/exec">Download Admit - Howrah Zilla Vigyan Manosikoka-o-Medha Aviksha - 2025</a></li>
+                </ul>
+                <p></p>
+            `
+        },
+        'bn': {
+            title: "স্বাগতম",
+            body: `
+                <p>আমাদের সংস্থা উদ্ভাবননা এবং সাধারণ মানুষের বিকাশকে উৎসাহিত করার জন্য নিবেদিতপ্রাণ। আমরা আমাদের লক্ষ্যকে এগিয়ে নিয়ে যাওয়ার জন্য বিভিন্ন কর্মকাণ্ড, পরিষেবা এবং উদ্যোগ গ্রহণ করে থাকি।</p>
+                <p>উপরের নেভিগেশন মেনু ব্যবহার করে আমাদের সাইটটি অন্বেষণ করুন। প্রতিটি বিভাগ আমাদের কাজের অনন্য অন্তর্দৃষ্টি প্রদান করে, স্বাস্থ্য, বিজ্ঞান ও শিক্ষাগত প্রকল্প থেকে শুরু করে বিভিন্ন প্রকাশনা পর্যন্ত এখানে খুঁজে পাবেন।</p>
+                <p><strong>পঃ বঃ বিঃ মঃ ১৯৮৫-৮৯ সময়কালে ভারতে বিজ্ঞান জনপ্রিয়করণে সেরা প্রচেষ্টার জন্য জাতীয় পুরস্কারে ভূষিত হয়েছে, ভারত সরকারের বিজ্ঞান ও প্রযুক্তি বিভাগ দ্বারা।</strong></p>
+                <h2>বর্তমান ঘটনাবলী</h2>
+                <ul>
+                    <li>হাওড়া জেলা বিজ্ঞান মানসিকতা-ও-মেধা অভিক্ষা ২০২৫ সফলভাবে সম্পন্ন হয়েছে।</li>
+                    <a href="https://www.w3schools.com">ফলাফল শীঘ্রই প্রকাশিত হবে।</a>
+                    <p></p>
+                    <li><a href="https://script.google.com/macros/s/AKfycbyoM-UWki3lnK_esoNkjXyWh9JLt6YSwTYfaKUdidvlwdrMnGZxlNbmJNoE9Mx-XnpodA/exec">অ্যাডমিট ডাউনলোড করুন - হাওড়া জেলা বিজ্ঞান মানসিকতা-ও-মেধা অভিক্ষা - ২০২৫</a></li>
+                </ul>
+                <p></p>
+            `
+        }
+    },
+    'about': {
+        'en': {
+            title: "Paschimbanga Vigyan mancha",
+            body: `
+                <p>Science popularization was not a totally new concept to the people of West Bengal in 1986 when Paschim Banga Vigyam Mancha (PBVM) started function. The doyens of our renaissance were involved in this social reform work even in early nineteenth century. The only difference is that PBVM initiated an organized People's Science Movement.</p>
+                <p>More than three decade has passed since its inception and now no one will deny that PBVM is a name in this field of science popularization not in West Bengal but also in India.</p>
+                <p>In the twenty two Districts of West Bengal, most of the Blocks of the State, in the research Institutes and Universities have their respective units/committees of Paschim Banga Vigyan Mancha. Millions of people of West Bengal are very much familiar with the name PBVM because of its sustained various type of activities which relates with all walks of life.</p>
+                <h2>Uluberia Vigyan Kendra</h2>
+                <p>A zonal section under <strong></strong>Howrah Zilla Committee</strong></p>
+                <h2 id="chakras-heading">Constituent Chakras</h2>
+                <p><strong>Uluberia Vigyan Kendra comprises the following 4 chakras:</strong></p>
+                <ul>
+                  <li><strong>Uluberia Sahar Chakra</strong></li>
+                  <li><strong>Jadurberia Chakra</strong></li>
+                  <li><strong>Kalinagar Chakra</strong></li>
+                  <li><strong>Nabagram Chakra</strong></li>
+                </ul>
+                <h2>Our Core Values</h2>
+                <ul>
+                    <li><strong>Scientific Temper:</strong> Fostering rational thinking and evidence-based decision-making.</li>
+                    <li><strong>Community Outreach:</strong> Engaging with local schools and marginalized groups.</li>
+                    <li><strong>Sustainability:</strong> Promoting environmentally conscious practices and projects.</li>
+                </ul>
+            `
+        },
+        'bn': {
+            title: "পশ্চিমবঙ্গ বিজ্ঞান মঞ্চ",
+            body: `
+                <p>১৯৮৬ সালে যখন পশ্চিমবঙ্গ বিজ্ঞান মঞ্চ (পঃ বঃ বিঃ মঃ) কাজ শুরু করে তখন বিজ্ঞান জনপ্রিয়করণ, পশ্চিমবঙ্গের মানুষের কাছে একটি সম্পূর্ণ নতুন ধারণা ছিল না। আমাদের নবজাগরণের পুরোধারা এমনকি ঊনবিংশ শতাব্দীর প্রথম দিকেও এই সমাজ সংস্কারমূলক কাজে জড়িত ছিলেন। শুধু একমাত্র পার্থক্য হল পঃ বঃ বিঃ মঃ একটি সংগঠিত গণবিজ্ঞান আন্দোলন শুরু করেছিল।</p>
+                <p>এর সূচনার পর তিন দশকেরও বেশি সময় কেটে গেছে এবং এখন কেউ অস্বীকার করবে না যে পঃ বঃ বিঃ মঃ শুধুমাত্র পশ্চিমবঙ্গে নয়, ভারতেও বিজ্ঞান জনপ্রিয়করণের ক্ষেত্রে একটি পরিচিত নাম।</p>
+                <p>পশ্চিমবঙ্গের বাইশটি জেলায়, রাজ্যের বেশিরভাগ ব্লকে, গবেষণা প্রতিষ্ঠান এবং বিশ্ববিদ্যালয়গুলিতে পশ্চিমবঙ্গ বিজ্ঞান মঞ্চের নিজস্ব ইউনিট/কমিটি রয়েছে। পশ্চিমবঙ্গের লক্ষ লক্ষ মানুষ পঃ বঃ বিঃ মঃ নামের সাথে খুব পরিচিত কারণ এর সমগ্র ক্রিয়াকলাপ জীবনের সকল ক্ষেত্রের সাথে সম্পর্কিত।</p>
+                <h2>উলুবেড়িয়া বিজ্ঞান কেন্দ্র</h2>
+                <p><strong>যৌথ জেলা কমিটি</strong>-এর অধীনে একটি আঞ্চলিক শাখা</p>
+                <h2 id="chakras-heading">গঠনকারী চক্রসমূহ</h2>
+                <p><strong>উলুবেড়িয়া বিজ্ঞান কেন্দ্র নিম্নলিখিত ৪টি চক্র নিয়ে গঠিত:</strong></p>
+                <ul>
+                  <li><strong>উলুবেড়িয়া শহর চক্র</strong></li>
+                  <li><strong>যদুরবেড়িয়া চক্র</strong></li>
+                  <li><strong>কালিনগর চক্র</strong></li>
+                  <li><strong>নবগ্রাম চক্র</strong></li>
+                </ul>
+                <h2>আমাদের মূল মূল্যবোধ</h2>
+                <ul>
+                    <li><strong>বৈজ্ঞানিক মানসিকতা:</strong> যুক্তিসঙ্গত চিন্তাভাবনা এবং প্রমাণ-ভিত্তিক সিদ্ধান্ত গ্রহণকে উৎসাহিত করা।</li>
+                    <li><strong>মানুষের মধ্যে প্রচার:</strong> স্থানীয় স্কুল এবং প্রান্তিক গোষ্ঠীগুলির সহ সমস্ত মানুষের সাথে জড়িত হওয়া।</li>
+                    <li><strong>স্থিতিশীলতা:</strong> পরিবেশ সচেতন অনুশীলন এবং সিদ্ধান্ত প্রচার করা।</li>
+                </ul>
+            `
+        }
+    },
+    'projects': {
+        'en': {
+            title: "Our Ongoing and Past Projects",
+            body: `<p>Under Development</p>`
+        },
+        'bn': {
+            title: "আমাদের চলমান এবং অতীত প্রকল্প",
+            body: `<p>নির্মাণাধীন</p>`
+        }
+    },
+    'download': {
+        'en': {
+            title: "Downloadable Resources",
+            body: `
+                <p>Access all necessary forms, documents, and resources here. </p>
+                <p>All files are provided in PDF format for easy access. If you require a different format, please contact our support team.</p>
+                <h2>Download Links</h2>
+                <ul>
+                    <li><a href="https://script.google.com/macros/s/AKfycbyoM-UWki3lnK_esoNkjXyWh9JLt6YSwTYfaKUdidvlwdrMnGZxlNbmJNoE9Mx-XnpodA/exec">Download Admit - Howrah Zilla Vigyan Manosikoka-o-Medha Aviksha - 2025</a></li>
+                    <p></p>
+                    <li><a href="https://raw.githubusercontent.com/pbvmuluberia/pbvmuluberia.github.io/main/src/body%20donation.pdf" download="body_donation_form.pdf">
+Body or Eye Donation Form</a></li>
+                </ul>
+            `
+        },
+        'bn': {
+            title: "ডাউনলোডযোগ্য নথি",
+            body: `
+                <p>এখানে সমস্ত প্রয়োজনীয় ফর্ম, নথি এবং রেজান্ট অ্যাক্সেস করুন।</p>
+                <p>বেশিরভাগ ফাইল সহজ অ্যাক্সেসের জন্য পিডিএফ ফর্ম্যাটে সরবরাহ করা হয়েছে। আপনার যদি অন্য কোনো ফর্ম্যাটের প্রয়োজন হয়, অনুগ্রহ করে আমাদের সহায়তা অংশে যোগাযোগ করুন।</p>
+                <h2>ডাউনলোড লিঙ্ক</h2>
+                <ul>
+                    <li><a href="https://script.google.com/macros/s/AKfycbyoM-UWki3lnK_esoNkjXyWh9JLt6YSwTYfaKUdidvlwdrMnGZxlNbmJNoE9Mx-XnpodA/exec">অ্যাডমিট ডাউনলোড করুন - হাওড়া জেলা বিজ্ঞান মানসিকতা-ও-মেধা অভিক্ষা - ২০২৫</a></li>
+                    <p></p>
+                    <li><a href="https://raw.githubusercontent.com/pbvmuluberia/pbvmuluberia.github.io/main/src/body%20donation.pdf" download="body_donation_form.pdf">দেহদান ও চক্ষুদান অঙ্গীকার ফরম</a></li>
+                </ul>
+            `
+        }
+    },
+    'contact': {
+        'en': {
+            title: "Get in Touch with Us",
+            body: `
+                <p>We welcome your questions, feedback, and collaboration proposals. You can reach us via email.</p>
+                <h2>Contact Details</h2>
+                <p><strong>Email to : </strong><a href="mailto: pbvmuluberia@gmail.com">pbvmuluberia@gmail.com</a></p>
+            `
+        },
+        'bn': {
+            title: "আমাদের সাথে যোগাযোগ করুন",
+            body: `
+                <p>আমরা আপনার প্রশ্ন, প্রতিক্রিয়া, এবং সহযোগিতার প্রস্তাবকে স্বাগত জানাই। আপনি ইমেলের মাধ্যমে আমাদের সাথে যোগাযোগ করতে পারেন।</p>
+                <h2>যোগাযোগের বিবরণ</h2>
+                <p><strong>ইমেল করুন: </strong><a href="mailto: pbvmuluberia@gmail.com">pbvmuluberia@gmail.com</a></p>
+            `
+        }
+    },
+    // This will be populated by loadDataAndInit and updatePublicationsContent
+    'publications': {
+        'en': { title: 'Publications', body: '' },
+        'bn': { title: 'প্রকাশনা', body: '' }
+    }
+};
+
+
+// --- Carousel Scroll Function (Handles Arrow Clicks) ---
+/**
+ * Scrolls a carousel container left or right.
+ * @param {string} containerId The ID of the scrollable container.
+ * @param {'left' | 'right'} direction The direction to scroll.
+ */
+function scrollCarousel(containerId, direction) {
+    const container = document.getElementById(containerId);
+    if (!container) {
+        console.error(`Carousel container with ID "${containerId}" not found.`);
+        return;
+    }
+
+    // Calculate a scroll amount that jumps to the next visible card group, 
+    // aligning with the scroll-snap points set in the CSS.
+    // We use clientWidth * 0.8 as a good visual jump distance.
+    const scrollAmount = container.clientWidth * 0.8;
+
+    if (direction === 'left') {
+        container.scrollLeft -= scrollAmount;
+    } else {
+        container.scrollLeft += scrollAmount;
+    }
+}
+// --- End Carousel Scroll Function ---
+
+
+// --- Custom Message Box Logic (Replaces alert()) ---
+
+/**
+ * Shows a custom message notification at the top of the screen.
+ * @param {string} messageKey - The key from the translations dictionary.
+ */
+function showSubscriptionMessage(messageKey) {
+    const lang = getLang();
+    const message = translations[lang][messageKey] || translations['en'][messageKey] || messageKey;
+
+    messageBox.textContent = message;
+    messageBox.classList.add('show');
+    
+    // Hide the message after 3 seconds
+    setTimeout(() => {
+        messageBox.classList.remove('show');
+    }, 3000);
+}
+
+// --- Donation Modal Logic (UPDATED) ---
+
+/**
+ * Generates the UPI transaction reference (tr) formatted as YYYYMMDDHHmmss.
+ * This helps prevent link reuse and adds security/tracking.
+ * @returns {string} The formatted transaction reference.
+ */
+function generateTransactionReference() {
+    const now = new Date();
+    
+    // Helper to pad numbers with leading zero
+    const pad = (num) => num.toString().padStart(2, '0');
+    
+    // YYYYMMDD
+    const datePart = now.getFullYear().toString() + pad(now.getMonth() + 1) + pad(now.getDate());
+    
+    // HHmmss
+    const timePart = pad(now.getHours()) + pad(now.getMinutes()) + pad(now.getSeconds());
+    
+    return datePart + timePart;
+}
+
+/**
+ * Function to generate the UPI deep link (UNCHANGED)
+ * @param {number} amount - The transaction amount.
+ * @returns {string} The constructed UPI deep link URL.
+ */
+function generateUpiLink(amount) {
+    const transactionReference = generateTransactionReference();
+    const encodedVpaName = encodeURIComponent(VPA_NAME);
+    let upiLink = `upi://pay?pa=${UPI_ID}&pn=${encodedVpaName}&cu=INR&tr=${transactionReference}`;
+    
+    const amountFloat = parseFloat(amount);
+    if (!isNaN(amountFloat) && amountFloat > 0) {
+         upiLink += `&am=${amountFloat.toFixed(2)}`;
+    }
+    return upiLink;
+}
+
+/**
+ * UPDATED: Updates the QR code and deep link button.
+ * @param {number|string} amount - The selected or custom amount.
+ */
+function updateQrCode(amount) {
+    const qrContainer = document.getElementById('upiQrCodeContainer');
+    const deepLinkBtn = document.getElementById('deepLinkBtn');
+    
+    // 1. Safety check for the QR Code library
+    if (typeof QRCode === 'undefined') {
+        if (qrContainer) {
+            qrContainer.innerHTML = `<p style="color: #c93737; font-weight: bold; text-align: center;">QR Code generator failed to load.</p>`;
+        }
+        console.error("QRCode library not found. Check if qrcode.min.js loaded correctly.");
+        return;
+    }
+    
+    // 2. Generate the full UPI link (with or without amount)
+    const upiLink = generateUpiLink(amount);
+
+    // 3. Clear previous QR code content and render the new one
+    if (qrContainer) {
+        qrContainer.innerHTML = '';
+        const size = 250; // Match the container size defined in CSS
+
+        // qrcode.js always creates a new element, so we just clear the container
+        new QRCode(qrContainer, {
+            text: upiLink,
+            width: size,
+            height: size,
+            colorDark : "#000000",
+            colorLight : "#ffffff",
+            correctLevel : QRCode.CorrectLevel.H
+        });
+        
+        // Update container's content description for accessibility
+        const amountFloat = parseFloat(amount);
+        if (!isNaN(amountFloat) && amountFloat > 0) {
+            qrContainer.setAttribute('aria-label', `UPI QR Code for Rs ${amountFloat.toFixed(2)}`);
+        } else {
+            qrContainer.setAttribute('aria-label', "UPI QR Code (Scan to Pay - No Amount)");
+        }
+    }
+    
+    // 4. Update Deep Link Button Href
+    if (deepLinkBtn) {
+        deepLinkBtn.href = upiLink;
+    }
+}
+
+/**
+ * Handles selection of a fixed amount or input of a custom amount. (unchanged logic)
+ * @param {number|string} amount - The amount from the button's data-amount or input value.
+ */
+function selectAmount(amount) {
+    const amountButtons = document.querySelectorAll('#donationAmountSelectors .amount-btn');
+    const customInput = document.getElementById('customAmountInput');
+    const amountFloat = parseFloat(amount);
+
+    currentDonationAmount = amount; // Store the current selection (string or number)
+    
+    // Deactivate all fixed amount buttons
+    amountButtons.forEach(btn => btn.classList.remove('active'));
+
+    const selectedButton = document.querySelector(`.amount-btn[data-amount="${amount}"]`);
+    if (selectedButton) {
+        // Amount selected via fixed button
+        selectedButton.classList.add('active');
+        customInput.value = '';
+    } else if (!isNaN(amountFloat) && amountFloat > 0) {
+        // Amount entered via custom input - clear button selection
+        // Ensure the input value matches the float for consistency
+        customInput.value = amountFloat; 
+    }
+    // Update QR code and Deep Link based on the final determined amount
+    updateQrCode(amount);
+}
+
+
+/**
+ * Displays the Donation QR code modal.
+ */
+function showDonationPopup() {
+    const overlay = document.getElementById('donationOverlay');
+    const card = document.getElementById('donationCard');
+
+    if (overlay && card) {
+        // 1. Set initial state: Default to 100 and update QR code/Deep Link
+        // This MUST happen before showing the card, or the QR code won't render
+        selectAmount(currentDonationAmount || 100); 
+        
+        // 2. Show the modal
+        overlay.classList.add('show');
+        card.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+/**
+ * Hides the Donation QR code modal.
+ */
+function hideDonationPopup() {
+    const overlay = document.getElementById('donationOverlay');
+    const card = document.getElementById('donationCard');
+    
+    if (overlay && card) {
+        overlay.classList.remove('show');
+        card.classList.remove('show');
+        // Restore body scrolling
+        document.body.style.overflow = '';
+    }
+}
+
+/**
+ * Copies the UPI ID text to the clipboard.
+ * MODIFIED: To use translation keys
+ */
+function copyUpiId() {
+    const upiIdElement = document.getElementById('upiId');
+    if (upiIdElement) {
+        const upiIdText = upiIdElement.textContent;
+        
+        // Use temporary textarea for document.execCommand('copy') which works reliably in iframes
+        const tempInput = document.createElement('textarea');
+        tempInput.value = upiIdText;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        
+        try {
+            document.execCommand('copy');
+            showSubscriptionMessage('msg_upi_copied'); // Provide user feedback
+        } catch (err) {
+            console.error('Could not copy text: ', err);
+            showSubscriptionMessage('msg_upi_fail');
+        } finally {
+            document.body.removeChild(tempInput);
+        }
+    }
+}
+
+
+// --- Book Detail Modal Logic (MODIFIED) ---
+
+/**
+ * Displays the book detail modal with data from the clicked card.
+ * This function is now simpler as it receives language-specific JSON.
+ * @param {HTMLElement} cardElement The book-card element that was clicked.
+ */
+function showBookDetails(cardElement) {
+    // Hide donation modal if it's somehow visible before showing book details
+    hideDonationPopup(); 
+
+    const overlay = document.getElementById('bookDetailOverlay');
+    const detailCard = document.getElementById('bookDetailCard');
+    const lang = getLang();
+    const langDict = translations[lang];
+    
+    // Parse the data stored in the card element
+    const bookDataString = cardElement.getAttribute('data-book-json');
+    if (!bookDataString) return;
+    
+    // Replace the HTML escaped quotes back to normal quotes for JSON parsing
+    const book = JSON.parse(bookDataString.replace(/&quot;/g, '"'));
+
+    // --- Price Badge Logic ---
+    const badgeElement = document.getElementById('detailBookBadge');
+    if (book.price && book.price.trim() !== "") {
+        badgeElement.textContent = book.price;
+        badgeElement.style.display = 'block';
+    } else {
+        badgeElement.style.display = 'none';
+    }
+    // --- End Price Badge Logic ---
+    
+    // --- Action Button Text Logic ---
+    const actionBtn = document.getElementById('detailActionBtn');
+    if (book.price && book.price.trim() !== "") {
+        actionBtn.textContent = langDict.book_btn_buy;
+    } else if (book.isMagazine) {
+        actionBtn.textContent = langDict.book_btn_subscribe;
+    } else {
+        actionBtn.textContent = langDict.book_btn_download;
+    }
+    // --- End Action Button Text Logic ---
+
+
+    // Populate the modal content
+    document.getElementById('detailBookCover').src = book.url;
+    // MODIFIED: Simplified - just use book.title
+    document.getElementById('detailBookTitle').textContent = book.title;
+    document.getElementById('detailBookType').textContent = book.isMagazine ? langDict.book_type_magazine : langDict.book_type_standard;
+    
+    // Find the description element and set its content.
+    const descElement = document.getElementById('detailBookDescription');
+    // MODIFIED: Simplified - just use book.description
+    
+    if (book.description && book.description.trim() !== "") {
+        descElement.textContent = book.description;
+        // If we have a real description, make the text look normal
+        descElement.style.fontStyle = 'normal';
+    } else {
+        // Fallback for any books that might be missing a description
+        descElement.textContent = langDict.book_no_description;
+        descElement.style.fontStyle = 'italic';
+    }
+    
+    // Show the modal
+    overlay.classList.add('show');
+    detailCard.classList.add('show');
+
+    // Prevent body scrolling while modal is open (good UX practice)
+    document.body.style.overflow = 'hidden';
+}
+
+// Function to hide the book details modal
+function hideBookDetails() {
+    const overlay = document.getElementById('bookDetailOverlay');
+    const detailCard = document.getElementById('bookDetailCard');
+    
+    overlay.classList.remove('show');
+    detailCard.classList.remove('show');
+    
+    // --- Reset Badge ---
+    const badgeElement = document.getElementById('detailBookBadge');
+    if (badgeElement) {
+        badgeElement.style.display = 'none';
+    }
+    // --- End Reset Badge ---
+
+    // Restore body scrolling
+    document.body.style.overflow = '';
+}
+// ---------------------------------------------------
+
+const links = document.querySelectorAll('.nav-links a');
+
+// Function to find the ID of the item currently in the second position (index 1)
+function getActiveSlideId() {
+  // The actively displayed slide is always the second element in the .slide container
+  const currentItems = document.querySelectorAll(".item");
+  if (currentItems.length > 1) {
+    return currentItems[1].id;
+  }
+  return null;
+}
+
+// Function to update the active tab visual state AND the new mobile menu label
+// MODIFIED: To use translations
+function updateActiveTab() {
+  const activeId = getActiveSlideId();
+  const currentMenuLabel = document.getElementById('currentMenuLabel');
+  const lang = getLang();
+  
+  let activeLinkText = ''; // Placeholder for the actual link text
+
+  links.forEach(link => {
+    link.classList.remove('active-tab');
+    // Check if the link href matches the active slide ID
+    if (link.getAttribute('href') === `#${activeId}`) {
+      link.classList.add('active-tab');
+      // MODIFIED: Get text from translation dictionary
+      const key = link.getAttribute('data-translate-key');
+      activeLinkText = translations[lang][key] || translations['en'][key];
+    }
+  });
+
+  // Update the current selected menu label
+  if (currentMenuLabel) {
+      currentMenuLabel.textContent = activeLinkText;
+  }
+}
+
+/**
+ * Updates the main content section based on the currently active slide.
+ * MODIFIED: To use multi-lingual contentData
+ */
+function updateMainContent(activeId = getActiveSlideId()) {
+    if (!activeId || !contentBody || !contentHeading) return;
+
+    const lang = getLang();
+    
+    // The slide IDs are lowercase (e.g., 'home'), so we use the lowercase key.
+    const contentSection = contentData[activeId.toLowerCase()];
+
+    if (contentSection) {
+        // Get content for the current language, fallback to English
+        const content = contentSection[lang] || contentSection['en'];
+        if (content) {
+            contentHeading.textContent = content.title;
+            contentBody.innerHTML = content.body;
+        }
+    }
+}
+
+// Menu link click logic: triggers slide movement and tab state update
+links.forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const id = link.getAttribute('href').replace('#', '');
+    const target = document.getElementById(id);
+    if (!target) return;
+
+    // Find the item ID we are moving to
+    const targetId = id;
+
+    // SCROLL TO TOP action: use window.scrollTo for reliable page-wide scroll reset
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    const items = document.querySelectorAll('.item');
+    const n = items.length;
+    
+    const activeItem = getActiveSlideId();
+    // Find the index of the currently active item in the NodeList
+    const currentIndex = Array.from(items).findIndex(item => item.id === activeItem);
+    
+    const targetIndex = Array.from(items).indexOf(target);
+
+    if (targetIndex === currentIndex) {
+        // If the active tab is clicked, ensure content is updated (just in case) then stop.
+        updateMainContent(targetId);
+        return; 
+    }
+
+    // Compute shortest direction using modular arithmetic
+    let rightDistance = (targetIndex - currentIndex + n) % n;
+    let leftDistance = (currentIndex - targetIndex + n) % n;
+
+    // --- Added logic to close the mobile menu on click ---
+    const navLinks = document.getElementById('navLinks');
+    // Check if the menu is open AND if we are likely in a mobile/portrait layout
+    if (navLinks.classList.contains('open') && window.getComputedStyle(document.querySelector('.menu-controls-mobile')).display !== 'none') {
+        toggleMenu(); 
+    }
+    // -----------------------------------------------------
+
+    if (rightDistance <= leftDistance) {
+      let i = 0;
+      const interval = setInterval(() => {
+        moveNext(); // Directly call the new slide function
+        i++;
+        if (i === rightDistance) clearInterval(interval);
+      }, 300);
+    } else {
+      let i = 0;
+      const interval = setInterval(() => {
+        movePrev(); // Directly call the new slide function
+        i++;
+        if (i === leftDistance) clearInterval(interval);
+      }, 300);
+    }
+    // updateActiveTab() and updateMainContent() are called inside moveNext() and movePrev().
+  });
+});
+// --- Tab Synchronization Logic End ---
+
+
+// --- Slide Rotation Logic (Decoupled from physical buttons) ---
+
+function moveNext() {
+  let items = document.querySelectorAll(".item");
+  slide.appendChild(items[0]);
+  updateActiveTab();
+  updateMainContent(); // CALL: Update content after slide change
+}
+
+function movePrev() {
+  let items = document.querySelectorAll(".item");
+  slide.prepend(items[items.length - 1]);
+  updateActiveTab();
+  updateMainContent(); // CALL: Update content after slide change
+}
+
+// --- Drag/Swipe Handlers (unchanged, for the main top carousel) ---
+
+// Helper to get the correct X coordinate (mouse or touch)
+function getClientX(e) {
+    return e.touches ? e.touches[0].clientX : e.clientX;
+}
+
+// Start dragging/swiping
+function handleStart(e) {
+    isDragging = true;
+    // We only prevent default on move, not start, to allow clicks/taps to register
+    startX = getClientX(e);
+    moved = 0;
+    carousel.style.cursor = 'grabbing';
+}
+
+// During drag/swipe
+function handleMove(e) {
+    if (!isDragging) return;
+    e.preventDefault(); // Prevent default scroll/selection behavior
+    const currentX = getClientX(e);
+    moved = currentX - startX;
+    
+    // Optional: Add visual feedback here if the carousel structure permitted real-time shift.
+}
+
+// End dragging/swiping
+function handleEnd(e) {
+    if (!isDragging) return;
+    
+    isDragging = false;
+    carousel.style.cursor = 'grab';
+
+    if (Math.abs(moved) > DRAG_THRESHOLD) {
+        if (moved > 0) {
+            // Swiped right (positive 'moved' value) -> movePrev
+            movePrev();
+        } else {
+            // Swiped left (negative 'moved' value) -> moveNext
+            moveNext();
+        }
+    }
+    
+    // Reset movement
+    moved = 0; 
+}
+
+// Attach event listeners to the carousel container
+carousel.addEventListener('mousedown', handleStart);
+carousel.addEventListener('mousemove', handleMove);
+carousel.addEventListener('mouseup', handleEnd);
+carousel.addEventListener('mouseleave', handleEnd); 
+
+// Touch events
+carousel.addEventListener('touchstart', handleStart, { passive: true });
+carousel.addEventListener('touchmove', handleMove); // Passive is false by default on touchmove
+carousel.addEventListener('touchend', handleEnd);
+carousel.addEventListener('touchcancel', handleEnd);
+
+// --- Scroll Functionality (unchanged) ---
+function readMore(sectionName) {
+    // Find the current active slide ID and use it to update content before scrolling
+    const activeId = getActiveSlideId();
+    if (activeId) {
+        // Ensure content is updated before we potentially scroll to it
+        updateMainContent(activeId); 
+    }
+    
+    const navHeight = navMenu.offsetHeight; // Get the computed height of the sticky nav bar
+
+    if (contentHeading) {
+        // Calculate the target scroll position: top of the heading minus the nav bar height
+        const targetPosition = contentHeading.getBoundingClientRect().top + window.scrollY - navHeight;
+        
+        // Scroll the window to the calculated position
+        window.scrollTo({ 
+            top: targetPosition, 
+            behavior: 'smooth' 
+        });
+    }
+}
+
+// Function to scroll to the top of the page
+function scrollToTop() {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
+
+// Function to handle the visibility of the Scroll to Top button
+function toggleScrollToTopButton() {
+    // Show button if the scroll position is greater than 300px (or any chosen threshold)
+    if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+        scrollToTopBtn.classList.add('show');
+    } else {
+        scrollToTopBtn.classList.remove('show');
+    }
+}
+
+// Attach the scroll listener to the window
+window.addEventListener('scroll', toggleScrollToTopButton);
+
+
+// --- Header Control Logic (MODIFIED) ---
+
+function toggleTheme() {
+    document.body.classList.toggle('dark-theme');
+    // Save the preference to local storage
+    localStorage.setItem('theme', document.body.classList.contains('dark-theme') ? 'dark' : 'light');
+}
+
+/**
+ * NEW: Fetches and updates the publications content dynamically.
+ * @param {string} lang - The language to load ('en' or 'bn').
+ */
+async function updatePublicationsContent(lang) {
+    const langDict = translations[lang];
+    
+    // 1. Check if data is already cached
+    if (window.bookData[lang]) {
+        const pubContent = generatePublicationsContent(window.bookData[lang]);
+        contentData.publications[lang] = pubContent;
+    } else {
+        // 2. Data not cached, fetch it
+        const url = (lang === 'bn') ? JSON_URL_BN : JSON_URL_EN;
+        try {
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const books = await response.json();
+            window.bookData[lang] = books; // Cache the data
+            
+            const pubContent = generatePublicationsContent(books);
+            contentData.publications[lang] = pubContent;
+            
+        } catch (error) {
+            console.error(`Failed to load book data for ${lang}:`, error);
+            // Provide a fallback in case the fetch fails
+            contentData.publications[lang] = {
+                title: langDict.nav_publications,
+                body: `<p>${langDict.pub_error_loading}</p>`
+            };
+        }
+    }
+    
+    // 3. Finally, update the main content if 'Publications' is the active slide
+    if (getActiveSlideId() === 'publications') {
+        updateMainContent();
+    }
+}
+
+
+// MODIFIED: To apply translations after setting language
+async function setLang(lang) {
+    // Basic language toggle visual logic
+    document.getElementById('langEn').classList.remove('active');
+    document.getElementById('langBn').classList.remove('active');
+    
+    const langElement = document.getElementById('lang' + lang.charAt(0).toUpperCase() + lang.slice(1));
+    if (langElement) {
+        langElement.classList.add('active');
+        localStorage.setItem('language', lang);
+        
+        // --- Apply translations globally ---
+        applyTranslations();
+        
+        // --- Refresh dynamic content ---
+        updateMainContent(); // Update main text body
+        updateActiveTab(); // Update mobile menu label
+        
+        // --- Refresh publications content (now async) ---
+        await updatePublicationsContent(lang);
+    }
+}
+
+
+// --- Menu Toggle Logic Start (unchanged) ---
+function toggleMenu() {
+    const navLinks = document.getElementById('navLinks');
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+
+    navLinks.classList.toggle('open');
+    
+    // Accessibility: toggle aria-expanded attribute
+    const isExpanded = navLinks.classList.contains('open');
+    hamburgerBtn.setAttribute('aria-expanded', isExpanded);
+    
+    // Change icon (burger to X and vice-versa)
+    const icon = hamburgerBtn.querySelector('i');
+    if (isExpanded) {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-xmark');
+    } else {
+        icon.classList.remove('fa-xmark');
+        icon.classList.add('fa-bars');
+    }
+}
+// --- Menu Toggle Logic End ---
+
+
+// Initial state setup when the body loads
+// MODIFIED: To apply translations
+function init() {
+    // Initial theme load
+    const savedTheme = localStorage.getItem('theme');
+    if (savedTheme === 'dark') {
+        document.body.classList.add('dark-theme');
+    }
+    // Theme icon visibility is now handled entirely by CSS using the .dark-theme class.
+
+    // Initial language load
+    const savedLang = getLang(); // Use new helper
+    // setLang is now async, but in init, we don't need to await it
+    // It will be called again in loadDataAndInit *after* data is loaded
+    
+    document.getElementById('langEn').classList.remove('active');
+    document.getElementById('langBn').classList.remove('active');
+    const langElement = document.getElementById('lang' + savedLang.charAt(0).toUpperCase() + savedLang.slice(1));
+    if (langElement) {
+        langElement.classList.add('active');
+    }
+}
+
+// New function to load data and then initialize the page
+// MODIFIED: To handle multi-lingual pub content
+async function loadDataAndInit() {
+    
+    const savedLang = getLang();
+    
+    // 1. Initialize theme and initial lang visuals
+    init(); 
+    
+    // 2. Fetch default (English) book data first for fast load
+    try {
+        const response = await fetch(JSON_URL_EN);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        window.bookData.en = await response.json();
+    } catch (error) {
+        console.error("Failed to load initial book data (en):", error);
+    }
+
+    // 3. Set the language (this will trigger BN fetch if needed)
+    // This will also apply translations and update content
+    await setLang(savedLang);
+
+    // 4. Set up the rest of the page
+    movePrev(); // Sets initial slide
+    updateMainContent(); // Populates content for the initial slide
+    updateActiveTab(); // Updates mobile menu label for initial slide
+    toggleScrollToTopButton(); // Checks scroll position
+}
+</script>
+</body>
+</html>
+
+
