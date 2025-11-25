@@ -155,10 +155,10 @@ function generateBookCardsHtml(bookArray) {
         const badgeHtml = book.isMagazine ? '<span class="magazine-badge">MAGAZINE</span>' : '';
         
         // --- START MODIFICATION ---
-        // Generate a unique border color based on the book title (fixed saturation and lightness for appearance)
         const borderColor = stringToHslColor(book.title, 70, 40); // S=70, L=40 gives vibrant colors
         
-        cardsHtml += `<div class="book-card" style="border: 2px solid ${borderColor};" onclick="window.showBookDetails(this)" data-book-json="${bookJsonString}">${badgeHtml}<img src="${book.url}" alt="Cover of ${book.title}" onerror="this.onerror=null;this.src='${fallbackUrl}';"><h3>${book.title}</h3></div>`;
+        // ADDED: Setting the CSS variable --card-border-color in the inline style
+        cardsHtml += `<div class="book-card" style="--card-border-color: ${borderColor}; border: 2px solid var(--card-border-color);" onclick="window.showBookDetails(this)" data-book-json="${bookJsonString}">${badgeHtml}<img src="${book.url}" alt="Cover of ${book.title}" onerror="this.onerror=null;this.src='${fallbackUrl}';"><h3>${book.title}</h3></div>`;
         // --- END MODIFICATION ---
     });
     return `<div class="book-carousel-wrapper"><button class="carousel-arrow left-arrow" onclick="window.scrollCarousel('${containerId}', 'left')"><i class="fa-solid fa-chevron-left"></i></button><div class="book-covers-container" id="${containerId}">${cardsHtml}</div><button class="carousel-arrow right-arrow" onclick="window.scrollCarousel('${containerId}', 'right')"><i class="fa-solid fa-chevron-right"></i></button></div>`;
@@ -247,8 +247,20 @@ function showBookDetails(cardElement) {
     const lang = getLang();
     const langDict = translations[lang];
     const book = JSON.parse(cardElement.getAttribute('data-book-json').replace(/&quot;/g, '"'));
+    
     const badgeElement = document.getElementById('detailBookBadge');
-    if (book.price) { badgeElement.textContent = book.price; badgeElement.style.display = 'block'; } else { badgeElement.style.display = 'none'; }
+    
+    // --- MODIFIED: Ensure new badge styles are applied ---
+    if (book.price) { 
+        // Use a generic price format, as the badge is no longer just for 'magazine'
+        badgeElement.textContent = book.price; 
+        badgeElement.style.display = 'inline-block'; 
+        badgeElement.style.position = 'static'; // Ensure it adheres to new flexbox layout
+    } else { 
+        badgeElement.style.display = 'none'; 
+    }
+    // --- END MODIFIED ---
+    
     const actionBtn = document.getElementById('detailActionBtn');
     if (book.price) actionBtn.textContent = langDict.book_btn_buy;
     else if (book.isMagazine) actionBtn.textContent = langDict.book_btn_subscribe;

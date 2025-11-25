@@ -74,18 +74,19 @@
     <div id="content-body"></div>
 </div>
 
-<!-- Book Detail Overlay (Specific to Publications) -->
 <div id="bookDetailOverlay" class="book-detail-overlay" onclick="hideBookDetails()">
     <div id="bookDetailCard" class="book-detail-card" onclick="event.stopPropagation()">
-        <span id="detailBookBadge" class="magazine-badge" style="display: none; top: 20px; left: 20px; right: auto; z-index: 10;"></span>
         <button class="close-btn" onclick="hideBookDetails()">&times;</button>
         <div class="detail-content">
             <img id="detailBookCover" src="" alt="Book Cover" class="detail-cover" onerror="this.onerror=null;this.src='https://placehold.co/200x300/d79921/3c3836?text=Cover+Not+Found';">
             <div class="detail-text">
                 <div style="display: none;"><p id="detailBookType"></p></div>
                 <p id="detailBookDescription" class="description-placeholder"></p>
-                <button id="detailActionBtn" class="button action-btn" onclick="showSubscriptionMessage('msg_purchase_dev')">Subscribe / Buy</button>
-            </div>
+                <div class="detail-actions">
+                    <span id="detailBookBadge" class="magazine-badge" style="display: none; font-size: 1.5rem; border-radius: 10px;"></span>
+                    <button id="detailActionBtn" class="button action-btn" onclick="showSubscriptionMessage('msg_purchase_dev')">Subscribe / Buy</button>
+                </div>
+                </div>
         </div>
     </div>
 </div>

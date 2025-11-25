@@ -492,8 +492,7 @@ nav.menu {
 .book-covers-container {
     display: flex; /* Horizontal layout */
     gap: 2rem;
-    padding-top: 1rem;
-    padding-bottom: 1rem; /* Added for visual buffer */
+    padding: 1rem;
     max-width: 100%; 
     margin-bottom: 2rem;
     
@@ -577,7 +576,9 @@ nav.menu {
     
     &:hover {
         transform: translateY(-5px) scale(1.02); /* Subtle hover lift and zoom */
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        box-shadow: 
+            0 8px 10px rgba(0, 0, 0, 0.2), /* Standard lift shadow */
+            0 0 10px var(--card-border-color); /* GLOW EFFECT using dynamic color */
     }
     
     img {
@@ -603,9 +604,9 @@ nav.menu {
 
 /* Magazine/Price Badge Styling */
 .magazine-badge {
-    position: absolute;
-    top: 10px;
-    right: 10px;
+    /* position: absolute; REMOVED FOR DETAIL MODAL */
+    /* top: 10px; REMOVED FOR DETAIL MODAL */
+    /* right: 10px; REMOVED FOR DETAIL MODAL */
     background-color: #e65100; /* Darker orange for the badge */
     color: white;
     padding: 4px 8px;
@@ -615,6 +616,7 @@ nav.menu {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     z-index: 10;
     pointer-events: none;
+    align-self: center; /* ADDED: For horizontal alignment next to button */
 }
 
 /* New Styles for Subscriber Button */
@@ -755,7 +757,7 @@ nav.menu {
 
 .close-btn {
     position: absolute;
-    top: 15px;
+    top: 10px;
     right: 15px;
     background: none;
     border: none;
@@ -776,7 +778,7 @@ nav.menu {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 20px;
+    gap: 15px;
     text-align: justify;
     padding-top: 10px;
 }
@@ -805,7 +807,7 @@ nav.menu {
     }
 
     p {
-        font-size: var(--font-size-p);
+        font-size: calc(var(--font-size-p)*0.9);
         color: var(--text-color-secondary);
         margin-bottom: 0; /* Removed bottom margin from description */
     }
@@ -817,21 +819,33 @@ nav.menu {
     text-align: justify;
     border-left: 3px solid var(--primary-color);
     padding-left: 10px;
-    margin-top: 1.5rem;
+    margin-top: 1rem;
     font-size: var(--font-size-p);
     width: 100%; /* Ensure it takes full width for wrapping */
 }
 
+/* ADDED: Wrapper for badge and button */
+.detail-actions {
+    display: flex;
+    gap: 10px; /* Space between badge and button */
+    align-items: center; /* Vertically align badge and button */
+    width: 100%; /* Take full width of parent */
+    justify-content: flex-end; /* Align actions to the right */
+    margin-top: 1.5rem; /* Match the action-btn margin */
+}
+
 /* MODIFIED: Changed from absolute positioning to flowing naturally */
 #detailActionBtn {
-    align-self: flex-end;
+    /* REMOVED: align-self: flex-end; */
+    margin-top: 0; /* Clear previous margin */
+    margin-bottom: 0;
 }
     
 
 .action-btn {
-      display: inline-block;
-    margin-top: 1.5rem;
-    margin-bottom: 0.5rem;
+    display: inline-block;
+    /* margin-top: 1.5rem; REMOVED/MOVED TO .detail-actions */
+    /* margin-bottom: 0.5rem; REMOVED/MOVED TO .detail-actions */
     align-self: flex-start;
     border: none;
     background-color: var(--primary-color);
