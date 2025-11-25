@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download - Paschim Banga Vigyan Mancha</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <style>
+        .lang-content { display: none; }
+        .lang-content.active { display: block; }
+        h1.lang-content.active { display: block; }
+    </style>
+    <script>
+        (function() {
+        // 1. Restore Theme immediately
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark-theme');
+            }
+
+        // 2. Restore Language immediately (Optional, but helps reducing text flicker)
+        // This sets a global variable that script.js can use later to skip reading storage again
+        window.savedLang = localStorage.getItem('language') || 'bn';
+        })();
+    </script>
+</head>
+<body id="download">
+
+<nav class="menu">
+  <img src="https://raw.githubusercontent.com/t4saha/PBVM-Uluberia-Vigyan-Kendra/main/Logo/pvbm_logo_gold.png" alt="Logo" class="nav-logo" onerror="this.onerror=null; this.src='https://placehold.co/50x50/d79921/3c3836?text=LOGO'">
+  
+  <div class="menu-controls-mobile">
+      <span class="menu-label-text" data-translate-key="nav_menu">Menu</span>
+      <button class="hamburger-menu" id="hamburgerBtn" onclick="toggleMenu()" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
+      <span class="menu-label-text current-menu-label" id="currentMenuLabel">Download</span>
+  </div>
+  
+  <div class="nav-links" id="navLinks">
+    <a href="index.html" data-translate-key="nav_home">Home</a>
+    <a href="about.html" data-translate-key="nav_about">About</a>
+    <a href="projects.html" data-translate-key="nav_projects">Projects</a>
+    <a href="publications.html" data-translate-key="nav_publications">Publications</a>
+    <a href="download.html" class="active-tab" data-translate-key="nav_download">Download</a>
+    <a href="contact.html" data-translate-key="nav_contact">Contact</a>
+  </div>
+  
+  <div class="header-controls">
+      <button id="themeToggleIcon" onclick="toggleTheme()" class="theme-icon-button"><i class="fa-solid fa-sun theme-icon sun-icon"></i><i class="fa-solid fa-moon theme-icon moon-icon"></i></button>
+      <div class="lang-toggle"><span id="langEn" onclick="setLang('en')">EN</span><span id="langBn" onclick="setLang('bn')">বা</span></div>
+  </div>
+</nav>
+
+<div id="messageBox"></div>
+
+<div class="container" style="height: 50vh; overflow: hidden;">
+  <div class="slide">
+    <div class="item" style="--bg-image: url('https://raw.githubusercontent.com/pbvmuluberia/pbvmuluberia.github.io/refs/heads/main/src/background/download.jpeg'); position: relative; width: 100%; top: 0; left: 0; transform: none; border-radius: 0;">
+      <div class="content" style="display: block; opacity: 1; transform: translate(0, -50%); padding-top: 0; top: 50%;">
+        <h2 class="name" data-translate-key="carousel_download_name">Download</h2>
+        <p class="des" data-translate-key="carousel_download_des">Get downloadable resources here.</p>
+        <button class="button action-btn" onclick="scrollToContent()" data-translate-key="carousel_download_btn">Get Resources</button>
+        <button class="button donate-btn" onclick="showDonationPopup()" data-translate-key="carousel_donate_btn">Donate to us</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="main-content" id="main-content">
+    <h1 class="lang-content en">Downloadable Resources</h1>
+    <h1 class="lang-content bn">ডাউনলোডযোগ্য নথি</h1>
+
+    <div id="content-body">
+        <!-- English Content -->
+        <div class="lang-content en">
+            <p>Access all necessary forms, documents, and resources here. </p>
+            <p>All files are provided in PDF format for easy access. If you require a different format, please contact our support team.</p>
+            <h2>Download Links</h2>
+            <ul>
+                <li><a href="https://script.google.com/macros/s/AKfycbyoM-UWki3lnK_esoNkjXyWh9JLt6YSwTYfaKUdidvlwdrMnGZxlNbmJNoE9Mx-XnpodA/exec">Download Admit - Howrah Zilla Vigyan Manosikoka-o-Medha Aviksha - 2025</a></li>
+                <p></p>
+                <li><a href="https://raw.githubusercontent.com/pbvmuluberia/pbvmuluberia.github.io/main/src/body%20donation.pdf" download="body_donation_form.pdf">Body or Eye Donation Form</a></li>
+            </ul>
+        </div>
+
+        <!-- Bengali Content -->
+        <div class="lang-content bn">
+            <p>এখানে সমস্ত প্রয়োজনীয় ফর্ম, নথি এবং রেজান্ট অ্যাক্সেস করুন।</p>
+            <p>বেশিরভাগ ফাইল সহজ অ্যাক্সেসের জন্য পিডিএফ ফর্ম্যাটে সরবরাহ করা হয়েছে। আপনার যদি অন্য কোনো ফর্ম্যাটের প্রয়োজন হয়, অনুগ্রহ করে আমাদের সহায়তা অংশে যোগাযোগ করুন।</p>
+            <h2>ডাউনলোড লিঙ্ক</h2>
+            <ul>
+                <li><a href="https://script.google.com/macros/s/AKfycbyoM-UWki3lnK_esoNkjXyWh9JLt6YSwTYfaKUdidvlwdrMnGZxlNbmJNoE9Mx-XnpodA/exec">অ্যাডমিট ডাউনলোড করুন - হাওড়া জেলা বিজ্ঞান মানসিকতা-ও-মেধা অভিক্ষা - ২০২৫</a></li>
+                <p></p>
+                <li><a href="https://raw.githubusercontent.com/pbvmuluberia/pbvmuluberia.github.io/main/src/body%20donation.pdf" download="body_donation_form.pdf">দেহদান ও চক্ষুদান অঙ্গীকার ফরম</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div id="donationOverlay" class="donation-overlay" onclick="hideDonationPopup()">
+    <div id="donationCard" class="donation-card" onclick="event.stopPropagation()">
+        <button class="close-btn" onclick="hideDonationPopup()">&times;</button>
+        <div class="donation-content">
+            <h2 data-translate-key="donate_title">Support Our Mission</h2>
+            <p class="upi-id-label" data-translate-key="donate_choose_amount">Choose Amount:</p>
+            <div id="donationAmountSelectors" style="display: flex; justify-content: center; gap: 10px; margin-bottom: 15px;">
+                <button class="amount-btn active" data-amount="100" onclick="selectAmount(100)">₹100</button>
+                <button class="amount-btn" data-amount="500" onclick="selectAmount(500)">₹500</button>
+                <button class="amount-btn" data-amount="0" data-translate-key="other_amnt" onclick="selectAmount(0)">Other</button>
+            </div>
+            <p data-translate-key="donate_scan_qr" style="font-size: var(--font-size-p);">Scan the <b>QR code</b> below.</p>
+            <div id="upiQrCodeContainer" class="qr-code-container"></div>
+            <a id="deepLinkBtn" class="deep-link-btn" href="#" target="_blank" onclick="hideDonationPopup()"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span data-translate-key="donate_open_upi">Open in UPI App</span></a>
+            <div><button class="copy-upi-btn" onclick="copyUpiId()" data-translate-key="donate_copy_upi">Copy UPI ID</button></div>
+            <p class="donation-note" data-translate-key="donate_note">Your generous contribution directly funds our science popularization and community projects.</p>
+        </div>
+    </div>
+</div>
+
+<button id="scrollToTopBtn" onclick="scrollToTop()" aria-label="Scroll to top"><i class="fa-solid fa-arrow-up"></i></button>
+
+</body>
+</html>

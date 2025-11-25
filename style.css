@@ -1,0 +1,1154 @@
+/* Gruvbox-inspired custom theme colors based on image */
+:root {
+    /* Light Theme */
+    --background-color: #fbf0d8; /* Very light beige-yellow */
+    --surface-color: #fbf1e2;   /* Slightly darker beige for cards */
+    --surface-color-rgb: 251, 241, 226; /* ADDED for arrow button bg */
+    --surface-color-alpha: #fbf1e2;   /* Slightly darker beige for cards alpha */
+    --text-color-primary: #3c3836;
+    --text-color-secondary: #504945;
+    --background-gradient: #3c3836b3;
+    
+    --primary-color: #d79921;   /* Yellow/Orange for headings */
+    --primary-color-rgb: 215, 153, 33; /* RGB for #d79921 for use in rgba() */
+    --primary-color-alpha: 215, 153, 33, 0.6;
+    --note-100: 100, 93, 233;
+    --note-500: 48, 70, 27;
+    --note-other: 162, 54, 154;
+    
+    /* Language toggle colors */
+    --lang-bg-active: var(--primary-color);
+    --lang-text-active: var(--text-color-primary);
+    --lang-bg-inactive: var(--surface-color);
+    --lang-text-inactive: var(--text-color-primary);
+    --lang-border: var(--primary-color);
+
+    /* Consistent corner radius and shadow */
+    --border-radius-large: 28px;
+    --border-radius-medium: 20px;
+    --button-radius: var(--border-radius-large);
+    --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    
+    /* --- START: Added Text Variables --- */
+    --font-size-h1: 2.4rem;
+    --font-size-h2: 1.8rem;
+    --font-size-h3: 1.2rem;
+    --font-size-p: 1rem;
+    
+    --font-weight-heavy: 800;
+    --font-weight-semi: 600;
+    --font-weight-normal: normal;
+    /* --- END: Added Text Variables --- */
+}
+
+.dark-theme {
+    /* Dark Gruvbox Theme */
+    --background-color: #282828;
+    --surface-color: #3c3836;
+    --surface-color-rgb: 60, 56, 54; /* ADDED for arrow button bg */
+    --text-color-primary: #ebdbb2;
+    --text-color-secondary: #d4c4a4;
+    --note-100: 159, 154, 241;
+    --note-500: 162, 204, 123;
+    --note-other: 209, 117, 203;
+
+    --primary-color: #b8bb26;
+    --primary-color-rgb: 184, 187, 38; /* RGB for #b8bb26 for use in rgba() */
+    --primary-color-alpha: 184, 187, 38, 0.6;
+    
+    /* Language toggle colors */
+    --lang-bg-active: var(--primary-color);
+    --lang-text-active: var(--surface-color);
+    --lang-border: var(--primary-color);
+
+    --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    
+    /* --- NESTED STYLES FOR DARK THEME --- */
+    .nav-logo {
+         /* Remove filter in dark theme if logo is already light, or adjust if needed */
+        filter: none;
+    }
+    
+    /* Show moon icon in Dark Mode */
+    .sun-icon { display: none; }
+    .moon-icon { display: block; }
+}
+
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
+
+body { 
+    background: var(--background-color); 
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; 
+    overflow-x: hidden; 
+    transition: background-color 0.3s ease;
+}
+
+.button {
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 10px;
+    color: var(--surface-color);
+    font-weight: var(--font-weight-semi);
+    transition: all 0.3s;
+}
+
+a {
+    /* link */
+    &:link {
+        display: inline-block;
+        text-decoration: none;
+        padding: 5px 8px;
+        background-color: rgba(var(--primary-color-rgb), 0.1); 
+        color: var(--primary-color);
+        border-radius: var(--border-radius-medium);
+        border: 2px dotted rgb(var(--primary-color-rgb));
+    }
+    
+    /* visited link */
+    &:visited {
+       background-color: rgba(var(--primary-color-rgb), 0.1); 
+       color: var(--primary-color);
+    }
+
+    /* mouse over link */
+    &:hover {
+        color: var(--text-color-primary);
+        background-color: rgba(var(--primary-color-rgb), 0.6);
+    }
+
+    /* selected link */
+    &:active {
+      color: var(--text-color-secondary);
+    }
+}
+
+/* Updated Logo style when placed in the nav bar */
+.nav-logo {
+    width: 60px; 
+    height: 60px;
+    object-fit: contain;
+    transition: filter 0.3s ease;
+    /* Invert filter is applied to the image to ensure visibility in dark theme,
+       as the original image is dark text on a light background. */
+    filter: invert(0.7) saturate(0.7); 
+    flex-shrink: 0;
+}
+
+/* Header controls combined into the nav bar */
+.header-controls {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+/* New Single Icon Theme Toggle Style */
+.theme-icon-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem; /* Larger icon size */
+    color: var(--text-color-primary);
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1; /* Fix vertical alignment */
+    
+    &:hover {
+        /* Using the RGB variable for the transparent hover effect */
+        background-color: rgba(var(--primary-color-rgb), 0.1); 
+        color: var(--primary-color);
+    }
+}
+
+/* Styling for the icons within the button */
+.theme-icon {
+    font-size: 1.2rem;
+    line-height: 1;
+}
+
+/* Show sun icon by default (Light Mode) */
+.moon-icon { display: none; }
+.sun-icon { display: block; }
+
+.lang-toggle {
+    height: 1.5rem;
+    display: flex;
+    font-size: 0.8rem;
+    border: 2px solid var(--lang-border);
+    border-radius: var(--button-radius);
+    overflow: hidden;
+    color: var(--lang-text-inactive);
+    box-sizing: border-box;
+    
+    span {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0 0.5rem;
+        background: var(--lang-bg-inactive);
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    #langEn {
+        border-right: 2px solid var(--lang-border);
+    }
+
+    .active {
+        background: var(--lang-bg-active);
+        color: var(--lang-text-active);
+        font-weight: var(--font-weight-heavy);
+    }
+}
+
+/* ------------------------- TAB STYLING START (MOBILE-FIRST) ------------------------- */
+
+/* Tab container style (responsive base) */
+nav.menu {
+    position: sticky; /* Keep the menu visible */
+    top: 0;
+    width: 100%; /* Full width */
+    height: max(10vh, 70px); /* Fixed height for calculating offset */
+    background-color: var(--surface-color);
+    box-shadow: var(--card-shadow);
+    display: flex; 
+    align-items: center;
+    justify-content: space-between; 
+    padding: 0.5rem 2.5%; 
+    z-index: 1000;
+}
+
+/* NEW: Container for Menu Label, Icon, and Active Label */
+.menu-controls-mobile {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* Space between elements */
+    flex-shrink: 0;
+    margin-right: auto; /* Push the rest of the content to the right */
+    padding-left: 1rem; /* Space it from the logo */
+}
+
+/* Style for the "Menu" and active menu text */
+.menu-label-text {
+    color: var(--text-color-primary);
+    font-size: 1rem;
+    font-weight: var(--font-weight-normal);
+    white-space: nowrap;
+}
+
+/* Style for the current active label */
+.current-menu-label {
+    font-weight: var(--font-weight-heavy);
+    color: var(--primary-color);
+}
+
+/* Hamburger Menu Button (Visible by default on small screens) */
+.hamburger-menu {
+    display: block; 
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: var(--text-color-primary);
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    line-height: 1;
+    margin: 0; /* Removed old margin-left: 1rem; */
+    flex-shrink: 0;
+    
+    &:hover {
+        background-color: rgba(var(--primary-color-rgb), 0.1); 
+        color: var(--primary-color);
+    }
+}
+
+/* Menu Links - Default (Mobile/Vertical) */
+.nav-links {
+    display: none; /* Hidden by default */
+    flex-grow: 1;
+    flex-direction: column; /* Vertical alignment when open */
+    position: absolute;
+    top: min(10vh, 100px); /* Below the nav bar */
+    left: 0;
+    width: 100%;
+    background-color: var(--surface-color);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.15); /* Drop shadow for menu panel */
+    padding: 1rem 2.5%;
+    z-index: 999;
+    height: auto;
+    max-height: 90vh; /* Ensure it doesn't cover the whole screen */
+    overflow-y: auto;
+    gap: 0.25rem;
+    transition: all 0.3s ease-in-out;
+    
+    /* Show the menu when the 'open' class is applied */
+    &.open {
+        display: flex; 
+    }
+
+    /* Tab link styling - Adapted for vertical full-width links */
+    a {
+        width: 100%; /* Full width for vertical menu */
+        border: none;
+        text-align: left;
+        flex-shrink: 0; 
+        text-decoration: none;
+        color: var(--text-color-primary);
+        font-size: clamp(0.9rem, 1.5vw, 1.1rem); 
+        font-weight: var(--font-weight-normal);
+        padding: 0.75rem 1.25rem;
+        border-radius: 12px; 
+        transition: all 0.3s ease;
+        background-color: transparent;
+        white-space: nowrap;
+        
+        &:hover {
+            background-color: rgba(var(--primary-color-rgb), 0.1); 
+            color: var(--primary-color);
+        }
+        
+        /* Active Tab Styling - Updated */
+        &.active-tab {
+            background-color: var(--primary-color);
+            color: var(--surface-color); 
+            font-weight: var(--font-weight-heavy);
+            transform: none; /* No transform on mobile active links */
+            border-radius: 12px; /* Set border radius back to rounded on vertical menu */
+        }
+    }
+}
+
+/* ------------------------- DESKTOP/LANDSCAPE STYLES ------------------------- */
+@media (min-width: 900px) {
+    
+    /* Hide the entire mobile control group on large screens, 
+       as the full nav links are visible. */
+    .menu-controls-mobile {
+        display: none;
+    }
+
+    /* Restore horizontal nav-links on large screens/landscape */
+    .nav-links {
+        display: flex !important; /* Override JS toggle and default 'display: none' */
+        position: static;
+        flex-direction: row; /* Horizontal */
+        flex-grow: 1;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 0 1rem;
+        box-shadow: none;
+        height: auto;
+        overflow: hidden;
+        
+        /* Restore individual link width */
+        a {
+            width: auto; 
+            text-align: center;
+            font-size: 1rem;
+            /* Active tab styling for horizontal menu (flat border bottom) */
+            border-radius: var(--border-radius-medium); 
+            
+            &.active-tab {
+                border-radius: 0; /* Set border radius to 0 as requested */
+                transform: translateY(-2px); /* Re-apply subtle lift */
+                border-radius: var(--border-radius-medium); 
+            }
+        }
+    }
+}
+
+/* ------------------------- TAB STYLING END ------------------------- */
+
+/* Existing slide styles modified to allow scrolling */
+.container { 
+    /* Kept absolute positioning for the carousel mechanism to work */
+    position: relative; 
+    top: 0;
+    left: 0;
+    transform: none;
+    width: 100vw; 
+    height: 70vh; /* Changed from 100vh to allow content below */
+    background: #f5f5f5; 
+    overflow: hidden; /* Keep slide overflow hidden */
+    /* Added cursor style for drag-ability feedback */
+    cursor: grab;
+    user-select: none; /* Prevent text selection during drag */
+    
+    .slide { 
+        position: relative; 
+        height: 100%;
+        
+        .item { 
+            width: 200px; 
+            height: 250px; 
+            position: absolute; 
+            top: 65%; 
+            transform: translate(0, -50%); 
+            border-radius: var(--border-radius-medium); 
+            background-position: 50% 50%; 
+            background-image: var(--bg-image); /* The actual image from the inline style */
+            background-size: cover; 
+            background-repeat: no-repeat;
+            display: inline-block; 
+            transition: all 0.5s;
+            
+            .content { 
+                position: absolute; 
+                padding-top: clamp(300px, 20%, 500px); 
+                padding-left: clamp(10px, 10vw, 100px); 
+                width: min(45%, 400px); 
+                text-align: left; 
+                color: var(--primary-color); 
+                transform: translate(0, -50%); 
+                display: none;
+                
+                .name { 
+                    font-size: 40px; 
+                    text-transform: uppercase; 
+                    font-weight: var(--font-weight-heavy); 
+                    opacity: 0; 
+                    color: var(--primary-color); 
+                    animation: animate 1s ease-in-out 1 forwards; 
+                }
+                
+                .des { 
+                    margin-top: 10px; 
+                    margin-bottom: 20px; 
+                    opacity: 0; 
+                    animation: animate 1s ease-in-out 0.3s 1 forwards; 
+                    font-size: var(--font-size-p); 
+                }
+            }
+        }
+        
+        .item:nth-child(2) { 
+            background-image: linear-gradient(to bottom,
+                          var(--background-gradient) 0%, 
+                          rgba(0, 0, 0, 0) 100%),       /* Fully Transparent on the right */
+                          var(--bg-image); /* The actual image from the line style */
+            
+            .content { 
+                display: block; 
+            }
+        }
+        
+        /* Styles for the two largest (and moving) items */
+        .item:nth-child(1), 
+        .item:nth-child(2) { 
+            top: 0; 
+            left: 0; 
+            transform: translate(0, 0); 
+            width: 100%; 
+            height: 100%; 
+            transition: all 0.5s; 
+            border-radius: 0px;
+        }
+
+        .item:nth-child(3) { left: 50%; }
+        .item:nth-child(4) { left: calc(50% + 220px); }
+        .item:nth-child(5) { left: calc(50% + 440px); }
+        .item:nth-child(n + 6) { left: calc(50% + 660px); opacity: 0; }
+    }
+}
+
+@media (min-width: 900px) {
+    .slide .item:nth-child(2) { 
+        background-image: linear-gradient(to right,
+                      var(--background-gradient) 0%, 
+                          rgba(0, 0, 0, 0) 100%),       /* Fully Transparent on the right */
+                          var(--bg-image); /* The actual image from the line style */
+    }
+}
+
+@keyframes animate { 
+    from { opacity: 0; transform: translateY(100px); filter: blur(33px); } 
+    to { opacity: 1; transform: translateY(0); filter: blur(0); } 
+}
+
+/* Style for the new content area */
+.main-content {
+    padding: 50px 5%;
+    min-height: 100vh; /* Ensure there is enough scrollable content */
+    background: var(--background-color);
+    color: var(--text-color-primary);
+    text-align: justify;
+    width: 100%;
+    
+    h1 {
+        font-size: var(--font-size-h1);
+        color: var(--primary-color);
+        margin-bottom: 1.5rem;
+        border-bottom: 2px solid var(--primary-color);
+        padding-bottom: 0.5rem;
+    }
+    p {
+        margin-bottom: 1rem;
+        line-height: 1.6;
+        max-width: 100%;
+        font-size: var(--font-size-p);
+    }
+    h2 {
+        font-size: var(--font-size-h2);
+        color: var(--text-color-primary);
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+    }
+    ul {
+        list-style: disc;
+        padding-left: 20px;
+        margin-bottom: 1rem;
+    }
+    li {
+        margin-bottom: 0.5rem;
+    }
+}
+
+/* ------------------------- PUBLICATION SECTION STYLES (NEW) ------------------------- */
+
+/* --- START NEW CAROUSEL STYLES --- */
+.book-carousel-wrapper {
+    position: relative;
+    width: 100%;
+    /* margin-bottom is now on .book-covers-container */
+}
+
+/* This is the MODIFIED class. Now explicitly optimized for touch/horizontal scrolling. */
+.book-covers-container {
+    display: flex; /* Horizontal layout */
+    gap: 2rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem; /* Added for visual buffer */
+    max-width: 100%; 
+    margin-bottom: 2rem;
+    
+    overflow-x: auto; /* <-- This enables MOUSE WHEEL and SCROLL BAR scrolling */
+    scroll-behavior: smooth; 
+    
+    /* ADDED: Scroll snap for better touch experience */
+    scroll-snap-type: x mandatory;
+    
+    /* ADDED: Better touch handling */
+    -webkit-overflow-scrolling: touch; 
+    
+    /* ADDED: Hide scrollbar */
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    
+    /* ADDED: Hide scrollbar for Chrome, Safari and Opera */
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    
+    /* The cards inside the carousel need a fixed/min width */
+    .book-card {
+        flex-shrink: 0; /* Keep cards from shrinking */
+        width: 150px; /* Explicit width for flex items */
+        /* ADDED: Scroll snap point */
+        scroll-snap-align: start; 
+    }
+}
+
+.carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 20;
+    background-color: rgba(var(--surface-color-rgb), 0.9); /* Use surface color with opacity */
+    color: var(--text-color-primary);
+    border: 1px solid var(--primary-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    
+    &:hover {
+        background-color: var(--primary-color);
+        color: var(--surface-color);
+    }
+    
+    &.left-arrow {
+        left: 10px;
+    }
+
+    &.right-arrow {
+        right: 10px;
+    }
+}
+/* --- END NEW CAROUSEL STYLES --- */
+
+
+.book-card {
+    position: relative; /* Needed for the badge */
+    display: flex;
+    text-align: justify;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: var(--surface-color);
+    padding: 1rem;
+    border-radius: var(--border-radius-medium);
+    box-shadow: var(--card-shadow);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer; /* Indicate it's clickable */
+    
+    &:hover {
+        transform: translateY(-5px) scale(1.02); /* Subtle hover lift and zoom */
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+    
+    img {
+        width: 100%;
+        max-width: 150px;
+        height: auto;
+        aspect-ratio: 2 / 3; /* Standard book aspect ratio */
+        object-fit: cover;
+        border-radius: 8px;
+        margin-bottom: 0.75rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        pointer-events: none; /* Prevents image from blocking card click event */
+    }
+    
+    h3 {
+        font-size: var(--font-size-h3);
+        color: var(--text-color-primary);
+        margin: 0;
+        line-height: 1.3;
+        pointer-events: none;
+    }
+}
+
+/* Magazine/Price Badge Styling */
+.magazine-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #e65100; /* Darker orange for the badge */
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: var(--font-weight-heavy);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    pointer-events: none;
+}
+
+/* New Styles for Subscriber Button */
+.subscribe-button-container {
+    background-color: var(--surface-color);
+    border: 2px solid var(--primary-color);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border-radius: var(--border-radius-medium);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(var(--primary-color-rgb), 0.1);
+}
+.subscribe-text {
+    font-size: var(--font-size-p);
+    font-weight: var(--font-weight-normal);
+    color: var(--text-color-primary);
+    margin-bottom: 1rem;
+}
+.subscribe-button {
+    padding: 12px 25px; 
+    border: none; 
+    cursor: pointer; 
+    border-radius: 12px; 
+    background-color: var(--primary-color);
+    color: var(--text-color-primary);
+    font-weight: var(--font-weight-heavy);
+    font-size: 1rem;
+    transition: all 0.3s; 
+    box-shadow: 0 4px 10px rgba(var(--primary-color-rgb), 0.5);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    
+    &:hover {
+        filter: brightness(1.1);
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(var(--primary-color-rgb), 0.7);
+    }
+}
+
+/* Custom Message Box for Subscription */
+#messageBox {
+    display: flex;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 12px 20px;
+    background-color: #10b981; /* Green 500 */
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transition: opacity 0.3s, transform 0.3s;
+    transform: translateX(100%);
+    z-index: 5000;
+    
+    &.show {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(0) translateY(0);
+    }
+}
+
+/* ------------------------- DONATE BUTTON STYLE (NEW) ------------------------- */
+/* Note: action-btn is used in carousel content and book detail modal */
+/* ------------------------- DONATE BUTTON STYLE (NEW) ------------------------- */
+.donate-btn {
+    color: var(--primary-color);
+    border : 2px solid rgb(var(--primary-color-rgb));
+    background-color: rgba(var(--primary-color-rgb),
+0.15);
+    
+    &:hover {
+        background-color: var(--primary-color);
+        filter: brightness(1.1);
+        transform: translate(-1px);
+        color: var(--surface-color);
+    }
+    
+    &:active {
+        transform: scale(0.9);
+    }
+}
+
+/* ------------------------- END DONATE BUTTON STYLE ------------------------- */
+
+/* ------------------------- END PUBLICATION SECTION STYLES ------------------------- */
+
+
+/* ------------------------- BOOK DETAIL MODAL STYLES (ZOOM POP-UP) ------------------------- */
+
+.book-detail-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 3000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+    
+    &.show {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+.book-detail-card {
+    background-color: var(--surface-color);
+    color: var(--text-color-primary);
+    padding: 20px;
+    border-radius: var(--border-radius-large);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    max-width: 90%;
+    max-height: 90%;
+    width: 600px;
+    position: relative;
+    
+    /* Initial state for pop-up animation */
+    transform: scale(0.8);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.27);
+    opacity: 0;
+    overflow-y: auto;
+    
+    &.show {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    padding: 0 5px;
+    font-size: 2rem;
+    color: var(--text-color-secondary);
+    cursor: pointer;
+    transition: color 0.2s;
+    line-height: 1;
+    
+    &:hover {
+        background-color: rgba(255, 0, 0, 0.15);
+        border-radius: 20%;
+    }
+}
+
+.detail-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    text-align: justify;
+    padding-top: 10px;
+}
+
+.detail-cover {
+    width: 100%;
+    max-width: 200px;
+    aspect-ratio: 2 / 3;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.detail-text {
+     /* Set to block layout so the button inside flows correctly below the text */
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-start; /* Align text content to the left */
+    min-height: 300px;
+    justify-content: space-between;
+    
+    h2 {
+        font-size: var(--font-size-h2);
+        color: var(--primary-color);
+        margin-bottom: 0.5rem;
+    }
+
+    p {
+        font-size: var(--font-size-p);
+        color: var(--text-color-secondary);
+        margin-bottom: 0; /* Removed bottom margin from description */
+    }
+}
+
+/* MODIFIED: This class is still used for styling, but the content is set by JS */
+.description-placeholder {
+    font-style: italic;
+    text-align: justify;
+    border-left: 3px solid var(--primary-color);
+    padding-left: 10px;
+    margin-top: 1.5rem;
+    font-size: var(--font-size-p);
+    width: 100%; /* Ensure it takes full width for wrapping */
+}
+
+/* MODIFIED: Changed from absolute positioning to flowing naturally */
+#detailActionBtn {
+    align-self: flex-end;
+}
+    
+
+.action-btn {
+      display: inline-block;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    align-self: flex-start;
+    border: none;
+    background-color: var(--primary-color);
+    
+    &:hover {
+        filter: brightness(1.1);
+        transform: translateY(-1px);
+    }
+    
+    &:active {
+        transform: scale(0.9);
+    }
+}
+
+/* Responsive layout for detail card (side-by-side on larger screens) */
+@media (min-width: 600px) {
+    .detail-content {
+        flex-direction: row;
+        text-align: justify;
+    }
+    .detail-cover {
+        flex-shrink: 0;
+    }
+    .detail-text {
+        flex-grow: 1;
+        align-self: flex-start;
+    }
+}
+/* ------------------------- END BOOK DETAIL MODAL STYLES ------------------------- */
+
+/* ------------------------- DONATION MODAL STYLES (NEW) ------------------------- */
+
+.donation-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 4000; /* Higher Z-index than book modal */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+    
+    &.show {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+.donation-card {
+    background-color: var(--surface-color);
+    color: var(--text-color-primary);
+    padding: 30px 20px;
+    border-radius: var(--border-radius-large);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    max-width: 90%;
+    width: 450px; /* Focused width for QR code */
+    position: relative;
+    text-align: center;
+    
+    transform: scale(0.8);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.27);
+    opacity: 0;
+
+    /* ADDED: Ensure card is scrollable if it's taller than the viewport */
+    max-height: 90vh;
+    overflow-y: auto;
+    
+    &.show {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.donation-content {
+    h2 {
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+        font-size: var(--font-size-h2);
+    }
+}
+
+/* UPDATED: This class now targets the container div for qrcode.js */
+.qr-code-container {
+    width: min(100%, 200px);
+    /* Remove height, let content define it */
+    height: 200px; 
+    margin: 1.5rem auto 1rem; /* Adjusted margin */
+    /* Add some visual styling to the container itself */
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: white; /* QR code needs a light background */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Ensure QR code elements stay inside */
+    
+    /* Target the canvas/img element generated by qrcode.js */
+    canvas, img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        /* Override border-radius applied by parent if needed, but not strictly necessary */
+    }
+}
+
+/* Donation amount selection styles (NEW) */
+.amount-btn {
+    padding: 8px 15px;
+    border-radius: 8px;
+    background-color: var(--surface-color);
+    font-weight: var(--font-weight-semi);
+    cursor: pointer;
+    transition: all 0.2s;
+    
+    &[data-amount="100"] {
+            color: rgb(var(--note-100));
+            border: 1px solid rgb(var(--note-100));
+        }
+
+        &[data-amount="500"] {
+            color: rgb(var(--note-500));
+            border: 1px solid rgb(var(--note-500));
+        }
+
+        &[data-amount="0"] {
+            color: rgb(var(--note-other));
+            border: 1px solid rgb(var(--note-other));
+        }
+    
+    &.active {
+        color: var(--surface-color);
+        
+        &[data-amount="100"] {
+            background-color: rgb(var(--note-100));
+            box-shadow: 0 2px 5px rgba(var(--note-100), 0.5);
+            color: white; // Ensure text is white for contrast
+        }
+
+        &[data-amount="500"] {
+            background-color: rgb(var(--note-500));
+            box-shadow: 0 2px 5px rgba(var(--note-500), 0.5);
+            color: white;
+        }
+
+        &[data-amount="0"] {
+            background-color: rgb(var(--note-other));
+            box-shadow: 0 2px 5px rgba(var(--note-other), 0.5);
+            color: white;
+        }
+    }
+
+    &:hover:not(.active) {
+        background-color: rgba(var(--primary-color-rgb), 0.1);
+    }
+}
+
+.upi-id-label {
+    font-weight: var(--font-weight-normal);
+    color: var(--text-color-secondary);
+    margin-bottom: 0.8rem;
+    font-size: var(--font-size-p);
+}
+
+.upi-id-value {
+    font-weight: var(--font-weight-heavy);
+    font-size: var(--font-size-p);
+    color: var(--text-color-primary);
+    margin-bottom: 1rem;
+    padding: 0.5rem 0;
+    background-color: rgba(var(--primary-color-rgb), 0.1);
+    border-radius: 8px;
+    display: inline-block;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.copy-upi-btn {
+    /* Reuse action-btn style but make it a bit narrower/flatter */
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--primary-color);
+    color: var(--surface-color);
+    font-weight: var(--font-weight-semi);
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-bottom: 0.5rem; /* Adjusted margin */
+    margin-top: 10px; /* Separator from UPI ID */
+    
+    &:hover {
+        filter: brightness(1.1);
+        transform: translateY(-1px);
+    }
+}
+
+/* NEW: Deep link button styles re-added */
+.deep-link-btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: #4CAF50; /* Green for Call to Action */
+    color: white;
+    font-weight: var(--font-weight-semi);
+    cursor: pointer;
+    display: inline-flex; /* Use flex to align icon and text */
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s, transform 0.2s;
+    
+    &:hover {
+        background-color: #45a049;
+        transform: scale(1.05);
+    }
+}
+
+.donation-note {
+    font-size: var(--font-size-p);
+    color: var(--text-color-secondary);
+    font-style: italic;
+    margin-top: 1rem;
+}
+
+/* --- START: Added styles for two-column donation popup on short screens --- */
+@media (max-height: 700px) and (min-width: 600px) {
+    /* Widen card to accommodate columns, but only on short viewports */
+    .donation-card {
+        width: 400px; 
+        max-width: 90%;
+    }
+
+    .donation-content h2 {
+        text-align: center; /* Keep title centered */
+        margin-bottom: 0.5rem; 
+    }
+    
+    .qr-code-container {
+        width: min(100%, 150px);
+        /* Remove height, let content define it */
+        height: 150px;
+    }
+    #deepLinkBtn {
+        display: none;
+    }
+}
+/* --- END: Added styles for two-column donation popup --- */
+
+/* ------------------------- END DONATION MODAL STYLES ------------------------- */
+
+
+/* ------------------------- SCROLL TO TOP BUTTON STYLES ------------------------- */
+
+#scrollToTopBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    /* Use a larger size for better mobile touch target */
+    width: 50px; 
+    height: 50px;
+    background-color: var(--primary-color);
+    color: var(--surface-color); /* Light color for icon */
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    opacity: 0; /* Hidden by default */
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.2s ease;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    
+    &.show {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    &:hover {
+        transform: scale(1.05);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+    }
+}
