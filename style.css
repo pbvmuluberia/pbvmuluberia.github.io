@@ -377,7 +377,7 @@ nav.menu {
     left: 0;
     transform: none;
     width: 100vw; 
-    height: 70vh; /* Changed from 100vh to allow content below */
+    height: 70vh;
     background: #f5f5f5; 
     overflow: hidden; /* Keep slide overflow hidden */
     /* Added cursor style for drag-ability feedback */
@@ -390,13 +390,16 @@ nav.menu {
         
         .item { 
             width: 200px; 
-            height: 250px; 
+            height: 100%; 
             position: absolute; 
             top: 65%; 
             transform: translate(0, -50%); 
             border-radius: var(--border-radius-medium); 
             background-position: 50% 50%; 
-            background-image: var(--bg-image); /* The actual image from the inline style */
+            background-image: linear-gradient(to right,
+                          var(--background-gradient) 20%, 
+                          rgba(0, 0, 0, 0) 100%),       /* Fully Transparent on the right */
+                          var(--bg-image); /* The actual image from the line style */
             background-size: cover; 
             background-repeat: no-repeat;
             display: inline-block; 
@@ -430,43 +433,6 @@ nav.menu {
                 }
             }
         }
-        
-        .item:nth-child(2) { 
-            background-image: linear-gradient(to bottom,
-                          var(--background-gradient) 0%, 
-                          rgba(0, 0, 0, 0) 100%),       /* Fully Transparent on the right */
-                          var(--bg-image); /* The actual image from the line style */
-            
-            .content { 
-                display: block; 
-            }
-        }
-        
-        /* Styles for the two largest (and moving) items */
-        .item:nth-child(1), 
-        .item:nth-child(2) { 
-            top: 0; 
-            left: 0; 
-            transform: translate(0, 0); 
-            width: 100%; 
-            height: 100%; 
-            transition: all 0.5s; 
-            border-radius: 0px;
-        }
-
-        .item:nth-child(3) { left: 50%; }
-        .item:nth-child(4) { left: calc(50% + 220px); }
-        .item:nth-child(5) { left: calc(50% + 440px); }
-        .item:nth-child(n + 6) { left: calc(50% + 660px); opacity: 0; }
-    }
-}
-
-@media (min-width: 900px) {
-    .slide .item:nth-child(2) { 
-        background-image: linear-gradient(to right,
-                      var(--background-gradient) 0%, 
-                          rgba(0, 0, 0, 0) 100%),       /* Fully Transparent on the right */
-                          var(--bg-image); /* The actual image from the line style */
     }
 }
 
@@ -553,6 +519,8 @@ nav.menu {
     .book-card {
         flex-shrink: 0; /* Keep cards from shrinking */
         width: 150px; /* Explicit width for flex items */
+        padding: 1rem;
+        border-radius: var(--border-radius-medium);
         /* ADDED: Scroll snap point */
         scroll-snap-align: start; 
     }

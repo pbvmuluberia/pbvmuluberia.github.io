@@ -8,6 +8,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
+    <style>
+        .lang-content { display: none; }
+        .lang-content.active { display: block; }
+        h1.lang-content.active { display: block; }
+    </style>
     <script>
         (function() {
         // 1. Restore Theme immediately
@@ -50,7 +55,7 @@
 
 <div id="messageBox"></div>
 
-<div class="container" style="height: 50vh; overflow: hidden;">
+<div class="container" style="overflow: hidden;">
   <div class="slide">
     <div class="item" style="--bg-image: url('https://raw.githubusercontent.com/pbvmuluberia/pbvmuluberia.github.io/refs/heads/main/src/background/library.jpeg'); position: relative; width: 100%; top: 0; left: 0; transform: none; border-radius: 0;">
       <div class="content" style="display: block; opacity: 1; transform: translate(0, -50%); padding-top: 0; top: 50%;">
@@ -64,7 +69,8 @@
 </div>
 
 <div class="main-content" id="main-content">
-    <h1 id="content-heading">Publications</h1>
+    <h1 class="lang-content en">Publications</h1>
+    <h1 class="lang-content bn">প্রকাশনা</h1>
     <div id="content-body"></div>
 </div>
 

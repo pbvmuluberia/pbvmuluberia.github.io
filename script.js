@@ -143,6 +143,8 @@ function applyTranslations() {
     document.querySelectorAll(`.lang-content.${lang}`).forEach(el => el.classList.add('active'));
 }
 
+/* script.js (Modified function) */
+
 function generateBookCardsHtml(bookArray) {
     const containerId = 'book-covers-carousel-1';
     let cardsHtml = '';
@@ -151,7 +153,13 @@ function generateBookCardsHtml(bookArray) {
         const bookJsonString = JSON.stringify(book).replace(/"/g, '&quot;');
         const fallbackUrl = `https://placehold.co/150x225/d79921/3c3836?text=Book+Cover`;
         const badgeHtml = book.isMagazine ? '<span class="magazine-badge">MAGAZINE</span>' : '';
-        cardsHtml += `<div class="book-card" onclick="window.showBookDetails(this)" data-book-json="${bookJsonString}">${badgeHtml}<img src="${book.url}" alt="Cover of ${book.title}" onerror="this.onerror=null;this.src='${fallbackUrl}';"><h3>${book.title}</h3></div>`;
+        
+        // --- START MODIFICATION ---
+        // Generate a unique border color based on the book title (fixed saturation and lightness for appearance)
+        const borderColor = stringToHslColor(book.title, 70, 40); // S=70, L=40 gives vibrant colors
+        
+        cardsHtml += `<div class="book-card" style="border: 2px solid ${borderColor};" onclick="window.showBookDetails(this)" data-book-json="${bookJsonString}">${badgeHtml}<img src="${book.url}" alt="Cover of ${book.title}" onerror="this.onerror=null;this.src='${fallbackUrl}';"><h3>${book.title}</h3></div>`;
+        // --- END MODIFICATION ---
     });
     return `<div class="book-carousel-wrapper"><button class="carousel-arrow left-arrow" onclick="window.scrollCarousel('${containerId}', 'left')"><i class="fa-solid fa-chevron-left"></i></button><div class="book-covers-container" id="${containerId}">${cardsHtml}</div><button class="carousel-arrow right-arrow" onclick="window.scrollCarousel('${containerId}', 'right')"><i class="fa-solid fa-chevron-right"></i></button></div>`;
 }
@@ -258,13 +266,18 @@ function hideBookDetails() {
 }
 
 function scrollToContent() {
-    const navHeight = document.querySelector('nav.menu').offsetHeight;
-    // We target .lang-content.active to find the visible title
-    const visibleTitle = document.querySelector('h1.lang-content.active');
+    const nav = document.querySelector('nav.menu');
+    const navHeight = nav ? nav.offsetHeight : 0;
     
-    if (visibleTitle) {
-        const targetPosition = visibleTitle.getBoundingClientRect().top + window.scrollY - navHeight - 20;
+    // 1. Try to find the specific language title (works for Home/About)
+    // 2. Fallback to the main content container (works for Publications/others)
+    const targetElement = document.querySelector('h1.lang-content.active');
+    
+    if (targetElement) {
+        const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - navHeight - 20;
         window.scrollTo({ top: targetPosition, behavior: 'smooth' });
+    } else {
+        console.warn("scrollToContent: No target element found to scroll to.");
     }
 }
 
@@ -402,3 +415,19 @@ window.loadDataAndInit = loadDataAndInit;
 document.addEventListener('DOMContentLoaded', () => {
    loadDataAndInit(); 
 });
+
+
+// Simple string hash function to generate a consistent HSL color based on the title
+function stringToHslColor(str, s, l) {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+        hash = str.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    const h = hash % 360;
+    // Use the color only if it contrasts well with the card background (surface-color)
+    // The saturation (s) and lightness (l) values are fixed here for theme consistency.
+    return 'hsl(' + h + ', ' + s + '%, ' + l + '%)'; 
+}
+
+// Attach to window if needed, but we'll call it internally
+// window.stringToHslColor = stringToHslColor;
