@@ -425,14 +425,15 @@ nav.menu {
             transition: left 0.5s, top 0.5s, width 0.5s, height 0.5s; /* Specific */
             
             .content { 
-                position: absolute; 
+                position: absolute;
                 padding-top: clamp(300px, 20%, 500px); 
                 padding-left: clamp(10px, 10vw, 100px); 
-                width: min(45%, 400px); 
+                width: min(65%, 400px); 
                 text-align: left; 
                 color: var(--surface-color); /* Light text on image gradient */
                 transform: translate(0, -50%); 
                 display: none;
+                
                 
                 .name { 
                     font-size: 40px; 
@@ -594,7 +595,7 @@ nav.menu {
         transform: translateY(-5px) scale(1.02); 
         box-shadow: 
             0 8px 10px rgba(0, 0, 0, 0.2), 
-            0 0 10px var(--primary-color); 
+            0 0 10px var(--card-border-color); 
     }
     
     img {
@@ -697,7 +698,7 @@ nav.menu {
 }
 
 .donate-btn {
-    color: var(--primary-color);
+    color: color-mix(in srgb, var(--primary-color), white 60%);
     border : 2px solid rgb(var(--primary-color-rgb));
     background-color: rgba(var(--primary-color-rgb), 0.15);
     /* FIX: Optimized transition */
@@ -849,6 +850,7 @@ nav.menu {
     display: inline-block;
     align-self: flex-start;
     border: none;
+    margin-bottom: 10px;
     background-color: var(--primary-color);
     color: var(--surface-color); /* FIX: Ensure text contrast */
     /* FIX: Optimized transition */

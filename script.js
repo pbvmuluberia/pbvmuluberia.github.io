@@ -425,7 +425,22 @@ async function loadDataAndInit() {
 window.loadDataAndInit = loadDataAndInit;
 
 document.addEventListener('DOMContentLoaded', () => {
-   loadDataAndInit(); 
+   loadDataAndInit();
+    document.addEventListener('click', (event) => {
+    const navLinks = document.getElementById('navLinks');
+    const hamburgerBtn = document.getElementById('hamburgerBtn');
+
+    // Check if the menu is currently open
+    const isOpen = navLinks.classList.contains('open');
+
+    // Check if the click happened OUTSIDE the menu and OUTSIDE the button
+    const isClickInsideMenu = navLinks.contains(event.target);
+    const isClickOnButton = hamburgerBtn.contains(event.target);
+
+    if (isOpen && !isClickInsideMenu && !isClickOnButton) {
+        toggleMenu(); // Close the menu
+    }
+  });
 });
 
 
