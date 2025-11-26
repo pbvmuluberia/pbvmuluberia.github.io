@@ -22,6 +22,8 @@
     --text-color-secondary: #504945;
     --background-gradient: #3c3836b3;
     
+    --banner-background: rgba(var(--primary-color-rgb), 0.1); 
+    
     /* FIX: Darkened from standard Gruvbox Orange (#d65d0e) to #bf530c 
        to meet WCAG AA contrast ratio (4.5:1) against light text */
     --primary-color: #bf530c;   
@@ -69,6 +71,8 @@
     --surface-color-rgb: 60, 56, 54; 
     --text-color-primary: #ebdbb2;
     --text-color-secondary: #d4c4a4;
+    
+    --banner-background: hsl(50, 50%, 80%); 
     
     --note-100: 159, 154, 241;
     --note-500: 162, 204, 123;
@@ -507,6 +511,7 @@ nav.menu {
 .book-carousel-wrapper {
     position: relative;
     width: 100%;
+    padding: 0 40px;
 }
 
 .book-covers-container {
@@ -522,7 +527,7 @@ nav.menu {
     -webkit-overflow-scrolling: touch; 
     
     -ms-overflow-style: none;  
-    scrollbar-width: none;  
+    scrollbar-width: none;
     
     &::-webkit-scrollbar {
         display: none;
@@ -564,11 +569,11 @@ nav.menu {
     }
     
     &.left-arrow {
-        left: 10px;
+        left: -10px;
     }
 
     &.right-arrow {
-        right: 10px;
+        right: -10px;
     }
 }
 
@@ -722,6 +727,7 @@ nav.menu {
     left: 0;
     width: 100%;
     height: 100%;
+    border: 2px solid var(--card-border-color);
     background-color: rgba(0, 0, 0, 0.7);
     z-index: var(--z-overlay); /* FIX: Used variable */
     display: flex;
@@ -951,6 +957,7 @@ nav.menu {
         width: 100%;
         height: 100%;
         object-fit: contain;
+        padding: 5px;
     }
 }
 
@@ -1185,7 +1192,7 @@ nav.menu {
         display: flex;
         justify-content: center;
         width: 100%;
-        background-color: #eee;
+        background-color: var(--banner-background);
         border-radius: var(--border-radius-medium);
         margin-bottom: 1rem;
         padding: 0.5rem 0;

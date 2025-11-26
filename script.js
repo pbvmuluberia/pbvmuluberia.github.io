@@ -280,7 +280,7 @@ function showBookDetails(cardElement) {
         badgeElement.style.display = 'none'; 
     }
     // --- END MODIFIED ---
-    
+    const borderColor = stringToHslColor(book.title, 70, 40);
     const actionBtn = document.getElementById('detailActionBtn');
     if (book.price) actionBtn.textContent = langDict.book_btn_buy;
     else if (book.isMagazine) actionBtn.textContent = langDict.book_btn_subscribe;
@@ -378,6 +378,7 @@ async function updatePublicationsContent(lang) {
         }
     }
     contentBody.innerHTML = htmlContent;
+    enableMouseWheelScroll('book-covers-carousel-1');
 }
 
 function toggleMenu() {
@@ -481,3 +482,17 @@ function stringToHslColor(str, s, l) {
 
 // Attach to window if needed, but we'll call it internally
 // window.stringToHslColor = stringToHslColor;
+
+// Helper to enable mouse wheel horizontal scrolling
+function enableMouseWheelScroll(containerId) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+
+    container.addEventListener("wheel", (evt) => {
+        // If the container has scrollable content
+        if (container.scrollWidth > container.clientWidth) {
+            evt.preventDefault(); // Stop the whole page from scrolling down
+            container.scrollLeft += evt.deltaY; // Scroll the carousel instead
+        }
+    }, { passive: false });
+}
