@@ -49,7 +49,10 @@ const translations = {
         'pub_subscribe_prompt': 'Want to enjoy our regular magazines? Subscribe today!',
         'pub_subscribe_btn': 'Become a Subscriber',
         'pub_featured_title': 'Featured Publications',
-        'pub_error_loading': 'Error loading publications. Please check your connection and try again.'
+        'pub_error_loading': 'Error loading publications. Please check your connection and try again.',
+        'notice_title': 'Important Notice', // NEW
+        'notice_subtitle_en': 'Current Events', // NEW
+        'notice_subtitle_bn': 'Current Events', // NEW (Fallback/consistency)
     },
     'bn': {
         'nav_menu': 'মেনু',
@@ -99,7 +102,10 @@ const translations = {
         'pub_subscribe_prompt': ' আপনি কি আমাদের নিয়মিত পত্রিকা উপভোগ করতে চান? আজই গ্রাহক হন!',
         'pub_subscribe_btn': 'গ্রাহক হন',
         'pub_featured_title': ' পত্রিকা ও বই',
-        'pub_error_loading': 'প্রকাশনা লোড করতে ত্রুটি। অনুগ্রহ করে আপনার সংযোগ পরীক্ষা করুন এবং আবার চেষ্টা করুন।'
+        'pub_error_loading': 'প্রকাশনা লোড করতে ত্রুটি। অনুগ্রহ করে আপনার সংযোগ পরীক্ষা করুন এবং আবার চেষ্টা করুন।',
+        'notice_title': 'গুরুত্বপূর্ণ বিজ্ঞপ্তি', // NEW
+        'notice_subtitle_en': 'বর্তমান ঘটনাবলী', // NEW (Fallback/consistency)
+        'notice_subtitle_bn': 'বর্তমান ঘটনাবলী', // NEW
     }
 };
 
@@ -235,6 +241,20 @@ function hideDonationPopup() {
     const card = document.getElementById('donationCard');
     if (overlay && card) { overlay.classList.remove('show'); card.classList.remove('show'); document.body.style.overflow = ''; }
 }
+
+// --- NEW NOTICE POPUP FUNCTIONS ---
+function showNoticePopup() {
+    const overlay = document.getElementById('noticeOverlay');
+    const card = document.getElementById('noticeCard');
+    if (overlay && card) { overlay.classList.add('show'); card.classList.add('show'); document.body.style.overflow = 'hidden'; }
+}
+
+function hideNoticePopup() {
+    const overlay = document.getElementById('noticeOverlay');
+    const card = document.getElementById('noticeCard');
+    if (overlay && card) { overlay.classList.remove('show'); card.classList.remove('show'); document.body.style.overflow = ''; }
+}
+// ---------------------------------
 
 function copyUpiId() {
     navigator.clipboard.writeText(UPI_ID).then(() => showSubscriptionMessage('msg_upi_copied')).catch(() => showSubscriptionMessage('msg_upi_fail'));
@@ -397,6 +417,8 @@ window.setLang = setLang;
 window.scrollToContent = scrollToContent;
 window.showDonationPopup = showDonationPopup;
 window.hideDonationPopup = hideDonationPopup;
+window.showNoticePopup = showNoticePopup; // NEW
+window.hideNoticePopup = hideNoticePopup; // NEW
 window.selectAmount = selectAmount;
 window.copyUpiId = copyUpiId;
 window.showBookDetails = showBookDetails;
@@ -425,7 +447,8 @@ async function loadDataAndInit() {
 window.loadDataAndInit = loadDataAndInit;
 
 document.addEventListener('DOMContentLoaded', () => {
-   loadDataAndInit();
+    loadDataAndInit();
+    showNoticePopup();
     document.addEventListener('click', (event) => {
     const navLinks = document.getElementById('navLinks');
     const hamburgerBtn = document.getElementById('hamburgerBtn');

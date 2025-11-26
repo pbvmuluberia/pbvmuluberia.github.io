@@ -1,4 +1,6 @@
 /* Gruvbox-inspired custom theme colors - OPTIMIZED & ACCESSIBLE */
+@import url('https://fonts.maateen.me/siyam-rupali/font.css');
+
 :root {
     /* --- Z-INDEX REGISTRY (No more magic numbers) --- */
     --z-negative: -1;
@@ -49,7 +51,7 @@
     
     /* --- Text Variables --- */
     --font-heading: 'Georgia', 'Times New Roman', serif; /* Serif for "Book" feel */
-    --font-body: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-body: 'Siyam Rupali', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     
     --font-size-h1: 2.4rem;
     --font-size-h2: 1.8rem;
@@ -483,8 +485,6 @@ nav.menu {
     p {
         margin-bottom: 1rem;
         line-height: 1.6;
-        /* FIX: Max-width for readability on large screens */
-        max-width: 70ch; 
         font-size: var(--font-size-p);
     }
     h2 {
@@ -497,7 +497,6 @@ nav.menu {
         list-style: disc;
         padding-left: 20px;
         margin-bottom: 1rem;
-        max-width: 70ch;
     }
     li {
         margin-bottom: 0.5rem;
@@ -1125,6 +1124,106 @@ nav.menu {
         box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
     }
 }
+
+/* ------------------------- NOTICE MODAL (New) ------------------------- */
+
+.notice-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: var(--z-modal);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    
+    &.show {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+.notice-card {
+    background-color: var(--surface-color);
+    /* FIX: Add border for Dark Mode */
+    border: var(--card-border-color);
+    color: var(--text-color-primary);
+    padding: 30px 20px;
+    border-radius: var(--border-radius-large);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    max-width: 90%;
+    width: 600px; 
+    position: relative;
+    text-align: left;
+    
+    transform: scale(0.8);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.27), opacity 0.3s;
+    opacity: 0;
+    max-height: 90vh;
+    overflow-y: auto;
+    
+    &.show {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.notice-content {
+    h2 {
+        font-family: var(--font-heading);
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+        font-size: var(--font-size-h2);
+        text-align: center;
+    }
+    
+    .banner {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        background-color: #eee;
+        border-radius: var(--border-radius-medium);
+        margin-bottom: 1rem;
+        padding: 0.5rem 0;
+    }
+
+    p.notice-subtitle {
+        font-weight: var(--font-weight-semi);
+        font-size: var(--font-size-h3);
+        color: var(--text-color-primary);
+        margin-bottom: 0.5rem;
+    }
+
+    ul {
+        list-style: disc;
+        padding-left: 20px;
+        margin-bottom: 1rem;
+    }
+    
+    li {
+        margin-bottom: 0.5rem;
+    }
+    
+    img {
+        height: auto;
+        width: 500px;
+        background-size: cover;
+        background-repeat: no-repeat;
+    } 
+    
+    .action-btn {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+/* ------------------------- END NOTICE MODAL ------------------------- */
+
 
 /* FIX: Reduced Motion Support */
 @media (prefers-reduced-motion: reduce) {
