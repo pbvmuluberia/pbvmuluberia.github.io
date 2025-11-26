@@ -1,5 +1,4 @@
 /* Gruvbox-inspired custom theme colors - OPTIMIZED & ACCESSIBLE */
-@import url('https://fonts.maateen.me/siyam-rupali/font.css');
 
 :root {
     /* --- Z-INDEX REGISTRY (No more magic numbers) --- */
@@ -51,7 +50,7 @@
     
     /* --- Text Variables --- */
     --font-heading: 'Georgia', 'Times New Roman', serif; /* Serif for "Book" feel */
-    --font-body: 'Siyam Rupali', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-body: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     
     --font-size-h1: 2.4rem;
     --font-size-h2: 1.8rem;
