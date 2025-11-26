@@ -1211,8 +1211,7 @@ nav.menu {
     
     img {
         height: auto;
-        width: 500px;
-        max-width: 80%;
+        width: 100%;
         background-size: cover;
         background-repeat: no-repeat;
     } 
