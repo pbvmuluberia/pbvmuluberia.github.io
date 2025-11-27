@@ -7,7 +7,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+    
+    <script src="./src/components/script/components.js"></script>
+    <script src="./src/components/script/data.js"></script>
+    <script src="./src/components/script/utils.js"></script>
+    <script src="./src/components/script/publications.js"></script>
+    <script src="./src/components/script/modal.js"></script>
+    <script src="./src/components/script/init.js"></script>
+    
     <style>
         .lang-content { display: none; }
         .lang-content.active { display: block; }
@@ -29,29 +36,7 @@
 </head>
 <body id="publications" onload="loadDataAndInit('publications')">
 
-<nav class="menu">
-  <img src="https://raw.githubusercontent.com/t4saha/PBVM-Uluberia-Vigyan-Kendra/main/Logo/pvbm_logo_gold.png" alt="Logo" class="nav-logo" onerror="this.onerror=null; this.src='https://placehold.co/50x50/d79921/3c3836?text=LOGO'">
-  
-  <div class="menu-controls-mobile">
-      <span class="menu-label-text" data-translate-key="nav_menu">Menu</span>
-      <button class="hamburger-menu" id="hamburgerBtn" onclick="toggleMenu()" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
-      <span class="menu-label-text current-menu-label" id="currentMenuLabel" data-translate-key="nav_publications">Publications</span>
-  </div>
-  
-  <div class="nav-links" id="navLinks">
-    <a href="index.html" data-translate-key="nav_home">Home</a>
-    <a href="about.html" data-translate-key="nav_about">About</a>
-    <a href="projects.html" data-translate-key="nav_projects">Projects</a>
-    <a href="publications.html" class="active-tab" data-translate-key="nav_publications">Publications</a>
-    <a href="download.html" data-translate-key="nav_download">Download</a>
-    <a href="contact.html" data-translate-key="nav_contact">Contact</a>
-  </div>
-  
-  <div class="header-controls">
-      <button id="themeToggleIcon" onclick="toggleTheme()" class="theme-icon-button"><i class="fa-solid fa-sun theme-icon sun-icon"></i><i class="fa-solid fa-moon theme-icon moon-icon"></i></button>
-      <div class="lang-toggle"><span id="langEn" onclick="setLang('en')">EN</span><span id="langBn" onclick="setLang('bn')">বা</span></div>
-  </div>
-</nav>
+<div id="navbar-placeholder"></div>
 
 <div id="messageBox"></div>
 
@@ -91,25 +76,7 @@
     </div>
 </div>
 
-<div id="donationOverlay" class="donation-overlay" onclick="hideDonationPopup()">
-    <div id="donationCard" class="donation-card" onclick="event.stopPropagation()">
-        <button class="close-btn" onclick="hideDonationPopup()">&times;</button>
-        <div class="donation-content">
-            <h2 data-translate-key="donate_title">Support Our Mission</h2>
-            <p class="upi-id-label" data-translate-key="donate_choose_amount">Choose Amount:</p>
-            <div id="donationAmountSelectors" style="display: flex; justify-content: center; gap: 10px; margin-bottom: 15px;">
-                <button class="amount-btn active" data-amount="100" onclick="selectAmount(100)">₹100</button>
-                <button class="amount-btn" data-amount="500" onclick="selectAmount(500)">₹500</button>
-                <button class="amount-btn" data-amount="0" data-translate-key="other_amnt" onclick="selectAmount(0)">Other</button>
-            </div>
-            <p data-translate-key="donate_scan_qr" style="font-size: var(--font-size-p);">Scan the <b>QR code</b> below.</p>
-            <div id="upiQrCodeContainer" class="qr-code-container"></div>
-            <a id="deepLinkBtn" class="deep-link-btn" href="#" target="_blank" onclick="hideDonationPopup()"><i class="fa-solid fa-arrow-up-right-from-square"></i> <span data-translate-key="donate_open_upi">Open in UPI App</span></a>
-            <div><button class="copy-upi-btn" onclick="copyUpiId()" data-translate-key="donate_copy_upi">Copy UPI ID</button></div>
-            <p class="donation-note" data-translate-key="donate_note">Your generous contribution directly funds our science popularization and community projects.</p>
-        </div>
-    </div>
-</div>
+<div id="donation-modal-placeholder"></div>
 
 <button id="scrollToTopBtn" onclick="scrollToTop()" aria-label="Scroll to top"><i class="fa-solid fa-arrow-up"></i></button>
 

@@ -7,12 +7,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+    
+    <script src="./src/components/script/components.js"></script>
+    <script src="./src/components/script/data.js"></script>
+    <script src="./src/components/script/utils.js"></script>
+    <script src="./src/components/script/modal.js"></script>
+    <script src="./src/components/script/init.js"></script>
+    
     <style>
-        /* Simple language toggle utility */
         .lang-content { display: none; }
         .lang-content.active { display: block; }
-        /* Ensure spans/inline elements behave correctly if needed */
         h1.lang-content.active { display: block; }
     </style>
     <script>
@@ -23,46 +27,14 @@
                 document.documentElement.classList.add('dark-theme');
             }
 
-        // 2. Restore Language immediately (Optional, but helps reducing text flicker)
-        // This sets a global variable that script.js can use later to skip reading storage again
+        // 2. Restore Language immediately
         window.savedLang = localStorage.getItem('language') || 'bn';
         })();
     </script>
 </head>
 <body id="home">
 
-<nav class="menu">
-  <img src="https://raw.githubusercontent.com/t4saha/PBVM-Uluberia-Vigyan-Kendra/main/Logo/pvbm_logo_gold.png" alt="Logo" class="nav-logo" onerror="this.onerror=null; this.src='https://placehold.co/50x50/d79921/3c3836?text=LOGO'">
-  
-  <div class="menu-controls-mobile">
-      <span class="menu-label-text" data-translate-key="nav_menu">Menu</span>
-      <button class="hamburger-menu" id="hamburgerBtn" onclick="toggleMenu()" aria-label="Toggle menu">
-          <i class="fa-solid fa-bars"></i>
-      </button>
-      <span class="menu-label-text current-menu-label" id="currentMenuLabel" data-translate-key="nav_home">Home</span>
-  </div>
-  
-  <div class="nav-links" id="navLinks">
-    <a href="index.html" class="active-tab" data-translate-key="nav_home">Home</a>
-    <a href="about.html" data-translate-key="nav_about">About</a>
-    <a href="projects.html" data-translate-key="nav_projects">Projects</a>
-    <a href="publications.html" data-translate-key="nav_publications">Publications</a>
-    <a href="download.html" data-translate-key="nav_download">Download</a>
-    <a href="contact.html" data-translate-key="nav_contact">Contact</a>
-  </div>
-  
-  <div class="header-controls">
-      <button id="themeToggleIcon" onclick="toggleTheme()" aria-label="Toggle dark mode" class="theme-icon-button">
-          <i class="fa-solid fa-sun theme-icon sun-icon"></i>
-          <i class="fa-solid fa-moon theme-icon moon-icon"></i>
-      </button>
-      
-      <div class="lang-toggle">
-          <span id="langEn" onclick="setLang('en')">EN</span>
-          <span id="langBn" onclick="setLang('bn')">বা</span>
-      </div>
-  </div>
-</nav>
+<div id="navbar-placeholder"></div>
 
 <div id="messageBox"></div>
 
@@ -80,12 +52,10 @@
 </div>
 
 <div class="main-content" id="main-content">
-    <!-- Static Titles -->
     <h1 id="content-heading" class="lang-content en">Welcome!</h1>
     <h1 id="content-heading-bn" class="lang-content bn">স্বাগতম</h1>
 
     <div id="content-body">
-        <!-- English Content -->
         <div class="lang-content en">
             <p>Our organization is dedicated to fostering innovation and community growth. We offer a variety of services and initiatives designed to support our mission.</p>
             <p>Explore our site using the carousel above or the navigation menu. Each section provides unique insights into our work, from educational projects to various publications.</p>
@@ -99,7 +69,6 @@
             </ul>
         </div>
 
-        <!-- Bengali Content -->
         <div class="lang-content bn">
             <p>আমাদের সংস্থা উদ্ভাবননা এবং সাধারণ মানুষের বিকাশকে উৎসাহিত করার জন্য নিবেদিতপ্রাণ। আমরা আমাদের লক্ষ্যকে এগিয়ে নিয়ে যাওয়ার জন্য বিভিন্ন কর্মকাণ্ড, পরিষেবা এবং উদ্যোগ গ্রহণ করে থাকি।</p>
             <p>উপরের নেভিগেশন মেনু ব্যবহার করে আমাদের সাইটটি অন্বেষণ করুন। প্রতিটি বিভাগ আমাদের কাজের অনন্য অন্তর্দৃষ্টি প্রদান করে, স্বাস্থ্য, বিজ্ঞান ও শিক্ষাগত প্রকল্প থেকে শুরু করে বিভিন্ন প্রকাশনা পর্যন্ত এখানে খুঁজে পাবেন।</p>
@@ -115,39 +84,10 @@
     </div>
 </div>
 
-<div id="noticeOverlay" class="notice-overlay" onclick="hideNoticePopup()">
-    <div id="noticeCard" class="notice-card" onclick="event.stopPropagation()">
-        <button class="close-btn" onclick="hideNoticePopup()">&times;</button>
-        <div class="notice-content">
-            <h2 data-translate-key="notice_title">Important Notice</h2>
-            <div id="notice-body">
-                <div class="banner">
-                    <img class="img" src="https://raw.githubusercontent.com/pbvmuluberia/pbvmuluberia.github.io/refs/heads/main/src/banner/40 years.png">
-                </div>
-                <div class="lang-content en">
-                    <p class="notice-subtitle" data-translate-key="notice_subtitle_en">Current Events</p>
-                    <ul>
-                        <li>On the occasion of our 40th anniversary on November 29th, a cultural program, constructive discussions, and adulteration tests have been organized at 2:00 PM at 58 Gate Shikshak Bhawan.</li>
-                        <p></p>
-                        <li>Howrah Zilla Vigyan Manosikota-o-Medha Aviksha 2025 has been successfully completed.</li>
-                        <a href="https://www.w3schools.com">Result will be published Soon.</a>
-                        <p></p>
-                    </ul>
-                </div>
+<div id="donation-modal-placeholder"></div>
+<div id="notice-modal-placeholder"></div>
 
-                <div class="lang-content bn">
-                    <p class="notice-subtitle" data-translate-key="notice_subtitle_bn">বর্তমান ঘটনাবলী</p>
-                    <ul>
-                        <li>আাগামী ২৯শে নভেম্বর আমাদের ৪০ বছর পূর্তি উপলক্ষে ৫৮গেট শিক্ষক ভবনে দুপুর ২টো থেকে একটি সাংস্কৃতিক অনুষ্ঠান সহ, গঠণমূলক আলোচনা ও ভেজাল পরীক্ষার আয়েজন করা হয়েছে।</li>
-                        <p></p>
-                        <li>হাওড়া জেলা বিজ্ঞান মানসিকতা-ও-মেধা অভিক্ষা ২০২৫ সফলভাবে সম্পন্ন হয়েছে।</li>
-                        <a href="https://www.w3schools.com">ফলাফল শীঘ্রই প্রকাশিত হবে।</a>
-                        <p></p>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<div id="donationOverlay" class="donation-overlay" onclick="hideDonationPopup()">
-...
+<button id="scrollToTopBtn" onclick="scrollToTop()" aria-label="Scroll to top"><i class="fa-solid fa-arrow-up"></i></button>
+
+</body>
+</html>
