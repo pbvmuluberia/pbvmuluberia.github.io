@@ -432,14 +432,35 @@ async function loadDataAndInit() {
     if (isInitialized) return;
     isInitialized = true;
     
-    // 1. Initialize Theme
+    // 1. Identify current page from the <body> id
+    const pageId = document.body.id || 'home'; 
+
+    // 2. Inject Navbar
+    const navbarContainer = document.getElementById('navbar-placeholder');
+    if (navbarContainer) {
+        navbarContainer.innerHTML = ComponentGenerator.getNavbar(pageId);
+    }
+
+    // 3. Inject Modals (Donation & Notice)
+    const donationContainer = document.getElementById('donation-modal-placeholder');
+    if (donationContainer) {
+        donationContainer.innerHTML = ComponentGenerator.getDonationModal();
+    }
+
+    const noticeContainer = document.getElementById('notice-modal-placeholder');
+    if (noticeContainer) {
+        noticeContainer.innerHTML = ComponentGenerator.getNoticeModal();
+    }
+    // -------------------------------------
+
+    // 4. Initialize Theme
     init();
     
-    // 2. Initialize Language (Defaults to BN)
+    // 5. Initialize Language (Defaults to BN) - This will now translate the injected navbar!
     const savedLang = getLang();
     await switchVisuals(savedLang); 
     
-    // 3. Background Data Fetch
+    // 6. Background Data Fetch
     try {
         const response = await fetch(JSON_URL_EN);
         window.bookData.en = await response.json();
