@@ -81,8 +81,8 @@ const ComponentGenerator = {
                         <div class="lang-content en">
                             <p class="notice-subtitle" data-translate-key="notice_subtitle_en">Current Events</p>
                             <ul>
-                                <li>On the occasion of our 40th anniversary on November 29th...</li>
-                                <p></p>
+                                <li>On the occasion of our 40th anniversary on November 29th, a cultural program, constructive discussions, and adulteration tests have been organized at 2:00 PM at 58 Gate Shikshak Bhawan.</li>
+                        <p></p>
                                 <li>Howrah Zilla Vigyan Manosikota-o-Medha Aviksha 2025 has been successfully completed.</li>
                                 <a href="https://www.w3schools.com">Result will be published Soon.</a>
                             </ul>
@@ -90,7 +90,7 @@ const ComponentGenerator = {
                         <div class="lang-content bn">
                             <p class="notice-subtitle" data-translate-key="notice_subtitle_bn">বর্তমান ঘটনাবলী</p>
                             <ul>
-                                <li>আাগামী ২৯শে নভেম্বর আমাদের ৪০ বছর পূর্তি উপলক্ষে...</li>
+                                <li>আাগামী ২৯শে নভেম্বর আমাদের ৪০ বছর পূর্তি উপলক্ষে ৫৮গেট শিক্ষক ভবনে দুপুর ২টো থেকে একটি সাংস্কৃতিক অনুষ্ঠান সহ, গঠণমূলক আলোচনা ও ভেজাল পরীক্ষার আয়েজন করা হয়েছে।</li>
                                 <p></p>
                                 <li>হাওড়া জেলা বিজ্ঞান মানসিকতা-ও-মেধা অভিক্ষা ২০২৫ সফলভাবে সম্পন্ন হয়েছে।</li>
                                 <a href="https://www.w3schools.com">ফলাফল শীঘ্রই প্রকাশিত হবে।</a>
