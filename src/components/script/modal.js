@@ -44,33 +44,34 @@ function selectAmount(amount) {
 }
 
 function showDonationPopup() {
-    const overlay = document.getElementById('donationOverlay');
-    const card = document.getElementById('donationCard');
-    if (overlay && card) { 
+    const donationCard = document.getElementById('donationCard');
+    if (donationCard) { 
         // Use global state
         selectAmount(window.currentDonationAmount || 100); 
-        overlay.classList.add('show'); 
-        card.classList.add('show'); 
-        document.body.style.overflow = 'hidden'; 
+        donationCard.showModal();
     }
 }
 
 function hideDonationPopup() {
-    const overlay = document.getElementById('donationOverlay');
-    const card = document.getElementById('donationCard');
-    if (overlay && card) { overlay.classList.remove('show'); card.classList.remove('show'); document.body.style.overflow = ''; }
+    const donationCard = document.getElementById('donationCard');
+    if (donationCard) {
+        donationCard.close();
+    }
 }
 
 function showNoticePopup() {
-    const overlay = document.getElementById('noticeOverlay');
-    const card = document.getElementById('noticeCard');
-    if (overlay && card) { overlay.classList.add('show'); card.classList.add('show'); document.body.style.overflow = 'hidden'; }
+    const noticeCard = document.getElementById('noticeCard');
+    if (noticeCard) {
+        noticeCard.showModal();
+    }
 }
+        
 
 function hideNoticePopup() {
-    const overlay = document.getElementById('noticeOverlay');
-    const card = document.getElementById('noticeCard');
-    if (overlay && card) { overlay.classList.remove('show'); card.classList.remove('show'); document.body.style.overflow = ''; }
+    const noticeCard = document.getElementById('noticeCard');
+    if (noticeCard) {
+        noticeCard.close();
+    }
 }
 
 function copyUpiId() {

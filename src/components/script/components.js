@@ -44,8 +44,7 @@ const ComponentGenerator = {
     // 2. THE DONATION MODAL HTML
     getDonationModal: function() {
         return `
-        <div id="donationOverlay" class="donation-overlay" onclick="hideDonationPopup()">
-            <div id="donationCard" class="donation-card" onclick="event.stopPropagation()">
+        <dialog id="donationCard" class="donation-card" closedby="any" onclick="event.stopPropagation()">
                 <button class="close-btn" onclick="hideDonationPopup()">&times;</button>
                 <div class="donation-content">
                     <h2 data-translate-key="donate_title">Support Our Mission</h2>
@@ -62,15 +61,14 @@ const ComponentGenerator = {
                     <p class="donation-note" data-translate-key="donate_note">Your generous contribution directly funds our science popularization and community projects.</p>
                 </div>
             </div>
-        </div>
+        </dialog>
         `;
     },
 
     // 3. THE NOTICE MODAL HTML
     getNoticeModal: function() {
         return `
-        <div id="noticeOverlay" class="notice-overlay" onclick="hideNoticePopup()">
-            <div id="noticeCard" class="notice-card" onclick="event.stopPropagation()">
+        <dialog id="noticeCard" class="notice-card" closedby="any">
                 <button class="close-btn" onclick="hideNoticePopup()">&times;</button>
                 <div class="notice-content">
                     <h2 data-translate-key="notice_title">Important Notice</h2>
@@ -99,7 +97,7 @@ const ComponentGenerator = {
                     </div>
                 </div>
             </div>
-        </div>
+        </dialog>
         `;
     }
 };
