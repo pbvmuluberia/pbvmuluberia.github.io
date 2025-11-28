@@ -13,20 +13,21 @@
     --z-toast: 2000;
 
     /* --- Light Theme --- */
-    --background-color: #fbf0d8; /* Very light beige-yellow */
-    --surface-color: #fbf1e2;   /* Slightly darker beige for cards */
+    --background-color: hsl(36, 76%, 92%); /* Very light beige-yellow */
+    --surface-color: hsl(36, 76%, 85%);   /* Slightly darker beige for cards */
     --surface-color-rgb: 251, 241, 226; 
-    --surface-color-alpha: #fbf1e2;
+    --surface-color-alpha: hsl(36, 76%, 94%);
+    --surface-color-alt: hsl(36, 76%, 90%); /* Alternate surface for contrast */
     
-    --text-color-primary: #3c3836;
-    --text-color-secondary: #504945;
-    --background-gradient: #3c3836b3;
+    --text-color-primary: hsl(20, 5%, 22%);
+    --text-color-secondary: hsl(22, 7%, 29%);
+    --background-gradient: hsla(20, 5%, 22%, 0.702);
     
     --banner-background: rgba(var(--primary-color-rgb), 0.1); 
     
     /* FIX: Darkened from standard Gruvbox Orange (#d65d0e) to #bf530c 
        to meet WCAG AA contrast ratio (4.5:1) against light text */
-    --primary-color: #bf530c;   
+    --primary-color: hsl(24, 88%, 40%);   
     --primary-color-rgb: 191, 83, 12; 
     --primary-color-alpha: 191, 83, 12, 0.6;
     
@@ -39,7 +40,7 @@
     
     /* Language toggle colors */
     --lang-bg-active: var(--primary-color);
-    --lang-text-active: #fbf1e2; /* Ensure light text on orange bg */
+    --lang-text-active: hsl(36, 76%, 94%); /* Ensure light text on orange bg */
     --lang-bg-inactive: var(--surface-color);
     --lang-text-inactive: var(--text-color-primary);
     --lang-border: var(--primary-color);
@@ -66,11 +67,13 @@
 
 .dark-theme {
     /* --- Dark Gruvbox Theme --- */
-    --background-color: #282828;
-    --surface-color: #3c3836;
+    --background-color: hwb(0 16% 84%);
+    --surface-color: hsl(20, 5%, 30%);
+    --surface-color-alt: hsl(20, 5%, 20%);
     --surface-color-rgb: 60, 56, 54; 
-    --text-color-primary: #ebdbb2;
-    --text-color-secondary: #d4c4a4;
+    --text-color-primary: hsl(43, 59%, 81%);
+    --text-color-secondary: hsl(40, 36%, 74%);
+    
     
     --banner-background: hsl(50, 50%, 80%); 
     
@@ -79,7 +82,7 @@
     --note-other: 209, 117, 203;
 
     /* FIX: Dark mode uses bright Yellow-Green for better contrast on dark */
-    --primary-color: #b8bb26; 
+    --primary-color: hsl(61, 66%, 44%); 
     --primary-color-rgb: 184, 187, 38; 
     --primary-color-alpha: 184, 187, 38, 0.6;
     
@@ -258,7 +261,7 @@ nav.menu {
     top: 0;
     width: 100%; 
     height: max(10vh, 70px); 
-    background-color: var(--surface-color);
+    background-color: var(--background-color);
     box-shadow: var(--card-shadow);
     display: flex; 
     align-items: center;
@@ -317,7 +320,7 @@ nav.menu {
     top: min(10vh, 100px); 
     left: 0;
     width: 100%;
-    background-color: var(--surface-color);
+    background-color: var(--background-color);
     box-shadow: 0 8px 16px rgba(0,0,0,0.15); 
     padding: 1rem 2.5%;
     z-index: var(--z-dropdown); /* FIX: Used variable */
@@ -1216,6 +1219,49 @@ nav.menu {
     }
 }
 
+details.styled {
+    background-color: var(--surface-color);
+    border: 1px solid var(--card-border-color);
+    border-radius: var(--border-radius-medium);
+    padding: 1rem 1.5rem;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+    transition-behavior: allow-discrete;
+    max-height: 70px;
+}
+
+.detailed-summary {
+    font-size: var(--font-size-h2);
+    color: var(--text-color-primary);
+    text-align: justify;
+    margin-inline-start: 1rem;
+    list-style-position: outside;
+}
+
+summary::marker {
+    color: var(--primary-color);
+}
+
+.details-d {
+    block-size: 0;
+    overflow: hidden;
+}
+
+details.styled[open] {
+    
+    max-height: 1000px;
+
+    .details-d {
+        block-size: auto;
+        margin-top: 1rem;;
+        margin-left: 1rem;
+        padding: 0.5rem;
+        font-size: var(--font-size-p);
+        color: var(--text-color-secondary);
+        background-color: var(--surface-color-alt);
+        border-radius: var(--border-radius-medium);
+    }
+}
 /* ------------------------- END NOTICE MODAL ------------------------- */
 
 
