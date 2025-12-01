@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>40th Ceremony - Paschim Banga Vigyan Mancha</title>
+
+    <!-- External Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <!-- Global Styles -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Page Specific Styles -->
+    <link rel="stylesheet" href="ceremony.css">
+
+    <!-- Scripts -->
+    <script src="./src/components/script/components.js"></script>
+    <!-- Assuming data.js and utils.js exist in your project as referenced in index.html -->
+    <script src="./src/components/script/data.js"></script>
+    <script src="./src/components/script/utils.js"></script>
+    <script src="./src/components/script/modal.js"></script>
+    <script src="./src/components/script/init.js"></script>
+
+    <style>
+        /* Helper for language toggling visibility if not in style.css */
+        .lang-content {
+            display: none;
+        }
+
+        .lang-content.active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body id="ceremony">
+
+    <!-- Navbar Placeholder -->
+    <div id="navbar-placeholder"></div>
+
+    <div id="messageBox"></div>
+    <div class="lang-content en">
+        <div class="ceremony-container">
+
+            <!-- Header Section -->
+            <header class="ceremony-header">
+                <h1>40th Anniversary Ceremony</h1>
+                <p>Paschimbanga Vigyan Mancha &bull; November 29, 2025</p>
+            </header>
+
+            <!-- Horizontal Scroll Gallery -->
+            <section class="gallery-section">
+                <h2 class="section-heading">Ceremony Highlights</h2>
+
+                <!-- IMPORTANT: Added id="galleryScroll" here so the JS can find it -->
+                <div class="scroll-container" id="galleryScroll">
+
+                    <!-- Replace sources with actual images -->
+                    <figure class="scroll-item">
+                        <img src="./src/40 years/slide 1.jpeg" alt="Inauguration">
+                        <figcaption class="item-caption">Fig.1 - Inaugural Flag Hoisting Ceremony</figcaption>
+                    </figure>
+                    <figure class="scroll-item">
+                        <img src="./src/40 years/slide 2.jpg" alt="Audience">
+                        <figcaption class="item-caption">Fig.2 - A packed auditorium</figcaption>
+                    </figure>
+                    <figure class="scroll-item">
+                        <img src="./src/40 years/slide 3.jpg" alt="Exhibition">
+                        <figcaption class="item-caption">Fig.3 - Singing Rabindranath Tagore</figcaption>
+                    </figure>
+                    <figure class="scroll-item">
+                        <img src="./src/40 years/slide 4.jpeg" alt="Awards">
+                        <figcaption class="item-caption">Fig.4 - Reciting regional poetry of Purulia</figcaption>
+                    </figure>
+                    <figure class="scroll-item">
+                        <img src="./src/40 years/slide 5.jpeg" alt="Speech">
+                        <figcaption class="item-caption">Fig.5 - Keynote Speech</figcaption>
+                    </figure>
+                </div>
+            </section>
+
+            <!-- Key Dignitaries -->
+            <section class="dignitaries-section">
+                <h2 class="section-heading">Key Dignitaries</h2>
+                <div class="dignitaries-grid">
+                    <div class="dignitary-card">
+                        <div class="role-badge">President</div>
+                        <img src="./src/Guests/A Jasu.jpeg" alt="President">
+                        <h3>Dr. Arun Jasu</h3>
+                        <p>Renowned Doctor</p>
+                    </div>
+                    <div class="dignitary-card">
+                        <div class="role-badge">Main Speaker</div>
+                        <img src="./src/Guests/K Basar.jpeg" alt="Speaker">
+                        <h3>Adv. Sk Khairul Basar</h3>
+                        <p>Senior Advocate</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Participants List -->
+            <section class="participants-section">
+                <h2 class="section-heading">Distinguished Participants</h2>
+                <div class="participants-grid">
+                    <!-- Participant Items -->
+                    <div class="participant-item">
+                        <div class="participant-img"><img src="./src/Guests/Mouma Kanral.jpeg" alt="User">
+                        </div>
+                        <div class="participant-name">Mouma Kanral</div>
+                        <p>Recitings</p>
+                    </div>
+                    <div class="participant-item">
+                        <div class="participant-img"><img src="./src/Guests/Champa Roy.jpeg" alt="User">
+                        </div>
+                        <div class="participant-name">Champa Roy</div>
+                        <p>Reciting</p>
+                    </div>
+                    <div class="participant-item">
+                        <div class="participant-img"><img src="./src/Guests/Tulika Roy.jpeg" alt="User">
+                        </div>
+                        <div class="participant-name">Tulika Roy</div>
+                        <p>Singing</p>
+                    </div>
+                    <div class="participant-item">
+                        <div class="participant-img"><img src="./src/Guests/Bibekananda Biswas.jpeg" alt="User">
+                        </div>
+                        <div class="participant-name">Bibekananda Biswas</div>
+                        <p>Reciting</p>
+                    </div>
+                    <div class="participant-item">
+                        <div class="participant-img"><img src="./src/Guests/Trisha Biswas.jpeg" alt="User">
+                        </div>
+                        <div class="participant-name">Trisha Biswas</div>
+                        <p>Reciting</p>
+                    </div>
+                    <div class="participant-item">
+                        <div class="participant-img"><img src="./src/Guests/Bimala Dolui.jpeg" alt="User">
+                        </div>
+                        <div class="participant-name">Bimala Dolui</div>
+                        <p>Reciting</p>
+                    </div>
+                    <div class="participant-item">
+                        <div class="participant-img"><img src="./src/Guests/Jaharul Amin Mollah.jpeg" alt="User">
+                        </div>
+                        <div class="participant-name">Jaharul Amin Mollah</div>
+                        <p>Reciting</p>
+                    </div>
+                    <div class="participant-item">
+                        <div class="participant-img"><img src="./src/Guests/Sushmita Kanral.jpeg" alt="User">
+                        </div>
+                        <div class="participant-name">Sushmita Kanral</div>
+                        <p>Singing</p>
+                    </div>
+                    <div class="participant-item">
+                        <div class="participant-img"><img src="./src/Guests/Soma Chowdhury.jpeg" alt="User">
+                        </div>
+                        <div class="participant-name">Soma Chowdhury</div>
+                        <p>Reciting</p>
+                    </div>
+                    <div class="participant-item">
+                        <div class="participant-img"><img src="./src/Guests/Oindrik Sau.jpeg" alt="User">
+                        </div>
+                        <div class="participant-name">Oindrik Sau</div>
+                        <p>Instrumentalist</p>
+                    </div>
+                    <div class="participant-item">
+                        <div class="participant-img"><img src="./src/Guests/Pankaj jasu.jpeg" alt="User">
+                        </div>
+                        <div class="participant-name">Pankaj Jasu</div>
+                        <p>Singing</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Special Program -->
+            <section class="program-section">
+                <div class="program-card">
+                    <div class="program-content">
+                        <h2>Special Program: Food Safety</h2>
+                        <h3>Combating Adulteration in Daily Food</h3>
+                        <p>A hands-on workshop demonstrating simple tests to detect adulterants in milk and spices.
+                            Learn how to ensure safe food for your family.</p>
+                        <button class="action-btn"
+                            style="margin-top: 15px; padding: 10px 20px; border-radius: var(--border-radius-medium);">Download
+                            Guide</button>
+                    </div>
+                    <div class="program-img">
+                        <img src="https://placehold.co/500x350/e74c3c/white?text=Adulteration+Test"
+                            alt="Adulteration Test">
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Bengali Content Section -->
+    <div class="lang-content bn">
+        <div class="ceremony-container">
+
+            <!-- Header Section -->
+            <header class="ceremony-header">
+                <h1>৪০তম বার্ষিকী অনুষ্ঠান</h1>
+                <p>পশ্চিমবঙ্গ বিজ্ঞান মঞ্চ &bull; ২৯শে নভেম্বর, ২০২৫</p>
+            </header>
+
+            <!-- Horizontal Scroll Gallery -->
+            <section class="gallery-section">
+                <h2 class="section-heading">অনুষ্ঠানের বিশেষ মুহূর্ত</h2>
+
+                <!-- IMPORTANT: Added id="galleryScroll" here so the JS can find it -->
+                <div class="scroll-container" id="galleryScroll-bn">
+
+                    <!-- Replace sources with actual images -->
+                    <figure class="scroll-item">
+                        <img src="./src/40 years/slide 1.jpeg" alt="Inauguration">
+                        <figcaption class="item-caption">চিত্র.১ - উদ্বোধনী পতাকা উত্তোলন অনুষ্ঠান</figcaption>
+                    </figure>
+                    <figure class="scroll-item">
+                        <img src="./src/40 years/slide 2.jpg" alt="Audience">
+                        <figcaption class="item-caption">চিত্র.২ - ভরা দর্শকাশন</figcaption>
+                    </figure>
+                    <figure class="scroll-item">
+                        <img src="./src/40 years/slide 3.jpg" alt="Exhibition">
+                        <figcaption class="item-caption">চিত্র.৩ - রবীন্দ্র সংগীত পরিবেশন</figcaption>
+                    </figure>
+                    <figure class="scroll-item">
+                        <img src="./src/40 years/slide 4.jpeg" alt="Awards">
+                        <figcaption class="item-caption">চিত্র.৪ - পুরুলিয়ার আঞ্চলিক কবিতা আবৃত্তি</figcaption>
+                    </figure>
+                    <figure class="scroll-item">
+                        <img src="./src/40 years/slide 5.jpeg" alt="Speech">
+                        <figcaption class="item-caption">চিত্র.৫ - মূল বক্তব্য</figcaption>
+                    </figure>
+                </div>
+            </section>
+
+            <!-- Key Dignitaries -->
+            <section class="dignitaries-section">
+                <h2 class="section-heading">মূল অতিথিবৃন্দ</h2>
+                <div class="dignitaries-grid">
+                    <div class="dignitary-card">
+                        <div class="role-badge">সভাপতি</div>
+                        <img src="./src/Guests/A Jasu.jpeg" alt="President">
+                        <h3>ডঃ অরুণ জাসু</h3>
+                        <p>বিখ্যাত চিকিৎসক</p>
+                    </div>
+                    <div class="dignitary-card">
+                        <div class="role-badge">প্রধান বক্তা</div>
+                        <img src="./src/Guests/K Basar.jpeg" alt="Speaker">
+                        <h3>অ্যাড. শেখ খায়রুল বাশার</h3>
+                        <p>সিনিয়র অ্যাডভোকেট</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Participants List -->
+            <section class="participants-section">
+                <h2 class="section-heading">বিশিষ্ট অংশগ্রহণকারী</h2>
+                <div class="participants-grid">
+                    <!-- Participant Items (Names remain the same, descriptions translated) -->
+                    <div class="participant-item">
+                        <div class="participant-img"><img src="./src/Guests/Mouma Kanral.jpeg" alt="User">
+                        </div>
+                        <div class="participant-name">মৌমা কাঁড়াল</div>
+                        <p>আবৃত্তি</p>
+                    </div>
+                    <div class="participant-item">
+                        <div class="participant-img"><img src="./src/Guests/Champa Roy.jpeg" alt="User">
+                        </div>
+                        <div class="participant-name">চম্পা রায়</div>
+                        <p>আবৃত্তি</p>
+                    </div>
+                    <div class="participant-item">
+                        <div class="participant-img"><img src="./src/Guests/Tulika Roy.jpeg" alt="User">
+                        </div>
+                        <div class="participant-name">তুলিকা রায়</div>
+                        <p>গান</p>
+                    </div>
+                    <div class="participant-item">
+                        <div class="participant-img"><img src="./src/Guests/Bibekananda Biswas.jpeg" alt="User">
+                        </div>
+                        <div class="participant-name">বিবেকানন্দ বিশ্বাস</div>
+                        <p>আবৃত্তি</p>
+                    </div>
+                    <div class="participant-item">
+                        <div class="participant-img"><img src="./src/Guests/Trisha Biswas.jpeg" alt="User">
+                        </div>
+                        <div class="participant-name">ত্রিশা বিশ্বাস</div>
+                        <p>আবৃত্তি</p>
+                    </div>
+                    <div class="participant-item">
+                        <div class="participant-img"><img src="./src/Guests/Bimala Dolui.jpeg" alt="User">
+                        </div>
+                        <div class="participant-name">বিমলা দোলুই</div>
+                        <p>আবৃত্তি</p>
+                    </div>
+                    <div class="participant-item">
+                        <div class="participant-img"><img src="./src/Guests/Jaharul Amin Mollah.jpeg" alt="User">
+                        </div>
+                        <div class="participant-name">জাহরুল আমিন মোল্লা</div>
+                        <p>আবৃত্তি</p>
+                    </div>
+                    <div class="participant-item">
+                        <div class="participant-img"><img src="./src/Guests/Sushmita Kanral.jpeg" alt="User">
+                        </div>
+                        <div class="participant-name">সুস্মিতা কাঁড়াল</div>
+                        <p>গান</p>
+                    </div>
+                    <div class="participant-item">
+                        <div class="participant-img"><img src="./src/Guests/Soma Chowdhury.jpeg" alt="User">
+                        </div>
+                        <div class="participant-name">সোমা চৌধুরী</div>
+                        <p>আবৃত্তি</p>
+                    </div>
+                    <div class="participant-item">
+                        <div class="participant-img"><img src="./src/Guests/Oindrik Sau.jpeg" alt="User">
+                        </div>
+                        <div class="participant-name">ঐন্দ্রিক সাউ</div>
+                        <p>বাদ্যকার</p>
+                    </div>
+                    <div class="participant-item">
+                        <div class="participant-img"><img src="./src/Guests/Pankaj jasu.jpeg" alt="User">
+                        </div>
+                        <div class="participant-name">পঙ্কজ জাসু</div>
+                        <p>গান</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Special Program -->
+            <section class="program-section">
+                <div class="program-card">
+                    <div class="program-content">
+                        <h2>বিশেষ অনুষ্ঠান: খাদ্য সুরক্ষা</h2>
+                        <h3>দৈনন্দিন খাদ্যে ভেজাল মোকাবিলা</h3>
+                        <p>দুধ এবং মশলায় ভেজাল শনাক্ত করার জন্য সহজ পরীক্ষা প্রদর্শনের একটি হাতে-কলমে কর্মশালা রাখা
+                            হয়েছিল।
+                            আপনার পরিবারের জন্য নিরাপদ খাদ্য নিশ্চিত করতে শিখুন।</p>
+                        <button class="action-btn"
+                            style="margin-top: 15px; padding: 10px 20px; border-radius: var(--border-radius-medium);">গাইড
+                            ডাউনলোড করুন</button>
+                    </div>
+                    <div class="program-img">
+                        <img src="https://placehold.co/500x350/e74c3c/white?text=Adulteration+Test"
+                            alt="Adulteration Test">
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+
+    <!-- Modals -->
+    <div id="donation-modal-placeholder"></div>
+
+    <!-- Scroll To Top -->
+    <button id="scrollToTopBtn" onclick="scrollToTop()" aria-label="Scroll to top"><i
+            class="fa-solid fa-arrow-up"></i></button>
+
+    <!-- ACTIVATING THE SCROLL FUNCTION -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Apply horizontal scroll to both language sections. Note: the Bengali section ID is set to 'galleryScroll-bn'
+            if (typeof enableMouseWheelScroll === 'function') {
+                enableMouseWheelScroll('galleryScroll');
+                enableMouseWheelScroll('galleryScroll-bn'); // Apply to the new Bengali gallery
+                console.log("Horizontal scroll enabled for both galleries");
+            } else {
+                console.error("enableMouseWheelScroll function not found in utils.js");
+            }
+        });
+    </script>
+</body>
+
+</html>

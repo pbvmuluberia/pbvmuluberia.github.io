@@ -1,0 +1,276 @@
+/* ceremony.css - Specific styles for the ceremony page (Nested) */
+/* Adapted to match Gruvbox-inspired theme from style.css */
+
+/* Container overrides */
+.ceremony-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 5%;
+    padding-top: 80px;
+    /* Space for fixed navbar */
+    font-family: var(--font-body);
+
+    /* Header Styles */
+    .ceremony-header {
+        text-align: center;
+        margin-bottom: 40px;
+        color: var(--text-color-primary);
+
+        h1 {
+            font-family: var(--font-heading);
+            font-size: var(--font-size-h1);
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+    }
+
+    /* Shared Section Heading */
+    .section-heading {
+        font-family: var(--font-heading);
+        text-align: center;
+        margin: 40px 0 30px;
+        font-size: var(--font-size-h2);
+        color: var(--primary-color);
+        position: relative;
+        padding-bottom: 10px;
+    }
+}
+
+/* Horizontal Scroll Gallery */
+.gallery-section {
+    margin-bottom: 50px;
+
+    .scroll-container {
+        display: flex;
+        overflow-x: auto;
+        gap: 20px;
+        padding: 20px 5px;
+
+        /* UPDATED: Changed to auto to prevent fighting with JS scroll */
+        scroll-behavior: auto;
+
+        /* UPDATED: Commented out snap-type to ensure smooth wheel scrolling */
+        /* scroll-snap-type: x mandatory; */
+
+        -webkit-overflow-scrolling: touch;
+
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Ensure the container is positioned for absolute children if needed */
+        position: relative;
+
+        .scroll-item {
+            flex: 0 0 auto;
+            width: 350px;
+            padding-bottom: 0;
+            /* Removing bottom padding here as figcaption provides it */
+            border-radius: var(--border-radius-medium);
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease;
+            background-color: var(--surface-color);
+            display: flex;
+            flex-direction: column;
+
+            /* UPDATED: Commented out because parent snap is disabled */
+            /* scroll-snap-align: start; */
+
+            &:hover {
+                transform: scale(1.02);
+            }
+
+            img {
+                width: 100%;
+                height: 250px;
+                object-fit: cover;
+                display: block;
+            }
+
+            /* Added Caption Styling */
+            figcaption,
+            .item-caption {
+                text-align: center;
+                padding: 15px 10px;
+                /* Top/Bottom padding for "well spaced" look */
+                color: var(--text-color-secondary);
+                font-size: 0.95rem;
+                line-height: 1.4;
+                font-family: var(--font-body);
+                border-top: 1px solid var(--card-border-color);
+                /* Optional separator */
+            }
+        }
+    }
+}
+
+/* Dignitaries Grid */
+.dignitaries-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    justify-content: center;
+    margin-bottom: 50px;
+
+    .dignitary-card {
+        background: var(--surface-color);
+        border: 1px solid var(--card-border-color);
+        border-radius: var(--border-radius-medium);
+        padding: 30px;
+        text-align: center;
+        position: relative;
+        box-shadow: var(--card-shadow);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .role-badge {
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary-color);
+            color: var(--surface-color);
+            /* Light text on primary bg */
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: var(--font-weight-heavy);
+            text-transform: uppercase;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            white-space: nowrap;
+        }
+
+        img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--surface-color-alt);
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-family: var(--font-heading);
+            font-size: var(--font-size-h3);
+            margin: 10px 0 5px;
+            color: var(--text-color-primary);
+        }
+    }
+}
+
+/* Participants - Circular */
+.participants-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 50px;
+
+    .participant-item {
+        text-align: center;
+        width: 120px;
+
+        .participant-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto 10px;
+            border: 2px solid var(--primary-color);
+            transition: transform 0.2s ease;
+            background-color: var(--surface-color);
+
+            &:hover {
+                transform: scale(1.1);
+            }
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+
+        .participant-name {
+            font-size: var(--font-size-h3);
+            font-weight: var(--font-weight-semi);
+            color: var(--text-color-secondary);
+        }
+    }
+}
+
+/* Special Program Card */
+.program-section {
+    .program-card {
+        display: flex;
+        flex-wrap: wrap;
+        /* Using variables for the gradient background */
+        background: linear-gradient(135deg, var(--surface-color-alt) 0%, var(--surface-color) 100%);
+        border-left: 5px solid var(--primary-color);
+        border: 1px solid var(--card-border-color);
+        border-left-width: 5px;
+        border-radius: var(--border-radius-medium);
+        overflow: hidden;
+        box-shadow: var(--card-shadow);
+        transition: box-shadow 0.3s ease;
+
+        &:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .program-content {
+            flex: 1 1 400px;
+            padding: 40px;
+
+            h2 {
+                color: var(--primary-color);
+                font-family: var(--font-heading);
+                font-size: var(--font-size-h3);
+                text-transform: uppercase;
+                margin-bottom: 10px;
+                letter-spacing: 0.05em;
+            }
+
+            h3 {
+                font-family: var(--font-heading);
+                font-size: 2rem;
+                margin-bottom: 20px;
+                color: var(--text-color-primary);
+            }
+
+            p {
+                color: var(--text-color-secondary);
+                line-height: 1.6;
+                text-align: justify;
+            }
+        }
+
+        .program-img {
+            flex: 1 1 300px;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                min-height: 300px;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            flex-direction: column-reverse;
+
+            .program-img img {
+                height: 200px;
+            }
+        }
+    }
+}
