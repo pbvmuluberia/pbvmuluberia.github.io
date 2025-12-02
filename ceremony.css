@@ -24,6 +24,10 @@
             color: var(--primary-color);
             margin-bottom: var(--space-sm);
         }
+
+        img {
+            width: 70%;
+        }
     }
 
     /* Shared Section Heading */
@@ -153,6 +157,10 @@
     justify-content: center;
     margin-bottom: var(--space-2xl);
     /* 50px */
+
+    li::marker {
+        content: "";
+    }
 
     .dignitary-card {
         background: var(--surface-color);
@@ -297,6 +305,10 @@
     margin-bottom: var(--space-2xl);
     /* 50px */
 
+    li::marker {
+        content: "";
+    }
+
     .participant-item {
         text-align: center;
         width: 120px;
@@ -379,6 +391,12 @@
                 color: var(--text-color-secondary);
                 line-height: 1.6;
                 text-align: justify;
+            }
+
+            .action-btn {
+                margin-top: 15px;
+                padding: 10px 20px;
+                border-radius: var(--border-radius-medium);
             }
         }
 
