@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="bn">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,95 +8,129 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <link rel="stylesheet" href="style.css">
-    
+
     <script src="./src/components/script/components.js"></script>
     <script src="./src/components/script/data.js"></script>
     <script src="./src/components/script/utils.js"></script>
     <script src="./src/components/script/modal.js"></script>
     <script src="./src/components/script/init.js"></script>
-    
+
     <style>
-        .lang-content { display: none; }
-        .lang-content.active { display: block; }
-        h1.lang-content.active { display: block; }
+        .lang-content {
+            display: none;
+        }
+
+        .lang-content.active {
+            display: block;
+        }
+
+        h1.lang-content.active {
+            display: block;
+        }
     </style>
     <script>
-        (function() {
-        // 1. Restore Theme immediately
+        (function () {
+            // 1. Restore Theme immediately
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme === 'dark') {
                 document.documentElement.classList.add('dark-theme');
             }
 
-        // 2. Restore Language immediately (Optional, but helps reducing text flicker)
-        // This sets a global variable that script.js can use later to skip reading storage again
-        window.savedLang = localStorage.getItem('language') || 'bn';
+            // 2. Restore Language immediately (Optional, but helps reducing text flicker)
+            // This sets a global variable that script.js can use later to skip reading storage again
+            window.savedLang = localStorage.getItem('language') || 'bn';
         })();
     </script>
 </head>
+
 <body id="projects">
 
-<div id="navbar-placeholder"></div>
+    <div id="navbar-placeholder"></div>
 
-<div id="messageBox"></div>
+    <div id="messageBox"></div>
 
-<div class="container" style="overflow: hidden;">
-  <div class="slide">
-    <div class="item" style="--bg-image: url('https://raw.githubusercontent.com/pbvmuluberia/pbvmuluberia.github.io/refs/heads/main/src/background/project.jpeg'); position: relative; width: 100%; top: 0; left: 0; transform: none; border-radius: 0;">
-      <div class="content" style="display: block; opacity: 1; transform: translate(0, -50%); padding-top: 0; top: 50%;">
-        <h2 class="name" data-translate-key="carousel_projects_name">Projects</h2>
-        <p class="des" data-translate-key="carousel_projects_des">Our ongoing and past projects.</p>
-        <button class="button action-btn" onclick="scrollToContent()" data-translate-key="carousel_projects_btn">View Projects</button>
-        <button class="button donate-btn" onclick="showDonationPopup()" data-translate-key="carousel_donate_btn">Donate to us</button>
-      </div>
+    <div class="container" style="overflow: hidden;">
+        <div class="slide">
+            <div class="item"
+                style="--bg-image: url('./src/background/project.jpeg'); position: relative; width: 100%; top: 0; left: 0; transform: none; border-radius: 0;">
+                <div class="content"
+                    style="display: block; opacity: 1; transform: translate(0, -50%); padding-top: 0; top: 50%;">
+                    <h2 class="name" data-translate-key="carousel_projects_name">Projects</h2>
+                    <p class="des" data-translate-key="carousel_projects_des">Our ongoing and past projects.</p>
+                    <button class="button action-btn" onclick="scrollToContent()"
+                        data-translate-key="carousel_projects_btn">View Projects</button>
+                    <button class="button donate-btn" onclick="showDonationPopup()"
+                        data-translate-key="carousel_donate_btn">Donate to us</button>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
 
-<div class="main-content" id="main-content">
-    <h1 class="lang-content en">Our Ongoing and Past Projects</h1>
-    <h1 class="lang-content bn">আমাদের চলমান এবং অতীত প্রকল্প</h1>
+    <div class="main-content" id="main-content">
+        <h1 class="lang-content en">Our Ongoing and Past Projects</h1>
+        <h1 class="lang-content bn">আমাদের চলমান এবং অতীত প্রকল্প</h1>
 
-    <div id="content-body">
-        <div class="lang-content en">
-            <details class="styled" name="projects">
-                <summary class="detailed-summary"><strong>🩺 Health Initiative - People's Health in People's Hand</strong></summary>
+        <div id="content-body">
+            <div class="lang-content en">
+                <details class="styled" name="projects">
+                    <summary class="detailed-summary"><strong>🩺 Health Initiative - People's Health in People's
+                            Hand</strong></summary>
                     <div class="details-d">
-                        <p>Paschim Banga Vigyan Mancha (PBVM) focuses on a comprehensive movement covering the full spectrum of care: <strong>Preventive, Promotive, Curative, and Rehabilitative</strong>. This encompasses Physical, Occupational, Environmental, <b>Mental</b>, and Social health</p>
+                        <p>Paschim Banga Vigyan Mancha (PBVM) focuses on a comprehensive movement covering the full
+                            spectrum of care: <strong>Preventive, Promotive, Curative, and Rehabilitative</strong>. This
+                            encompasses Physical, Occupational, Environmental, <b>Mental</b>, and Social health</p>
                         <h3>Core Strategy: 'Bottom Up'</h3>
                         <p></p>
                         <ul>
-                           <li><strong>Local Empowerment:</strong> <br>Communities identify, analyze, and prioritize their own health issues.</li>
-                            <li><strong>Scientific Planning:</strong> <br>Solutions are planned using proper scientific knowledge.</li>
-                            <li><strong>Implementation & Evaluation:</strong> <br>Programs are target-oriented, results are evaluated, and experiences are shared to achieve <strong>'Self Reliance.'</strong></li>
+                            <li><strong>Local Empowerment:</strong> <br>Communities identify, analyze, and prioritize
+                                their own health issues.</li>
+                            <li><strong>Scientific Planning:</strong> <br>Solutions are planned using proper scientific
+                                knowledge.</li>
+                            <li><strong>Implementation & Evaluation:</strong> <br>Programs are target-oriented, results
+                                are evaluated, and experiences are shared to achieve <strong>'Self Reliance.'</strong>
+                            </li>
                         </ul>
                         <div class="highlight">
                             <h3>Key Services & Focus Areas</h3>
                             <p></p>
                             <ul>
-                                <li><strong>Screening:</strong> <br>Organizing <strong>Health Checkup Camps</strong> and conducting specialized <strong>Thalassemia testing</strong>.</li>
-                                <li><strong>Counseling:</strong> <br>Providing <strong>Mental Health Counseling</strong> services.</li>
-                                <li><strong>Disease Control:</strong> <br>Campain on  Prevention of <strong>vector-borne diseases</strong> (Malaria, Dengue, Chickengunia) and <strong>water-borne diseases</strong>.</li>
-                                <li><strong>MCH Campaigns:</strong> <br>Campaigns on <strong>mother and child health</strong>.</li>
+                                <li><strong>Screening:</strong> <br>Organizing <strong>Health Checkup Camps</strong> and
+                                    conducting specialized <strong>Thalassemia testing</strong>.</li>
+                                <li><strong>Counseling:</strong> <br>Providing <strong>Mental Health Counseling</strong>
+                                    services.</li>
+                                <li><strong>Disease Control:</strong> <br>Campain on Prevention of <strong>vector-borne
+                                        diseases</strong> (Malaria, Dengue, Chickengunia) and <strong>water-borne
+                                        diseases</strong>.</li>
+                                <li><strong>MCH Campaigns:</strong> <br>Campaigns on <strong>mother and child
+                                        health</strong>.</li>
                             </ul>
                         </div>
                         <p></p>
-                        <p>Guidelines are centralized but implementation is <strong>locally adapted</strong>. PBVM leads the <strong>Jana Swasthya Chetana Prasar Samonnyay Committee</strong> at State and District levels, uniting various Health, Mass, Professional, and Voluntary Organizations in a collective, <strong>'Self Funding'</strong> model.</p>
-                        <button class="button donate-btn" onclick="" data-translate-key="more_btn">Know  More</button>
+                        <p>Guidelines are centralized but implementation is <strong>locally adapted</strong>. PBVM leads
+                            the <strong>Jana Swasthya Chetana Prasar Samonnyay Committee</strong> at State and District
+                            levels, uniting various Health, Mass, Professional, and Voluntary Organizations in a
+                            collective, <strong>'Self Funding'</strong> model.</p>
+                        <button class="button donate-btn" onclick="" data-translate-key="more_btn">Know More</button>
                     </div>
-            </details>
-        
-            <details class="styled" name="projects">
-                <summary class="detailed-summary"><strong>🌳 PBVM's Commitment to Environmental Stewardship</strong></summary>
+                </details>
+
+                <details class="styled" name="projects">
+                    <summary class="detailed-summary"><strong>🌳 PBVM's Commitment to Environmental Stewardship</strong>
+                    </summary>
                     <div class="details-d">
-                        <p>The PBVM has made environmental issues a core focus since its establishment. It actively pursues a better environment for the state and works towards the conservation and protection of <strong>nature's biodiversity</strong> and natural resources.</p>
+                        <p>The PBVM has made environmental issues a core focus since its establishment. It actively
+                            pursues a better environment for the state and works towards the conservation and protection
+                            of <strong>nature's biodiversity</strong> and natural resources.</p>
                         <p></p>
                         <div class="highlight">
                             <h3>Key Services & Focus Areas</h3>
                             <p></p>
                             <ul>
-                                <li><strong>Conservation Efforts:</strong> <br>PBVM took an important role in tree plantation, preservation of water bodies, and conservation of forest and <strong>wildlife</strong> since its inception.</li>
-                                <li><strong>Environmental Awareness & Campaigns:</strong> <br>PBVM took continuous efforts for campaigns focusing on:</li>
+                                <li><strong>Conservation Efforts:</strong> <br>PBVM took an important role in tree
+                                    plantation, preservation of water bodies, and conservation of forest and
+                                    <strong>wildlife</strong> since its inception.</li>
+                                <li><strong>Environmental Awareness & Campaigns:</strong> <br>PBVM took continuous
+                                    efforts for campaigns focusing on:</li>
                                 <ul>
                                     <li>Energy uses and the promotion of <strong>renewable energy</strong> sources.</li>
                                     <li>The prohibition of plastic carry bags.</li>
@@ -106,79 +141,124 @@
                             </ul>
                         </div>
                         <p></p>
-                        <button class="button donate-btn" onclick="" data-translate-key="more_btn">Know  More</button>
+                        <button class="button donate-btn" onclick="" data-translate-key="more_btn">Know More</button>
                     </div>
-            </details>
-            
-            <details class="styled" name="projects">
-                <summary class="detailed-summary"><strong>​🔬 Anti-Superstition Campaign</strong></summary>
+                </details>
+
+                <details class="styled" name="projects">
+                    <summary class="detailed-summary"><strong>​🔬 Anti-Superstition Campaign</strong></summary>
                     <div class="details-d">
-                        <p>The <strong>Anti-Superstition Campaign</strong> (known in Bengali as "Kuśamskār Virodhī Abhiyān") is a major and long-running flagship initiative organized by the <strong>Paschimbanga Vigyan Mancha (PBVM).</strong> This movement reflects a deeply rooted commitment to social reform and the cultivation of a scientific temper among the masses, tackling age-old beliefs that often lead to social distress, exploitation, and violence. The campaign serves as a crucial bridge between modern scientific understanding and traditional societal norms, aiming to promote rational thinking across all sections of the community.</p>
+                        <p>The <strong>Anti-Superstition Campaign</strong> (known in Bengali as "Kuśamskār Virodhī
+                            Abhiyān") is a major and long-running flagship initiative organized by the
+                            <strong>Paschimbanga Vigyan Mancha (PBVM).</strong> This movement reflects a deeply rooted
+                            commitment to social reform and the cultivation of a scientific temper among the masses,
+                            tackling age-old beliefs that often lead to social distress, exploitation, and violence. The
+                            campaign serves as a crucial bridge between modern scientific understanding and traditional
+                            societal norms, aiming to promote rational thinking across all sections of the community.
+                        </p>
                         <p></p>
                         <h3>Core Strategy</h3>
                         <p></p>
                         <ul>
-                            <li><strong>Public Debunking:</strong> <br>Organizing demonstrations and workshops to <strong>scientifically debunk</strong> common myths, "miracles" performed by godmen, and claims of supernatural powers.</li>
-                            <li><strong>Mass Mobilization:</strong> <br>Utilizing local volunteers, students, and community leaders to spread the message of <strong>scientific temper</strong> (as mandated by Article 51A(h) of the Indian Constitution) at the grassroots level.</li>
-                            <li><strong>Media and Publications:</strong> <br>Developing accessible literature, posters, and leveraging local media to discuss scientific principles and expose the mechanism behind various superstitions.</li>
+                            <li><strong>Public Debunking:</strong> <br>Organizing demonstrations and workshops to
+                                <strong>scientifically debunk</strong> common myths, "miracles" performed by godmen, and
+                                claims of supernatural powers.</li>
+                            <li><strong>Mass Mobilization:</strong> <br>Utilizing local volunteers, students, and
+                                community leaders to spread the message of <strong>scientific temper</strong> (as
+                                mandated by Article 51A(h) of the Indian Constitution) at the grassroots level.</li>
+                            <li><strong>Media and Publications:</strong> <br>Developing accessible literature, posters,
+                                and leveraging local media to discuss scientific principles and expose the mechanism
+                                behind various superstitions.</li>
                         </ul>
                         <p></p>
                         <div class="highlight">
                             <h3>Key Services & Focus Areas</h3>
                             <p></p>
                             <ul>
-                                <li><strong>Combating Witch Identification:</strong> <br>A major focus is actively campaigning against the barbaric practice of identifying women as "<strong>witches</strong>" (ḍāini) and the subsequent violence and social ostracism, particularly in tribal and remote rural areas.</li>
-                                <li><strong>Promoting Health Rationality:</strong> <br>Addressing and dispelling superstitions related to health, disease, and medicine, encouraging people to seek qualified medical help rather than relying on faith healers or quacks.</li>
-                                <li><strong>Science Popularization:</strong> <br>Conducting <strong>astronomy shows</strong>, simple science experiments, and interactive lectures to teach children and adults the fundamental laws of nature and the power of scientific inquiry.</li>
-                                <li><strong>Rational Thinking Workshops:</strong> <br>Organizing training programs for teachers and local activists to equip them with the skills to identify and counter unscientific ideas effectively within their communities.</li>
+                                <li><strong>Combating Witch Identification:</strong> <br>A major focus is actively
+                                    campaigning against the barbaric practice of identifying women as
+                                    "<strong>witches</strong>" (ḍāini) and the subsequent violence and social ostracism,
+                                    particularly in tribal and remote rural areas.</li>
+                                <li><strong>Promoting Health Rationality:</strong> <br>Addressing and dispelling
+                                    superstitions related to health, disease, and medicine, encouraging people to seek
+                                    qualified medical help rather than relying on faith healers or quacks.</li>
+                                <li><strong>Science Popularization:</strong> <br>Conducting <strong>astronomy
+                                        shows</strong>, simple science experiments, and interactive lectures to teach
+                                    children and adults the fundamental laws of nature and the power of scientific
+                                    inquiry.</li>
+                                <li><strong>Rational Thinking Workshops:</strong> <br>Organizing training programs for
+                                    teachers and local activists to equip them with the skills to identify and counter
+                                    unscientific ideas effectively within their communities.</li>
                             </ul>
                         </div>
                         <p></p>
-                        <button class="button donate-btn" onclick="" data-translate-key="more_btn">Know  More</button>
+                        <button class="button donate-btn" onclick="" data-translate-key="more_btn">Know More</button>
                     </div>
-            </details>
-            
-        </div>
-        
-        <div class="lang-content bn">
-            <details class="styled" name="projects">
-                <summary class="detailed-summary"><strong>🩺 স্বাস্থ্য উদ্যোগ - জনগণের স্বাস্থ্য জনগণের হাতে</strong></summary>
+                </details>
+
+            </div>
+
+            <div class="lang-content bn">
+                <details class="styled" name="projects">
+                    <summary class="detailed-summary"><strong>🩺 স্বাস্থ্য উদ্যোগ - জনগণের স্বাস্থ্য জনগণের
+                            হাতে</strong></summary>
                     <div class="details-d">
-                        <p>পশ্চিমবঙ্গ বিজ্ঞান মঞ্চ (PBVM) একটি সামগ্রিক আন্দোলনের ওপর জোর দেয় যা রোগ প্রতিরোধ, স্বাস্থ্য সচেতনতা বৃদ্ধি, চিকিৎসা এবং পুনর্বাসন—এই সবকটি দিক নিয়ে কাজ করে। এর মধ্যে শারীরিক, পেশাগত বা কর্মক্ষেত্রের পরিবেশ, পরিবেশগত, <b>মানসিক</b> এবং সামাজিক স্বাস্থ্য অন্তর্ভুক্ত।</p>
+                        <p>পশ্চিমবঙ্গ বিজ্ঞান মঞ্চ (PBVM) একটি সামগ্রিক আন্দোলনের ওপর জোর দেয় যা রোগ প্রতিরোধ, স্বাস্থ্য
+                            সচেতনতা বৃদ্ধি, চিকিৎসা এবং পুনর্বাসন—এই সবকটি দিক নিয়ে কাজ করে। এর মধ্যে শারীরিক, পেশাগত বা
+                            কর্মক্ষেত্রের পরিবেশ, পরিবেশগত, <b>মানসিক</b> এবং সামাজিক স্বাস্থ্য অন্তর্ভুক্ত।</p>
                         <h3>মূল কৌশল: 'তৃণমূল স্তরের উদ্যোগ'</h3>
                         <p></p>
                         <ul>
-                            <li><strong>স্থানীয় মানুষের ক্ষমতা বৃদ্ধি:</strong> এলাকার সাধারণ মানুষ নিজেরাই তাদের স্বাস্থ্য সমস্যাগুলো চিহ্নিত করেন, বিচার-বিবেচনা করেন এবং গুরুত্ব অনুযায়ী সাজান।</li>
-                            <li><strong>বিজ্ঞানসম্মত পরিকল্পনা:</strong> সঠিক বৈজ্ঞানিক পদ্ধতি মেনে সমাধানের পরিকল্পনা করা হয়।</li>
-                            <li><strong>বাস্তবায়ন ও মূল্যায়ন:</strong> কর্মসূচিগুলো নির্দিষ্ট লক্ষ্য নিয়ে করা হয়, কাজের ফলাফল যাচাই করা হয় এবং অভিজ্ঞতা সবার সাথে ভাগ করে নেওয়া হয় যাতে প্রকৃত <strong>'স্বনির্ভরতা'</strong> আসে।</li>
+                            <li><strong>স্থানীয় মানুষের ক্ষমতা বৃদ্ধি:</strong> এলাকার সাধারণ মানুষ নিজেরাই তাদের
+                                স্বাস্থ্য সমস্যাগুলো চিহ্নিত করেন, বিচার-বিবেচনা করেন এবং গুরুত্ব অনুযায়ী সাজান।</li>
+                            <li><strong>বিজ্ঞানসম্মত পরিকল্পনা:</strong> সঠিক বৈজ্ঞানিক পদ্ধতি মেনে সমাধানের পরিকল্পনা
+                                করা হয়।</li>
+                            <li><strong>বাস্তবায়ন ও মূল্যায়ন:</strong> কর্মসূচিগুলো নির্দিষ্ট লক্ষ্য নিয়ে করা হয়,
+                                কাজের ফলাফল যাচাই করা হয় এবং অভিজ্ঞতা সবার সাথে ভাগ করে নেওয়া হয় যাতে প্রকৃত
+                                <strong>'স্বনির্ভরতা'</strong> আসে।</li>
                         </ul>
                         <div class="highlight">
                             <h3>প্রধান পরিষেবা ও কাজের ক্ষেত্র</h3>
                             <p></p>
                             <ul>
-                                <li><strong>রোগ নির্ণয় বা স্ক্রিনিং:</strong> <strong>স্বাস্থ্য পরীক্ষা শিবির</strong> আয়োজন করা এবং বিশেষ <strong>থ্যালাসেমিয়া পরীক্ষা</strong> করা।</li>
-                                <li><strong>পরামর্শ:</strong> <strong>মানসিক স্বাস্থ্যের জন্য পরামর্শ</strong> বা কাউন্সেলিং দেওয়া।</li>
-                                <li><strong>রোগ প্রতিরোধ:</strong> <strong>মশা ও পতঙ্গ-বাহিত রোগ</strong> (যেমন ম্যালেরিয়া, ডেঙ্গু, চিকুনগুনিয়া) এবং <strong>জলবাহিত রোগ</strong> প্রতিরোধের জন্য প্রচার চালানো।</li>
-                                <li><strong>মা ও শিশুর স্বাস্থ্য:</strong> <strong>মা ও শিশুর স্বাস্থ্য সুরক্ষা</strong> নিয়ে বিশেষ প্রচার অভিযান।</li>
+                                <li><strong>রোগ নির্ণয় বা স্ক্রিনিং:</strong> <strong>স্বাস্থ্য পরীক্ষা শিবির</strong>
+                                    আয়োজন করা এবং বিশেষ <strong>থ্যালাসেমিয়া পরীক্ষা</strong> করা।</li>
+                                <li><strong>পরামর্শ:</strong> <strong>মানসিক স্বাস্থ্যের জন্য পরামর্শ</strong> বা
+                                    কাউন্সেলিং দেওয়া।</li>
+                                <li><strong>রোগ প্রতিরোধ:</strong> <strong>মশা ও পতঙ্গ-বাহিত রোগ</strong> (যেমন
+                                    ম্যালেরিয়া, ডেঙ্গু, চিকুনগুনিয়া) এবং <strong>জলবাহিত রোগ</strong> প্রতিরোধের জন্য
+                                    প্রচার চালানো।</li>
+                                <li><strong>মা ও শিশুর স্বাস্থ্য:</strong> <strong>মা ও শিশুর স্বাস্থ্য সুরক্ষা</strong>
+                                    নিয়ে বিশেষ প্রচার অভিযান।</li>
                             </ul>
-                       </div>
-                       <p></p>
-                       <p>কাজের নির্দেশিকা বা নিয়মগুলো কেন্দ্রীয়ভাবে তৈরি হলেও, তা বাস্তবায়িত হয় <strong>স্থানীয় এলাকার প্রয়োজন অনুযায়ী</strong>। পশ্চিমবঙ্গ বিজ্ঞান মঞ্চ রাজ্য ও জেলা স্তরে <strong>জনস্বাস্থ্য চেতনা প্রচার সমন্বয় কমিটি</strong>-র নেতৃত্ব দেয়। এটি বিভিন্ন স্বাস্থ্য সংগঠন, গণসংগঠন, পেশাদার এবং স্বেচ্ছাসেবী সংস্থাকে নিয়ে গঠিত একটি যৌথ উদ্যোগ যা পুরোপুরি <strong>'নিজস্ব অর্থায়নে'</strong> চলে।</p>
-                      <button class="button donate-btn" style="position: relative; right: 0;" onclick="" data-translate-key="more_btn">আরও জানুন</button>
-                  </div>
-            </details>
-            
-            <details class="styled" name="projects">
-                <summary class="detailed-summary"><strong>🌳 পরিবেশ সুরক্ষায় অঙ্গীকার</strong></summary>
+                        </div>
+                        <p></p>
+                        <p>কাজের নির্দেশিকা বা নিয়মগুলো কেন্দ্রীয়ভাবে তৈরি হলেও, তা বাস্তবায়িত হয় <strong>স্থানীয় এলাকার
+                                প্রয়োজন অনুযায়ী</strong>। পশ্চিমবঙ্গ বিজ্ঞান মঞ্চ রাজ্য ও জেলা স্তরে <strong>জনস্বাস্থ্য
+                                চেতনা প্রচার সমন্বয় কমিটি</strong>-র নেতৃত্ব দেয়। এটি বিভিন্ন স্বাস্থ্য সংগঠন, গণসংগঠন,
+                            পেশাদার এবং স্বেচ্ছাসেবী সংস্থাকে নিয়ে গঠিত একটি যৌথ উদ্যোগ যা পুরোপুরি <strong>'নিজস্ব
+                                অর্থায়নে'</strong> চলে।</p>
+                        <button class="button donate-btn" style="position: relative; right: 0;" onclick=""
+                            data-translate-key="more_btn">আরও জানুন</button>
+                    </div>
+                </details>
+
+                <details class="styled" name="projects">
+                    <summary class="detailed-summary"><strong>🌳 পরিবেশ সুরক্ষায় অঙ্গীকার</strong></summary>
                     <div class="details-d">
-                        <p>প্রতিষ্ঠার শুরু থেকেই পশ্চিমবঙ্গ বিজ্ঞান মঞ্চ (PBVM) পরিবেশগত সমস্যাগুলিকে অন্যতম প্রধান বিষয় হিসেবে গুরুত্ব দিয়ে এসেছে। রাজ্যের পরিবেশের মান উন্নয়ন এবং <b>প্রকৃতির জীববৈচিত্র্য</b> ও প্রাকৃতিক সম্পদের সংরক্ষণ ও সুরক্ষার লক্ষ্যে এটি সক্রিয়ভাবে কাজ করে চলেছে।</p>
+                        <p>প্রতিষ্ঠার শুরু থেকেই পশ্চিমবঙ্গ বিজ্ঞান মঞ্চ (PBVM) পরিবেশগত সমস্যাগুলিকে অন্যতম প্রধান বিষয়
+                            হিসেবে গুরুত্ব দিয়ে এসেছে। রাজ্যের পরিবেশের মান উন্নয়ন এবং <b>প্রকৃতির জীববৈচিত্র্য</b> ও
+                            প্রাকৃতিক সম্পদের সংরক্ষণ ও সুরক্ষার লক্ষ্যে এটি সক্রিয়ভাবে কাজ করে চলেছে।</p>
                         <p></p>
                         <div class="highlight">
                             <h3>প্রধান পরিষেবা ও কাজের ক্ষেত্র</h3>
                             <p></p>
                             <ul>
-                                <li><strong>সংরক্ষণ প্রচেষ্টা:</strong> <br>বৃক্ষরোপণ, জলাশয় সংরক্ষণ এবং বন ও <b>বন্যপ্রাণী</b> সংরক্ষণে পিবিভিএম শুরু থেকেই গুরুত্বপূর্ণ ভূমিকা পালন করে আসছে।</li>
-                                <li><strong>পরিবেশ সচেতনতা ও প্রচার অভিযান:</strong> <br>পিবিভিএম নিম্নলিখিত বিষয়গুলি নিয়ে ধারাবাহিক প্রচার চালিয়ে যাচ্ছে:</li>
+                                <li><strong>সংরক্ষণ প্রচেষ্টা:</strong> <br>বৃক্ষরোপণ, জলাশয় সংরক্ষণ এবং বন ও
+                                    <b>বন্যপ্রাণী</b> সংরক্ষণে পিবিভিএম শুরু থেকেই গুরুত্বপূর্ণ ভূমিকা পালন করে আসছে।
+                                </li>
+                                <li><strong>পরিবেশ সচেতনতা ও প্রচার অভিযান:</strong> <br>পিবিভিএম নিম্নলিখিত বিষয়গুলি
+                                    নিয়ে ধারাবাহিক প্রচার চালিয়ে যাচ্ছে:</li>
                                 <ul>
                                     <li>শক্তির ব্যবহার এবং <b>নবীকরণযোগ্য শক্তি</b> উৎসের প্রসার।</li>
                                     <li>প্লাস্টিক ক্যারিব্যাগ নিষিদ্ধকরণ।</li>
@@ -191,43 +271,67 @@
                         <p></p>
                         <button class="button donate-btn" onclick="" data-translate-key="more_btn">আরও জানুন</button>
                     </div>
-            </details>
-    
-            <details class="styled" name="projects">
-                <summary class="detailed-summary"><strong>🔬 কুসংস্কার বিরোধী অভিযান</strong></summary>
+                </details>
+
+                <details class="styled" name="projects">
+                    <summary class="detailed-summary"><strong>🔬 কুসংস্কার বিরোধী অভিযান</strong></summary>
                     <div class="details-d">
-                        <p><strong>কুসংস্কার বিরোধী অভিযান</strong> হলো <strong>পশ্চিমবঙ্গ বিজ্ঞান মঞ্চের (PBVM)</strong> একটি অন্যতম প্রধান এবং দীর্ঘমেয়াদী ফ্ল্যাগশিপ উদ্যোগ। এই আন্দোলনটি সমাজ সংস্কার এবং জনসাধারণের মধ্যে বিজ্ঞানচেতনা বা 'সায়েন্টিফিক টেম্পার' গড়ে তোলার প্রতি গভীর দায়বদ্ধতার প্রতিফলন। এটি এমন সব প্রাচীন বিশ্বাস বা অন্ধবিশ্বাসের বিরুদ্ধে লড়াই করে যা প্রায়শই সামাজিক অবক্ষয়, শোষণ এবং হিংসার কারণ হয়ে দাঁড়ায়। আধুনিক বৈজ্ঞানিক দৃষ্টিভঙ্গি এবং প্রচলিত সামাজিক রীতিনীতির মধ্যে একটি গুরুত্বপূর্ণ সেতুবন্ধন হিসেবে এই অভিযান কাজ করে, যার লক্ষ্য হলো সমাজের সর্বস্তরের মানুষের মধ্যে যুক্তিবাদী চিন্তার প্রসার ঘটানো।</p>
+                        <p><strong>কুসংস্কার বিরোধী অভিযান</strong> হলো <strong>পশ্চিমবঙ্গ বিজ্ঞান মঞ্চের
+                                (PBVM)</strong> একটি অন্যতম প্রধান এবং দীর্ঘমেয়াদী ফ্ল্যাগশিপ উদ্যোগ। এই আন্দোলনটি সমাজ
+                            সংস্কার এবং জনসাধারণের মধ্যে বিজ্ঞানচেতনা বা 'সায়েন্টিফিক টেম্পার' গড়ে তোলার প্রতি গভীর
+                            দায়বদ্ধতার প্রতিফলন। এটি এমন সব প্রাচীন বিশ্বাস বা অন্ধবিশ্বাসের বিরুদ্ধে লড়াই করে যা
+                            প্রায়শই সামাজিক অবক্ষয়, শোষণ এবং হিংসার কারণ হয়ে দাঁড়ায়। আধুনিক বৈজ্ঞানিক দৃষ্টিভঙ্গি এবং
+                            প্রচলিত সামাজিক রীতিনীতির মধ্যে একটি গুরুত্বপূর্ণ সেতুবন্ধন হিসেবে এই অভিযান কাজ করে, যার
+                            লক্ষ্য হলো সমাজের সর্বস্তরের মানুষের মধ্যে যুক্তিবাদী চিন্তার প্রসার ঘটানো।</p>
                         <p></p>
                         <h3>মূল কৌশল</h3>
                         <p></p>
                         <ul>
-                            <li><strong>জনসমক্ষে সত্য উন্মোচন (Public Debunking):</strong> <br>বিভিন্ন কর্মশালা এবং প্রদর্শনীর মাধ্যমে প্রচলিত মিথ, ভণ্ড বাবাদের তথাকথিত "অলৌকিক কাজ" এবং অতিপ্রাকৃত ক্ষমতার দাবিগুলিকে <b>বৈজ্ঞানিক উপায়ে ভুল প্রমাণ</b> করা।</li>
-                            <li><strong>গণজাগরণ:</strong> <br>তৃণমূল স্তরে <b>বিজ্ঞানমনস্কতা</b> (যা ভারতের সংবিধানের ৫১এ(এইচ) ধারা অনুযায়ী একটি মৌলিক কর্তব্য) ছড়িয়ে দেওয়ার জন্য স্থানীয় স্বেচ্ছাসেবক, ছাত্রছাত্রী এবং সমাজের নেতৃত্বস্থানীয় ব্যক্তিদের কাজে লাগানো।</li>
-                            <li><strong>মিডিয়া ও প্রকাশনা:</strong> <br>সহজবোধ্য সাহিত্য ও পোস্টার তৈরি করা এবং স্থানীয় মিডিয়াকে ব্যবহার করে বৈজ্ঞানিক নীতিগুলি আলোচনা করা এবং বিভিন্ন কুসংস্কারের পেছনের কলাকৌশল উন্মোচন করা।</li>
+                            <li><strong>জনসমক্ষে সত্য উন্মোচন (Public Debunking):</strong> <br>বিভিন্ন কর্মশালা এবং
+                                প্রদর্শনীর মাধ্যমে প্রচলিত মিথ, ভণ্ড বাবাদের তথাকথিত "অলৌকিক কাজ" এবং অতিপ্রাকৃত ক্ষমতার
+                                দাবিগুলিকে <b>বৈজ্ঞানিক উপায়ে ভুল প্রমাণ</b> করা।</li>
+                            <li><strong>গণজাগরণ:</strong> <br>তৃণমূল স্তরে <b>বিজ্ঞানমনস্কতা</b> (যা ভারতের সংবিধানের
+                                ৫১এ(এইচ) ধারা অনুযায়ী একটি মৌলিক কর্তব্য) ছড়িয়ে দেওয়ার জন্য স্থানীয় স্বেচ্ছাসেবক,
+                                ছাত্রছাত্রী এবং সমাজের নেতৃত্বস্থানীয় ব্যক্তিদের কাজে লাগানো।</li>
+                            <li><strong>মিডিয়া ও প্রকাশনা:</strong> <br>সহজবোধ্য সাহিত্য ও পোস্টার তৈরি করা এবং স্থানীয়
+                                মিডিয়াকে ব্যবহার করে বৈজ্ঞানিক নীতিগুলি আলোচনা করা এবং বিভিন্ন কুসংস্কারের পেছনের
+                                কলাকৌশল উন্মোচন করা।</li>
                         </ul>
                         <p></p>
                         <div class="highlight">
                             <h3>প্রধান পরিষেবা ও কাজের ক্ষেত্র</h3>
                             <p></p>
                             <ul>
-                                <li><strong>ডাইনি প্রথা বিরোধী লড়াই:</strong> <br>গ্রামবাংলার প্রত্যন্ত আদিবাসী অধ্যুষিত এলাকায় নারীদের "<strong>ডাইনি</strong>" হিসেবে চিহ্নিত করার বর্বর প্রথা এবং তার ফলে সৃষ্ট হিংসা ও সামাজিক বয়কটের বিরুদ্ধে সক্রিয় প্রচার চালানো এই অভিযানের একটি প্রধান লক্ষ্য।</li>
-                                <li><strong>স্বাস্থ্য বিষয়ক যুক্তিবাদ:</strong> <br>স্বাস্থ্য, রোগ এবং ওষুধ সম্পর্কিত কুসংস্কারগুলি দূর করা এবং মানুষকে ঝাড়ফুঁক বা হাতুড়ে ডাক্তারদের ওপর নির্ভর না করে যোগ্য চিকিৎসকের পরামর্শ নিতে উৎসাহিত করা।</li>
-                                <li><strong>বিজ্ঞান জনপ্রিয়করণ:</strong> <br>শিশু ও বড়দের প্রকৃতির মৌলিক নিয়ম এবং বৈজ্ঞানিক অনুসন্ধিৎসার শক্তি শেখানোর জন্য <strong>জ্যোতির্বিজ্ঞান প্রদর্শনী (Astronomy shows)</strong>, সহজ বিজ্ঞান পরীক্ষা এবং ইন্টারেক্টিভ বক্তৃতার আয়োজন করা।</li>
-                                <li><strong>যুক্তিবাদী চিন্তার কর্মশালা:</strong> <br>শিক্ষক এবং স্থানীয় সমাজকর্মীদের জন্য প্রশিক্ষণ কর্মসূচির আয়োজন করা, যাতে তাঁরা নিজেদের এলাকায় অবৈজ্ঞানিক ধারণাগুলিকে চিহ্নিত করতে এবং কার্যকরভাবে মোকাবিলা করতে পারেন।</li>
+                                <li><strong>ডাইনি প্রথা বিরোধী লড়াই:</strong> <br>গ্রামবাংলার প্রত্যন্ত আদিবাসী অধ্যুষিত
+                                    এলাকায় নারীদের "<strong>ডাইনি</strong>" হিসেবে চিহ্নিত করার বর্বর প্রথা এবং তার ফলে
+                                    সৃষ্ট হিংসা ও সামাজিক বয়কটের বিরুদ্ধে সক্রিয় প্রচার চালানো এই অভিযানের একটি প্রধান
+                                    লক্ষ্য।</li>
+                                <li><strong>স্বাস্থ্য বিষয়ক যুক্তিবাদ:</strong> <br>স্বাস্থ্য, রোগ এবং ওষুধ সম্পর্কিত
+                                    কুসংস্কারগুলি দূর করা এবং মানুষকে ঝাড়ফুঁক বা হাতুড়ে ডাক্তারদের ওপর নির্ভর না করে
+                                    যোগ্য চিকিৎসকের পরামর্শ নিতে উৎসাহিত করা।</li>
+                                <li><strong>বিজ্ঞান জনপ্রিয়করণ:</strong> <br>শিশু ও বড়দের প্রকৃতির মৌলিক নিয়ম এবং
+                                    বৈজ্ঞানিক অনুসন্ধিৎসার শক্তি শেখানোর জন্য <strong>জ্যোতির্বিজ্ঞান প্রদর্শনী
+                                        (Astronomy shows)</strong>, সহজ বিজ্ঞান পরীক্ষা এবং ইন্টারেক্টিভ বক্তৃতার আয়োজন
+                                    করা।</li>
+                                <li><strong>যুক্তিবাদী চিন্তার কর্মশালা:</strong> <br>শিক্ষক এবং স্থানীয় সমাজকর্মীদের
+                                    জন্য প্রশিক্ষণ কর্মসূচির আয়োজন করা, যাতে তাঁরা নিজেদের এলাকায় অবৈজ্ঞানিক ধারণাগুলিকে
+                                    চিহ্নিত করতে এবং কার্যকরভাবে মোকাবিলা করতে পারেন।</li>
                             </ul>
                         </div>
                         <p></p>
                         <button class="button donate-btn" onclick="" data-translate-key="more_btn">আরও জানুন</button>
                     </div>
-            </details>          
-      </div>
-</div>
+                </details>
+            </div>
+        </div>
 
-<div id="donation-modal-placeholder"></div>
+        <div id="donation-modal-placeholder"></div>
 
-<div id="messageBox"></div>
+        <div id="messageBox"></div>
 
-<button id="scrollToTopBtn" onclick="scrollToTop()" aria-label="Scroll to top"><i class="fa-solid fa-arrow-up"></i></button>
+        <button id="scrollToTopBtn" onclick="scrollToTop()" aria-label="Scroll to top"><i
+                class="fa-solid fa-arrow-up"></i></button>
 
 </body>
+
 </html>

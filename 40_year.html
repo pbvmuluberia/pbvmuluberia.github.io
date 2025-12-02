@@ -36,17 +36,18 @@
 </head>
 
 <body id="ceremony">
-
     <!-- Navbar Placeholder -->
     <div id="navbar-placeholder"></div>
 
-    <div id="messageBox"></div>
+    <!-- English Content Section -->
     <div class="lang-content en">
         <div class="ceremony-container">
 
             <!-- Header Section -->
             <header class="ceremony-header">
-                <h1>40th Anniversary Ceremony</h1>
+                <img style="width: 70%;" src="./src/banner/40 years.png" alt="40th Anniversary Celebration"></img>
+                <h1>40th Anniversary Celebration</h1>
+                <h3>Four decades of scientific popularization.</h3>
                 <p>Paschimbanga Vigyan Mancha &bull; November 29, 2025</p>
             </header>
 
@@ -56,7 +57,7 @@
 
                 <!-- IMPORTANT: Added id="galleryScroll" here so the JS can find it -->
                 <div class="scroll-container" id="galleryScroll">
-
+                    <!-- Replace sources with actual images -->
                     <!-- Replace sources with actual images -->
                     <figure class="scroll-item">
                         <img src="./src/40 years/slide 1.jpeg" alt="Inauguration">
@@ -79,12 +80,20 @@
                         <figcaption class="item-caption">Fig.5 - Keynote Speech</figcaption>
                     </figure>
                 </div>
+                <!-- NEW: Dot Indicator Container -->
+                <div class="scroll-dots" id="galleryDots"></div>
             </section>
 
             <!-- Key Dignitaries -->
             <section class="dignitaries-section">
-                <h2 class="section-heading">Key Dignitaries</h2>
+                <h2 class="section-heading">Key Dignitaries Present</h2>
                 <div class="dignitaries-grid">
+                    <div class="dignitary-card">
+                        <div class="role-badge">President - Howrah Zilla</div>
+                        <img src="./src/Guests/Kali Jasu.jpeg" alt="President">
+                        <h3>Kalikrishna Jasu</h3>
+                        <p>Teacher</p>
+                    </div>
                     <div class="dignitary-card">
                         <div class="role-badge">President - Uluberia Kendra</div>
                         <img src="./src/Guests/A Jasu.jpeg" alt="President">
@@ -171,6 +180,59 @@
                         <div class="participant-name">Pankaj Jasu</div>
                         <p>Singing</p>
                     </div>
+                    <div class="participant-item">
+                        <div class="participant-img"><img src="./src/Guests/T Saha.jpeg" alt="User">
+                        </div>
+                        <div class="participant-name">Tanmoy Saha</div>
+                        <p>Presenter</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Program Schedule -->
+            <section class="program-schedule-section">
+                <h2 class="section-heading">Program Schedule</h2>
+                <div class="program-entry">
+                    <div class="time-slot">02:40 PM</div>
+                    <div class="event-details">
+                        <h4>Inaugural Ceremony</h4>
+                        <p>Flag Hoisting and Mourning</p>
+                    </div>
+                </div>
+                <div class="program-entry">
+                    <div class="time-slot">02:50 PM</div>
+                    <div class="event-details">
+                        <h4>Cultural Program</h4>
+                        <p>Performances by local artists and members.</p>
+                    </div>
+                </div>
+                <div class="program-entry">
+                    <div class="time-slot">03:00 PM</div>
+                    <div class="event-details">
+                        <h4>Keynote Address</h4>
+                        <p>By Dr. Arun Jasu on "Science for Society".</p>
+                    </div>
+                </div>
+                <div class="program-entry">
+                    <div class="time-slot">03:30 PM</div>
+                    <div class="event-details">
+                        <h4>Cultural Program</h4>
+                        <p>Performances by local artists and members.</p>
+                    </div>
+                </div>
+                <div class="program-entry">
+                    <div class="time-slot">03:50 PM</div>
+                    <div class="event-details">
+                        <h4>Keynote Address</h4>
+                        <p>By Adv. Khairul Basar on "A Proud Journey of 40 Years".</p>
+                    </div>
+                </div>
+                <div class="program-entry">
+                    <div class="time-slot">04:35 PM</div>
+                    <div class="event-details">
+                        <h4>Cultural Program</h4>
+                        <p>Performances by local artists and members.</p>
+                    </div>
                 </div>
             </section>
 
@@ -186,10 +248,50 @@
                             style="margin-top: 15px; padding: 10px 20px; border-radius: var(--border-radius-medium);">Download
                             Guide</button>
                     </div>
-                    <div>
-                        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/tXWPf0HQd5U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                        <p>&nbsp;</p>
-                        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/W_VmFFmA7bM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <div class="program-img"><img src="./src/adultration/adultration termaric.jpeg" alt="Adulteration">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Program Schedule -->
+            <section class="program-schedule-section">
+                <div class="program-entry">
+                    <div class="time-slot">05:15 PM</div>
+                    <div class="event-details">
+                        <h4>Cultural Program</h4>
+                        <p>Performances by local artists and members.</p>
+                    </div>
+                </div>
+                <div class="program-entry">
+                    <div class="time-slot">05:30 PM</div>
+                    <div class="event-details">
+                        <h4>Keynote Address</h4>
+                        <p>By Kalikrishna Jasu on "Our future goals".</p>
+                    </div>
+                </div>
+                <div class="program-entry">
+                    <div class="time-slot">05:50 PM</div>
+                    <div class="event-details">
+                        <h4>Closing Ceremony</h4>
+                        <p>Thanking the audience and closing remarks.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Videos Section -->
+            <section class="video-section">
+                <h2 class="section-heading">Video Archives</h2>
+                <div class="video-container">
+                    <div class="video-wrapper">
+                        <!-- Use responsive iframe sizing -->
+                        <iframe src="https://www.youtube.com/embed/tXWPf0HQd5U" title="YouTube video player"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen></iframe>
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/W_VmFFmA7bM" title="YouTube video player"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen></iframe>
                     </div>
                 </div>
             </section>
@@ -202,118 +304,127 @@
 
             <!-- Header Section -->
             <header class="ceremony-header">
-                <h1>৪০তম বার্ষিকী অনুষ্ঠান</h1>
-                <p>পশ্চিমবঙ্গ বিজ্ঞান মঞ্চ &bull; ২৯শে নভেম্বর, ২০২৫</p>
+                <img style="width: 70%;" src="./src/banner/40 years.png" alt="উদ্বোধন"></img>
+                <h1>৪০তম প্রতিষ্ঠা বার্ষিকী উদ্‌যাপন</h1>
+                <h3>বিজ্ঞানকে জনপ্রিয় করার চার দশক</h3>
+                <p>পশ্চিমবঙ্গ বিজ্ঞান মঞ্চ &bull; নভেম্বর ২৯, ২০২৫</p>
             </header>
 
             <!-- Horizontal Scroll Gallery -->
             <section class="gallery-section">
                 <h2 class="section-heading">অনুষ্ঠানের বিশেষ মুহূর্ত</h2>
 
-                <!-- IMPORTANT: Added id="galleryScroll" here so the JS can find it -->
+                <!-- IMPORTANT: Added id="galleryScroll-bn" here so the JS can find it -->
                 <div class="scroll-container" id="galleryScroll-bn">
-
                     <!-- Replace sources with actual images -->
                     <figure class="scroll-item">
-                        <img src="./src/40 years/slide 1.jpeg" alt="Inauguration">
+                        <img src="./src/40 years/slide 1.jpeg" alt="উদ্বোধন">
                         <figcaption class="item-caption">চিত্র.১ - উদ্বোধনী পতাকা উত্তোলন অনুষ্ঠান</figcaption>
                     </figure>
                     <figure class="scroll-item">
-                        <img src="./src/40 years/slide 2.jpg" alt="Audience">
+                        <img src="./src/40 years/slide 2.jpg" alt="অতিথিবৃন্দ">
                         <figcaption class="item-caption">চিত্র.২ - ভরা দর্শকাশন</figcaption>
                     </figure>
                     <figure class="scroll-item">
-                        <img src="./src/40 years/slide 3.jpg" alt="Exhibition">
+                        <img src="./src/40 years/slide 3.jpg" alt="দর্শক">
                         <figcaption class="item-caption">চিত্র.৩ - রবীন্দ্র সংগীত পরিবেশন</figcaption>
                     </figure>
                     <figure class="scroll-item">
-                        <img src="./src/40 years/slide 4.jpeg" alt="Awards">
+                        <img src="./src/40 years/slide 4.jpeg" alt="পুরস্কার">
                         <figcaption class="item-caption">চিত্র.৪ - পুরুলিয়ার আঞ্চলিক কবিতা আবৃত্তি</figcaption>
                     </figure>
                     <figure class="scroll-item">
-                        <img src="./src/40 years/slide 5.jpeg" alt="Speech">
+                        <img src="./src/40 years/slide 5.jpeg" alt="বক্তব্য">
                         <figcaption class="item-caption">চিত্র.৫ - মূল বক্তব্য</figcaption>
                     </figure>
                 </div>
+                <!-- NEW: Dot Indicator Container -->
+                <div class="scroll-dots" id="galleryDots-bn"></div>
             </section>
 
             <!-- Key Dignitaries -->
             <section class="dignitaries-section">
-                <h2 class="section-heading">মূল অতিথিবৃন্দ</h2>
+                <h2 class="section-heading">বিশেষ অতিথিবৃন্দ</h2>
                 <div class="dignitaries-grid">
                     <div class="dignitary-card">
-                        <div class="role-badge">সভাপতি - উলুবেড়িয়া কেন্দ্র</div>
+                        <div class="role-badge">সভাপতি - হাওড়া জেলা</div>
+                        <img src="./src/Guests/Kali Jasu.jpeg" alt="President">
+                        <h3>কালীকৃষ্ণ জাসু</h3>
+                        <p>শিক্ষক</p>
+                    </div>
+                    <div class="dignitary-card">
+                        <div class="role-badge">সভাপতি - উলবেড়িয়া কেন্দ্র</div>
                         <img src="./src/Guests/A Jasu.jpeg" alt="President">
-                        <h3>ডঃ অরুণ জাসু</h3>
-                        <p>বিখ্যাত চিকিৎসক</p>
+                        <h3>ডা. আরুন জাসু</h3>
+                        <p>প্রথিতযশা ডাক্তার</p>
                     </div>
                     <div class="dignitary-card">
                         <div class="role-badge">প্রধান বক্তা</div>
                         <img src="./src/Guests/K Basar.jpeg" alt="Speaker">
-                        <h3>অ্যাড. শেখ খায়রুল বাশার</h3>
-                        <p>সিনিয়র অ্যাডভোকেট</p>
+                        <h3>সেখ খায়রুল বাসার</h3>
+                        <p>বরিষ্ঠ আইনজীবী</p>
                     </div>
                 </div>
             </section>
 
             <!-- Participants List -->
             <section class="participants-section">
-                <h2 class="section-heading">বিশিষ্ট অংশগ্রহণকারী</h2>
+                <h2 class="section-heading">উপস্থিত কলাকুশলী</h2>
                 <div class="participants-grid">
-                    <!-- Participant Items (Names remain the same, descriptions translated) -->
+                    <!-- Participant Items -->
                     <div class="participant-item">
                         <div class="participant-img"><img src="./src/Guests/Mouma Kanral.jpeg" alt="User">
                         </div>
                         <div class="participant-name">মৌমা কাঁড়াল</div>
-                        <p>আবৃত্তি</p>
+                        <p>কবিতা</p>
                     </div>
                     <div class="participant-item">
                         <div class="participant-img"><img src="./src/Guests/Champa Roy.jpeg" alt="User">
                         </div>
-                        <div class="participant-name">চম্পা রায়</div>
-                        <p>আবৃত্তি</p>
+                        <div class="participant-name">চম্পা রায়</div>
+                        <p>কবিতা</p>
                     </div>
                     <div class="participant-item">
                         <div class="participant-img"><img src="./src/Guests/Tulika Roy.jpeg" alt="User">
                         </div>
-                        <div class="participant-name">তুলিকা রায়</div>
+                        <div class="participant-name">তুলিকা রায়</div>
                         <p>গান</p>
                     </div>
                     <div class="participant-item">
                         <div class="participant-img"><img src="./src/Guests/Bibekananda Biswas.jpeg" alt="User">
                         </div>
-                        <div class="participant-name">বিবেকানন্দ বিশ্বাস</div>
-                        <p>আবৃত্তি</p>
+                        <div class="participant-name">বিবেকানন্দ বিস্বাস</div>
+                        <p>কবিতা</p>
                     </div>
                     <div class="participant-item">
                         <div class="participant-img"><img src="./src/Guests/Trisha Biswas.jpeg" alt="User">
                         </div>
-                        <div class="participant-name">ত্রিশা বিশ্বাস</div>
-                        <p>আবৃত্তি</p>
+                        <div class="participant-name">ত্রিশা বিস্বাস</div>
+                        <p>কবিতা</p>
                     </div>
                     <div class="participant-item">
                         <div class="participant-img"><img src="./src/Guests/Bimala Dolui.jpeg" alt="User">
                         </div>
                         <div class="participant-name">বিমলা দোলুই</div>
-                        <p>আবৃত্তি</p>
+                        <p>কবিতা</p>
                     </div>
                     <div class="participant-item">
                         <div class="participant-img"><img src="./src/Guests/Jaharul Amin Mollah.jpeg" alt="User">
                         </div>
-                        <div class="participant-name">জাহরুল আমিন মোল্লা</div>
-                        <p>আবৃত্তি</p>
+                        <div class="participant-name">জহরুল আমিন মোল্লা</div>
+                        <p>কবিতা</p>
                     </div>
                     <div class="participant-item">
                         <div class="participant-img"><img src="./src/Guests/Sushmita Kanral.jpeg" alt="User">
                         </div>
-                        <div class="participant-name">সুস্মিতা কাঁড়াল</div>
+                        <div class="participant-name">সুশ্মিতা কাঁড়াল</div>
                         <p>গান</p>
                     </div>
                     <div class="participant-item">
                         <div class="participant-img"><img src="./src/Guests/Soma Chowdhury.jpeg" alt="User">
                         </div>
                         <div class="participant-name">সোমা চৌধুরী</div>
-                        <p>আবৃত্তি</p>
+                        <p>কবিতা</p>
                     </div>
                     <div class="participant-item">
                         <div class="participant-img"><img src="./src/Guests/Oindrik Sau.jpeg" alt="User">
@@ -324,8 +435,61 @@
                     <div class="participant-item">
                         <div class="participant-img"><img src="./src/Guests/Pankaj jasu.jpeg" alt="User">
                         </div>
-                        <div class="participant-name">পঙ্কজ জাসু</div>
+                        <div class="participant-name">প্ঙ্কজ জাসু</div>
                         <p>গান</p>
+                    </div>
+                    <div class="participant-item">
+                        <div class="participant-img"><img src="./src/Guests/T Saha.jpeg" alt="User">
+                        </div>
+                        <div class="participant-name">তন্ময় সাহা</div>
+                        <p>উপস্থাপক</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Program Schedule -->
+            <section class="program-schedule-section">
+                <h2 class="section-heading">অনুষ্ঠানের সময়সূচি</h2>
+                <div class="program-entry">
+                    <div class="time-slot">দুপুর ০২:৪০</div>
+                    <div class="event-details">
+                        <h4>উদ্বোধনী</h4>
+                        <p>পতাকা উত্তোলন ও শোকপালন</p>
+                    </div>
+                </div>
+                <div class="program-entry">
+                    <div class="time-slot">দুপুর ০২:৫০</div>
+                    <div class="event-details">
+                        <h4>সাংস্কৃতিক অনুষ্ঠান</h4>
+                        <p>উপস্থিত সদস্য ও কলাকুশলীদের গান ও কবিতা</p>
+                    </div>
+                </div>
+                <div class="program-entry">
+                    <div class="time-slot">দুপুর ০৩:০০</div>
+                    <div class="event-details">
+                        <h4>বক্তব্য</h4>
+                        <p>ডাক্তার অরুন জাসু - "সমাজের জন্য বিজ্ঞান"</p>
+                    </div>
+                </div>
+                <div class="program-entry">
+                    <div class="time-slot">বিকাল ০৩:৩০</div>
+                    <div class="event-details">
+                        <h4>সাংস্কৃতিক অনুষ্ঠান</h4>
+                        <p>উপস্থিত সদস্য ও কলাকুশলীদের গান ও কবিতা</p>
+                    </div>
+                </div>
+                <div class="program-entry">
+                    <div class="time-slot">বিকাল ০৩:৫০</div>
+                    <div class="event-details">
+                        <h4>বক্তব্য</h4>
+                        <p>সেখ খাবুরুল বাসার - "আমাদের চার দশক"</p>
+                    </div>
+                </div>
+                <div class="program-entry">
+                    <div class="time-slot">বিকাল ০৪:৩৫</div>
+                    <div class="event-details">
+                        <h4>সাংস্কৃতিক অনুষ্ঠান</h4>
+                        <p>উপস্থিত সদস্য ও কলাকুশলীদের গান ও কবিতা</p>
                     </div>
                 </div>
             </section>
@@ -337,16 +501,54 @@
                         <h2>বিশেষ অনুষ্ঠান: খাদ্য সুরক্ষা</h2>
                         <h3>দৈনন্দিন খাদ্যে ভেজাল মোকাবিলা</h3>
                         <p>দুধ এবং মশলায় ভেজাল শনাক্ত করার জন্য সহজ পরীক্ষা প্রদর্শনের একটি হাতে-কলমে কর্মশালা রাখা
-                            হয়েছিল।
-                            আপনার পরিবারের জন্য নিরাপদ খাদ্য নিশ্চিত করতে শিখুন।</p>
+                            হয়েছিল। আপনার পরিবারের জন্য নিরাপদ খাদ্য নিশ্চিত করতে শিখুন।</p>
                         <button class="action-btn"
                             style="margin-top: 15px; padding: 10px 20px; border-radius: var(--border-radius-medium);">গাইড
                             ডাউনলোড করুন</button>
                     </div>
-                    <div>
-                        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/tXWPf0HQd5U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                        <p>&nbsp;</p>
-                        <iframe width="100%" height="100%" src="https://www.youtube.com/embed/W_VmFFmA7bM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                    <div class="program-img"><img src="./src/adultration/adultration termaric.jpeg" alt="Adulteration">
+                    </div>
+            </section>
+
+            <!-- Program Schedule -->
+            <section class="program-schedule-section">
+                <div class="program-entry">
+                    <div class="time-slot">বিকাল ০৫:১৫</div>
+                    <div class="event-details">
+                        <h4>সাংস্কৃতিক অনুষ্ঠান</h4>
+                        <p>উপস্থিত সদস্য ও কলাকুশলীদের গান ও কবিতা</p>
+                    </div>
+                </div>
+                <div class="program-entry">
+                    <div class="time-slot">বিকাল ০৫:৩০</div>
+                    <div class="event-details">
+                        <h4>বক্তব্য</h4>
+                        <p>কালীকৃষ্ণ জাসু - "আমাদের ভবিষ্যতের কর্মসূচনা"</p>
+                    </div>
+                </div>
+                <div class="program-entry">
+                    <div class="time-slot">বিকাল ০৫:৫০</div>
+                    <div class="event-details">
+                        <h4>সমাপ্তি</h4>
+                        <p>"দর্শকদের ধন্যবাদ এবং সমাপনী বক্তব্য।"</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Videos Section -->
+            <section class="video-section">
+                <h2 class="section-heading">ভিডিও</h2>
+                <div class="video-container">
+                    <div class="video-wrapper">
+                        <!-- Use responsive iframe sizing -->
+                        <iframe src="https://www.youtube.com/embed/tXWPf0HQd5U" title="YouTube video player"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen></iframe>
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/W_VmFFmA7bM" title="YouTube video player"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen></iframe>
                     </div>
                 </div>
             </section>
@@ -371,6 +573,15 @@
                 console.log("Horizontal scroll enabled for both galleries");
             } else {
                 console.error("enableMouseWheelScroll function not found in utils.js");
+            }
+
+            // NEW: Initialize dot indicators for both galleries
+            if (typeof setupGalleryDots === 'function') {
+                setupGalleryDots('galleryScroll', 'galleryDots');
+                setupGalleryDots('galleryScroll-bn', 'galleryDots-bn');
+                console.log("Gallery dots initialized for both galleries");
+            } else {
+                console.error("setupGalleryDots function not found in utils.js");
             }
         });
     </script>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="bn">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,78 +8,99 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <link rel="stylesheet" href="style.css">
-    
+
     <script src="./src/components/script/components.js"></script>
     <script src="./src/components/script/data.js"></script>
     <script src="./src/components/script/utils.js"></script>
     <script src="./src/components/script/publications.js"></script>
     <script src="./src/components/script/modal.js"></script>
     <script src="./src/components/script/init.js"></script>
-    
+
     <style>
-        .lang-content { display: none; }
-        .lang-content.active { display: block; }
-        h1.lang-content.active { display: block; }
+        .lang-content {
+            display: none;
+        }
+
+        .lang-content.active {
+            display: block;
+        }
+
+        h1.lang-content.active {
+            display: block;
+        }
     </style>
     <script>
-        (function() {
-        // 1. Restore Theme immediately
+        (function () {
+            // 1. Restore Theme immediately
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme === 'dark') {
                 document.documentElement.classList.add('dark-theme');
             }
 
-        // 2. Restore Language immediately (Optional, but helps reducing text flicker)
-        // This sets a global variable that script.js can use later to skip reading storage again
-        window.savedLang = localStorage.getItem('language') || 'bn';
+            // 2. Restore Language immediately (Optional, but helps reducing text flicker)
+            // This sets a global variable that script.js can use later to skip reading storage again
+            window.savedLang = localStorage.getItem('language') || 'bn';
         })();
     </script>
 </head>
+
 <body id="publications" onload="loadDataAndInit('publications')">
 
-<div id="navbar-placeholder"></div>
+    <div id="navbar-placeholder"></div>
 
-<div id="messageBox"></div>
+    <div id="messageBox"></div>
 
-<div class="container" style="overflow: hidden;">
-  <div class="slide">
-    <div class="item" style="--bg-image: url('https://raw.githubusercontent.com/pbvmuluberia/pbvmuluberia.github.io/refs/heads/main/src/background/library.jpeg'); position: relative; width: 100%; top: 0; left: 0; transform: none; border-radius: 0;">
-      <div class="content" style="display: block; opacity: 1; transform: translate(0, -50%); padding-top: 0; top: 50%;">
-        <h2 class="name" data-translate-key="carousel_publications_name">Publications</h2>
-        <p class="des" data-translate-key="carousel_publications_des">Read our publications and research.</p>
-        <button class="button action-btn" onclick="scrollToContent()" data-translate-key="carousel_publications_btn">Read Publications</button>
-        <button class="button donate-btn" onclick="showDonationPopup()" data-translate-key="carousel_donate_btn">Donate to us</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="main-content" id="main-content">
-    <h1 class="lang-content en">Publications</h1>
-    <h1 class="lang-content bn">প্রকাশনা</h1>
-    <div id="content-body"></div>
-</div>
-
-<div id="bookDetailOverlay" class="book-detail-overlay" onclick="hideBookDetails()">
-    <div id="bookDetailCard" class="book-detail-card" onclick="event.stopPropagation()">
-        <button class="close-btn" onclick="hideBookDetails()">&times;</button>
-        <div class="detail-content">
-            <img id="detailBookCover" src="" alt="Book Cover" class="detail-cover" onerror="this.onerror=null;this.src='https://placehold.co/200x300/d79921/3c3836?text=Cover+Not+Found';">
-            <div class="detail-text">
-                <div style="display: none;"><p id="detailBookType"></p></div>
-                <p id="detailBookDescription" class="description-placeholder"></p>
-                <div class="detail-actions">
-                    <span id="detailBookBadge" class="magazine-badge" style="display: none; font-size: 1.5rem; border-radius: 10px;"></span>
-                    <button id="detailActionBtn" class="button action-btn" onclick="showSubscriptionMessage('msg_purchase_dev')">Subscribe / Buy</button>
+    <div class="container" style="overflow: hidden;">
+        <div class="slide">
+            <div class="item"
+                style="--bg-image: url('./src/background/library.jpeg'); position: relative; width: 100%; top: 0; left: 0; transform: none; border-radius: 0;">
+                <div class="content"
+                    style="display: block; opacity: 1; transform: translate(0, -50%); padding-top: 0; top: 50%;">
+                    <h2 class="name" data-translate-key="carousel_publications_name">Publications</h2>
+                    <p class="des" data-translate-key="carousel_publications_des">Read our publications and research.
+                    </p>
+                    <button class="button action-btn" onclick="scrollToContent()"
+                        data-translate-key="carousel_publications_btn">Read Publications</button>
+                    <button class="button donate-btn" onclick="showDonationPopup()"
+                        data-translate-key="carousel_donate_btn">Donate to us</button>
                 </div>
-                </div>
+            </div>
         </div>
     </div>
-</div>
 
-<div id="donation-modal-placeholder"></div>
+    <div class="main-content" id="main-content">
+        <h1 class="lang-content en">Publications</h1>
+        <h1 class="lang-content bn">প্রকাশনা</h1>
+        <div id="content-body"></div>
+    </div>
 
-<button id="scrollToTopBtn" onclick="scrollToTop()" aria-label="Scroll to top"><i class="fa-solid fa-arrow-up"></i></button>
+    <div id="bookDetailOverlay" class="book-detail-overlay" onclick="hideBookDetails()">
+        <div id="bookDetailCard" class="book-detail-card" onclick="event.stopPropagation()">
+            <button class="close-btn" onclick="hideBookDetails()">&times;</button>
+            <div class="detail-content">
+                <img id="detailBookCover" src="" alt="Book Cover" class="detail-cover"
+                    onerror="this.onerror=null;this.src='https://placehold.co/200x300/d79921/3c3836?text=Cover+Not+Found';">
+                <div class="detail-text">
+                    <div style="display: none;">
+                        <p id="detailBookType"></p>
+                    </div>
+                    <p id="detailBookDescription" class="description-placeholder"></p>
+                    <div class="detail-actions">
+                        <span id="detailBookBadge" class="magazine-badge"
+                            style="display: none; font-size: 1.5rem; border-radius: 10px;"></span>
+                        <button id="detailActionBtn" class="button action-btn"
+                            onclick="showSubscriptionMessage('msg_purchase_dev')">Subscribe / Buy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="donation-modal-placeholder"></div>
+
+    <button id="scrollToTopBtn" onclick="scrollToTop()" aria-label="Scroll to top"><i
+            class="fa-solid fa-arrow-up"></i></button>
 
 </body>
+
 </html>

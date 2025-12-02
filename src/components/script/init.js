@@ -81,6 +81,10 @@ document.addEventListener('DOMContentLoaded', () => {
     // loadDataAndInit must be called after other files load
     loadDataAndInit();
     
+    setTimeout(() => {
+        window.showNoticePopup();
+    }, 500);
+    
     // showNoticePopup is available via window (from modal.js)
     window.showNoticePopup(); 
 

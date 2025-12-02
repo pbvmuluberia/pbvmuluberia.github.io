@@ -7,15 +7,15 @@
 "use strict";
 
 // Helper to get language, defaults to 'bn'
-function getLang() { 
-    return localStorage.getItem('language') || 'bn'; 
+function getLang() {
+    return localStorage.getItem('language') || 'bn';
 }
 
 function applyTranslations() {
     const lang = getLang();
     // Use window.translations
-    const langDict = window.translations[lang] || window.translations['bn']; 
-    
+    const langDict = window.translations[lang] || window.translations['bn'];
+
     // 1. Translate simple key-based elements
     document.querySelectorAll('[data-translate-key]').forEach(element => {
         const key = element.getAttribute('data-translate-key');
@@ -23,10 +23,10 @@ function applyTranslations() {
             if (element.tagName === 'INPUT' && element.hasAttribute('placeholder')) {
                 element.setAttribute('placeholder', langDict[key]);
             } else if (element.classList.contains('deep-link-btn')) {
-                 const icon = element.querySelector('i');
-                 element.innerHTML = '';
-                 if(icon) element.appendChild(icon.cloneNode(true));
-                 element.appendChild(document.createTextNode(' ' + langDict[key]));
+                const icon = element.querySelector('i');
+                element.innerHTML = '';
+                if (icon) element.appendChild(icon.cloneNode(true));
+                element.appendChild(document.createTextNode(' ' + langDict[key]));
             } else {
                 element.textContent = langDict[key];
             }
@@ -39,56 +39,73 @@ function applyTranslations() {
 }
 
 function showSubscriptionMessage(messageKey) {
-    const messageBox = document.getElementById('messageBox');
-    const lang = getLang();
-    // Use window.translations
-    const message = window.translations[lang][messageKey] || window.translations['en'][messageKey] || messageKey;
-    messageBox.textContent = message;
-    messageBox.classList.add('show');
-    setTimeout(() => messageBox.classList.remove('show'), 3000);
+    const messageBox = document.getElementById('subscription-message-box');
+    const messageElement = document.getElementById('subscription-message');
+    if (messageBox && messageElement && window.translations) {
+        const lang = getLang();
+        const message = window.translations[lang]?.messages?.[messageKey] || window.translations['bn']?.messages?.[messageKey];
+        if (message) {
+            messageElement.textContent = message;
+            messageBox.classList.add('show');
+            setTimeout(() => messageBox.classList.remove('show'), 4000);
+        }
+    }
 }
 
-// Simple string hash function for consistent HSL color
-function stringToHslColor(str, s, l) {
+function stringToHslColor(str) {
     let hash = 0;
     for (let i = 0; i < str.length; i++) {
         hash = str.charCodeAt(i) + ((hash << 5) - hash);
     }
+
     const h = hash % 360;
-    return 'hsl(' + h + ', ' + s + '%, ' + l + '%)'; 
+    // Keep saturation and lightness high for good visibility in Gruvbox dark theme
+    return `hsl(${h}, 70%, 75%)`;
 }
 
-function scrollToContent() {
-    const nav = document.querySelector('nav.menu');
-    const navHeight = nav ? nav.offsetHeight : 0;
-    
-    const targetElement = document.querySelector('h1.lang-content.active');
-    
-    if (targetElement) {
-        const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - navHeight - 20;
-        window.scrollTo({ top: targetPosition, behavior: 'smooth' });
-    } else {
-        console.warn("scrollToContent: No target element found to scroll to.");
+function scrollToContent(id) {
+    const targetId = id || 'main-content';
+    const element = document.getElementById(targetId);
+    if (element) {
+        // Find the closest parent with class 'lang-content'
+        let currentLangContainer = element.closest('.lang-content');
+        // If the element is not in an active language container, switch the language first
+        if (currentLangContainer && !currentLangContainer.classList.contains('active')) {
+            const lang = currentLangContainer.classList.contains('en') ? 'en' : 'bn';
+            setLang(lang);
+            // Give a moment for the content to become visible
+            setTimeout(() => {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 300);
+        } else {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }
+    // Also close the menu on navigation
+    const navLinks = document.getElementById('navLinks');
+    if (navLinks && navLinks.classList.contains('open')) {
+        toggleMenu();
     }
 }
 
-function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 
 function toggleMenu() {
     const navLinks = document.getElementById('navLinks');
     const hamburgerBtn = document.getElementById('hamburgerBtn');
-    navLinks.classList.toggle('open');
-    const isExpanded = navLinks.classList.contains('open');
-    hamburgerBtn.setAttribute('aria-expanded', isExpanded);
-    hamburgerBtn.querySelector('i').className = isExpanded ? 'fa-solid fa-xmark' : 'fa-solid fa-bars';
+
+    if (navLinks && hamburgerBtn) {
+        navLinks.classList.toggle('open');
+        hamburgerBtn.classList.toggle('active');
+    }
 }
 
 function toggleTheme() {
-    const htmlEl = document.documentElement;
-    htmlEl.classList.toggle('dark-theme');
-    
-    const isDark = htmlEl.classList.contains('dark-theme');
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    const isDark = document.documentElement.classList.toggle('dark-theme');
+    const newTheme = isDark ? 'dark' : 'light';
+    localStorage.setItem('theme', newTheme);
 }
 
 // Helper to enable mouse wheel horizontal scrolling
@@ -97,17 +114,107 @@ function enableMouseWheelScroll(containerId) {
     if (!container) return;
 
     container.addEventListener("wheel", (evt) => {
+        // Check if content is wider than viewport
         if (container.scrollWidth > container.clientWidth) {
             evt.preventDefault();
+            // Scroll horizontally based on vertical delta
             container.scrollLeft += evt.deltaY;
         }
     }, { passive: false });
 }
 
+// NEW: Function to generate and manage gallery dot indicators
+function setupGalleryDots(containerId, dotsContainerId) {
+    const container = document.getElementById(containerId);
+    const dotsContainer = document.getElementById(dotsContainerId);
+
+    if (!container || !dotsContainer) return;
+
+    const items = container.querySelectorAll('.scroll-item');
+    if (items.length === 0) return;
+
+    // 1. Generate Dots
+    dotsContainer.innerHTML = ''; // Clear existing
+    items.forEach((item, index) => {
+        const dot = document.createElement('span');
+        dot.classList.add('dot');
+        dot.dataset.index = index;
+        if (index === 0) dot.classList.add('active'); // First dot is active initially
+
+        // 2. Add Click Handler for Smooth Scroll
+        dot.addEventListener('click', () => {
+            // Calculate the left position of the target item
+            // We want to scroll the item into view, aligned to the start (left)
+            const itemOffsetLeft = item.offsetLeft - (item.parentNode.offsetLeft || 0);
+
+            container.scrollTo({
+                left: itemOffsetLeft,
+                behavior: 'smooth'
+            });
+        });
+        dotsContainer.appendChild(dot);
+    });
+
+    const dots = dotsContainer.querySelectorAll('.dot');
+
+    // 3. Update Dots on Scroll
+    const updateDots = () => {
+        const scrollLeft = container.scrollLeft;
+        const containerWidth = container.clientWidth;
+        const scrollWidth = container.scrollWidth;
+
+        let activeIndex = 0;
+
+        // Find which item is currently the most prominent (e.g., closest to being fully visible at the start)
+        for (let i = 0; i < items.length; i++) {
+            const item = items[i];
+            const itemLeft = item.offsetLeft;
+            const itemWidth = item.offsetWidth;
+
+            // Check if the item's start position is close to the container's scroll position.
+            // Using a threshold (e.g., half the item width) for activation.
+            if (scrollLeft >= itemLeft - itemWidth / 2) {
+                activeIndex = i;
+            }
+        }
+
+        // Edge case: If fully scrolled to the end, ensure the last dot is active
+        const maxScrollLeft = scrollWidth - containerWidth;
+        if (scrollLeft >= maxScrollLeft - 5) { // 5px tolerance
+            activeIndex = items.length - 1;
+        }
+
+        // Update class
+        dots.forEach((dot, index) => {
+            dot.classList.remove('active');
+            if (index === activeIndex) {
+                dot.classList.add('active');
+            }
+        });
+    };
+
+    // Throttle the scroll event listener for performance
+    let isThrottled = false;
+    container.addEventListener('scroll', () => {
+        if (!isThrottled) {
+            window.requestAnimationFrame(() => {
+                updateDots();
+                isThrottled = false;
+            });
+            isThrottled = true;
+        }
+    });
+
+    // Run once on load and on resize to ensure initial state is correct 
+    updateDots();
+    window.addEventListener('resize', updateDots);
+}
+
+
 // 1. Update UI visually without affecting storage
 async function switchVisuals(lang) {
-    document.documentElement.lang = lang; 
-    
+    document.documentElement.lang = lang;
+
     // Button States
     document.getElementById('langEn').classList.remove('active');
     document.getElementById('langBn').classList.remove('active');
@@ -118,9 +225,9 @@ async function switchVisuals(lang) {
     applyTranslations();
 
     // Dynamic Content (Publications)
-    if(document.body.id === 'publications') {
+    if (document.body.id === 'publications') {
         // Function from publication.js
-        await window.updatePublicationsContent(lang); 
+        await window.updatePublicationsContent(lang);
     }
 }
 
@@ -141,5 +248,6 @@ window.scrollToTop = scrollToTop;
 window.toggleMenu = toggleMenu;
 window.toggleTheme = toggleTheme;
 window.enableMouseWheelScroll = enableMouseWheelScroll;
+window.setupGalleryDots = setupGalleryDots; // NEW
 window.switchVisuals = switchVisuals;
 window.setLang = setLang;

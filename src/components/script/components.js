@@ -74,7 +74,7 @@ const ComponentGenerator = {
                     <h2 data-translate-key="notice_title">Important Notice</h2>
                     <div id="notice-body">
                         <div class="banner">
-                            <img class="img" src="https://raw.githubusercontent.com/pbvmuluberia/pbvmuluberia.github.io/refs/heads/main/src/banner/40 years.png">
+                            <img class="img" src="./src/banner/40 years.png">
                         </div>
                         <div class="lang-content en">
                             <p class="notice-subtitle" data-translate-key="notice_subtitle_en">Current Events</p>
@@ -98,7 +98,6 @@ const ComponentGenerator = {
                         </div>
                     </div>
                 </div>
-            </div>
         </dialog>
         `;
     }
