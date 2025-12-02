@@ -244,7 +244,7 @@
                         <h3>Combating Adulteration in Daily Food</h3>
                         <p>A hands-on workshop demonstrating simple tests to detect adulterants in milk and spices.
                             Learn how to ensure safe food for your family.</p>
-                        <button class="action-btn">Download Guide</button>
+                        <button class="action-btn" onclick="openWindow()">Download Guide</button>
                     </div>
                     <div class="program-img"><img src="./src/adultration/adultration termaric.jpeg" alt="Adulteration">
                     </div>
@@ -502,7 +502,7 @@
                         <h3>দৈনন্দিন খাদ্যে ভেজাল মোকাবিলা</h3>
                         <p>দুধ এবং মশলায় ভেজাল শনাক্ত করার জন্য সহজ পরীক্ষা প্রদর্শনের একটি হাতে-কলমে কর্মশালা রাখা
                             হয়েছিল। আপনার পরিবারের জন্য নিরাপদ খাদ্য নিশ্চিত করতে শিখুন।</p>
-                        <button class="action-btn">গাইড ডাউনলোড করুন</button>
+                        <button class="action-btn" onclick="openWindow()">গাইড ডাউনলোড করুন</button>
                     </div>
                     <div class="program-img"><img src="./src/adultration/adultration termaric.jpeg" alt="Adulteration">
                     </div>
@@ -584,6 +584,10 @@
                 console.error("setupGalleryDots function not found in utils.js");
             }
         });
+
+        function openWindow() {
+            window.open("./src/adultration/adultration Pt I.pdf", "_blank");
+        }
     </script>
 </body>
 
