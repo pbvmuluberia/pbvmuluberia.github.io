@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>External Roll Number Search - FINAL</title>
+    <style>
+      body { font-family: sans-serif; padding: 20px; max-width: 600px; margin: auto; background-color: #f4f4f9; }
+      input, button { padding: 10px; margin: 8px 0; display: block; width: 100%; box-sizing: border-box; border-radius: 4px; border: 1px solid #ccc; }
+      button { background-color: #007bff; color: white; border: none; cursor: pointer; font-weight: bold; }
+      button:hover { background-color: #0056b3; }
+      h3 { border-bottom: 2px solid #ddd; padding-bottom: 5px; }
+      #result { 
+        margin-top: 20px; 
+        border: 1px solid #ccc; 
+        padding: 15px; 
+        min-height: 80px; 
+        white-space: pre-wrap; 
+        background-color: #fff; 
+        border-radius: 4px; 
+        line-height: 1.6;
+      }
+      .error { color: red; font-weight: bold; }
+      .success { color: green; font-weight: bold; }
+    </style>
+  </head>
+  <body>
+    <h2>Roll Number Search (External API - GET)</h2>
+
+    <label for="rollNoInput">Enter Roll Number:</label>
+    <input type="text" id="rollNoInput" placeholder="e.g., 1001" required>
+    
+    <button onclick="searchData()">Search Data</button>
+
+    <h3>Search Result</h3>
+    <div id="result">Waiting for input...</div>
+
+    <script>
+      // *** YOUR DEPLOYED WEB APP EXECUTION URL ***
+      const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxhSsq4NAqhHmMLcO1Dj2hrZHxE6l3rTkv0Go8NYDhp7-V5SfQ_mwdsGvuQXBH8reA84w/exec";
+      
+      async function searchData() {
+        const rollNo = document.getElementById('rollNoInput').value.trim();
+        const resultDiv = document.getElementById('result');
+        
+        // Clear previous formatting
+        resultDiv.className = '';
+
+        if (!rollNo) {
+          resultDiv.textContent = "Please enter a Roll Number.";
+          return;
+        }
+
+        resultDiv.textContent = "Searching...";
+        
+        // Construct the GET URL: Append the rollNo as a query parameter
+        const fullUrl = `${WEB_APP_URL}?rollNo=${encodeURIComponent(rollNo)}`;
+
+        try {
+          const response = await fetch(fullUrl, {
+            method: 'GET', 
+            mode: 'cors',  
+          });
+
+          if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+          }
+
+          const data = await response.json(); 
+
+          // 💡 CORRECTED LOGIC: Accessing the properties of the result object
+          if (data.status === 'success' && data.data && data.data.length > 0) {
+            
+            // The server returns an array of objects. Get the first object.
+            const student = data.data[0]; 
+            
+            // Format the output string for display
+            const outputText = `
+Student Data Found:
+
+Roll Number: ${student.roll}
+Name: ${student.name}
+Class: ${student.class}
+School: ${student.school}
+Marks: ${student.marks}
+Grade: ${student.grade}
+            `;
+            
+            resultDiv.textContent = outputText.trim();
+            resultDiv.className = 'success'; // Apply success styling
+
+          } else if (data.status === 'not_found') {
+            resultDiv.textContent = "❌ Roll Number not found in the sheet.";
+            resultDiv.className = 'error'; // Apply error styling
+          } else {
+            // Catches errors like "Missing Roll Number parameter" sent from the server
+            resultDiv.textContent = `🚨 API Error: ${data.message}`;
+            resultDiv.className = 'error';
+          }
+
+        } catch (error) {
+          // Catches network/fetch errors (like CORS if it ever returns)
+          resultDiv.textContent = `🚨 Critical Network Error: ${error.message}. Check browser console.`;
+          resultDiv.className = 'error';
+          console.error("Fetch Error:", error);
+        }
+      }
+    </script>
+  </body>
+</html>
