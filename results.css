@@ -200,6 +200,7 @@ table {
     background-color: var(--surface-color);
     border-style: solid;
     border-color: var(--primary-color);
+    border-radius:6px;
 }
 
 th,
