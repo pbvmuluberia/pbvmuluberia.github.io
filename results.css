@@ -256,7 +256,7 @@ td:first-child {
 
     .search-form-card {
         padding: var(--space-xs) 0 0 0;
-        margin: 0;
+        margin: var(--space-sm);
         gap: 0;
     }
 }
