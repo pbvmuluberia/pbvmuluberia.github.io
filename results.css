@@ -69,7 +69,7 @@
 }
 
 .input-group label {
-    margin-bottom: var(--space-sm);
+    margin: var(--space-sm);
     font-family: var(--font-heading);
     color: var(--primary-color);
     font-size: var(--font-size-h3);
