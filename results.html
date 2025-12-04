@@ -1,108 +1,205 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>External Roll Number Search - FINAL</title>
-    <style>
-      body { font-family: sans-serif; padding: 20px; max-width: 600px; margin: auto; background-color: #f4f4f9; }
-      input, button { padding: 10px; margin: 8px 0; display: block; width: 100%; box-sizing: border-box; border-radius: 4px; border: 1px solid #ccc; }
-      button { background-color: #007bff; color: white; border: none; cursor: pointer; font-weight: bold; }
-      button:hover { background-color: #0056b3; }
-      h3 { border-bottom: 2px solid #ddd; padding-bottom: 5px; }
-      #result { 
-        margin-top: 20px; 
-        border: 1px solid #ccc; 
-        padding: 15px; 
-        min-height: 80px; 
-        white-space: pre-wrap; 
-        background-color: #fff; 
-        border-radius: 4px; 
-        line-height: 1.6;
-      }
-      .error { color: red; font-weight: bold; }
-      .success { color: green; font-weight: bold; }
-    </style>
-  </head>
-  <body>
-    <h2>Roll Number Search (External API - GET)</h2>
 
-    <label for="rollNoInput">Enter Roll Number:</label>
-    <input type="text" id="rollNoInput" placeholder="e.g., 1001" required>
-    
-    <button onclick="searchData()">Search Data</button>
+<head>
+  <title>Results</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <h3>Search Result</h3>
-    <div id="result">Waiting for input...</div>
+  <!-- External Libraries -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <!-- Assuming qrcodejs is used elsewhere, kept for compatibility -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+  <!-- Global Styles (Assumed to contain :root variables) -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Page Specific Styles (Updated below) -->
+  <link rel="stylesheet" href="results.css">
+
+  <!-- Scripts (Assuming these local paths are correct) -->
+  <script src="./src/components/script/components.js" defer></script>
+  <script src="./src/components/script/data.js" defer></script>
+  <script src="./src/components/script/utils.js" defer></script>
+  <script src="./src/components/script/init.js" defer></script>
+
+</head>
+
+<body>
+  <!-- Navbar Placeholder -->
+  <nav class="menu">
+    <img src="https://raw.githubusercontent.com/t4saha/PBVM-Uluberia-Vigyan-Kendra/main/Logo/pvbm_logo_gold.png"
+      alt="Logo" class="nav-logo"
+      onerror="this.onerror=null; this.src='https://placehold.co/50x50/d79921/3c3836?text=LOGO'">
+
+    <div class="menu-controls-mobile">
+      <span class="menu-label-text" data-translate-key="nav_menu">Menu</span>
+      <button class="hamburger-menu" id="hamburgerBtn" onclick="toggleMenu()">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <span class="menu-label-text current-menu-label" id="currentMenuLabel"
+        data-translate-key="nav${activePageID}">Menu</span>
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a href="./index.html" class="${isActive(menu_home)}" data-translate-key="nav_home">Home</a>
+      <a href="./results.html" class="active-tab" data-translate-key="nav_result">Result</a>
+    </div>
+
+    <div class="header-controls">
+      <button id="themeToggleIcon" onclick="toggleTheme()" class="theme-icon-button">
+        <i class="fa-solid fa-sun theme-icon sun-icon"></i>
+        <i class="fa-solid fa-moon theme-icon moon-icon"></i>
+      </button>
+      <div class="lang-toggle">
+        <span id="langEn" onclick="setLang('en')">EN</span>
+        <span id="langBn" onclick="setLang('bn')">বা</span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="results-container">
+    <div class="results-header">
+      <h1 data-translate-key="exam">Howrah Zilla Vigyan Manosikata-o-Medha Aviksha</h1>
+      <h3 data-translate-key="uluberia">Uluberia Vigyan Kendra</h3>
+    </div>
+
+    <div class="search-form-card">
+      <div class="input-group">
+        <label data-translate-key="roll_number_label" for="rollNoInput">Enter Roll Number:</label>
+        <input data-translate-key="roll_number_placeholder" type="text" id="rollNoInput" placeholder="e.g., UL/01001"
+          required>
+        <button class="action-btn"
+          style="align-self: center; border-radius: var(--border-radius-medium); padding: var(--space-sm) var(--space-md);"
+          onclick="searchData()" data-translate-key="search_result_button">Search Result</button>
+      </div>
+
+      <div id="result-display" data-translate-key="default_result_display">
+        Please enter your Roll Number above and click Search Result to view your performance.
+      </div>
+    </div>
 
     <script>
       // *** YOUR DEPLOYED WEB APP EXECUTION URL ***
       const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxhSsq4NAqhHmMLcO1Dj2hrZHxE6l3rTkv0Go8NYDhp7-V5SfQ_mwdsGvuQXBH8reA84w/exec";
-      
+
+      const resultDiv = document.getElementById('result-display');
+
       async function searchData() {
         const rollNo = document.getElementById('rollNoInput').value.trim();
-        const resultDiv = document.getElementById('result');
-        
+
         // Clear previous formatting
         resultDiv.className = '';
+        const rollRegex = /^[U][L]\/\d{5}$/;
 
-        if (!rollNo) {
-          resultDiv.textContent = "Please enter a Roll Number.";
+        if (!rollNo || !rollRegex.test(rollNo)) {
+          // We can keep the key here because this IS a message
+          resultDiv.setAttribute('data-translate-key', 'enter_roll_number');
+          resultDiv.innerHTML = 'Please enter a valid Roll Number. e.g., UL/12345';
+          resultDiv.className = 'error';
+          if (window.applyTranslations) window.applyTranslations();
           return;
         }
 
-        resultDiv.textContent = "Searching...";
-        
-        // Construct the GET URL: Append the rollNo as a query parameter
+        // Remove the key so the loader (and subsequent results) aren't overwritten
+        resultDiv.removeAttribute('data-translate-key');
+        resultDiv.innerHTML = '<div class="loader"></div>';
+
         const fullUrl = `${WEB_APP_URL}?rollNo=${encodeURIComponent(rollNo)}`;
 
         try {
           const response = await fetch(fullUrl, {
-            method: 'GET', 
-            mode: 'cors',  
+            method: 'GET',
+            mode: 'cors',
           });
 
           if (!response.ok) {
-              throw new Error(`HTTP error! Status: ${response.status}`);
+            throw new Error(`HTTP error! Status: ${response.status}`);
           }
 
-          const data = await response.json(); 
+          const data = await response.json();
 
-          // 💡 CORRECTED LOGIC: Accessing the properties of the result object
           if (data.status === 'success' && data.data && data.data.length > 0) {
-            
-            // The server returns an array of objects. Get the first object.
-            const student = data.data[0]; 
-            
-            // Format the output string for display
-            const outputText = `
-Student Data Found:
+            const student = data.data[0];
 
-Roll Number: ${student.roll}
-Name: ${student.name}
-Class: ${student.class}
-School: ${student.school}
-Marks: ${student.marks}
-Grade: ${student.grade}
-            `;
-            
-            resultDiv.textContent = outputText.trim();
-            resultDiv.className = 'success'; // Apply success styling
+            // Note: The inner translation keys (result_header, name, etc.) will work fine
+            // because they are children of resultDiv, not resultDiv itself.
+            const outputHTML = `
+              <div class="result-success-content">
+                  <table>
+                      <thead>
+                          <tr>
+                              <th colspan="2" class="table-header" data-translate-key="result_header">Student Performance Report</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr>
+                              <td data-translate-key="roll">Roll Number:</td>
+                              <td>${student.roll}</td>
+                          </tr>
+                          <tr>
+                              <td data-translate-key="name">Name:</td>
+                              <td>${student.name}</td>
+                          </tr>
+                          <tr>
+                              <td data-translate-key="class">Class:</td>
+                              <td>${student.class}</td>
+                          </tr>
+                          <tr>
+                              <td data-translate-key="school">School:</td>
+                              <td>${student.school}</td>
+                          </tr>
+                          <tr class="highlight-row">
+                              <td data-translate-key="marks">Marks:</td>
+                              <td class="result-value">${student.marks}</td>
+                          </tr>
+                          <tr class="highlight-row">
+                              <td data-translate-key="grade">Grade:</td>
+                              <td class="grade-highlight result-value">${student.grade}</td>
+                          </tr>
+                      </tbody>
+                  </table>
+              </div>`;
+
+            resultDiv.innerHTML = outputHTML;
+            resultDiv.className = 'success';
 
           } else if (data.status === 'not_found') {
-            resultDiv.textContent = "❌ Roll Number not found in the sheet.";
-            resultDiv.className = 'error'; // Apply error styling
+            resultDiv.innerHTML = '<div data-translate-key="not_found">❌ Roll Number not found in the sheet.</div>';
+            resultDiv.className = 'error';
           } else {
-            // Catches errors like "Missing Roll Number parameter" sent from the server
-            resultDiv.textContent = `🚨 API Error: ${data.message}`;
+            // 1. Get the current active language (default to 'bn' if missing)
+            const lang = getLang();
+
+            // 2. Retrieve the template string from window.translations
+            // Example string: "🚨 API Error: ${data.message}"
+            const template = window.translations[lang]['api_error'] || window.translations['en']['api_error'];
+
+            // 3. Manually replace the placeholder text '${data.message}' with the actual server message
+            const finalMessage = template.replace('${data.message}', data.message);
+
+            // 4. Display the result
+            resultDiv.innerHTML = finalMessage;
             resultDiv.className = 'error';
           }
-
         } catch (error) {
-          // Catches network/fetch errors (like CORS if it ever returns)
-          resultDiv.textContent = `🚨 Critical Network Error: ${error.message}. Check browser console.`;
+          const lang = getLang();
+
+          // Template: "🚨 Critical Network Error: ${error.message}. Check browser console."
+          const template = window.translations[lang]['network_error'] || window.translations['en']['network_error'];
+
+          // Replace placeholder
+          const finalMessage = template.replace('${error.message}', error.message);
+
+          resultDiv.innerHTML = finalMessage;
           resultDiv.className = 'error';
           console.error("Fetch Error:", error);
         }
+
+        // Now safe to run: The parent div has no key, so it won't be reset. 
+        // It will only translate the new keys inside (like 'result_header').
+        if (window.applyTranslations) {
+          window.applyTranslations();
+        }
       }
     </script>
-  </body>
+</body>
+
 </html>

@@ -60,6 +60,28 @@ const translations = {
         'notice_title': 'Important Notice',
         'notice_subtitle_en': 'Current Events',
         'notice_subtitle_bn': 'Current Events',
+        'exam': 'Howrah Zilla Vigyan Manosikata-o-Medha Aviksha',
+        'uluberia': 'Uluberia Vigyan Kendra',
+        'nav_result': 'Result',
+        'result_finder_title': 'Result Finder',
+        'result_finder_subtitle': 'Enter your Roll Number to view your results.',
+        'result_header': 'Student Performance Report',
+        'roll_number_label': 'Roll Number',
+        'roll_number_placeholder': 'e.g. UL/12345',
+        'search_result_button': 'Search Result',
+        'your_result_heading': 'Your Result',
+        'searching_text': 'Searching...',
+        'roll': 'Roll Number:',
+        'name': 'Name:',
+        'school': 'School:',
+        'class': 'Class:',
+        'marks': 'Total Marks:',
+        'grade': 'Grade:',
+        'not_found': '❌ Roll Number not found in the sheet.',
+        'api_error': '🚨 API Error: ${data.message}',
+        'network_error': '🚨 Critical Network Error: ${error.message}. Check browser console.',
+        'enter_roll_number': 'Please enter a valid Roll Number. e.g., UL/12345',
+        'default_result_display': 'Please enter your Roll Number above and click Search Result to view your performance.',
     },
     'bn': {
         'nav_menu': 'মেনু',
@@ -113,6 +135,28 @@ const translations = {
         'notice_title': 'গুরুত্বপূর্ণ বিজ্ঞপ্তি',
         'notice_subtitle_en': 'বর্তমান ঘটনাবলী',
         'notice_subtitle_bn': 'বর্তমান ঘটনাবলী',
+        'exam': 'হাওড়া জেলা বিজ্ঞান মানসিকতা ও মেধা অভীক্ষা',
+        'uluberia': 'উলুবেড়িয়া বিজ্ঞান কেন্দ্র',
+        'nav_result': 'ফলাফল',
+        'result_finder_title': 'ফলাফল অনুসন্ধান',
+        'result_finder_subtitle': 'আপনার ফলাফল দেখতে রোল নম্বর লিখুন।',
+        'result_header': 'ফলাফল প্রতিবেদন',
+        'roll_number_label': 'রোল নম্বর',
+        'roll_number_placeholder': 'যেমন: UL/12345',
+        'search_result_button': 'ফলাফল খুঁজুন',
+        'your_result_heading': 'আপনার ফলাফল',
+        'searching_text': 'অনুসন্ধান চলছে...',
+        'roll': 'রোল নম্বর:',
+        'name': 'নাম:',
+        'school': 'বিদ্যালয়:',
+        'class': 'শ্রেণী:',
+        'marks': 'মোট নম্বর:',
+        'grade': 'গ্রেড:',
+        'not_found': '❌ এই রোল নম্বরটি নেই।',
+        'api_error': '🚨 API বিভ্রাট: ${data.message}',
+        'network_error': '🚨 গুরুত্বপূর্ণ বিভ্রাট: ${error.message}. ব্রাউজার কনসোল চেক করুন।',
+        'enter_roll_number': 'আপনি রোল নম্বরটি ঠিক লেখেন নি। যেমন: UL/12345',
+        'default_result_display': 'আপনার ফলাফল দেখতে সঠিক রোল নম্বর লিখুন।',
     }
 };
 
@@ -124,7 +168,7 @@ window.bookData = { en: null, bn: null };
 
 // UPI payment constants
 const UPI_ID = '9433361030@ucobank';
-const VPA_NAME = 'Paschim Banga Vigyan Mancha (Uluberia Vigyan Kendra)'; 
+const VPA_NAME = 'Paschim Banga Vigyan Mancha (Uluberia Vigyan Kendra)';
 
 // State variables
 let currentDonationAmount = 100;
