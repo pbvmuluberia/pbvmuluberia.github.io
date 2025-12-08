@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="bn">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,138 +8,187 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <link rel="stylesheet" href="style.css">
-    
+
     <script src="./src/components/script/components.js"></script>
     <script src="./src/components/script/data.js"></script>
     <script src="./src/components/script/utils.js"></script>
     <script src="./src/components/script/modal.js"></script>
     <script src="./src/components/script/init.js"></script>
-    
+
     <style>
-        .lang-content { display: none; }
-        .lang-content.active { display: block; }
-        h1.lang-content.active { display: block; }
+        .lang-content {
+            display: none;
+        }
+
+        .lang-content.active {
+            display: block;
+        }
+
+        h1.lang-content.active {
+            display: block;
+        }
     </style>
     <script>
-        (function() {
-        // 1. Restore Theme immediately
+        (function () {
+            // 1. Restore Theme immediately
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme === 'dark') {
                 document.documentElement.classList.add('dark-theme');
             }
 
-        // 2. Restore Language immediately (Optional, but helps reducing text flicker)
-        // This sets a global variable that script.js can use later to skip reading storage again
-        window.savedLang = localStorage.getItem('language') || 'bn';
+            // 2. Restore Language immediately (Optional, but helps reducing text flicker)
+            // This sets a global variable that script.js can use later to skip reading storage again
+            window.savedLang = localStorage.getItem('language') || 'bn';
         })();
     </script>
 </head>
+
 <body id="about">
 
-<div id="navbar-placeholder"></div>
+    <div id="navbar-placeholder"></div>
 
-<div id="messageBox"></div>
+    <div id="messageBox"></div>
 
-<div class="container" style="overflow: hidden;">
-  <div class="slide">
-    <div class="item" style="--bg-image: url('https://raw.githubusercontent.com/pbvmuluberia/pbvmuluberia.github.io/refs/heads/main/src/background/about.jpeg'); position: relative; width: 100%; top: 0; left: 0; transform: none; border-radius: 0;">
-      <div class="content" style="display: block; opacity: 1; transform: translate(0, -50%); padding-top: 0; top: 50%;">
-        <h2 class="name" data-translate-key="carousel_about_name">About</h2>
-        <p class="des" data-translate-key="carousel_about_des">Learn about us here.</p>
-        <button class="button action-btn" onclick="scrollToContent()" data-translate-key="carousel_about_btn">Learn About Us</button>
-        <button class="button donate-btn" onclick="showDonationPopup()" data-translate-key="carousel_donate_btn">Donate to us</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="main-content" id="main-content">
-    <h1 class="lang-content en">Paschimbanga Vigyan mancha</h1>
-    <h1 class="lang-content bn">পশ্চিমবঙ্গ বিজ্ঞান মঞ্চ</h1>
-
-    <div id="content-body">
-        <!-- English Content -->
-        <div class="lang-content en">
-            <p>Science popularization was not a totally new concept to the people of West Bengal in 1986 when Paschim Banga Vigyam Mancha (PBVM) started function. The doyens of our renaissance were involved in this social reform work even in early nineteenth century. The only difference is that PBVM initiated an organized People's Science Movement.</p>
-            <p>More than three decade has passed since its inception and now no one will deny that PBVM is a name in this field of science popularization not in West Bengal but also in India.</p>
-            <p>In the twenty two Districts of West Bengal, most of the Blocks of the State, in the research Institutes and Universities have their respective units/committees of Paschim Banga Vigyan Mancha. Millions of people of West Bengal are very much familiar with the name PBVM because of its sustained various type of activities which relates with all walks of life.</p>
-            <h2>Uluberia Vigyan Kendra</h2>
-            <p>A zonal section under <strong>Howrah Zilla Committee</strong></p>
-            <h2 id="chakras-heading">Constituent Chakras</h2>
-            <p><strong>Uluberia Vigyan Kendra comprises the following 4 chakras:</strong></p>
-            <ul>
-                <li><strong>Uluberia Sahar Chakra</strong></li>
-                <li><strong>Jadurberia Chakra</strong></li>
-                <li><strong>Kalinagar Chakra</strong></li>
-                <li><strong>Nabagram Chakra</strong></li>
-            </ul>
-            <h2>Our Core Values</h2>
-            <ul>
-                <li>To make the people conscious about the utilization of natural resources for the interest of the society.</li>
-                <li>To inspire about the uses of Science &amp; Technology in daily life.</li>
-                <li>To develop the awareness of the people about environment, Public health etc. To educate the people about the harmful effects of different products which are produced or made by the monopoly capitalist of our country and abroad, specially by Multinational Corporation.</li>
-                <li>To encourage innovative, fundamental, scientific research and developments.</li>
-                <li>To continue the struggle for scientific education in mother tongue.</li>
-                <li>To launch movement against fundamentalism, superstition and unscientific ideas.</li>
-                <li>To oppose the implementation of any technology that is against the interest of society.</li>
-                <li>To create movement for peoples oriented science and technology policies.</li>
-                <li>To publish popular science magazine, science related books, monographs, pamphlets, etc regularly.</li>
-                <li>To take necessary program against the use of science and technology in war to destroy the human civilization.</li>
-                <li>To implement the projects and programs for the attainment of self-reliance of the country and to help reach its benefits to the people.</li>
-            </ul>
-            <h2>Awards & Achievement</h2>
-            <ul>
-                <li><b>National Award for the best effort in Science Popularisation in India during the period 1985-89, By the Department of Science and Technology, Govt. of India on 28th February, 1991.</b></li>
-                <li><b>PBVM accredited as Major Group by United Nations for participation in UN Earth Summit - 2002 on 'Sustainable Development' at Johannesburg, South Africa.</b></li>
-                <p></p>
-                <img src="https://raw.githubusercontent.com/pbvmuluberia/pbvmuluberia.github.io/main/src/awards/award.jpg" class="detail-cover" onerror="this.onerror=null;">
-            </ul>
-        </div>
-
-        <!-- Bengali Content -->
-        <div class="lang-content bn">
-            <p>১৯৮৬ সালে যখন পশ্চিমবঙ্গ বিজ্ঞান মঞ্চ (পঃ বঃ বিঃ মঃ) কাজ শুরু করে তখন বিজ্ঞান জনপ্রিয়করণ, পশ্চিমবঙ্গের মানুষের কাছে একটি সম্পূর্ণ নতুন ধারণা ছিল না। আমাদের নবজাগরণের পুরোধারা এমনকি ঊনবিংশ শতাব্দীর প্রথম দিকেও এই সমাজ সংস্কারমূলক কাজে জড়িত ছিলেন। শুধু একমাত্র পার্থক্য হল পঃ বঃ বিঃ মঃ একটি সংগঠিত গণবিজ্ঞান আন্দোলন শুরু করেছিল।</p>
-            <p>এর সূচনার পর তিন দশকেরও বেশি সময় কেটে গেছে এবং এখন কেউ অস্বীকার করবে না যে পঃ বঃ বিঃ মঃ শুধুমাত্র পশ্চিমবঙ্গে নয়, ভারতেও বিজ্ঞান জনপ্রিয়করণের ক্ষেত্রে একটি পরিচিত নাম।</p>
-            <p>পশ্চিমবঙ্গের বাইশটি জেলায়, রাজ্যের বেশিরভাগ ব্লকে, গবেষণা প্রতিষ্ঠান এবং বিশ্ববিদ্যালয়গুলিতে পশ্চিমবঙ্গ বিজ্ঞান মঞ্চের নিজস্ব ইউনিট/কমিটি রয়েছে। পশ্চিমবঙ্গের লক্ষ লক্ষ মানুষ পঃ বঃ বিঃ মঃ নামের সাথে খুব পরিচিত কারণ এর সমগ্র ক্রিয়াকলাপ জীবনের সকল ক্ষেত্রের সাথে সম্পর্কিত।</p>
-            <h2>উলুবেড়িয়া বিজ্ঞান কেন্দ্র</h2>
-            <p><strong>যৌথ জেলা কমিটি</strong>-এর অধীনে একটি আঞ্চলিক শাখা</p>
-            <h2 id="chakras-heading">গঠনকারী চক্রসমূহ</h2>
-            <p><strong>উলুবেড়িয়া বিজ্ঞান কেন্দ্র নিম্নলিখিত ৪টি চক্র নিয়ে গঠিত:</strong></p>
-            <ul>
-                <li><strong>উলুবেড়িয়া শহর বিজ্ঞান চক্র</strong></li>
-                <li><strong>যদুরবেড়িয়া বিজ্ঞান চক্র</strong></li>
-                <li><strong>কালীনগর বিজ্ঞান চক্র</strong></li>
-                <li><strong>নবগ্রাম বিজ্ঞান চক্র</strong></li>
-            </ul>
-            <h2>লক্ষ্য ও উদ্দেশ্যসমূহ</h2>
-            <ul>
-                <li>সমাজের স্বার্থে প্রাকৃতিক সম্পদের ব্যবহার সম্পর্কে জনগণকে সচেতন করা।</li>
-                <li>দৈনন্দিন জীবনে বিজ্ঞান ও প্রযুক্তির ব্যবহার সম্পর্কে অনুপ্রাণিত করা।</li>
-                <li>পরিবেশ, জনস্বাস্থ্য ইত্যাদি সম্পর্কে জনগণের মধ্যে সচেতনতা তৈরি করা। দেশের ও বিদেশের একচেটিয়া পুঁজিবাদী, বিশেষত বহুজাতিক কর্পোরেশনগুলির দ্বারা উৎপাদিত বা তৈরি বিভিন্ন পণ্যের ক্ষতিকারক প্রভাব সম্পর্কে জনগণকে শিক্ষিত করা।</li>
-                <li>উদ্ভাবনী, মৌলিক, বৈজ্ঞানিক গবেষণা ও উন্নয়নকে উৎসাহিত করা।</li>
-                <li>মাতৃভাষায় বিজ্ঞান শিক্ষার জন্য সংগ্রাম চালিয়ে যাওয়া।</li>
-                <li>মৌলবাদ, কুসংস্কার এবং অবৈজ্ঞানিক ধারণার বিরুদ্ধে আন্দোলন শুরু করা।</li>
-                <li>সমাজের স্বার্থের পরিপন্থী যেকোনো প্রযুক্তির প্রয়োগের বিরোধিতা করা।</li>
-                <li>জনগণের জন্য বিজ্ঞান ও প্রযুক্তি নীতি তৈরি করার জন্য আন্দোলন তৈরি করা।</li>
-                <li>নিয়মিতভাবে জনপ্রিয় বিজ্ঞান পত্রিকা, বিজ্ঞান-সম্পর্কিত বই, মনোগ্রাফ, প্যামফ্লেট ইত্যাদি প্রকাশ করা।</li>
-                <li>মানব সভ্যতা ধ্বংস করার জন্য যুদ্ধে বিজ্ঞান ও প্রযুক্তির ব্যবহারের বিরুদ্ধে প্রয়োজনীয় কর্মসূচি গ্রহণ করা।</li>
-                <li>দেশের স্বনির্ভরতা অর্জনের জন্য প্রকল্প ও কর্মসূচি বাস্তবায়ন করা এবং এর সুবিধাগুলি জনগণের কাছে পৌঁছে দিতে সহায়তা করা।</li>
-            </ul>
-            <h2>পুরস্কার ও কৃতিত্ব</h2>
-            <ul>
-                <li><b>১৯৮৫-৮৯ সময়কালে ভারতে বিজ্ঞান জনপ্রিয়করণে সেরা প্রচেষ্টার জন্য ভারত সরকারের বিজ্ঞান ও প্রযুক্তি বিভাগ দ্বারা ২৮শে ফেব্রুয়ারি, ১৯৯১-এ জাতীয় পুরস্কার পায় পঃ বঃ বিঃ মঃ ।</b></li>
-                <li><b>দক্ষিণ আফ্রিকার জোহানেসবার্গে 'স্থিতিশীল উন্নয়ন' (Sustainable Development)-এর উপর আয়োজিত ২০০২ সালের রাষ্ট্রসংঘ 'আর্থ সামিট'-এ (UN Earth Summit) অংশগ্রহণের জন্য পঃ বঃ বিঃ মঃ (PBVM) রাষ্ট্রসংঘ কর্তৃক 'মেজর গ্রুপ' (Major Group) হিসাবে স্বীকৃতি পেয়েছে।</b></li>
-                <p></p>
-                <img src="https://raw.githubusercontent.com/pbvmuluberia/pbvmuluberia.github.io/main/src/awards/award.jpg" class="detail-cover" onerror="this.onerror=null;">
-            </ul>
+    <div class="container" style="overflow: hidden;">
+        <div class="slide">
+            <div class="item"
+                style="--bg-image: url('https://raw.githubusercontent.com/pbvmuluberia/pbvmuluberia.github.io/refs/heads/main/src/background/about.jpeg'); position: relative; width: 100%; top: 0; left: 0; transform: none; border-radius: 0;">
+                <div class="content"
+                    style="display: block; opacity: 1; transform: translate(0, -50%); padding-top: 0; top: 50%;">
+                    <h2 class="name" data-translate-key="carousel_about_name">About</h2>
+                    <p class="des" data-translate-key="carousel_about_des">Learn about us here.</p>
+                    <button class="button action-btn" onclick="scrollToContent()"
+                        data-translate-key="carousel_about_btn">Learn About Us</button>
+                    <button class="button donate-btn" onclick="showDonationPopup()"
+                        data-translate-key="carousel_donate_btn">Donate to us</button>
+                </div>
+            </div>
         </div>
     </div>
-</div>
 
-<!-- Donation Overlay (Repeated for standalone functionality) -->
-<div id="donation-modal-placeholder"></div>
+    <div class="main-content" id="main-content">
+        <h1 class="lang-content en">Paschimbanga Vigyan mancha</h1>
+        <h1 class="lang-content bn">পশ্চিমবঙ্গ বিজ্ঞান মঞ্চ</h1>
 
-<button id="scrollToTopBtn" onclick="scrollToTop()" aria-label="Scroll to top"><i class="fa-solid fa-arrow-up"></i></button>
+        <div id="content-body">
+            <!-- English Content -->
+            <div class="lang-content en">
+                <p>Science popularization was not a totally new concept to the people of West Bengal in 1986 when
+                    Paschim Banga Vigyam Mancha (PBVM) started function. The doyens of our renaissance were involved in
+                    this social reform work even in early nineteenth century. The only difference is that PBVM initiated
+                    an organized People's Science Movement.</p>
+                <p>More than three decade has passed since its inception and now no one will deny that PBVM is a name in
+                    this field of science popularization not in West Bengal but also in India.</p>
+                <p>In the twenty two Districts of West Bengal, most of the Blocks of the State, in the research
+                    Institutes and Universities have their respective units/committees of Paschim Banga Vigyan Mancha.
+                    Millions of people of West Bengal are very much familiar with the name PBVM because of its sustained
+                    various type of activities which relates with all walks of life.</p>
+                <h2>Uluberia Vigyan Kendra</h2>
+                <p>A zonal section under <strong>Howrah Zilla Committee</strong></p>
+                <h2 id="chakras-heading">Constituent Chakras</h2>
+                <p><strong>Uluberia Vigyan Kendra comprises the following 4 chakras:</strong></p>
+                <ul>
+                    <li><strong>Uluberia Sahar Chakra</strong></li>
+                    <li><strong>Jadurberia Chakra</strong></li>
+                    <li><strong>Kalinagar Chakra</strong></li>
+                    <li><strong>Nabagram Chakra</strong></li>
+                </ul>
+                <h2>Our Core Values</h2>
+                <ul>
+                    <li>To make the people conscious about the utilization of natural resources for the interest of the
+                        society.</li>
+                    <li>To inspire about the uses of Science &amp; Technology in daily life.</li>
+                    <li>To develop the awareness of the people about environment, Public health etc. To educate the
+                        people about the harmful effects of different products which are produced or made by the
+                        monopoly capitalist of our country and abroad, specially by Multinational Corporation.</li>
+                    <li>To encourage innovative, fundamental, scientific research and developments.</li>
+                    <li>To continue the struggle for scientific education in mother tongue.</li>
+                    <li>To launch movement against fundamentalism, superstition and unscientific ideas.</li>
+                    <li>To oppose the implementation of any technology that is against the interest of society.</li>
+                    <li>To create movement for peoples oriented science and technology policies.</li>
+                    <li>To publish popular science magazine, science related books, monographs, pamphlets, etc
+                        regularly.</li>
+                    <li>To take necessary program against the use of science and technology in war to destroy the human
+                        civilization.</li>
+                    <li>To implement the projects and programs for the attainment of self-reliance of the country and to
+                        help reach its benefits to the people.</li>
+                </ul>
+                <h2>Awards & Achievement</h2>
+                <ul>
+                    <li><b>National Award for the best effort in Science Popularisation in India during the period
+                            1985-89, By the Department of Science and Technology, Govt. of India on 28th February,
+                            1991.</b></li>
+                    <li><b><abbr title="Paschim Banga Vigyan Mancha">PBVM</abbr> accredited as Major Group by United
+                            Nations for participation in UN Earth Summit - 2002 on 'Sustainable Development' at
+                            Johannesburg, South Africa.</b></li>
+                    <p></p>
+                    <img src="https://raw.githubusercontent.com/pbvmuluberia/pbvmuluberia.github.io/main/src/awards/award.jpg"
+                        class="detail-cover" onerror="this.onerror=null;">
+                </ul>
+            </div>
+
+            <!-- Bengali Content -->
+            <div class="lang-content bn">
+                <p>১৯৮৬ সালে যখন পশ্চিমবঙ্গ বিজ্ঞান মঞ্চ (পঃ বঃ বিঃ মঃ) কাজ শুরু করে তখন বিজ্ঞান জনপ্রিয়করণ,
+                    পশ্চিমবঙ্গের মানুষের কাছে একটি সম্পূর্ণ নতুন ধারণা ছিল না। আমাদের নবজাগরণের পুরোধারা এমনকি ঊনবিংশ
+                    শতাব্দীর প্রথম দিকেও এই সমাজ সংস্কারমূলক কাজে জড়িত ছিলেন। শুধু একমাত্র পার্থক্য হল পঃ বঃ বিঃ মঃ
+                    একটি সংগঠিত গণবিজ্ঞান আন্দোলন শুরু করেছিল।</p>
+                <p>এর সূচনার পর তিন দশকেরও বেশি সময় কেটে গেছে এবং এখন কেউ অস্বীকার করবে না যে পঃ বঃ বিঃ মঃ শুধুমাত্র
+                    পশ্চিমবঙ্গে নয়, ভারতেও বিজ্ঞান জনপ্রিয়করণের ক্ষেত্রে একটি পরিচিত নাম।</p>
+                <p>পশ্চিমবঙ্গের বাইশটি জেলায়, রাজ্যের বেশিরভাগ ব্লকে, গবেষণা প্রতিষ্ঠান এবং বিশ্ববিদ্যালয়গুলিতে
+                    পশ্চিমবঙ্গ বিজ্ঞান মঞ্চের নিজস্ব ইউনিট/কমিটি রয়েছে। পশ্চিমবঙ্গের লক্ষ লক্ষ মানুষ পঃ বঃ বিঃ মঃ নামের
+                    সাথে খুব পরিচিত কারণ এর সমগ্র ক্রিয়াকলাপ জীবনের সকল ক্ষেত্রের সাথে সম্পর্কিত।</p>
+                <h2>উলুবেড়িয়া বিজ্ঞান কেন্দ্র</h2>
+                <p><strong>যৌথ জেলা কমিটি</strong>-এর অধীনে একটি আঞ্চলিক শাখা</p>
+                <h2 id="chakras-heading">গঠনকারী চক্রসমূহ</h2>
+                <p><strong>উলুবেড়িয়া বিজ্ঞান কেন্দ্র নিম্নলিখিত ৪টি চক্র নিয়ে গঠিত:</strong></p>
+                <ul>
+                    <li><strong>উলুবেড়িয়া শহর বিজ্ঞান চক্র</strong></li>
+                    <li><strong>যদুরবেড়িয়া বিজ্ঞান চক্র</strong></li>
+                    <li><strong>কালীনগর বিজ্ঞান চক্র</strong></li>
+                    <li><strong>নবগ্রাম বিজ্ঞান চক্র</strong></li>
+                </ul>
+                <h2>লক্ষ্য ও উদ্দেশ্যসমূহ</h2>
+                <ul>
+                    <li>সমাজের স্বার্থে প্রাকৃতিক সম্পদের ব্যবহার সম্পর্কে জনগণকে সচেতন করা।</li>
+                    <li>দৈনন্দিন জীবনে বিজ্ঞান ও প্রযুক্তির ব্যবহার সম্পর্কে অনুপ্রাণিত করা।</li>
+                    <li>পরিবেশ, জনস্বাস্থ্য ইত্যাদি সম্পর্কে জনগণের মধ্যে সচেতনতা তৈরি করা। দেশের ও বিদেশের একচেটিয়া
+                        পুঁজিবাদী, বিশেষত বহুজাতিক কর্পোরেশনগুলির দ্বারা উৎপাদিত বা তৈরি বিভিন্ন পণ্যের ক্ষতিকারক প্রভাব
+                        সম্পর্কে জনগণকে শিক্ষিত করা।</li>
+                    <li>উদ্ভাবনী, মৌলিক, বৈজ্ঞানিক গবেষণা ও উন্নয়নকে উৎসাহিত করা।</li>
+                    <li>মাতৃভাষায় বিজ্ঞান শিক্ষার জন্য সংগ্রাম চালিয়ে যাওয়া।</li>
+                    <li>মৌলবাদ, কুসংস্কার এবং অবৈজ্ঞানিক ধারণার বিরুদ্ধে আন্দোলন শুরু করা।</li>
+                    <li>সমাজের স্বার্থের পরিপন্থী যেকোনো প্রযুক্তির প্রয়োগের বিরোধিতা করা।</li>
+                    <li>জনগণের জন্য বিজ্ঞান ও প্রযুক্তি নীতি তৈরি করার জন্য আন্দোলন তৈরি করা।</li>
+                    <li>নিয়মিতভাবে জনপ্রিয় বিজ্ঞান পত্রিকা, বিজ্ঞান-সম্পর্কিত বই, মনোগ্রাফ, প্যামফ্লেট ইত্যাদি প্রকাশ
+                        করা।</li>
+                    <li>মানব সভ্যতা ধ্বংস করার জন্য যুদ্ধে বিজ্ঞান ও প্রযুক্তির ব্যবহারের বিরুদ্ধে প্রয়োজনীয় কর্মসূচি
+                        গ্রহণ করা।</li>
+                    <li>দেশের স্বনির্ভরতা অর্জনের জন্য প্রকল্প ও কর্মসূচি বাস্তবায়ন করা এবং এর সুবিধাগুলি জনগণের কাছে
+                        পৌঁছে দিতে সহায়তা করা।</li>
+                </ul>
+                <h2>পুরস্কার ও কৃতিত্ব</h2>
+                <ul>
+                    <li><b>১৯৮৫-৮৯ সময়কালে ভারতে বিজ্ঞান জনপ্রিয়করণে সেরা প্রচেষ্টার জন্য ভারত সরকারের বিজ্ঞান ও
+                            প্রযুক্তি বিভাগ দ্বারা ২৮শে ফেব্রুয়ারি, ১৯৯১-এ জাতীয় পুরস্কার পায় <abbr
+                                title="পশ্চিমবঙ্গ বিজ্ঞান মঞ্চ">পঃ বঃ বিঃ মঃ</abbr>।</b></li>
+                    <li><b>দক্ষিণ আফ্রিকার জোহানেসবার্গে 'স্থিতিশীল উন্নয়ন' (Sustainable Development)-এর উপর আয়োজিত
+                            ২০০২ সালের রাষ্ট্রসংঘ 'আর্থ সামিট'-এ (UN Earth Summit) অংশগ্রহণের জন্য পঃ বঃ বিঃ মঃ (PBVM)
+                            রাষ্ট্রসংঘ কর্তৃক 'মেজর গ্রুপ' (Major Group) হিসাবে স্বীকৃতি পেয়েছে।</b></li>
+                    <p></p>
+                    <img src="https://raw.githubusercontent.com/pbvmuluberia/pbvmuluberia.github.io/main/src/awards/award.jpg"
+                        class="detail-cover" onerror="this.onerror=null;">
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Donation Overlay (Repeated for standalone functionality) -->
+    <div id="donation-modal-placeholder"></div>
+
+    <button id="scrollToTopBtn" onclick="scrollToTop()" aria-label="Scroll to top"><i
+            class="fa-solid fa-arrow-up"></i></button>
 
 </body>
+
 </html>

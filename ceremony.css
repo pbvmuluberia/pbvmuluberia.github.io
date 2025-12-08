@@ -151,7 +151,7 @@
 /* Dignitaries Grid */
 .dignitaries-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-template-columns: repeat(4, 1fr);
     gap: var(--space-lg);
     /* 30px */
     justify-content: center;
@@ -191,7 +191,6 @@
             border-radius: var(--border-radius-medium);
             font-size: var(--font-size-p);
             font-weight: var(--font-weight-heavy);
-            text-transform: uppercase;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             white-space: nowrap;
         }
@@ -212,6 +211,22 @@
             /* 10px 0 5px */
             color: var(--text-color-primary);
         }
+    }
+}
+
+
+/* When the screen is too narrow for 4 columns (e.g., tablet/mobile) */
+@media (max-width: 800px) {
+    .dignitaries-grid {
+        /* Force exactly 2 columns */
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Optional: Stack to 1 column on very small mobile screens */
+@media (max-width: 400px) {
+    .dignitaries-grid {
+        grid-template-columns: 1fr;
     }
 }
 
