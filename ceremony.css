@@ -166,7 +166,7 @@
         background: var(--surface-color);
         border: 1px solid var(--card-border-color);
         border-radius: var(--border-radius-medium);
-        padding: var(--space-lg);
+        padding: var(--space-lg) var(--space-sm);
         /* 30px */
         text-align: center;
         position: relative;
@@ -186,10 +186,10 @@
             background: var(--primary-color);
             color: var(--surface-color);
             /* Light text on primary bg */
-            padding: var(--space-xs) 15px;
-            /* 5px 15px */
+            padding: var(--space-xs) var(--space-sm);
+            /* 5px 10px */
             border-radius: var(--border-radius-medium);
-            font-size: var(--font-size-p);
+            font-size: calc(var(--font-size-p)*0.8);
             font-weight: var(--font-weight-heavy);
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
             white-space: nowrap;
