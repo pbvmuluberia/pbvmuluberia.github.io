@@ -73,11 +73,15 @@
 
     <div class="search-form-card">
       <div class="input-group">
-        <label data-translate-key="roll_number_label" for="rollNoInput">Enter Roll Number:</label>
-        <input data-translate-key="roll_number_placeholder" type="text" id="rollNoInput" placeholder="e.g., UL/01001"
-          required>
-        <label data-translate-key="year_label" for="yearInput">Enter Year:</label>
-        <input data-translate-key="year_placeholder" type="text" id="yearInput" placeholder="e.g., 2024" required>
+        <div style="align-self: right;">
+          <label data-translate-key="roll_number_label" for="rollNoInput">Enter Roll Number:</label>
+          <input data-translate-key="roll_number_placeholder" type="text" id="rollNoInput" placeholder="e.g., UL/01001"
+            required>
+        </div>
+        <div style="align-self: right;">
+          <label data-translate-key="year_label" for="yearInput">Enter Year:</label>
+          <input data-translate-key="year_placeholder" type="text" id="yearInput" placeholder="e.g., 2024" required>
+        </div>
         <div style="display: flex; gap: var(--space-sm);">
           <button id="searchBtn" class="donate-btn"
             style="align-self: center; border-radius: var(--border-radius-medium); padding: var(--space-sm) var(--space-md);"
@@ -159,8 +163,10 @@
                   <table>
                       <thead>
                           <tr>
-                              <th colspan="1" class="table-header" data-translate-key="result_header">Performance Report - Howrah Zilla Vigyan Manosikata-o-Medha Aviksha</th>
-                              <th colspan="1" class="table-header">${year}</th>
+                              <th colspan="2" class="table-header" data-translate-key="result_header">Performance Report - Howrah Zilla Vigyan Manosikata-o-Medha Aviksha</th>
+                          </tr>
+                          <tr>
+                              <th colspan="2" class="table-header">${year}</th>
                           </tr>
                       </thead>
                       <tbody>
