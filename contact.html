@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="bn">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,74 +8,96 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <link rel="stylesheet" href="style.css">
-    
+
     <script src="./src/components/script/components.js"></script>
     <script src="./src/components/script/data.js"></script>
     <script src="./src/components/script/utils.js"></script>
     <script src="./src/components/script/modal.js"></script>
     <script src="./src/components/script/init.js"></script>
-    
+
     <style>
-        .lang-content { display: none; }
-        .lang-content.active { display: block; }
-        h1.lang-content.active { display: block; }
+        .lang-content {
+            display: none;
+        }
+
+        .lang-content.active {
+            display: block;
+        }
+
+        h1.lang-content.active {
+            display: block;
+        }
     </style>
     <script>
-        (function() {
-        // 1. Restore Theme immediately
+        (function () {
+            // 1. Restore Theme immediately
             const savedTheme = localStorage.getItem('theme');
             if (savedTheme === 'dark') {
                 document.documentElement.classList.add('dark-theme');
             }
 
-        // 2. Restore Language immediately (Optional, but helps reducing text flicker)
-        // This sets a global variable that script.js can use later to skip reading storage again
-        window.savedLang = localStorage.getItem('language') || 'bn';
+            // 2. Restore Language immediately (Optional, but helps reducing text flicker)
+            // This sets a global variable that script.js can use later to skip reading storage again
+            window.savedLang = localStorage.getItem('language') || 'bn';
         })();
     </script>
 </head>
+
 <body id="contact">
 
-<div id="navbar-placeholder"></div>
+    <div id="navbar-placeholder"></div>
 
-<div id="messageBox"></div>
+    <div id="messageBox"></div>
 
-<div class="container" style="overflow: hidden;">
-  <div class="slide">
-    <div class="item" style="--bg-image: url('https://picsum.photos/id/1032/800/400'); position: relative; width: 100%; top: 0; left: 0; transform: none; border-radius: 0;">
-      <div class="content" style="display: block; opacity: 1; transform: translate(0, -50%); padding-top: 0; top: 50%;">
-        <h2 class="name" data-translate-key="carousel_contact_name">Contact</h2>
-        <p class="des" data-translate-key="carousel_contact_des">Reach out to us anytime.</p>
-        <button class="button action-btn" onclick="scrollToContent()" data-translate-key="carousel_contact_btn">Get in Touch</button>
-        <button class="button donate-btn" onclick="showDonationPopup()" data-translate-key="carousel_donate_btn">Donate to us</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="main-content" id="main-content">
-    <h1 class="lang-content en">Get in Touch with Us</h1>
-    <h1 class="lang-content bn">আমাদের সাথে যোগাযোগ করুন</h1>
-
-    <div id="content-body">
-        <div class="lang-content en">
-            <p>We welcome your questions, feedback, and collaboration proposals. You can reach us via email.</p>
-            <h2>Contact Details</h2>
-            <p><strong>Email to : &nbsp;</strong><a href="mailto: pbvmuluberia@gmail.com">pbvmuluberia@gmail.com</a></p>
-            <p><strong>Facebook : &nbsp;</strong><a href="https://www.facebook.com/p/Paschim-Banga-Vigyan-Mancha-State-Committee-100021249991715/" target="_blank"><i class="fa-brands fa-facebook"></i> Visit our Facebook Page</a></p>
-        </div>
-        <div class="lang-content bn">
-            <p>আমরা আপনার প্রশ্ন, প্রতিক্রিয়া, এবং সহযোগিতার প্রস্তাবকে স্বাগত জানাই। আপনি ইমেলের মাধ্যমে আমাদের সাথে যোগাযোগ করতে পারেন।</p>
-            <h2>যোগাযোগের বিবরণ</h2>
-            <p><strong>ইমেল করুন :  &nbsp;</strong><a href="mailto: pbvmuluberia@gmail.com">pbvmuluberia@gmail.com</a></p>
-            <p><strong>ফেসবুক :  &nbsp;</strong><a href="https://www.facebook.com/p/Paschim-Banga-Vigyan-Mancha-State-Committee-100021249991715/" target="_blank"><i class="fa-brands fa-facebook"></i> আমাদের ফেসবুক পেজ</a></p>
+    <div class="container" style="overflow: hidden;">
+        <div class="slide">
+            <div class="item"
+                style="--bg-image: url('https://picsum.photos/id/1032/800/400'); position: relative; width: 100%; top: 0; left: 0; transform: none; border-radius: 0;">
+                <div class="content"
+                    style="display: block; opacity: 1; transform: translate(0, -50%); padding-top: 0; top: 30%;">
+                    <h2 class="name" data-translate-key="carousel_contact_name">Contact</h2>
+                    <p class="des" data-translate-key="carousel_contact_des">Reach out to us anytime.</p>
+                    <button class="button action-btn" onclick="scrollToContent()"
+                        data-translate-key="carousel_contact_btn">Get in Touch</button>
+                    <button class="button donate-btn" onclick="showDonationPopup()"
+                        data-translate-key="carousel_donate_btn">Donate to us</button>
+                </div>
+            </div>
         </div>
     </div>
-</div>
 
-<div id="donation-modal-placeholder"></div>
+    <div class="main-content" id="main-content">
+        <h1 class="lang-content en">Get in Touch with Us</h1>
+        <h1 class="lang-content bn">আমাদের সাথে যোগাযোগ করুন</h1>
 
-<button id="scrollToTopBtn" onclick="scrollToTop()" aria-label="Scroll to top"><i class="fa-solid fa-arrow-up"></i></button>
+        <div id="content-body">
+            <div class="lang-content en">
+                <p>We welcome your questions, feedback, and collaboration proposals. You can reach us via email.</p>
+                <h2>Contact Details</h2>
+                <p><strong>Email to : &nbsp;</strong><a href="mailto: pbvmuluberia@gmail.com">pbvmuluberia@gmail.com</a>
+                </p>
+                <p><strong>Facebook : &nbsp;</strong><a
+                        href="https://www.facebook.com/p/Paschim-Banga-Vigyan-Mancha-State-Committee-100021249991715/"
+                        target="_blank"><i class="fa-brands fa-facebook"></i> Visit our Facebook Page</a></p>
+            </div>
+            <div class="lang-content bn">
+                <p>আমরা আপনার প্রশ্ন, প্রতিক্রিয়া, এবং সহযোগিতার প্রস্তাবকে স্বাগত জানাই। আপনি ইমেলের মাধ্যমে আমাদের
+                    সাথে যোগাযোগ করতে পারেন।</p>
+                <h2>যোগাযোগের বিবরণ</h2>
+                <p><strong>ইমেল করুন : &nbsp;</strong><a
+                        href="mailto: pbvmuluberia@gmail.com">pbvmuluberia@gmail.com</a></p>
+                <p><strong>ফেসবুক : &nbsp;</strong><a
+                        href="https://www.facebook.com/p/Paschim-Banga-Vigyan-Mancha-State-Committee-100021249991715/"
+                        target="_blank"><i class="fa-brands fa-facebook"></i> আমাদের ফেসবুক পেজ</a></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="donation-modal-placeholder"></div>
+
+    <button id="scrollToTopBtn" onclick="scrollToTop()" aria-label="Scroll to top"><i
+            class="fa-solid fa-arrow-up"></i></button>
 
 </body>
+
 </html>

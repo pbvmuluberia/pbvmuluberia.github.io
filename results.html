@@ -9,6 +9,16 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <!-- Assuming qrcodejs is used elsewhere, kept for compatibility -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <style type="text/css" media="print">
+    body * {
+      visibility: hidden;
+    }
+
+    .printable-section,
+    .printable-section * {
+      visibility: visible;
+    }
+  </style>
 
   <!-- Global Styles (Assumed to contain :root variables) -->
   <link rel="stylesheet" href="style.css">
@@ -66,9 +76,16 @@
         <label data-translate-key="roll_number_label" for="rollNoInput">Enter Roll Number:</label>
         <input data-translate-key="roll_number_placeholder" type="text" id="rollNoInput" placeholder="e.g., UL/01001"
           required>
-        <button class="action-btn"
-          style="align-self: center; border-radius: var(--border-radius-medium); padding: var(--space-sm) var(--space-md);"
-          onclick="searchData()" data-translate-key="search_result_button">Search Result</button>
+        <label data-translate-key="year_label" for="yearInput">Enter Year:</label>
+        <input data-translate-key="year_placeholder" type="text" id="yearInput" placeholder="e.g., 2024" required>
+        <div style="display: flex; gap: var(--space-sm);">
+          <button id="searchBtn" class="donate-btn"
+            style="align-self: center; border-radius: var(--border-radius-medium); padding: var(--space-sm) var(--space-md);"
+            onclick="searchData()" data-translate-key="search_result_button">Search Result</button>
+          <button class="donate-btn"
+            style="align-self: center; border-radius: var(--border-radius-medium); padding: var(--space-sm) var(--space-md);"
+            onclick="window.print();" data-translate-key="print_result_button">Print</button>
+        </div>
       </div>
 
       <div id="result-display" data-translate-key="default_result_display">
@@ -83,14 +100,30 @@
       const resultDiv = document.getElementById('result-display');
 
       async function searchData() {
-        const rollNo = document.getElementById('rollNoInput').value.trim();
+        // 1. GET ELEMENTS
+        const yearInput = document.getElementById('yearInput');
+        const rollNoInput = document.getElementById('rollNoInput');
+        const searchBtn = document.getElementById('searchBtn'); // Get the button
+        const resultDiv = document.getElementById('result-display');
+
+        const year = yearInput.value.trim();
+        const rollNo = rollNoInput.value.trim();
 
         // Clear previous formatting
         resultDiv.className = '';
         const rollRegex = /^[U][L]\/\d{5}$/;
+        const yearRegex = /^\d{4}$/;
+
+        // 2. VALIDATION (Do not disable button yet)
+        if (!year || !yearRegex.test(year)) {
+          resultDiv.setAttribute('data-translate-key', 'enter_valid_year');
+          resultDiv.innerHTML = 'Please enter a valid 4-digit Year. e.g., 2024';
+          resultDiv.className = 'error';
+          if (window.applyTranslations) window.applyTranslations();
+          return;
+        }
 
         if (!rollNo || !rollRegex.test(rollNo)) {
-          // We can keep the key here because this IS a message
           resultDiv.setAttribute('data-translate-key', 'enter_roll_number');
           resultDiv.innerHTML = 'Please enter a valid Roll Number. e.g., UL/12345';
           resultDiv.className = 'error';
@@ -98,11 +131,13 @@
           return;
         }
 
-        // Remove the key so the loader (and subsequent results) aren't overwritten
+        // 3. DISABLE BUTTON & SHOW LOADER
+        searchBtn.disabled = true; // Disable the button
+
         resultDiv.removeAttribute('data-translate-key');
         resultDiv.innerHTML = '<div class="loader"></div>';
 
-        const fullUrl = `${WEB_APP_URL}?rollNo=${encodeURIComponent(rollNo)}`;
+        const fullUrl = `${WEB_APP_URL}?rollNo=${encodeURIComponent(rollNo)}&year=${encodeURIComponent(year)}`;
 
         try {
           const response = await fetch(fullUrl, {
@@ -119,14 +154,13 @@
           if (data.status === 'success' && data.data && data.data.length > 0) {
             const student = data.data[0];
 
-            // Note: The inner translation keys (result_header, name, etc.) will work fine
-            // because they are children of resultDiv, not resultDiv itself.
             const outputHTML = `
-              <div class="result-success-content">
+              <div class="result-success-content printable-section">
                   <table>
                       <thead>
                           <tr>
-                              <th colspan="2" class="table-header" data-translate-key="result_header">Student Performance Report</th>
+                              <th colspan="1" class="table-header" data-translate-key="result_header">Performance Report - Howrah Zilla Vigyan Manosikata-o-Medha Aviksha</th>
+                              <th colspan="1" class="table-header">${year}</th>
                           </tr>
                       </thead>
                       <tbody>
@@ -164,37 +198,29 @@
           } else if (data.status === 'not_found') {
             resultDiv.innerHTML = '<div data-translate-key="not_found">❌ Roll Number not found in the sheet.</div>';
             resultDiv.className = 'error';
+          } else if (data.status === 'error') {
+            resultDiv.innerHTML = '<div data-translate-key="error_found">❌ Result is not available for this year.</div>';
+            resultDiv.className = 'error';
           } else {
-            // 1. Get the current active language (default to 'bn' if missing)
             const lang = getLang();
-
-            // 2. Retrieve the template string from window.translations
-            // Example string: "🚨 API Error: ${data.message}"
             const template = window.translations[lang]['api_error'] || window.translations['en']['api_error'];
-
-            // 3. Manually replace the placeholder text '${data.message}' with the actual server message
             const finalMessage = template.replace('${data.message}', data.message);
-
-            // 4. Display the result
             resultDiv.innerHTML = finalMessage;
             resultDiv.className = 'error';
           }
         } catch (error) {
           const lang = getLang();
-
-          // Template: "🚨 Critical Network Error: ${error.message}. Check browser console."
           const template = window.translations[lang]['network_error'] || window.translations['en']['network_error'];
-
-          // Replace placeholder
           const finalMessage = template.replace('${error.message}', error.message);
 
           resultDiv.innerHTML = finalMessage;
           resultDiv.className = 'error';
           console.error("Fetch Error:", error);
+        } finally {
+          // 4. RE-ENABLE BUTTON (Runs on both Success and Error)
+          searchBtn.disabled = false;
         }
 
-        // Now safe to run: The parent div has no key, so it won't be reset. 
-        // It will only translate the new keys inside (like 'result_header').
         if (window.applyTranslations) {
           window.applyTranslations();
         }

@@ -83,13 +83,9 @@
     font-size: var(--font-size-p);
     color: var(--text-color-primary);
     background-color: var(--background-color);
+    width: 150px;
 }
 
-.input-group input[type="text"]:focus {
-    border-color: var(--primary-color);
-    outline: none;
-    box-shadow: 0 0 0 3px var(--primary-color-faded);
-}
 
 @media (min-width: 900px) {
     .input-group {
@@ -219,7 +215,13 @@ th {
     color: var(--surface-color);
     width: 35%;
     background-color: var(--primary-color);
+}
+
+th:first-child {
     border-top-left-radius: var(--border-radius-medium);
+}
+
+th:last-child {
     border-top-right-radius: var(--border-radius-medium);
 }
 
@@ -263,6 +265,15 @@ table tr td:last-child {
     display: block;
     margin: 0 auto;
     /* Centers the loader horizontally */
+}
+
+.donate-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    filter: grayscale(0.5);
+    transform: none !important;
+    /* Prevents click animation */
+    pointer-events: none;
 }
 
 @keyframes spin {
