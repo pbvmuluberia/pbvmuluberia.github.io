@@ -139,7 +139,7 @@
     display: flex;
     width: 100%;
     background-color: transparent;
-    padding: var(--space-md);
+    padding: var(--space-lg);
     width: 100%;
     text-align: left;
     margin: 0 auto;

@@ -11,18 +11,18 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
     <!-- Global Styles -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../../css/style.css">
     <!-- Page Specific Styles -->
-    <link rel="stylesheet" href="ceremony.css">
+    <link rel="stylesheet" href="../../css/ceremony.css">
 
     <!-- Scripts -->
-    <script src="./src/components/script/components.js" defer></script>
+    <script src="../../script/components.js" defer></script>
     <!-- Assuming data.js and utils.js exist in your project as referenced in index.html -->
-    <script src="./src/components/script/data.js" defer></script>
-    <script src="./src/components/script/utils.js" defer></script>
-    <script src="./src/components/script/modal.js" defer></script>
-    <script src="./src/components/script/init.js" defer></script>
-    
+    <script src="../../script/data.js" defer></script>
+    <script src="../../script/utils.js" defer></script>
+    <script src="../../script/modal.js" defer></script>
+    <script src="../../script/init.js" defer></script>
+
     <script>
         (function () {
             // 1. Restore Theme immediately
@@ -50,15 +50,41 @@
 
 <body id="ceremony">
     <!-- Navbar Placeholder -->
-    <div id="navbar-placeholder"></div>
+    <nav class="menu">
+        <img src="https://raw.githubusercontent.com/t4saha/PBVM-Uluberia-Vigyan-Kendra/main/Logo/pvbm_logo_gold.png"
+            alt="Logo" class="nav-logo"
+            onerror="this.onerror=null; this.src='https://placehold.co/50x50/d79921/3c3836?text=LOGO'">
 
+        <div class="menu-controls-mobile">
+            <span class="menu-label-text" data-translate-key="nav_menu">Menu</span>
+            <button class="hamburger-menu" id="hamburgerBtn" onclick="toggleMenu()">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <span class="menu-label-text current-menu-label" id="currentMenuLabel"
+                data-translate-key="nav${activePageID}">Menu</span>
+        </div>
+        <div class="nav-links" id="navLinks">
+            <a href="../../../../index.html" class="${isActive(menu_home)}" data-translate-key="nav_home">Home</a>
+        </div>
+
+        <div class="header-controls">
+            <button id="themeToggleIcon" onclick="toggleTheme()" class="theme-icon-button">
+                <i class="fa-solid fa-sun theme-icon sun-icon"></i>
+                <i class="fa-solid fa-moon theme-icon moon-icon"></i>
+            </button>
+            <div class="lang-toggle">
+                <span id="langEn" onclick="setLang('en')">EN</span>
+                <span id="langBn" onclick="setLang('bn')">বা</span>
+            </div>
+        </div>
+    </nav>
     <!-- English Content Section -->
     <div class="lang-content en">
         <div class="ceremony-container">
 
             <!-- Header Section -->
             <header class="ceremony-header">
-                <img src="./src/banner/40 years.png" alt="40th Anniversary Celebration"></img>
+                <img src="../../../banner/40 years.png" alt="40th Anniversary Celebration"></img>
                 <h1>40th Anniversary Celebration</h1>
                 <h3>Four decades of scientific popularization.</h3>
                 <p>Paschimbanga Vigyan Mancha &bull; November 29, 2025</p>
@@ -73,23 +99,23 @@
                     <!-- Replace sources with actual images -->
                     <!-- Replace sources with actual images -->
                     <figure class="scroll-item">
-                        <img src="./src/40 years/slide 1.jpeg" alt="Inauguration">
+                        <img src="../../../40 years/slide 1.jpeg" alt="Inauguration">
                         <figcaption class="item-caption">Fig.1 - Inaugural Flag Hoisting Ceremony</figcaption>
                     </figure>
                     <figure class="scroll-item">
-                        <img src="./src/40 years/slide 2.jpg" alt="Audience">
+                        <img src="../../../40 years/slide 2.jpg" alt="Audience">
                         <figcaption class="item-caption">Fig.2 - A packed auditorium</figcaption>
                     </figure>
                     <figure class="scroll-item">
-                        <img src="./src/40 years/slide 3.jpg" alt="Exhibition">
+                        <img src="../../../40 years/slide 3.jpg" alt="Exhibition">
                         <figcaption class="item-caption">Fig.3 - Singing Rabindranath Tagore</figcaption>
                     </figure>
                     <figure class="scroll-item">
-                        <img src="./src/40 years/slide 4.jpeg" alt="Awards">
+                        <img src="../../../40 years/slide 4.jpeg" alt="Awards">
                         <figcaption class="item-caption">Fig.4 - Reciting regional poetry of Purulia</figcaption>
                     </figure>
                     <figure class="scroll-item">
-                        <img src="./src/40 years/slide 5.jpeg" alt="Speech">
+                        <img src="../../../40 years/slide 5.jpeg" alt="Speech">
                         <figcaption class="item-caption">Fig.5 - Keynote Speech</figcaption>
                     </figure>
                 </div>
@@ -103,25 +129,25 @@
                 <ul class="dignitaries-grid">
                     <li class="dignitary-card">
                         <div class="role-badge">President - Howrah Zilla</div>
-                        <img src="./src/Guests/Kali Jasu.jpeg" alt="President">
+                        <img src="../../../Guests/Kali Jasu.jpeg" alt="President">
                         <h3>Kalikrishna Jasu</h3>
                         <p>Teacher</p>
                     </li>
                     <li class="dignitary-card">
                         <div class="role-badge">President - Uluberia Kendra</div>
-                        <img src="./src/Guests/A Jasu.jpeg" alt="President">
+                        <img src="../../../Guests/A Jasu.jpeg" alt="President">
                         <h3>Dr. Arun Jasu</h3>
                         <p>Renowned Doctor</p>
                     </li>
                     <li class="dignitary-card">
                         <div class="role-badge">Main Speaker</div>
-                        <img src="./src/Guests/K Basar.jpeg" alt="Speaker">
+                        <img src="../../../Guests/K Basar.jpeg" alt="Speaker">
                         <h3>Adv. Sk Khairul Basar</h3>
                         <p>Senior Advocate</p>
                     </li>
                     <li class="dignitary-card">
                         <div class="role-badge">Secretary - Uluberia Kendra</div>
-                        <img src="./src/Guests/Biswajit Paul.jpeg" alt="Speaker">
+                        <img src="../../../Guests/Biswajit Paul.jpeg" alt="Speaker">
                         <h3>Biswajit Paul</h3>
                         <p>Teacher</p>
                     </li>
@@ -134,73 +160,73 @@
                 <div class="participants-grid">
                     <!-- Participant Items -->
                     <li class="participant-item">
-                        <div class="participant-img"><img src="./src/Guests/Mouma Kanral.jpeg" alt="User">
+                        <div class="participant-img"><img src="../../../Guests/Mouma Kanral.jpeg" alt="User">
                         </div>
                         <div class="participant-name">Mouma Kanral</div>
                         <p>Recitings</p>
                     </li>
                     <li class="participant-item">
-                        <div class="participant-img"><img src="./src/Guests/Champa Roy.jpeg" alt="User">
+                        <div class="participant-img"><img src="../../../Guests/Champa Roy.jpeg" alt="User">
                         </div>
                         <div class="participant-name">Champa Roy</div>
                         <p>Reciting</p>
                     </li>
                     <li class="participant-item">
-                        <div class="participant-img"><img src="./src/Guests/Tulika Roy.jpeg" alt="User">
+                        <div class="participant-img"><img src="../../../Guests/Tulika Roy.jpeg" alt="User">
                         </div>
                         <div class="participant-name">Tulika Roy</div>
                         <p>Singing</p>
                     </li>
                     <li class="participant-item">
-                        <div class="participant-img"><img src="./src/Guests/Bibekananda Biswas.jpeg" alt="User">
+                        <div class="participant-img"><img src="../../../Guests/Bibekananda Biswas.jpeg" alt="User">
                         </div>
                         <div class="participant-name">Bibekananda Biswas</div>
                         <p>Reciting</p>
                     </li>
                     <li class="participant-item">
-                        <div class="participant-img"><img src="./src/Guests/Trisha Biswas.jpeg" alt="User">
+                        <div class="participant-img"><img src="../../../Guests/Trisha Biswas.jpeg" alt="User">
                         </div>
                         <div class="participant-name">Trisha Biswas</div>
                         <p>Reciting</p>
                     </li>
                     <li class="participant-item">
-                        <div class="participant-img"><img src="./src/Guests/Bimala Dolui.jpeg" alt="User">
+                        <div class="participant-img"><img src="../../../Guests/Bimala Dolui.jpeg" alt="User">
                         </div>
                         <div class="participant-name">Bimala Dolui</div>
                         <p>Reciting</p>
                     </li>
                     <li class="participant-item">
-                        <div class="participant-img"><img src="./src/Guests/Jaharul Amin Mollah.jpeg" alt="User">
+                        <div class="participant-img"><img src="../../../Guests/Jaharul Amin Mollah.jpeg" alt="User">
                         </div>
                         <div class="participant-name">Jaharul Amin Mollah</div>
                         <p>Reciting</p>
                     </li>
                     <li class="participant-item">
-                        <div class="participant-img"><img src="./src/Guests/Sushmita Kanral.jpeg" alt="User">
+                        <div class="participant-img"><img src="../../../Guests/Sushmita Kanral.jpeg" alt="User">
                         </div>
                         <div class="participant-name">Sushmita Kanral</div>
                         <p>Singing</p>
                     </li>
                     <li class="participant-item">
-                        <div class="participant-img"><img src="./src/Guests/Soma Chowdhury.jpeg" alt="User">
+                        <div class="participant-img"><img src="../../../Guests/Soma Chowdhury.jpeg" alt="User">
                         </div>
                         <div class="participant-name">Soma Chowdhury</div>
                         <p>Reciting</p>
                     </li>
                     <li class="participant-item">
-                        <div class="participant-img"><img src="./src/Guests/Oindrik Sau.jpeg" alt="User">
+                        <div class="participant-img"><img src="../../../Guests/Oindrik Sau.jpeg" alt="User">
                         </div>
                         <div class="participant-name">Oindrik Sau</div>
                         <p>Instrumentalist</p>
                     </li>
                     <li class="participant-item">
-                        <div class="participant-img"><img src="./src/Guests/Pankaj jasu.jpeg" alt="User">
+                        <div class="participant-img"><img src="../../../Guests/Pankaj jasu.jpeg" alt="User">
                         </div>
                         <div class="participant-name">Pankaj Jasu</div>
                         <p>Singing</p>
                     </li>
                     <li class="participant-item">
-                        <div class="participant-img"><img src="./src/Guests/T Saha.jpeg" alt="User">
+                        <div class="participant-img"><img src="../../../Guests/T Saha.jpeg" alt="User">
                         </div>
                         <div class="participant-name">Tanmoy Saha</div>
                         <p>Presenter</p>
@@ -265,7 +291,8 @@
                             Learn how to ensure safe food for your family.</p>
                         <button class="action-btn" onclick="openWindow()">Download Guide</button>
                     </div>
-                    <div class="program-img"><img src="./src/adultration/adultration termaric.jpeg" alt="Adulteration">
+                    <div class="program-img"><img src="../../../adultration/adultration termaric.jpeg"
+                            alt="Adulteration">
                     </div>
                 </div>
             </section>
@@ -323,7 +350,7 @@
 
             <!-- Header Section -->
             <header class="ceremony-header">
-                <img src="./src/banner/40 years.png" alt="উদ্বোধন"></img>
+                <img src="../../../banner/40 years.png" alt="উদ্বোধন"></img>
                 <h1>৪০তম প্রতিষ্ঠা বার্ষিকী উদ্‌যাপন</h1>
                 <h3>বিজ্ঞানকে জনপ্রিয় করার চার দশক</h3>
                 <p>পশ্চিমবঙ্গ বিজ্ঞান মঞ্চ &bull; নভেম্বর ২৯, ২০২৫</p>
@@ -337,23 +364,23 @@
                 <div class="scroll-container" id="galleryScroll-bn">
                     <!-- Replace sources with actual images -->
                     <figure class="scroll-item">
-                        <img src="./src/40 years/slide 1.jpeg" alt="উদ্বোধন">
+                        <img src="../../../40 years/slide 1.jpeg" alt="উদ্বোধন">
                         <figcaption class="item-caption">চিত্র.১ - উদ্বোধনী পতাকা উত্তোলন অনুষ্ঠান</figcaption>
                     </figure>
                     <figure class="scroll-item">
-                        <img src="./src/40 years/slide 2.jpg" alt="অতিথিবৃন্দ">
+                        <img src="../../../40 years/slide 2.jpg" alt="অতিথিবৃন্দ">
                         <figcaption class="item-caption">চিত্র.২ - ভরা দর্শকাশন</figcaption>
                     </figure>
                     <figure class="scroll-item">
-                        <img src="./src/40 years/slide 3.jpg" alt="দর্শক">
+                        <img src="../../../40 years/slide 3.jpg" alt="দর্শক">
                         <figcaption class="item-caption">চিত্র.৩ - রবীন্দ্র সংগীত পরিবেশন</figcaption>
                     </figure>
                     <figure class="scroll-item">
-                        <img src="./src/40 years/slide 4.jpeg" alt="পুরস্কার">
+                        <img src="../../../40 years/slide 4.jpeg" alt="পুরস্কার">
                         <figcaption class="item-caption">চিত্র.৪ - পুরুলিয়ার আঞ্চলিক কবিতা আবৃত্তি</figcaption>
                     </figure>
                     <figure class="scroll-item">
-                        <img src="./src/40 years/slide 5.jpeg" alt="বক্তব্য">
+                        <img src="../../../40 years/slide 5.jpeg" alt="বক্তব্য">
                         <figcaption class="item-caption">চিত্র.৫ - মূল বক্তব্য</figcaption>
                     </figure>
                 </div>
@@ -367,25 +394,25 @@
                 <ul class="dignitaries-grid">
                     <li class="dignitary-card">
                         <div class="role-badge">সভাপতি - হাওড়া জেলা</div>
-                        <img src="./src/Guests/Kali Jasu.jpeg" alt="President">
+                        <img src="../../../Guests/Kali Jasu.jpeg" alt="President">
                         <h3>কালীকৃষ্ণ জাসু</h3>
                         <p>শিক্ষক</p>
                     </li>
                     <li class="dignitary-card">
                         <div class="role-badge">সভাপতি - উলবেড়িয়া কেন্দ্র</div>
-                        <img src="./src/Guests/A Jasu.jpeg" alt="President">
+                        <img src="../../../Guests/A Jasu.jpeg" alt="President">
                         <h3>ডা. অরুন জাসু</h3>
                         <p>প্রথিতযশা ডাক্তার</p>
                     </li>
                     <li class="dignitary-card">
                         <div class="role-badge">প্রধান বক্তা</div>
-                        <img src="./src/Guests/K Basar.jpeg" alt="Speaker">
+                        <img src="../../../Guests/K Basar.jpeg" alt="Speaker">
                         <h3>সেখ খায়রুল বাসার</h3>
                         <p>বরিষ্ঠ আইনজীবী</p>
                     </li>
                     <li class="dignitary-card">
                         <div class="role-badge">সম্পাদক - উলবেড়িয়া কেন্দ্র</div>
-                        <img src="./src/Guests/Biswajit Paul.jpeg" alt="Speaker">
+                        <img src="../../../Guests/Biswajit Paul.jpeg" alt="Speaker">
                         <h3>বিস্বজিৎ পাল</h3>
                         <p>শিক্ষক</p>
                     </li>
@@ -398,73 +425,73 @@
                 <div class="participants-grid">
                     <!-- Participant Items -->
                     <div class="participant-item">
-                        <div class="participant-img"><img src="./src/Guests/Mouma Kanral.jpeg" alt="User">
+                        <div class="participant-img"><img src="../../../Guests/Mouma Kanral.jpeg" alt="User">
                         </div>
                         <div class="participant-name">মৌমা কাঁড়াল</div>
                         <p>কবিতা</p>
                     </div>
                     <div class="participant-item">
-                        <div class="participant-img"><img src="./src/Guests/Champa Roy.jpeg" alt="User">
+                        <div class="participant-img"><img src="../../../Guests/Champa Roy.jpeg" alt="User">
                         </div>
                         <div class="participant-name">চম্পা রায়</div>
                         <p>কবিতা</p>
                     </div>
                     <div class="participant-item">
-                        <div class="participant-img"><img src="./src/Guests/Tulika Roy.jpeg" alt="User">
+                        <div class="participant-img"><img src="../../../Guests/Tulika Roy.jpeg" alt="User">
                         </div>
                         <div class="participant-name">তুলিকা রায়</div>
                         <p>গান</p>
                     </div>
                     <div class="participant-item">
-                        <div class="participant-img"><img src="./src/Guests/Bibekananda Biswas.jpeg" alt="User">
+                        <div class="participant-img"><img src="../../../Guests/Bibekananda Biswas.jpeg" alt="User">
                         </div>
                         <div class="participant-name">বিবেকানন্দ বিস্বাস</div>
                         <p>কবিতা</p>
                     </div>
                     <div class="participant-item">
-                        <div class="participant-img"><img src="./src/Guests/Trisha Biswas.jpeg" alt="User">
+                        <div class="participant-img"><img src="../../../Guests/Trisha Biswas.jpeg" alt="User">
                         </div>
                         <div class="participant-name">ত্রিশা বিস্বাস</div>
                         <p>কবিতা</p>
                     </div>
                     <div class="participant-item">
-                        <div class="participant-img"><img src="./src/Guests/Bimala Dolui.jpeg" alt="User">
+                        <div class="participant-img"><img src="../../../Guests/Bimala Dolui.jpeg" alt="User">
                         </div>
                         <div class="participant-name">বিমলা দোলুই</div>
                         <p>কবিতা</p>
                     </div>
                     <div class="participant-item">
-                        <div class="participant-img"><img src="./src/Guests/Jaharul Amin Mollah.jpeg" alt="User">
+                        <div class="participant-img"><img src="../../../Guests/Jaharul Amin Mollah.jpeg" alt="User">
                         </div>
                         <div class="participant-name">জহরুল আমিন মোল্লা</div>
                         <p>কবিতা</p>
                     </div>
                     <div class="participant-item">
-                        <div class="participant-img"><img src="./src/Guests/Sushmita Kanral.jpeg" alt="User">
+                        <div class="participant-img"><img src="../../../Guests/Sushmita Kanral.jpeg" alt="User">
                         </div>
                         <div class="participant-name">সুশ্মিতা কাঁড়াল</div>
                         <p>গান</p>
                     </div>
                     <div class="participant-item">
-                        <div class="participant-img"><img src="./src/Guests/Soma Chowdhury.jpeg" alt="User">
+                        <div class="participant-img"><img src="../../../Guests/Soma Chowdhury.jpeg" alt="User">
                         </div>
                         <div class="participant-name">সোমা চৌধুরী</div>
                         <p>কবিতা</p>
                     </div>
                     <div class="participant-item">
-                        <div class="participant-img"><img src="./src/Guests/Oindrik Sau.jpeg" alt="User">
+                        <div class="participant-img"><img src="../../../Guests/Oindrik Sau.jpeg" alt="User">
                         </div>
                         <div class="participant-name">ঐন্দ্রিক সাউ</div>
                         <p>বাদ্যকার</p>
                     </div>
                     <div class="participant-item">
-                        <div class="participant-img"><img src="./src/Guests/Pankaj jasu.jpeg" alt="User">
+                        <div class="participant-img"><img src="../../../Guests/Pankaj jasu.jpeg" alt="User">
                         </div>
                         <div class="participant-name">প্ঙ্কজ জাসু</div>
                         <p>গান</p>
                     </div>
                     <div class="participant-item">
-                        <div class="participant-img"><img src="./src/Guests/T Saha.jpeg" alt="User">
+                        <div class="participant-img"><img src="../../../Guests/T Saha.jpeg" alt="User">
                         </div>
                         <div class="participant-name">তন্ময় সাহা</div>
                         <p>উপস্থাপক</p>
@@ -531,7 +558,8 @@
                             হয়েছিল। আপনার পরিবারের জন্য নিরাপদ খাদ্য নিশ্চিত করতে শিখুন।</p>
                         <button class="action-btn" onclick="openWindow()">গাইড ডাউনলোড করুন</button>
                     </div>
-                    <div class="program-img"><img src="./src/adultration/adultration termaric.jpeg" alt="Adulteration">
+                    <div class="program-img"><img src="../../../adultration/adultration termaric.jpeg"
+                            alt="Adulteration">
                     </div>
             </section>
 

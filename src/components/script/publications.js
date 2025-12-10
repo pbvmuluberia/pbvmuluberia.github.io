@@ -14,10 +14,10 @@ function generateBookCardsHtml(bookArray) {
         const bookJsonString = JSON.stringify(book).replace(/"/g, '&quot;');
         const fallbackUrl = `https://placehold.co/150x225/d79921/3c3836?text=Book+Cover`;
         const badgeHtml = book.isMagazine ? '<span class="magazine-badge">MAGAZINE</span>' : '';
-        
+
         // stringToHslColor is available via window (from utils.js)
-        const borderColor = window.stringToHslColor(book.title, 70, 40); 
-        
+        const borderColor = window.stringToHslColor(book.title, 70, 40);
+
         cardsHtml += `<div class="book-card" style="--card-border-color: ${borderColor}; border: 2px solid var(--card-border-color);" onclick="window.showBookDetails(this)" data-book-json="${bookJsonString}">${badgeHtml}<img src="${book.url}" alt="Cover of ${book.title}" onerror="this.onerror=null;this.src='${fallbackUrl}';"><h3>${book.title}</h3></div>`;
     });
     return `<div class="book-carousel-wrapper"><button class="carousel-arrow left-arrow" onclick="window.scrollCarousel('${containerId}', 'left')"><i class="fa-solid fa-chevron-left"></i></button><div class="book-covers-container" id="${containerId}">${cardsHtml}</div><button class="carousel-arrow right-arrow" onclick="window.scrollCarousel('${containerId}', 'right')"><i class="fa-solid fa-chevron-right"></i></button></div>`;
@@ -42,7 +42,7 @@ function scrollCarousel(containerId, direction) {
 // Update Publications Content logic
 async function updatePublicationsContent(lang) {
     const contentBody = document.getElementById('content-body');
-    if(!contentBody) return;
+    if (!contentBody) return;
 
     const langDict = window.translations[lang];
     let htmlContent = '';
@@ -51,7 +51,7 @@ async function updatePublicationsContent(lang) {
         htmlContent = generatePublicationsContent(window.bookData[lang]);
     } else {
         // Use window.JSON_URL_EN/BN
-        const url = (lang === 'bn') ? window.JSON_URL_BN : window.JSON_URL_EN; 
+        const url = (lang === 'bn') ? window.JSON_URL_BN : window.JSON_URL_EN;
         try {
             const response = await fetch(url);
             window.bookData[lang] = await response.json();
@@ -62,39 +62,39 @@ async function updatePublicationsContent(lang) {
     }
     contentBody.innerHTML = htmlContent;
     // enableMouseWheelScroll is available via window (from utils.js)
-    window.enableMouseWheelScroll('book-covers-carousel-1'); 
+    window.enableMouseWheelScroll('book-covers-carousel-1');
 }
 
 function showBookDetails(cardElement) {
     // hideDonationPopup is available via window (from modal.js)
-    window.hideDonationPopup(); 
+    window.hideDonationPopup();
     const overlay = document.getElementById('bookDetailOverlay');
     const detailCard = document.getElementById('bookDetailCard');
     const lang = window.getLang();
     const langDict = window.translations[lang];
     const book = JSON.parse(cardElement.getAttribute('data-book-json').replace(/&quot;/g, '"'));
-    
+
     const badgeElement = document.getElementById('detailBookBadge');
-    
+
     // Use window.stringToHslColor
-    const borderColor = window.stringToHslColor(book.title, 70, 40); 
+    const borderColor = window.stringToHslColor(book.title, 70, 40);
     const actionBtn = document.getElementById('detailActionBtn');
-    
-    if (book.price) { 
-        badgeElement.textContent = book.price; 
-        badgeElement.style.display = 'inline-block'; 
+
+    if (book.price) {
+        badgeElement.textContent = book.price;
+        badgeElement.style.display = 'inline-block';
         badgeElement.style.position = 'static';
         actionBtn.textContent = langDict.book_btn_buy;
-    } else { 
-        badgeElement.style.display = 'none'; 
+    } else {
+        badgeElement.style.display = 'none';
         if (book.isMagazine) actionBtn.textContent = langDict.book_btn_subscribe;
         else actionBtn.textContent = langDict.book_btn_download;
     }
-    
+
     document.getElementById('detailBookCover').src = book.url;
     document.getElementById('detailBookType').textContent = book.isMagazine ? langDict.book_type_magazine : langDict.book_type_standard;
     document.getElementById('detailBookDescription').textContent = book.description || langDict.book_no_description;
-    
+
     overlay.classList.add('show'); detailCard.classList.add('show'); document.body.style.overflow = 'hidden';
 }
 

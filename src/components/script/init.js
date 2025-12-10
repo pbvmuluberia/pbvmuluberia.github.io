@@ -24,7 +24,7 @@ window.addEventListener('storage', (e) => {
     }
     if (e.key === 'language') {
         // switchVisuals is available via window (from utils.js)
-        window.switchVisuals(e.newValue); 
+        window.switchVisuals(e.newValue);
     }
 });
 
@@ -33,8 +33,8 @@ async function loadDataAndInit() {
     // Use global state
     if (window.isInitialized) return;
     window.isInitialized = true;
-    
-    const pageId = document.body.id || 'home'; 
+
+    const pageId = document.body.id || 'home';
 
     // 1. Inject Navbar
     const navbarContainer = document.getElementById('navbar-placeholder');
@@ -53,28 +53,28 @@ async function loadDataAndInit() {
     if (noticeContainer && typeof ComponentGenerator !== 'undefined' && typeof ComponentGenerator.getNoticeModal === 'function') {
         noticeContainer.innerHTML = ComponentGenerator.getNoticeModal();
     }
-    
+
     // 4. Inject Hero/Carousel
     const heroContainer = document.getElementById('hero-placeholder');
     if (heroContainer && typeof ComponentGenerator !== 'undefined' && typeof ComponentGenerator.getHero === 'function') {
-        
-        const activeId = pageId || 'home'; 
+
+        const activeId = pageId || 'home';
         const titleKey = `carousel_${activeId}_name`;
         const descKey = `carousel_${activeId}_des`;
         const btnKey = `carousel_${activeId}_btn`;
-        const bgImage = `./src/background/${activeId}.jpeg`;
+        const bgImage = `../../background/${activeId}.jpeg`;
 
         heroContainer.innerHTML = ComponentGenerator.getHero(titleKey, descKey, btnKey, bgImage);
     }
-    
+
     // 5. Apply Initial Language and Translations (FIX: Moved up to show visuals immediately)
     // This resolves the issue by activating the correct language visuals *before* network calls.
-    window.switchVisuals(window.savedLang); 
+    window.switchVisuals(window.savedLang);
 
     // 6. Load Publication Data (if on publications page, or pre-cache both languages) (Original Step 5)
     if (pageId === 'publications') {
         // The publications page needs data loaded immediately. This awaits the network response.
-        await window.generatePublicationsContent(window.savedLang); 
+        await window.generatePublicationsContent(window.savedLang);
     } else if (!window.bookData || Object.keys(window.bookData).length === 0) {
         // Pre-cache primary language data only if not already loaded (e.g., from an inline script)
         try {
@@ -82,7 +82,7 @@ async function loadDataAndInit() {
             window.bookData[window.savedLang] = await fetch(url).then(response => response.json());
         } catch (e) { console.error("Failed to load primary data on non-publications page:", e); }
     }
-    
+
     // 7. Initialize Gallery Dots if they exist (only for publications) (Original Step 7)
     if (document.body.id === 'publications' && document.querySelector('.book-covers-container')) {
         window.setupGalleryDots('book-covers-carousel-1');
@@ -92,30 +92,30 @@ async function loadDataAndInit() {
     // 8. Load data for the *other* language (for fast switching) (Original Step 8)
     try {
         // Use global constant JSON_URL_EN
-        const url = (window.savedLang === 'bn') ? window.JSON_URL_EN : window.JSON_URL_BN; 
+        const url = (window.savedLang === 'bn') ? window.JSON_URL_EN : window.JSON_URL_BN;
         // Store in global data
         window.bookData[(window.savedLang === 'bn' ? 'en' : 'bn')] = await fetch(url).then(response => response.json());
-    } catch (e) { 
-        console.error("Failed to load secondary language data:", e); 
+    } catch (e) {
+        console.error("Failed to load secondary language data:", e);
     }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     // Attach scroll listener
-    window.addEventListener('scroll', () => { 
+    window.addEventListener('scroll', () => {
         const scrollToTopBtn = document.getElementById('scrollToTopBtn');
-        if (scrollToTopBtn) scrollToTopBtn.classList.toggle('show', window.scrollY > 300); 
+        if (scrollToTopBtn) scrollToTopBtn.classList.toggle('show', window.scrollY > 300);
     });
 
     // loadDataAndInit must be called after other files load
     loadDataAndInit();
-    
+
     // Show notice popup (double call structure preserved from original file)
     setTimeout(() => {
         window.showNoticePopup();
     }, 500);
-    
-    window.showNoticePopup(); 
+
+    window.showNoticePopup();
 
     document.addEventListener('click', (event) => {
         const navLinks = document.getElementById('navLinks');
@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const isClickInsideMenu = navLinks && navLinks.contains(event.target);
         const isClickOnButton = hamburgerBtn && hamburgerBtn.contains(event.target);
-        
+
         // Close menu if open and click is outside the menu and not on the button
         if (isOpen && !isClickInsideMenu && !isClickOnButton) {
             window.toggleMenu(false);

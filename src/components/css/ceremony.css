@@ -326,18 +326,23 @@
 
     .participant-item {
         text-align: center;
-        width: 120px;
+        width: fit-content;
 
         .participant-img {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
+            width: 150px;
+            height: 150px;
             overflow: hidden;
             margin: 0 auto var(--space-sm);
             /* 10px */
-            border: 2px solid var(--primary-color);
             transition: transform 0.2s ease;
             background-color: var(--surface-color);
+            --s: 150px;
+            /* adjust to control the size */
+
+            width: var(--s);
+            aspect-ratio: 1;
+            --g: /calc(var(--s)*0.261) calc(var(--s)*0.261) radial-gradient(50% 50%, #000 99%, #0000 101%) no-repeat;
+            mask: calc(50% + var(--s)*0.341) calc(50% + var(--s)*0) var(--g), calc(50% + var(--s)*0.241) calc(50% + var(--s)*0.241) var(--g), calc(50% + var(--s)*0) calc(50% + var(--s)*0.341) var(--g), calc(50% + var(--s)*-0.241) calc(50% + var(--s)*0.241) var(--g), calc(50% + var(--s)*-0.341) calc(50% + var(--s)*0) var(--g), calc(50% + var(--s)*-0.241) calc(50% + var(--s)*-0.241) var(--g), calc(50% + var(--s)*0) calc(50% + var(--s)*-0.341) var(--g), calc(50% + var(--s)*0.241) calc(50% + var(--s)*-0.241) var(--g), radial-gradient(calc(var(--s)*0.433), #000 99%, #0000 101%) subtract, calc(50% + var(--s)*0.5) calc(50% + var(--s)*0.207) var(--g), calc(50% + var(--s)*0.207) calc(50% + var(--s)*0.5) var(--g), calc(50% + var(--s)*-0.207) calc(50% + var(--s)*0.5) var(--g), calc(50% + var(--s)*-0.5) calc(50% + var(--s)*0.207) var(--g), calc(50% + var(--s)*-0.5) calc(50% + var(--s)*-0.207) var(--g), calc(50% + var(--s)*-0.207) calc(50% + var(--s)*-0.5) var(--g), calc(50% + var(--s)*0.207) calc(50% + var(--s)*-0.5) var(--g), calc(50% + var(--s)*0.5) calc(50% + var(--s)*-0.207) var(--g);
 
             &:hover {
                 transform: scale(1.1);
@@ -354,6 +359,13 @@
             font-size: var(--font-size-h3);
             font-weight: var(--font-weight-semi);
             color: var(--text-color-secondary);
+        }
+
+        p {
+            font-size: var(--font-size-p);
+            font-weight: var(--font-weight-semi);
+            color: var(--text-color-secondary);
+            text-align: center;
         }
     }
 }
@@ -435,4 +447,30 @@
             }
         }
     }
+}
+
+/* HTML: <div class="ribbon">Your text content</div> */
+.ribbon {
+    --s: 1.8em;
+    /* the ribbon size */
+    --d: .8em;
+    /* the depth */
+    --c: .8em;
+    /* the cutout part */
+
+    padding: var(--d) calc(var(--s) + .5em) 0;
+    line-height: 1.8;
+    background:
+        conic-gradient(from 45deg at left var(--s) top var(--d),
+            hsla(0, 0%, 0%, 0.533) 12.5%, hsla(0, 0%, 0%, 0) 0 37.5%, hsla(0, 0%, 0%, 0.267) 0) 0 /50% 100% no-repeat,
+        conic-gradient(from -45deg at right var(--s) top var(--d),
+            hsla(0, 0%, 0%, 0.267) 62.5%, hsla(0, 0%, 0%, 0) 0 87.5%, hsla(0, 0%, 0%, 0.533) 0) 100%/50% 100% no-repeat;
+    clip-path: polygon(0 0, calc(var(--s) + var(--d)) 0, calc(var(--s) + var(--d)) var(--d), calc(100% - var(--s) - var(--d)) var(--d), calc(100% - var(--s) - var(--d)) 0, 100% 0, calc(100% - var(--c)) calc(50% - var(--d)/2), 100% calc(100% - var(--d)), calc(100% - var(--s)) calc(100% - var(--d)), calc(100% - var(--s)) 100%, var(--s) 100%, var(--s) calc(100% - var(--d)), 0 calc(100% - var(--d)), var(--c) calc(50% - var(--d)/2));
+    background-color: var(--primary-color);
+    /* the main color */
+    font-size: var(--font-size-p);
+    font-weight: bold;
+    color: var(--surface-color);
+    align-items: center;
+    justify-content: center;
 }
