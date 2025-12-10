@@ -6,6 +6,7 @@
 
 "use strict";
 
+// Helper function to restore theme early (though the inline script in HTML handles the critical FOUC prevention)
 function init() {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark') {
@@ -15,7 +16,7 @@ function init() {
     }
 }
 
-// 5. Cross-Tab Synchronization Listener
+// Cross-Tab Synchronization Listener
 window.addEventListener('storage', (e) => {
     if (e.key === 'theme') {
         if (e.newValue === 'dark') document.documentElement.classList.add('dark-theme');
@@ -35,40 +36,68 @@ async function loadDataAndInit() {
     
     const pageId = document.body.id || 'home'; 
 
-    // Assuming ComponentGenerator is defined elsewhere (or will be provided)
-    // For now, these lines rely on an external dependency (ComponentGenerator)
+    // 1. Inject Navbar
     const navbarContainer = document.getElementById('navbar-placeholder');
     if (navbarContainer && typeof ComponentGenerator !== 'undefined' && typeof ComponentGenerator.getNavbar === 'function') {
         navbarContainer.innerHTML = ComponentGenerator.getNavbar(pageId);
     }
 
+    // 2. Inject Donation Modal
     const donationContainer = document.getElementById('donation-modal-placeholder');
     if (donationContainer && typeof ComponentGenerator !== 'undefined' && typeof ComponentGenerator.getDonationModal === 'function') {
         donationContainer.innerHTML = ComponentGenerator.getDonationModal();
     }
 
+    // 3. Inject Notice Modal
     const noticeContainer = document.getElementById('notice-modal-placeholder');
     if (noticeContainer && typeof ComponentGenerator !== 'undefined' && typeof ComponentGenerator.getNoticeModal === 'function') {
         noticeContainer.innerHTML = ComponentGenerator.getNoticeModal();
     }
-    // -------------------------------------
+    
+    // 4. Inject Hero/Carousel
+    const heroContainer = document.getElementById('hero-placeholder');
+    if (heroContainer && typeof ComponentGenerator !== 'undefined' && typeof ComponentGenerator.getHero === 'function') {
+        
+        const activeId = pageId || 'home'; 
+        const titleKey = `carousel_${activeId}_name`;
+        const descKey = `carousel_${activeId}_des`;
+        const btnKey = `carousel_${activeId}_btn`;
+        const bgImage = `./src/background/${activeId}.jpeg`;
 
-    // Initialize Theme
-    init();
+        heroContainer.innerHTML = ComponentGenerator.getHero(titleKey, descKey, btnKey, bgImage);
+    }
     
-    // Initialize Language (Defaults to BN)
-    // getLang and switchVisuals are available via window (from utils.js)
-    const savedLang = window.getLang();
-    await window.switchVisuals(savedLang); 
+    // 5. Apply Initial Language and Translations (FIX: Moved up to show visuals immediately)
+    // This resolves the issue by activating the correct language visuals *before* network calls.
+    window.switchVisuals(window.savedLang); 
+
+    // 6. Load Publication Data (if on publications page, or pre-cache both languages) (Original Step 5)
+    if (pageId === 'publications') {
+        // The publications page needs data loaded immediately. This awaits the network response.
+        await window.generatePublicationsContent(window.savedLang); 
+    } else if (!window.bookData || Object.keys(window.bookData).length === 0) {
+        // Pre-cache primary language data only if not already loaded (e.g., from an inline script)
+        try {
+            const url = (window.savedLang === 'bn') ? window.JSON_URL_BN : window.JSON_URL_EN;
+            window.bookData[window.savedLang] = await fetch(url).then(response => response.json());
+        } catch (e) { console.error("Failed to load primary data on non-publications page:", e); }
+    }
     
-    // Background Data Fetch for the *other* language
+    // 7. Initialize Gallery Dots if they exist (only for publications) (Original Step 7)
+    if (document.body.id === 'publications' && document.querySelector('.book-covers-container')) {
+        window.setupGalleryDots('book-covers-carousel-1');
+    }
+    window.switchVisuals(window.savedLang);
+
+    // 8. Load data for the *other* language (for fast switching) (Original Step 8)
     try {
         // Use global constant JSON_URL_EN
-        const url = (savedLang === 'bn') ? window.JSON_URL_EN : window.JSON_URL_BN; 
-        const response = await fetch(url);
+        const url = (window.savedLang === 'bn') ? window.JSON_URL_EN : window.JSON_URL_BN; 
         // Store in global data
-        window.bookData[(savedLang === 'bn' ? 'en' : 'bn')] = await response.json();
-    } catch (e) { console.error(e); }
+        window.bookData[(window.savedLang === 'bn' ? 'en' : 'bn')] = await fetch(url).then(response => response.json());
+    } catch (e) { 
+        console.error("Failed to load secondary language data:", e); 
+    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -81,25 +110,28 @@ document.addEventListener('DOMContentLoaded', () => {
     // loadDataAndInit must be called after other files load
     loadDataAndInit();
     
+    // Show notice popup (double call structure preserved from original file)
     setTimeout(() => {
         window.showNoticePopup();
     }, 500);
     
-    // showNoticePopup is available via window (from modal.js)
     window.showNoticePopup(); 
 
     document.addEventListener('click', (event) => {
         const navLinks = document.getElementById('navLinks');
         const hamburgerBtn = document.getElementById('hamburgerBtn');
 
-        const isOpen = navLinks.classList.contains('open');
+        const isOpen = navLinks && navLinks.classList.contains('open');
 
-        const isClickInsideMenu = navLinks.contains(event.target);
-        const isClickOnButton = hamburgerBtn.contains(event.target);
+        const isClickInsideMenu = navLinks && navLinks.contains(event.target);
+        const isClickOnButton = hamburgerBtn && hamburgerBtn.contains(event.target);
         
-        // toggleMenu is available via window (from utils.js)
+        // Close menu if open and click is outside the menu and not on the button
         if (isOpen && !isClickInsideMenu && !isClickOnButton) {
-            window.toggleMenu(); 
+            window.toggleMenu(false);
         }
     });
 });
+
+// Attach to window for external/inline access
+window.loadDataAndInit = loadDataAndInit;

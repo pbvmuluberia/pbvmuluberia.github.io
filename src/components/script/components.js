@@ -3,7 +3,6 @@
 const ComponentGenerator = {
     // 1. THE NAVBAR HTML
     getNavbar: function (activePageId) {
-        // We determine which link is active based on the page ID
         const isActive = (id) => activePageId === id ? 'active-tab' : '';
 
         return `
@@ -41,7 +40,29 @@ const ComponentGenerator = {
         `;
     },
 
-    // 2. THE DONATION MODAL HTML
+    // 2. THE HERO/CAROUSEL HTML (NEW COMPONENT)
+    // Reduces repetition in Home, About, Projects, Publications, and Download pages
+    getHero: function (titleKey, descKey, btnKey, bgImage) {
+        return `
+        <div class="container" style="overflow: hidden;">
+            <div class="slide">
+                <div class="item"
+                    style="--bg-image: url('${bgImage}'); position: relative; width: 100%; top: 0; left: 0; transform: none; border-radius: 0;">
+                    <div class="content"
+                        style="display: block; opacity: 1; transform: translate(0, -50%); padding-top: 0; top: 30%;">
+                        <h2 class="name" data-translate-key="${titleKey}">Welcome</h2>
+                        <p class="des" data-translate-key="${descKey}">Description</p>
+                        <button class="button action-btn" onclick="scrollToContent()"
+                            data-translate-key="${btnKey}">Read More</button>
+                        <button class="button donate-btn" onclick="showDonationPopup()"
+                            data-translate-key="carousel_donate_btn">Donate to us</button>
+                    </div>
+                </div>
+            </div>
+        </div>`;
+    },
+
+    // 3. THE DONATION MODAL HTML
     getDonationModal: function () {
         return `
         <dialog id="donationCard" class="donation-card" closedby="any" onclick="event.stopPropagation()">
@@ -65,7 +86,7 @@ const ComponentGenerator = {
         `;
     },
 
-    // 3. THE NOTICE MODAL HTML
+    // 4. THE NOTICE MODAL HTML
     getNoticeModal: function () {
         return `
         <dialog id="noticeCard" class="notice-card" closedby="any">
@@ -102,3 +123,4 @@ const ComponentGenerator = {
         `;
     }
 };
+

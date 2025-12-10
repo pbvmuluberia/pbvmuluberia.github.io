@@ -59,8 +59,8 @@
 }
 
 .btn-group {
-        margin-top: var(--space-sm);
-    }
+    margin-top: var(--space-sm);
+}
 
 .input-group {
     display: flex;
@@ -95,9 +95,11 @@
     .input-group {
         flex-direction: row;
     }
+
     .search-form-card {
         padding: var(--space-md);
     }
+
     .btn-group {
         margin: auto;
     }
@@ -137,7 +139,7 @@
     display: flex;
     width: 100%;
     background-color: transparent;
-    padding: var(--space-sm);
+    padding: var(--space-md);
     width: 100%;
     text-align: left;
     margin: 0 auto;

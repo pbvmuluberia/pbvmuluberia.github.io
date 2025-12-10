@@ -65,7 +65,7 @@ const translations = {
         'nav_result': 'Result',
         'result_finder_title': 'Result Finder',
         'result_finder_subtitle': 'Enter your Roll Number to view your results.',
-        'result_header': 'Performance Report - Howrah Zilla Vigyan Manosikata-o-Medha Aviksha',
+        'result_header': 'Performance Report - Howrah Zilla Vigyan Manosikata-o-Medha Aviksha - ',
         'roll_number_label': 'Roll Number',
         'roll_number_placeholder': 'e.g. UL/12345',
         'search_result_button': 'Search Result',
@@ -73,6 +73,7 @@ const translations = {
         'your_result_heading': 'Your Result',
         'searching_text': 'Searching...',
         'year_label': 'Year',
+        'year_placeholder': 'e.g. 2024',
         'roll': 'Roll Number:',
         'name': 'Name:',
         'school': 'School:',
@@ -143,9 +144,11 @@ const translations = {
         'nav_result': 'ফলাফল',
         'result_finder_title': 'ফলাফল অনুসন্ধান',
         'result_finder_subtitle': 'আপনার ফলাফল দেখতে রোল নম্বর লিখুন।',
-        'result_header': 'ফলাফল - হাওড়া জেলা বিজ্ঞান মানসিকতা ও মেধা অভীক্ষা',
+        'result_header': 'ফলাফল - হাওড়া জেলা বিজ্ঞান মানসিকতা ও মেধা অভীক্ষা - ',
+        'result_year': 'বছর',
         'roll_number_label': 'রোল নম্বর',
         'year_label': 'বছর',
+        'year_placeholder': 'যেমন: 2024',
         'roll_number_placeholder': 'যেমন: UL/12345',
         'search_result_button': 'ফলাফল খুঁজুন',
         'print_result_button': 'ফলাফল প্রিন্ট করুন',
@@ -188,3 +191,5 @@ window.UPI_ID = UPI_ID;
 window.VPA_NAME = VPA_NAME;
 window.currentDonationAmount = currentDonationAmount;
 window.isInitialized = isInitialized;
+
+

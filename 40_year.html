@@ -22,6 +22,19 @@
     <script src="./src/components/script/utils.js" defer></script>
     <script src="./src/components/script/modal.js" defer></script>
     <script src="./src/components/script/init.js" defer></script>
+    
+    <script>
+        (function () {
+            // 1. Restore Theme immediately
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark-theme');
+            }
+
+            // 2. Restore Language immediately
+            window.savedLang = localStorage.getItem('language') || 'bn';
+        })();
+    </script>
 
     <style>
         /* Helper for language toggling visibility if not in style.css */
