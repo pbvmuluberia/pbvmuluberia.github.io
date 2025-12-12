@@ -1,0 +1,235 @@
+/* --- blog.css --- */
+
+
+/* Layout & Grid */
+.blog-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 0 var(--space-md);
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 calc(var(--space-md) * -1);
+}
+
+/* Columns */
+.col-main,
+.col-sidebar {
+    flex: 0 0 100%;
+    max-width: 100%;
+    padding: 0 var(--space-md);
+
+    .action-btn {
+        padding: var(--space-sm) var(--space-md);
+        border-radius: var(--border-radius-semi);
+    }
+}
+
+@media (min-width: 900px) {
+    .col-main {
+        flex: 0 0 66.66666%;
+        max-width: 66.66666%;
+    }
+
+    .col-sidebar {
+        flex: 0 0 33.33333%;
+        max-width: 33.33333%;
+    }
+}
+
+/* Components */
+
+.card {
+    background-color: var(--surface-color);
+    border-radius: var(--border-radius-medium);
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 4px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-bottom: 32px;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-simple {
+    background-color: var(--surface-color);
+    border-radius: var(--border-radius-medium);
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+    margin-bottom: var(--space-md);
+    padding: var(--space-);
+}
+
+.card-content {
+    padding: var(--space-md);
+}
+
+.card-header-image {
+    display: block;
+    height: 200px;
+    width: 100%;
+    /* Changed from auto to 100% for better card fit */
+    object-fit: cover;
+    border-top-left-radius: var(--border-radius-medium);
+    border-top-right-radius: var(--border-radius-medium);
+}
+
+/* Typography & Utilities */
+.text-opacity {
+    opacity: 0.6;
+}
+
+.text-right {
+    float: right;
+}
+
+
+/* Base Tag Styles */
+.tag,
+.tag-grey {
+    border-radius: var(--border-radius-semi);
+    display: inline-block;
+    padding: 0 var(--space-xs);
+    text-align: center;
+}
+
+.tag {
+    background-color: var(--primary-color);
+    color: var(--surface-color);
+}
+
+.tag-grey {
+    background-color: var(--surface-color-top);
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
+
+
+/* --- MODIFIED SECTION: Interactive Radio Tags --- */
+
+.tag-option {
+    display: inline-block;
+    margin-right: var(--space-sm);
+    margin-bottom: var(--space-sm);
+}
+
+/* 1. Hide the actual radio input */
+.tag-radio-group input[type="radio"] {
+    display: none;
+}
+
+/* 2. Make the Label clickable and interactive */
+.tag-radio-group label {
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+    padding: 4px 10px;
+    /* Adjust padding for better look */
+    /* Override margin-top from HTML for cleaner flow */
+    margin-top: 0 !important;
+}
+
+/* 3. Hover state for all tags */
+.tag-radio-group label:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* 4. CHECKED state for the primary tag (Show All, Travel) */
+.tag-radio-group input[type="radio"]:checked+label.tag {
+    background-color: var(--primary-color);
+    opacity: 1;
+    color: var(--surface-color);
+    box-shadow: 0 0 0 3px var(--primary-color), 0 2px 5px rgba(0, 0, 0, 0.3);
+    /* Add highlight */
+}
+
+/* 5. CHECKED state for the secondary/grey tags */
+.tag-radio-group input[type="radio"]:checked+label.tag-grey {
+    background-color: var(--primary-color);
+    color: var(--surface-color);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px var(--primary-color), 0 2px 5px rgba(0, 0, 0, 0.3);
+    /* Add highlight */
+}
+
+/* ------------------------------------------- */
+
+
+.list-group {
+    list-style: none;
+    padding: var(--space-sm);
+    margin: 0;
+}
+
+.list-item {
+    padding: var(--space-md);
+    border-bottom: 2px solid var(--primary-color);
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    &:hover {
+        background-color: rgba(var(--primary-color-alpha));
+        border-radius: var(--border-radius-medium);
+    }
+
+    &:last-child {
+        border-bottom: none;
+        margin-bottom: none;
+    }
+}
+
+.list-img {
+    width: 50px;
+    height: 50px;
+    border-radius: var(--border-radius-semi);
+    margin-right: 16px;
+    object-fit: cover;
+}
+
+.hide-small {
+    display: none;
+}
+
+@media (min-width: 601px) {
+    .hide-small {
+        display: block;
+    }
+}
+
+.site-footer {
+    background-color: #616161;
+    color: #fff;
+    padding: 32px 16px;
+    margin-top: 32px;
+}
+
+.margin-top {
+    margin-top: 16px;
+}
+
+.padding-container {
+    padding: var(--space-lg) 0 0 var(--space-lg);
+}
+
+.action-btn.disabled {
+    background-color: #ccc !important;
+    cursor: not-allowed !important;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.card.fade-in {
+    animation: fadeIn 0.4s ease-out forwards;
+}

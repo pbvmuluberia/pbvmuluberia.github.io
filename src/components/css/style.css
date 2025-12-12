@@ -78,6 +78,7 @@
     /* Consistent corner radius and shadow */
     --border-radius-large: 28px;
     --border-radius-medium: 20px;
+    --border-radius-semi: 10px;
     --button-radius: var(--border-radius-large);
     --card-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 
@@ -169,7 +170,10 @@ body {
 /* Headings Typography Update */
 h1,
 h2,
-h3 {
+h3,
+h4,
+h5,
+h6 {
     font-family: var(--font-heading);
 }
 
@@ -425,7 +429,7 @@ nav.menu {
 }
 
 /* Landscape/Desktop */
-@media (min-width: 900px) {
+@media (min-width: 980px) {
     .menu-controls-mobile {
         display: none;
     }

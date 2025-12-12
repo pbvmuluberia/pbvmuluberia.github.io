@@ -23,6 +23,7 @@ const ComponentGenerator = {
             <a href="projects.html" class="${isActive('projects')}" data-translate-key="nav_projects">Projects</a>
             <a href="publications.html" class="${isActive('publications')}" data-translate-key="nav_publications">Publications</a>
             <a href="download.html" class="${isActive('download')}" data-translate-key="nav_download">Download</a>
+            <a href="events.html" class="${isActive('events')}" data-translate-key="nav_events">Events</a>
             <a href="contact.html" class="${isActive('contact')}" data-translate-key="nav_contact">Contact</a>
           </div>
           

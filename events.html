@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Paschim Banga Vigyan Mancha</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <!-- Note: Assuming these paths are correct in your environment -->
+    <link rel="stylesheet" href="./src/components/css/style.css">
+    <link rel="stylesheet" href="/src/components/css/events.css">
+
+    <!-- New blog.js file for the pagination logic -->
+    <script src="./src/components/script/events.js"></script>
+    <!-- Existing scripts -->
+    <script src="./src/components/script/components.js"></script>
+    <script src="./src/components/script/data.js"></script>
+    <script src="./src/components/script/utils.js"></script>
+    <script src="./src/components/script/modal.js"></script>
+    <script src="./src/components/script/init.js"></script>
+
+    <style>
+        .lang-content {
+            display: none;
+        }
+
+        .lang-content.active {
+            display: block;
+        }
+
+        h1.lang-content.active {
+            display: block;
+        }
+    </style>
+    <script>
+        (function () {
+            // 1. Restore Theme immediately
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark-theme');
+            }
+
+            // 2. Restore Language immediately
+            window.savedLang = localStorage.getItem('language') || 'bn';
+        })();
+    </script>
+</head>
+
+<body id="events">
+
+    <div id="navbar-placeholder"></div>
+
+    <div id="messageBox"></div>
+
+    <div class="main-content" id="main-content">
+        <h1 class="lang-content en"><b>MY EVENTS</b> <br><small style="font-size: 0.5em">Welcome to the blog of <span
+                    class="tag">Paschim Banga Vigyan Mancha</span></small></h1>
+        <h1 class="lang-content bn"><b>অনুষ্ঠান ও প্রতিবেদন</b> <br><small style="font-size: 0.5em"><span
+                    class="tag">পশ্চিম বঙ্গ বিজ্ঞান মঞ্চ</span>
+                এর ব্লগে স্বাগতম</small></h1>
+
+        <div id="content-body">
+
+            <div class="blog-container">
+                <div class="row">
+                    <div class="col-main">
+
+                        <!-- BLOG POSTS WILL BE INJECTED HERE -->
+                        <div id="blog-posts-container">
+                            <p data-translate-key="Loading blog posts...">Loading blog posts...</p>
+                        </div>
+
+                        <!-- Pagination Controls (Previous / Next) -->
+                        <div class="row">
+                            <div class="col-main">
+
+                                <!-- Previous Button -->
+                                <button id="btn-prev" data-translate-key="previous_button" class="action-btn disabled">
+                                    <b>« PREVIOUS</b>
+                                </button>
+
+                                <!-- Next Button -->
+                                <button id="btn-next" data-translate-key="next_button" class="action-btn">
+                                    <b>NEXT »</b>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sidebar Content (Remains Static) -->
+                    <div class="col-sidebar">
+                        <div class="card-simple">
+                            <div class="padding-container">
+                                <h3 data-translate-key="popular_posts">Popular Posts</h3>
+                            </div>
+                            <ul class="list-group">
+                                <li class="list-item">
+                                    <img src="./src/40 years/40_years.png" alt="Image" class="list-img">
+                                    <div>
+                                        <span style="font-size:18px">40 years</span><br>
+                                        <span>2025</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="card-simple">
+                            <div class="padding-container">
+                                <h4 data-translate-key="tags">Tags</h4>
+                            </div>
+                            <div class="card-content tag-radio-group" id="tag-cloud">
+                                <div class="tag-option">
+                                    <input type="radio" id="tag-all" name="blog_tag" value="">
+                                    <label data-translate-key="tag-all" for="tag-all" class="tag-grey">All</label>
+                                </div>
+                                <div class="tag-option">
+                                    <input type="radio" id="tag-2025" name="blog_tag" value="2025">
+                                    <label data-translate-key="tag-2025" for="tag-2025" class="tag-grey">2025</label>
+                                </div>
+                                <div class="tag-option">
+                                    <input type="radio" id="tag-40" name="blog_tag" value="40 years">
+                                    <label data-translate-key="tag-40" for="tag-40" class="tag-grey">40 years</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button id="scrollToTopBtn" onclick="scrollToTop()" aria-label="Scroll to top"><i
+            class="fa-solid fa-arrow-up"></i></button>
+
+</body>
+
+</html>
