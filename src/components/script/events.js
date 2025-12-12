@@ -122,12 +122,12 @@ function createCardHTML(post) {
             <div class="lang-content en">
                 <h2><b>${enTitle}</b></h2>
                 <h3>${enDesc} <span class="text-opacity">${mappedPost.en?.date}</span></h3>
-                <p style="text-align:right"> - ${enAuthor}</p>
+                <p style="text-align:right"><br> - ${enAuthor}</p>
             </div>
             <div class="lang-content bn">
                 <h2><b>${bnTitle}</b></h2>
                 <h3>${bnDesc} <span class="text-opacity">${mappedPost.bn?.date}</span></h3>
-                <p style="text-align:right"> - ${bnAuthor}</p>
+                <p style="text-align:right"><br> - ${bnAuthor}</p>
             </div>
             <div class="lang-content en">
                 <p><br>${enText}</p>
@@ -137,7 +137,7 @@ function createCardHTML(post) {
             </div>
                 <div class="row">
                     <div class="col-main">
-                        <button data-translate-key="btn_read_more" class="action-btn" onclick="window.open('${mappedPost.alt}', '_self')"><b>READ MORE »</b></button>
+                        <button data-translate-key="btn_read_more" class="action-btn" style="margin-bottom: var(--space-sm);" onclick="window.open('${mappedPost.alt}', '_self')"><b>READ MORE »</b></button>
                     </div>
                 </div>
             </div>
