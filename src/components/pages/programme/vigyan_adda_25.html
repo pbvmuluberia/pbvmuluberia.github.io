@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>40th Ceremony - Paschim Banga Vigyan Mancha</title>
+
+    <!-- External Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <!-- Global Styles -->
+    <link rel="stylesheet" href="../../css/style.css">
+    <!-- Page Specific Styles -->
+    <link rel="stylesheet" href="../../css/ceremony.css">
+
+    <!-- Scripts -->
+    <script src="../../script/components.js" defer></script>
+    <!-- Assuming data.js and utils.js exist in your project as referenced in index.html -->
+    <script src="../../script/data.js" defer></script>
+    <script src="../../script/utils.js" defer></script>
+    <script src="../../script/modal.js" defer></script>
+    <script src="../../script/init.js" defer></script>
+
+    <script>
+        (function () {
+            // 1. Restore Theme immediately
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark-theme');
+            }
+
+            // 2. Restore Language immediately
+            window.savedLang = localStorage.getItem('language') || 'bn';
+        })();
+    </script>
+
+    <style>
+        /* Helper for language toggling visibility if not in style.css */
+        .lang-content {
+            display: none;
+        }
+
+        .lang-content.active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body id="ceremony">
+    <!-- Navbar Placeholder -->
+    <nav class="menu">
+        <img src="https://raw.githubusercontent.com/t4saha/PBVM-Uluberia-Vigyan-Kendra/main/Logo/pvbm_logo_gold.png"
+            alt="Logo" class="nav-logo"
+            onerror="this.onerror=null; this.src='https://placehold.co/50x50/d79921/3c3836?text=LOGO'">
+
+        <div class="menu-controls-mobile">
+            <span class="menu-label-text" data-translate-key="nav_menu">Menu</span>
+            <button class="hamburger-menu" id="hamburgerBtn" onclick="toggleMenu()">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <span class="menu-label-text current-menu-label" id="currentMenuLabel"
+                data-translate-key="nav${activePageID}">Menu</span>
+        </div>
+        <div class="nav-links" id="navLinks">
+            <a href="../../../../index.html" class="${isActive(menu_home)}" data-translate-key="nav_home">Home</a>
+        </div>
+
+        <div class="header-controls">
+            <button id="themeToggleIcon" onclick="toggleTheme()" class="theme-icon-button">
+                <i class="fa-solid fa-sun theme-icon sun-icon"></i>
+                <i class="fa-solid fa-moon theme-icon moon-icon"></i>
+            </button>
+            <div class="lang-toggle">
+                <span id="langEn" onclick="setLang('en')">EN</span>
+                <span id="langBn" onclick="setLang('bn')">বা</span>
+            </div>
+        </div>
+    </nav>
+    <!-- English Content Section -->
+    <div class="lang-content en">
+        <div class="ceremony-container">
+
+            <!-- Header Section -->
+            <header class="ceremony-header">
+                <img src="../../../banner/40 years.png" alt="Vigyan Adda 25"></img>
+                <h1>Science Adda 2025</h1>
+                <h3>An Exploration of Life Philosophy through the Confluence of Science and History</h3>
+                <p>Paschimbanga Vigyan Mancha &bull; December 19, 2025</p>
+            </header>
+
+            <!-- Horizontal Scroll Gallery -->
+            <section class="gallery-section">
+                <h2 class="section-heading">Ceremony Highlights</h2>
+
+                <!-- IMPORTANT: Added id="galleryScroll" here so the JS can find it -->
+                <div class="scroll-container" id="galleryScroll">
+                    <!-- Replace sources with actual images -->
+                    <!-- Replace sources with actual images -->
+                    <figure class="scroll-item">
+                        <img src="../../../gallary/vigyan adda 25/25_vigyan_adda_slide 1.jpeg" alt="Inauguration">
+                        <figcaption class="item-caption">Fig.1 - Dr. Arun Jasu on <i>"Science for Society"</i>
+                        </figcaption>
+                    </figure>
+                    <figure class="scroll-item">
+                        <img src="../../../gallary/vigyan adda 25/25_vigyan_adda_slide 2.jpeg" alt="Audience">
+                        <figcaption class="item-caption">Fig.2 - Dr. Taparati Gangopadhyay listened to the students'
+                            thoughts like a friend
+                        </figcaption>
+                    </figure>
+                    <figure class="scroll-item">
+                        <img src="../../../gallary/vigyan adda 25/25_vigyan_adda_slide 3.jpeg" alt="Exhibition">
+                        <figcaption class="item-caption">Fig.3 - For the proper development of society, just as a
+                            scientist is necessary, an historian, a social worker, or a literary figure is equally
+                            essential.</figcaption>
+                    </figure>
+                    <figure class="scroll-item">
+                        <img src="../../../gallary/vigyan adda 25/25_vigyan_adda_slide 4.jpeg" alt="Awards">
+                        <figcaption class="item-caption">Fig.4 - 'Mono Mor megher Songi' by Ahenjita Pal and Upasana
+                            Mondal</figcaption>
+                    </figure>
+                    <figure class="scroll-item">
+                        <img src="../../../gallary/vigyan adda 25/25_vigyan_adda_slide 5.jpeg" alt="Speech">
+                        <figcaption class="item-caption">Fig.5 - Kalikrishna Jasu Reciting 'Suprabhat' by Rabindranath
+                            Tagore</figcaption>
+                    </figure>
+                    <figure class="scroll-item">
+                        <img src="../../../gallary/vigyan adda 25/25_vigyan_adda_slide 6.jpeg" alt="Speech">
+                        <figcaption class="item-caption">Fig.6 - Pankaj Jasu Singing 'Dhitang Dhitang Bole' by
+                            Rabindranath Tagore</figcaption>
+                    </figure>
+                    <figure class="scroll-item">
+                        <img src="../../../gallary/vigyan adda 25/25_vigyan_adda_slide 7.jpeg" alt="Speech">
+                        <figcaption class="item-caption">Fig.7 - Nirjhorer Swapna Vanga</figcaption>
+                    </figure>
+                    <figure class="scroll-item">
+                        <img src="../../../gallary/vigyan adda 25/25_vigyan_adda_slide 8.jpeg" alt="Speech">
+                        <figcaption class="item-caption">Fig.8 - All Students</figcaption>
+                    </figure>
+                </div>
+                <!-- NEW: Dot Indicator Container -->
+                <div class="scroll-dots" id="galleryDots"></div>
+            </section>
+
+            <!-- Key Dignitaries -->
+            <ul class="dignitaries-section">
+                <h2 class="section-heading">Key Dignitaries Present</h2>
+                <ul class="dignitaries-grid">
+                    <li class="dignitary-card">
+                        <div class="role-badge">President - Howrah Zilla</div>
+                        <img src="../../../Guests/Kali Jasu.jpeg" alt="President">
+                        <h3>Kalikrishna Jasu</h3>
+                        <p>Teacher</p>
+                    </li>
+                    <li class="dignitary-card">
+                        <div class="role-badge">President - Uluberia Kendra</div>
+                        <img src="../../../Guests/A Jasu.jpeg" alt="President">
+                        <h3>Dr. Arun Jasu</h3>
+                        <p>Renowned Doctor</p>
+                    </li>
+                    <li class="dignitary-card">
+                        <div class="role-badge">Main Speaker</div>
+                        <img src="../../../Guests/Taparati Gangapadhay.jpeg" alt="Speaker">
+                        <h3>Dr. Taparati Gangopadhyay</h3>
+                        <p>Science Communicator</p>
+                    </li>
+                    <li class="dignitary-card">
+                        <div class="role-badge">Secretary - Uluberia Kendra</div>
+                        <img src="../../../Guests/Biswajit Paul.jpeg" alt="Speaker">
+                        <h3>Biswajit Paul</h3>
+                        <p>Teacher</p>
+                    </li>
+                </ul>
+            </ul>
+
+            <!-- Participants List -->
+            <ul class="participants-section">
+                <h2 class="section-heading">Distinguished Participants</h2>
+                <div class="participants-grid">
+                    <!-- Participant Items -->
+                    <li class="participant-item">
+                        <div class="participant-img"><img src="../../../Guests/Upasana Mondal.jpeg" alt="User">
+                        </div>
+                        <div class="participant-name">Upasana Mondal</div>
+                        <p>Singing</p>
+                    </li>
+                    <li class="participant-item">
+                        <div class="participant-img"><img src="../../../Guests/Ahenjita Paul.jpeg" alt="User">
+                        </div>
+                        <div class="participant-name">Ahenjita Pal</div>
+                        <p>Singing</p>
+                    </li>
+                    <li class="participant-item">
+                        <div class="participant-img"><img src="../../../Guests/Tulika Roy.jpeg" alt="User">
+                        </div>
+                        <div class="participant-name">Tulika Roy</div>
+                        <p>Singing</p>
+                    </li>
+                    <li class="participant-item">
+                        <div class="participant-img"><img src="../../../Guests/Jaharul Amin Mollah.jpeg" alt="User">
+                        </div>
+                        <div class="participant-name">Jaharul Amin Mollah</div>
+                        <p>Reciting</p>
+                    </li>
+                    <li class="participant-item">
+                        <div class="participant-img"><img src="../../../Guests/Kali Jasu.jpeg" alt="User">
+                        </div>
+                        <div class="participant-name">Kalikrishna Jasu</div>
+                        <p>Reciting</p>
+                    </li>
+                    <li class="participant-item">
+                        <div class="participant-img"><img src="../../../Guests/MD faruque.jpeg" alt="User">
+                        </div>
+                        <div class="participant-name">MD. Faruque</div>
+                        <p>Reciting</p>
+                    </li>
+                    <li class="participant-item">
+                        <div class="participant-img"><img src="../../../Guests/Oindrik Sau.jpeg" alt="User">
+                        </div>
+                        <div class="participant-name">Oindrik Sau</div>
+                        <p>Instrumentalist</p>
+                    </li>
+                    <li class="participant-item">
+                        <div class="participant-img"><img src="../../../Guests/Ramprasad Das.jpeg" alt="User">
+                        </div>
+                        <div class="participant-name">Ramprasad Das</div>
+                        <p>Singing</p>
+                    </li>
+                    <li class="participant-item">
+                        <div class="participant-img"><img src="../../../Guests/Pankaj jasu.jpeg" alt="User">
+                        </div>
+                        <div class="participant-name">Pankaj Jasu</div>
+                        <p>Singing</p>
+                    </li>
+                    <li class="participant-item">
+                        <div class="participant-img"><img src="../../../Guests/Sounak Adhikary.jpeg" alt="User">
+                        </div>
+                        <div class="participant-name">Sounak Adhikary</div>
+                        <p>Reciting</p>
+                    </li>
+                    <li class="participant-item">
+                        <div class="participant-img"><img src="../../../Guests/Srinjini das.jpeg" alt="User">
+                        </div>
+                        <div class="participant-name">Srinjini Das</div>
+                        <p>Singing</p>
+                    </li>
+                    <li class="participant-item">
+                        <div class="participant-img"><img src="../../../Guests/Sruti halder.jpeg" alt="User">
+                        </div>
+                        <div class="participant-name">Sruti Halder</div>
+                        <p>Reciting</p>
+                    </li>
+                </div>
+            </ul>
+
+            <!-- Program Schedule 
+            <section class="program-schedule-section">
+                <h2 class="section-heading">Program Schedule</h2>
+                <div class="program-entry">
+                    <div class="time-slot">02:40 PM</div>
+                    <div class="event-details">
+                        <h4>Inaugural Ceremony</h4>
+                        <p>Flag Hoisting and Mourning</p>
+                    </div>
+                </div>
+                <div class="program-entry">
+                    <div class="time-slot">02:50 PM</div>
+                    <div class="event-details">
+                        <h4>Cultural Program</h4>
+                        <p>Performances by local artists and members.</p>
+                    </div>
+                </div>
+                <div class="program-entry">
+                    <div class="time-slot">03:00 PM</div>
+                    <div class="event-details">
+                        <h4>Keynote Address</h4>
+                        <p>By Dr. Arun Jasu on <i>"Science for Society"</i>.</p>
+                    </div>
+                </div>
+                <div class="program-entry">
+                    <div class="time-slot">03:30 PM</div>
+                    <div class="event-details">
+                        <h4>Cultural Program</h4>
+                        <p>Performances by local artists and members.</p>
+                    </div>
+                </div>
+                <div class="program-entry">
+                    <div class="time-slot">03:50 PM</div>
+                    <div class="event-details">
+                        <h4>Keynote Address</h4>
+                        <p>By Adv. Khairul Basar on <i>"A Proud Journey of 40 Years"</i>.</p>
+                    </div>
+                </div>
+                <div class="program-entry">
+                    <div class="time-slot">04:35 PM</div>
+                    <div class="event-details">
+                        <h4>Cultural Program</h4>
+                        <p>Performances by local artists and members.</p>
+                    </div>
+                </div>
+            </section> -->
+
+            <!-- Special Program -->
+            <section class="program-section">
+                <div class="program-card">
+                    <div class="program-content">
+                        <h2>Igniting the Spark :</h2>
+                        <h3>Cultivating Curiosity in Young Minds</h3>
+                        <p>A hands-on workshop demonstrating simple tests to detect adulterants in milk and spices.
+                            Learn how to ensure safe food for your family.</p>
+                    </div>
+                    <div class="program-img"><img src="../../../adultration/adultration termaric.jpeg"
+                            alt="Adulteration">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Program Schedule 
+            <section class="program-schedule-section">
+                <div class="program-entry">
+                    <div class="time-slot">05:15 PM</div>
+                    <div class="event-details">
+                        <h4>Cultural Program</h4>
+                        <p>Performances by local artists and members.</p>
+                    </div>
+                </div>
+                <div class="program-entry">
+                    <div class="time-slot">05:30 PM</div>
+                    <div class="event-details">
+                        <h4>Keynote Address</h4>
+                        <p>By Kalikrishna Jasu on <i>"Our future goals"</i>.</p>
+                    </div>
+                </div>
+                <div class="program-entry">
+                    <div class="time-slot">05:50 PM</div>
+                    <div class="event-details">
+                        <h4>Closing Ceremony</h4>
+                        <p>Thanking the audience and closing remarks.</p>
+                    </div>
+                </div>
+            </section> -->
+
+            <!-- Videos Section 
+            <section class="video-section">
+                <h2 class="section-heading">Video Archives</h2>
+                <div class="video-container">
+                    <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/tXWPf0HQd5U" loading="lazy" title="Color Test in water"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen></iframe>
+        </div>
+        <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/W_VmFFmA7bM" loading="lazy"
+                title="Led Chromate adulteration test"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen></iframe>
+        </div>
+    </div>
+    </section> -->
+        </div>
+    </div>
+
+    <!-- Bengali Content Section -->
+    <div class="lang-content bn">
+        <div class="ceremony-container">
+
+            <!-- Header Section -->
+            <header class="ceremony-header">
+                <img src="../../../banner/40 years.png" alt="উদ্বোধন"></img>
+                <h1>বিজ্ঞান আড্ডা - ২০২৫</h1>
+                <h3>বিজ্ঞান ও ইতিহাসের মেলবন্ধনে জীবনদর্শনের অন্বেষণ</h3>
+                <p>পশ্চিমবঙ্গ বিজ্ঞান মঞ্চ &bull; ডিসেম্বর ১৯, ২০২৫</p>
+            </header>
+
+            <!-- Horizontal Scroll Gallery -->
+            <section class="gallery-section">
+                <h2 class="section-heading">অনুষ্ঠানের বিশেষ মুহূর্ত</h2>
+
+                <!-- IMPORTANT: Added id="galleryScroll-bn" here so the JS can find it -->
+                <div class="scroll-container" id="galleryScroll-bn">
+                    <!-- Replace sources with actual images -->
+                    <figure class="scroll-item">
+                        <img src="../../../gallary/vigyan adda 25/25_vigyan_adda_slide 1.jpeg" alt="উদ্বোধন">
+                        <figcaption class="item-caption">চিত্র.১ - ডাক্তার অরুন জাসু - <i>"সমাজের জন্য বিজ্ঞান"</i>
+                        </figcaption>
+                    </figure>
+                    <figure class="scroll-item">
+                        <img src="../../../gallary/vigyan adda 25/25_vigyan_adda_slide 2.jpeg" alt="অতিথিবৃন্দ">
+                        <figcaption class="item-caption">চিত্র.২ - ডঃ তপরাতি গঙ্গোপাধ্যায় - একজন বন্ধুর মতো
+                            ছাত্র-ছাত্রীদের মনের কথা শুনেছেন</figcaption>
+                    </figure>
+                    <figure class="scroll-item">
+                        <img src="../../../gallary/vigyan adda 25/25_vigyan_adda_slide 3.jpeg" alt="দর্শক">
+                        <figcaption class="item-caption">চিত্র.৩ - সমাজের সঠিক বিকাশের জন্য একজন বিজ্ঞানীর যেমন প্রয়োজন,
+                            তেমনি একজন ইতিহাসবিদ, সমাজকর্মী বা সাহিত্যিকেরও সমান প্রয়োজন</figcaption>
+                    </figure>
+                    <figure class="scroll-item">
+                        <img src="../../../gallary/vigyan adda 25/25_vigyan_adda_slide 4.jpeg" alt="পুরস্কার">
+                        <figcaption class="item-caption">চিত্র.৪ - মন মোর মেঘেরও সঙ্গী - অহেনজিতা পাল ও উপাসনা মন্ডল
+                        </figcaption>
+                    </figure>
+                    <figure class="scroll-item">
+                        <img src="../../../gallary/vigyan adda 25/25_vigyan_adda_slide 5.jpeg" alt="বক্তব্য">
+                        <figcaption class="item-caption">চিত্র.৫ - রুদ্র, তোমার দারুণ দীপ্তি
+                            এসেছে দুয়ার ভেদিয়া;
+                            বক্ষে বেজেছে বিদ্যুৎবাণ
+                            স্বপ্নের জাল ছেদিয়া।</figcaption>
+                    </figure>
+                    <figure class="scroll-item">
+                        <img src="../../../gallary/vigyan adda 25/25_vigyan_adda_slide 6.jpeg" alt="বক্তব্য">
+                        <figcaption class="item-caption">চিত্র.৬ - পঙ্কজ জাসু - ধিতাং ধিতাং বোলে ...</figcaption>
+                    </figure>
+                    <figure class="scroll-item">
+                        <img src="../../../gallary/vigyan adda 25/25_vigyan_adda_slide 7.jpeg" alt="বক্তব্য">
+                        <figcaption class="item-caption">চিত্র.৭ - নির্ঝরের স্বপ্নভঙ্গ</figcaption>
+                    </figure>
+                    <figure class="scroll-item">
+                        <img src="../../../gallary/vigyan adda 25/25_vigyan_adda_slide 8.jpeg" alt="বক্তব্য">
+                        <figcaption class="item-caption">চিত্র.৮ - সমস্ত ছাত্র ও ছাত্রীরা</figcaption>
+                    </figure>
+                </div>
+                <!-- NEW: Dot Indicator Container -->
+                <div class="scroll-dots" id="galleryDots-bn"></div>
+            </section>
+
+            <!-- Key Dignitaries -->
+            <section class="dignitaries-section">
+                <h2 class="section-heading">বিশেষ অতিথিবৃন্দ</h2>
+                <ul class="dignitaries-grid">
+                    <li class="dignitary-card">
+                        <div class="role-badge">সভাপতি - হাওড়া জেলা</div>
+                        <img src="../../../Guests/Kali Jasu.jpeg" alt="President">
+                        <h3>কালীকৃষ্ণ জাসু</h3>
+                        <p>শিক্ষক</p>
+                    </li>
+                    <li class="dignitary-card">
+                        <div class="role-badge">সভাপতি - উলবেড়িয়া কেন্দ্র</div>
+                        <img src="../../../Guests/A Jasu.jpeg" alt="President">
+                        <h3>ডা. অরুন জাসু</h3>
+                        <p>প্রথিতযশা ডাক্তার</p>
+                    </li>
+                    <li class="dignitary-card">
+                        <div class="role-badge">প্রধান বক্তা</div>
+                        <img src="../../../Guests/Taparati Gangapadhay.jpeg" alt="Speaker">
+                        <h3>ড. তপরাতি গঙ্গোপাধ্যায়</h3>
+                        <p>বিজ্ঞানী</p>
+                    </li>
+                    <li class="dignitary-card">
+                        <div class="role-badge">সম্পাদক - উলবেড়িয়া কেন্দ্র</div>
+                        <img src="../../../Guests/Biswajit Paul.jpeg" alt="Speaker">
+                        <h3>বিস্বজিৎ পাল</h3>
+                        <p>শিক্ষক</p>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Participants List -->
+            <section class="participants-section">
+                <h2 class="section-heading">উপস্থিত কলাকুশলী</h2>
+                <div class="participants-grid">
+                    <!-- Participant Items -->
+                    <li class="participant-item">
+                        <div class="participant-img"><img src="../../../Guests/Upasana Mondal.jpeg" alt="User">
+                        </div>
+                        <div class="participant-name">উপাসনা মন্ডল</div>
+                        <p>গান</p>
+                    </li>
+                    <li class="participant-item">
+                        <div class="participant-img"><img src="../../../Guests/Ahenjita Paul.jpeg" alt="User">
+                        </div>
+                        <div class="participant-name">অহেনজিতা পাল</div>
+                        <p>গান</p>
+                    </li>
+                    <li class="participant-item">
+                        <div class="participant-img"><img src="../../../Guests/Tulika Roy.jpeg" alt="User">
+                        </div>
+                        <div class="participant-name">তুলিকা রায়</div>
+                        <p>গান</p>
+                    </li>
+                    <li class="participant-item">
+                        <div class="participant-img"><img src="../../../Guests/Jaharul Amin Mollah.jpeg" alt="User">
+                        </div>
+                        <div class="participant-name">জহরুল আমিন মেল্লা</div>
+                        <p>আবৃত্তি</p>
+                    </li>
+                    <li class="participant-item">
+                        <div class="participant-img"><img src="../../../Guests/Kali Jasu.jpeg" alt="User">
+                        </div>
+                        <div class="participant-name">কালিকৃষ্ণ জাসু</div>
+                        <p>আবৃত্তি</p>
+                    </li>
+                    <li class="participant-item">
+                        <div class="participant-img"><img src="../../../Guests/MD faruque.jpeg" alt="User">
+                        </div>
+                        <div class="participant-name">মহঃ ফারুক</div>
+                        <p>আবৃত্তি</p>
+                    </li>
+                    <li class="participant-item">
+                        <div class="participant-img"><img src="../../../Guests/Oindrik Sau.jpeg" alt="User">
+                        </div>
+                        <div class="participant-name">ঐন্দ্রিক সাউ</div>
+                        <p>বাদ্যকার</p>
+                    </li>
+                    <li class="participant-item">
+                        <div class="participant-img"><img src="../../../Guests/Ramprasad Das.jpeg" alt="User">
+                        </div>
+                        <div class="participant-name">রামপ্রসাদ দাস</div>
+                        <p>গান</p>
+                    </li>
+                    <li class="participant-item">
+                        <div class="participant-img"><img src="../../../Guests/Pankaj jasu.jpeg" alt="User">
+                        </div>
+                        <div class="participant-name">পঙ্কজ জাসু</div>
+                        <p>গান</p>
+                    </li>
+                    <li class="participant-item">
+                        <div class="participant-img"><img src="../../../Guests/Sounak Adhikary.jpeg" alt="User">
+                        </div>
+                        <div class="participant-name">সৌনক আধিকারী</div>
+                        <p>আবৃত্তি</p>
+                    </li>
+                    <li class="participant-item">
+                        <div class="participant-img"><img src="../../../Guests/Srinjini das.jpeg" alt="User">
+                        </div>
+                        <div class="participant-name">সৃঞ্জনী দাস</div>
+                        <p>গান</p>
+                    </li>
+                    <li class="participant-item">
+                        <div class="participant-img"><img src="../../../Guests/Sruti halder.jpeg" alt="User">
+                        </div>
+                        <div class="participant-name">শ্রুতি হালদার</div>
+                        <p>আবৃত্তি</p>
+                    </li>
+                </div>
+            </section>
+
+            <!-- Program Schedule 
+            <section class="program-schedule-section">
+                <h2 class="section-heading">অনুষ্ঠানের সময়সূচি</h2>
+                <div class="program-entry">
+                    <div class="time-slot">দুপুর ০২:৪০</div>
+                    <div class="event-details">
+                        <h4>উদ্বোধনী</h4>
+                        <p>পতাকা উত্তোলন ও শোকপালন</p>
+                    </div>
+                </div>
+                <div class="program-entry">
+                    <div class="time-slot">দুপুর ০২:৫০</div>
+                    <div class="event-details">
+                        <h4>সাংস্কৃতিক অনুষ্ঠান</h4>
+                        <p>উপস্থিত সদস্য ও কলাকুশলীদের গান ও কবিতা</p>
+                    </div>
+                </div>
+                <div class="program-entry">
+                    <div class="time-slot">দুপুর ০৩:০০</div>
+                    <div class="event-details">
+                        <h4>বক্তব্য</h4>
+                        <p>ডাক্তার অরুন জাসু - <i>"সমাজের জন্য বিজ্ঞান"</i>
+                        <p>
+                    </div>
+                </div>
+                <div class="program-entry">
+                    <div class="time-slot">বিকাল ০৩:৩০</div>
+                    <div class="event-details">
+                        <h4>সাংস্কৃতিক অনুষ্ঠান</h4>
+                        <p>উপস্থিত সদস্য ও কলাকুশলীদের গান ও কবিতা</p>
+                    </div>
+                </div>
+                <div class="program-entry">
+                    <div class="time-slot">বিকাল ০৩:৫০</div>
+                    <div class="event-details">
+                        <h4>বক্তব্য</h4>
+                        <p>সেখ খায়রুল বাসার - <i>"আমাদের চার দশক"</i>
+                        <p>
+                    </div>
+                </div>
+                <div class="program-entry">
+                    <div class="time-slot">বিকাল ০৪:৩৫</div>
+                    <div class="event-details">
+                        <h4>সাংস্কৃতিক অনুষ্ঠান</h4>
+                        <p>উপস্থিত সদস্য ও কলাকুশলীদের গান ও কবিতা</p>
+                    </div>
+                </div>
+            </section> -->
+
+            <!-- Special Program -->
+            <section class="program-section">
+                <div class="program-card">
+                    <div class="program-content">
+                        <h2>বিশেষ অনুষ্ঠান: খাদ্য সুরক্ষা</h2>
+                        <h3>দৈনন্দিন খাদ্যে ভেজাল মোকাবিলা</h3>
+                        <p><b>ডঃ তপারতি গঙ্গোপাধ্যায়</b> এই আয়োজনে একজন মেন্টর বা পথপ্রদর্শক হিসেবে উপস্থিত ছিলেন।
+                            তাঁর আলোচনার মূল বিষয়বস্তু নিচে তুলে ধরা হলো:</p>
+                        <br>
+
+                        <h3>১. বিজ্ঞান ও ইতিহাসের মেলবন্ধন</h3>
+                        <p>ডঃ গঙ্গোপাধ্যায়ের মতে, বিজ্ঞান এবং ইতিহাসকে আলাদা করে দেখার কোনো উপায় নেই। তিনি এই দুই
+                            বিষয়ের মধ্যকার সীমানা মুছে দেওয়ার কথা বলেছেন কারণ:</p>
+                        <br>
+                        <ul>
+                            <li><b>বিবর্তনের পাঠ:</b> প্রতিটি বৈজ্ঞানিক আবিষ্কারের পেছনে একটি সামাজিক ও ঐতিহাসিক
+                                প্রেক্ষাপট থাকে। কোনো বিশেষ সময়ে কেন একটি নির্দিষ্ট আবিষ্কার হলো, তা বুঝতে গেলে সেই
+                                সময়ের ইতিহাস জানা জরুরি।</li>
+                            <li><b>ভবিষ্যৎ পথপ্রদর্শক:</b> তিনি জোর দিয়ে বলেছেন যে, বড় কিছু অর্জন করতে হলে
+                                <b>"বিজ্ঞানের ইতিহাস" (History of Science)</b> পড়তে হবে। পুরোনো ভুলগুলো এবং
+                                পূর্বসূরিদের সংগ্রামের কাহিনী জানলে বর্তমানের গবেষণার পথ অনেক সহজ হয়ে যায়।
+                            </li>
+                        </ul>
+                        <br>
+
+                        <h3>২. সব বিষয়ের সমান গুরুত্ব</h3>
+                        <p>আমাদের সমাজে প্রায়ই বিজ্ঞানকে উচ্চাসন দেওয়া হয় এবং অন্যান্য বিষয়কে (কলা বা বাণিজ্য বিভাগ)
+                            কিছুটা গৌণ বলে মনে করা হয়। ডঃ গঙ্গোপাধ্যায় এই ধারণার তীব্র বিরোধিতা করেছেন:</p>
+                        <br>
+                        <ul>
+                            <li><b>সামাজিক ভারসাম্য:</b> তাঁর মতে, সমাজের সঠিক বিকাশের জন্য একজন বিজ্ঞানীর যেমন
+                                প্রয়োজন, তেমনি একজন ইতিহাসবিদ, সমাজকর্মী বা সাহিত্যিকেরও সমান প্রয়োজন।</li>
+                            <li><b>সার্বিক দৃষ্টিভঙ্গি:</b> বিষয় যাই হোক না কেন, যদি লক্ষ্য স্থির থাকে এবং সততার সাথে
+                                চর্চা করা হয়, তবে প্রতিটি বিষয়ই সমাজ গঠনে সমান ওজন বা গুরুত্ব বহন করে।</li>
+                        </ul>
+                        <br>
+
+                        <h3>৩. আগামী দিনের পথ চলা ও লক্ষ্য</h3>
+                        <p>ছাত্র-ছাত্রীদের উদ্দেশে তাঁর বার্তা ছিল অত্যন্ত অনুপ্রেরণামূলক:</p>
+                        <br>
+                        <ul>
+                            <li><b>স্বপ্ন দেখার সাহস:</b> তিনি চান ছাত্র-ছাত্রীরা কেবল বই পড়ে মুখস্থ না করে, প্রশ্ন
+                                করতে শিখুক।</li>
+                            <li><b>ঐতিহাসিক শিক্ষা:</b> তিনি পরামর্শ দিয়েছেন বিজ্ঞানের ইতিহাস থেকে শিক্ষা নিয়ে নতুন
+                                উদ্ভাবনের দিকে এগিয়ে যেতে, যাতে তারা কেবল ডিগ্রিধারী না হয়ে প্রকৃত মানুষ হিসেবে গড়ে
+                                ওঠে।</li>
+                        </ul>
+                    </div>
+                    <div class="program-img"><img src="../../../adultration/adultration termaric.jpeg"
+                            alt="Adulteration">
+                    </div>
+            </section>
+
+            <!-- Program Schedule 
+            <section class="program-schedule-section">
+                <div class="program-entry">
+                    <div class="time-slot">বিকাল ০৫:১৫</div>
+                    <div class="event-details">
+                        <h4>সাংস্কৃতিক অনুষ্ঠান</h4>
+                        <p>উপস্থিত সদস্য ও কলাকুশলীদের গান ও কবিতা</p>
+                    </div>
+                </div>
+                <div class="program-entry">
+                    <div class="time-slot">বিকাল ০৫:৩০</div>
+                    <div class="event-details">
+                        <h4>বক্তব্য</h4>
+                        <p>কালীকৃষ্ণ জাসু - <i>"আমাদের ভবিষ্যতের কর্মসূচনা"</i></p>
+                    </div>
+                </div>
+                <div class="program-entry">
+                    <div class="time-slot">বিকাল ০৫:৫০</div>
+                    <div class="event-details">
+                        <h4>সমাপ্তি</h4>
+                        <p>"দর্শকদের ধন্যবাদ এবং সমাপনী বক্তব্য।"</p>
+                    </div>
+                </div>
+            </section> -->
+
+            <!-- Videos Section 
+            <section class="video-section">
+                <h2 class="section-heading">ভিডিও</h2>
+                <div class="video-container">
+                    <div class="video-wrapper">
+
+                        <iframe src="https://www.youtube.com/embed/tXWPf0HQd5U" loading="lazy"
+                            title="Color Test in water"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen></iframe>
+                    </div>
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/W_VmFFmA7bM" loading="lazy"
+                            title="Led Chromate adulteration test"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowfullscreen></iframe>
+                    </div>
+                </div>
+            </section> -->
+        </div>
+    </div>
+
+
+    <!-- Modals -->
+
+    <!-- Scroll To Top -->
+    <button id="scrollToTopBtn" onclick="scrollToTop()" aria-label="Scroll to top"><i
+            class="fa-solid fa-arrow-up"></i></button>
+
+    <!-- ACTIVATING THE SCROLL FUNCTION -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Apply horizontal scroll to both language sections. Note: the Bengali section ID is set to 'galleryScroll-bn'
+            if (typeof enableMouseWheelScroll === 'function') {
+                enableMouseWheelScroll('galleryScroll');
+                enableMouseWheelScroll('galleryScroll-bn'); // Apply to the new Bengali gallery
+                console.log("Horizontal scroll enabled for both galleries");
+            } else {
+                console.error("enableMouseWheelScroll function not found in utils.js");
+            }
+
+            // NEW: Initialize dot indicators for both galleries
+            if (typeof setupGalleryDots === 'function') {
+                setupGalleryDots('galleryScroll', 'galleryDots');
+                setupGalleryDots('galleryScroll-bn', 'galleryDots-bn');
+                console.log("Gallery dots initialized for both galleries");
+            } else {
+                console.error("setupGalleryDots function not found in utils.js");
+            }
+        });
+
+        function openWindow() {
+            window.open("../../../adultration/adultration Pt I.pdf", "_blank");
+        }
+    </script>
+</body>
+
+</html>
