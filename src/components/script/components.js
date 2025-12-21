@@ -101,8 +101,8 @@ const ComponentGenerator = {
                         <div class="lang-content en">
                             <p class="notice-subtitle" data-translate-key="notice_subtitle_en">Current Events</p>
                             <ul>
-                                <li>On the occasion of our 40th anniversary on November 29th, a cultural program, constructive discussions, and adulteration tests is successfully organized at 2:00 PM at 58 Gate Shikshak Bhawan. </li>
-                                <a href="./src/components/pages/programme/40_year.html">Read More</a>
+                                <li>An exceptional 'Science Adda' (Science Chat) comprising four special segments was held at the Uluberia Science Centre last Friday, December 19, 2025. Dr. Taparati Gangopadhyay was present as the keynote speaker. </li>
+                                <a href="./src/components/pages/programme/vigyan_adda_25.html">Read More</a>
                                 <p>&nbsp;</p>
                                 <li>Howrah Zilla Vigyan Manosikota-o-Medha Aviksha 2025 has been successfully completed.</li>
                                 <a href="./src/components/pages/aviksha/results.html">Result will be published Soon.</a>
@@ -111,8 +111,8 @@ const ComponentGenerator = {
                         <div class="lang-content bn">
                             <p class="notice-subtitle" data-translate-key="notice_subtitle_bn">বর্তমান ঘটনাবলী</p>
                             <ul>
-                                <li>বিগত ৯শে নভেম্বর আমাদের ৪০ বছর পূর্তি উপলক্ষে ৫৮গেট শিক্ষক ভবনে দুপুর ২টো থেকে একটি সাংস্কৃতিক অনুষ্ঠান সহ, গঠণমূলক আলোচনা ও ভেজাল পরীক্ষার আয়েজন করা হয়েছিল।</li>
-                                <a href="./src/components/pages/programme/40_year.html">বিশদে দেখুন।</a>
+                                <li>গত ১৯শে ডিসেম্বর, ২০২৫, শুক্রবার উলুবেড়িয়া বিজ্ঞান কেন্দ্রে চারটি বিশেষ চক্রের সমন্বয়ে একটি ব্যতিক্রমী 'বিজ্ঞানের আড্ডা' অনুষ্ঠিত হয়, যেখানে মূল বক্তা হিসেবে উপস্থিত ছিলেন ডঃ তপারতি গঙ্গোপাধ্যায়।</li>
+                                <a href="./src/components/pages/programme/vigyan_adda_25.html">বিশদে দেখুন।</a>
                                 <p>&nbsp;</p>
                                 <li>হাওড়া জেলা বিজ্ঞান মানসিকতা-ও-মেধা অভিক্ষা ২০২৫ সফলভাবে সম্পন্ন হয়েছে।</li>
                                 <a href="./src/components/pages/aviksha/results.html">ফলাফল শীঘ্রই প্রকাশিত হবে।</a>

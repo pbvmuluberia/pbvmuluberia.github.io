@@ -418,6 +418,13 @@
                 color: var(--text-color-secondary);
                 line-height: 1.6;
                 text-align: justify;
+                margin-bottom: var(--space-xs);
+            }
+            
+            li {
+                line-height: 1.6;
+                text-align: justify;
+                margin-bottom: var(--space-xs);
             }
 
             .action-btn {
