@@ -1,12 +1,12 @@
 // 1. Define Color Palettes
 const THEME_COLORS = {
     light: {
-        background: "#F9E9D2",
+        background: "#f9e9d2",
         theme: "#bf530c"
     },
     dark: {
         background: "#262626",
-        theme: "#B8BA26"
+        theme: "#b8ba26"
     }
 };
 
