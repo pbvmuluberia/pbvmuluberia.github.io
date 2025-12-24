@@ -1,0 +1,186 @@
+/* ------------------------- DONATION MODAL ------------------------- */
+
+.donation-card {
+    background-color: var(--surface-color);
+    border: var(--card-border-color);
+    color: var(--text-color-primary);
+    padding: var(--space-lg) var(--space-md);
+    border-radius: var(--border-radius-large);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    margin: auto;
+    max-width: 90%;
+    width: 450px;
+    text-align: center;
+
+    transform: scale(1.0);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.27), opacity 0.3s;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.donation-content {
+    h2 {
+        font-family: var(--font-heading);
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+        font-size: var(--font-size-h2);
+    }
+}
+
+.qr-code-container {
+    width: min(100%, 200px);
+    height: 200px;
+    margin: 1.5rem auto 1rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+    canvas,
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        padding: var(--space-xs);
+    }
+}
+
+.amount-btn {
+    padding: 8px 15px;
+    border-radius: 8px;
+    background-color: var(--surface-color);
+    font-weight: var(--font-weight-semi);
+    cursor: pointer;
+    /* FIX: Optimized transition */
+    transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+
+    &[data-amount="100"] {
+        color: rgb(var(--note-100));
+        border: 1px solid rgb(var(--note-100));
+    }
+
+    &[data-amount="500"] {
+        color: rgb(var(--note-500));
+        border: 1px solid rgb(var(--note-500));
+    }
+
+    &[data-amount="0"] {
+        color: rgb(var(--note-other));
+        border: 1px solid rgb(var(--note-other));
+    }
+
+    &.active {
+        color: var(--surface-color);
+
+        &[data-amount="100"] {
+            background-color: rgb(var(--note-100));
+            box-shadow: 0 2px 5px rgba(var(--note-100), 0.5);
+            color: white;
+        }
+
+        &[data-amount="500"] {
+            background-color: rgb(var(--note-500));
+            box-shadow: 0 2px 5px rgba(var(--note-500), 0.5);
+            color: white;
+        }
+
+        &[data-amount="0"] {
+            background-color: rgb(var(--note-other));
+            box-shadow: 0 2px 5px rgba(var(--note-other), 0.5);
+            color: white;
+        }
+    }
+
+    &:hover:not(.active) {
+        background-color: rgba(var(--primary-color-rgb), 0.1);
+    }
+}
+
+.upi-id-label {
+    font-weight: var(--font-weight-normal);
+    color: var(--text-color-secondary);
+    margin-bottom: 0.8rem;
+    font-size: var(--font-size-p);
+}
+
+.upi-id-value {
+    font-weight: var(--font-weight-heavy);
+    font-size: var(--font-size-p);
+    color: var(--text-color-primary);
+    margin-bottom: 1rem;
+    padding: 0.5rem 0;
+    background-color: rgba(var(--primary-color-rgb), 0.1);
+    border-radius: 8px;
+    display: inline-block;
+    padding-left: var(--space-sm);
+    padding-right: var(--space-sm);
+}
+
+.copy-upi-btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--primary-color);
+    color: var(--surface-color);
+    font-weight: var(--font-weight-semi);
+    cursor: pointer;
+    /* FIX: Optimized transition */
+    transition: filter 0.3s, transform 0.3s;
+    margin-bottom: 0.5rem;
+    margin-top: var(--space-sm);
+
+    &:hover {
+        filter: brightness(1.1);
+        transform: translateY(-1px);
+    }
+}
+
+.deep-link-btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    background-color: #4CAF50;
+    color: white;
+    font-weight: var(--font-weight-semi);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: background-color 0.3s, transform 0.2s;
+
+    &:hover {
+        background-color: #45a049;
+        transform: scale(1.05);
+    }
+}
+
+.donation-note {
+    font-size: var(--font-size-p);
+    color: var(--text-color-secondary);
+    font-style: italic;
+    margin-top: 1rem;
+}
+
+@media (max-height: 700px) and (min-width: 600px) {
+    .donation-card {
+        width: 400px;
+        max-width: 90%;
+    }
+
+    .donation-content h2 {
+        text-align: center;
+        margin-bottom: 0.5rem;
+    }
+
+    .qr-code-container {
+        width: min(100%, 150px);
+        height: 150px;
+    }
+
+    #deepLinkBtn {
+        display: none;
+    }
+}

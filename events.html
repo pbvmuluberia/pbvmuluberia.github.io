@@ -10,6 +10,8 @@
     <!-- Note: Assuming these paths are correct in your environment -->
     <link rel="stylesheet" href="./src/components/css/style.css">
     <link rel="stylesheet" href="/src/components/css/events.css">
+    <link rel="stylesheet" href="/src/components/css/navbar.css">
+    <link rel="stylesheet" href="/src/components/css/donationModal.css">
 
     <!-- New blog.js file for the pagination logic -->
     <script src="./src/components/script/events.js"></script>
@@ -95,13 +97,15 @@
                                 <h3 data-translate-key="popular_posts">Popular Posts</h3>
                             </div>
                             <ul class="list-group">
-                                <li class="list-item">
-                                    <img src="./src/40 years/40_years.png" alt="Image" class="list-img">
-                                    <div>
-                                        <span style="font-size:18px">40 years</span><br>
-                                        <span>2025</span>
-                                    </div>
-                                </li>
+                                <a href="./src/components/pages/programme/40_year.html">
+                                    <li class="list-item">
+                                        <img src="./src/40 years/40_years.png" alt="Image" class="list-img">
+                                        <div>
+                                            <span style="font-size:18px" data-translate-key="important_01">Four decades
+                                                of scientific popularization.</span><br>
+                                        </div>
+                                    </li>
+                                </a>
                             </ul>
                         </div>
                         <div class="card-simple">
@@ -120,6 +124,37 @@
                                 <div class="tag-option">
                                     <input type="radio" id="tag-40" name="blog_tag" value="40 years">
                                     <label data-translate-key="tag-40" for="tag-40" class="tag-grey">40 years</label>
+                                </div>
+                                <div class="tag-option">
+                                    <input type="radio" id="tag-aviksha" name="blog_tag" value="aviksha">
+                                    <label data-translate-key="tag-aviksha" for="tag-aviksha"
+                                        class="tag-grey">Aviksha</label>
+                                </div>
+                                <div class="tag-option">
+                                    <input type="radio" id="tag-sky" name="blog_tag" value="sky">
+                                    <label data-translate-key="tag-sky" for="tag-sky" class="tag-grey">Sky</label>
+                                </div>
+                                <div class="tag-option">
+                                    <input type="radio" id="tag-adda" name="blog_tag" value="adda">
+                                    <label data-translate-key="tag-adda" for="tag-adda" class="tag-grey">Adda</label>
+                                </div>
+                                <div class="tag-option">
+                                    <input type="radio" id="tag-adultration" name="blog_tag" value="adultration">
+                                    <label data-translate-key="tag-adultration" for="tag-adultration"
+                                        class="tag-grey">Adultration</label>
+                                </div>
+                                <div class="tag-option">
+                                    <input type="radio" id="tag-vday" name="blog_tag" value="vday">
+                                    <label data-translate-key="tag-vday" for="tag-vday" class="tag-grey">Vday</label>
+                                </div>
+                                <div class="tag-option">
+                                    <input type="radio" id="tag-pday" name="blog_tag" value="pday">
+                                    <label data-translate-key="tag-pday" for="tag-pday" class="tag-grey">Pday</label>
+                                </div>
+                                <div class="tag-option">
+                                    <input type="radio" id="tag-treeWeek" name="blog_tag" value="treeWeek">
+                                    <label data-translate-key="tag-treeWeek" for="tag-treeWeek"
+                                        class="tag-grey">TreeWeek</label>
                                 </div>
                             </div>
                         </div>

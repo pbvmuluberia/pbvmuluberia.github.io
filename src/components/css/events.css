@@ -233,3 +233,12 @@
 .card.fade-in {
     animation: fadeIn 0.4s ease-out forwards;
 }
+
+a {
+
+    /* link */
+    &:link {
+        display: block;
+        border: none
+    }
+}

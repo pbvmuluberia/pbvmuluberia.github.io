@@ -6,15 +6,15 @@
 
 const CONFIG = {
     scriptUrl: 'https://script.google.com/macros/s/AKfycbwP8cx8eoCJ7A5oSIX-7x5rW-C2ww6nq1OGvJuJ4HgvEVtih_gdu8CJ6oEV_iN4hHAk1A/exec',
-    itemsPerPage: 2 
+    itemsPerPage: 2
 };
 
-const TAG_STORAGE_KEY = 'blog_current_tag'; 
+const TAG_STORAGE_KEY = 'blog_current_tag';
 
-let currentTag = '';       
-let lastFetchedRows = [];  
-let fetchedPosts = [];     
-let totalDataRows = 0;     
+let currentTag = '';
+let lastFetchedRows = [];
+let fetchedPosts = [];
+let totalDataRows = 0;
 
 /**
  * Helper to get the current active language.
@@ -32,13 +32,33 @@ function getT(key) {
     return (window.translations[lang] && window.translations[lang][key]) || window.translations['en'][key] || key;
 }
 
+/**
+ * Returns HTML containing BOTH languages wrapped in the correct classes.
+ * This allows the language switcher to hide/show the correct text instantly
+ * without needing a page refresh.
+ */
+function getDualLangHTML(key) {
+    const enText = window.translations['en'][key] || key;
+    const bnText = window.translations['bn'][key] || key;
+
+    // Determine which one should be visible right now
+    const currentLang = getCurrentLang();
+    const enActive = currentLang === 'en' ? 'active' : '';
+    const bnActive = currentLang === 'bn' ? 'active' : '';
+
+    return `
+        <span class="lang-content en ${enActive}">${enText}</span>
+        <span class="lang-content bn ${bnActive}">${bnText}</span>
+    `;
+}
+
 // 1. Fetch Data
 async function fetchBlogData(tag, anchorRow, direction) {
     const container = document.getElementById('blog-posts-container');
     if (!container) return;
 
     // Show translated loading state
-    container.innerHTML = `<p>${getT('loading_blog_posts')}</p>`;
+    container.innerHTML = `<p>${getDualLangHTML('loading_blog_posts')}</p>`;
 
     const separator = CONFIG.scriptUrl.includes('?') ? '&' : '?';
     let url = `${CONFIG.scriptUrl}${separator}tag=${encodeURIComponent(tag)}`;
@@ -57,9 +77,9 @@ async function fetchBlogData(tag, anchorRow, direction) {
 
         if (!Array.isArray(fetchedPosts) || fetchedPosts.length === 0) {
             // Show translated 'no more posts' message
-            container.innerHTML = `<p>${getT('no_more_posts')}</p>`;
+            container.innerHTML = `<p>${getDualLangHTML('no_more_posts')}</p>`;
             const isAtStart = (anchorRow === 0 && direction === 0);
-            updateButtons(!isAtStart, false, totalDataRows); 
+            updateButtons(!isAtStart, false, totalDataRows);
             return;
         }
 
@@ -68,7 +88,7 @@ async function fetchBlogData(tag, anchorRow, direction) {
     } catch (error) {
         console.error('Error fetching blog data:', error);
         // Show translated error message
-        container.innerHTML = `<p>${getT('pub_error_loading')}</p>`;
+        container.innerHTML = `<p>${getDualLangHTML('pub_error_loading')}</p>`;
         updateButtons(false, false, totalDataRows);
     }
 }
@@ -101,7 +121,8 @@ function mapSheetDataToBlogFormat(row) {
 // 2. Create HTML Template
 function createCardHTML(post) {
     const mappedPost = mapSheetDataToBlogFormat(post);
-    const readMoreText = getT('btn_read_more');
+    // Use the helper to get both languages for the button
+    const readMoreHTML = getDualLangHTML('btn_read_more');
 
     return `
         <div class="card fade-in" data-row-number="${mappedPost.rowNumber}">
@@ -122,7 +143,7 @@ function createCardHTML(post) {
                 <div class="row">
                     <div class="col-main">
                         <button class="action-btn" style="margin-bottom: var(--space-sm);" onclick="window.open('${mappedPost.alt}', '_self')">
-                            <b>${readMoreText}</b>
+                            <b>${readMoreHTML}</b>
                         </button>
                     </div>
                 </div>
