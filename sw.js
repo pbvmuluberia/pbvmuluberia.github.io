@@ -16,6 +16,7 @@ const ASSETS_TO_CACHE = [
 
     // JS
     './src/components/script/components.js',
+    './src/components/script/install.js',
     './src/components/script/events.js',
     './src/components/script/publications.js',
     './src/components/script/data.js',

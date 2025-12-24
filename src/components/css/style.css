@@ -444,6 +444,34 @@ a {
     }
 }
 
+.install-btn {
+    position: fixed;
+    bottom: var(--space-md);
+    left: var(--space-md); /* Positions it on the left side */
+    background-color: var(--primary-color); /* Matches your theme color */
+    border: none;
+    padding: var(--space-sm) var(--space-md);
+    border-radius: var(--space-2xl);
+    font-size: var(--font-size-h1);
+    font-weight: bold;
+    cursor: pointer;
+    z-index: var(--z-overlay);
+    transition: transform 0.2s, background-color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.install-btn:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-2px);
+}
+
+.install-btn:active {
+    transform: translateY(0);
+}
+
+
 /* ------------------------- SCROLL TO TOP ------------------------- */
 
 #scrollToTopBtn {
