@@ -445,7 +445,9 @@ a {
 }
 
 .install-btn {
-    position: relative;
+    position: fixed;
+    right: var(--space-md);
+    bottom: calc(var(--space-3xl) - var(--space-xs));
     background-color: var(--primary-color); /* Matches your theme color */
     color: var(--surface-color);
     border: none;
