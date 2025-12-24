@@ -445,25 +445,32 @@ a {
 }
 
 .install-btn {
-    position: fixed;
-    bottom: var(--space-md);
-    left: var(--space-md); /* Positions it on the left side */
+    position: relative;
     background-color: var(--primary-color); /* Matches your theme color */
+    color: var(--surface-color);
     border: none;
     padding: var(--space-sm) var(--space-md);
     border-radius: var(--space-2xl);
-    font-size: var(--font-size-h1);
+    font-size: var(--font-size-p);
     font-weight: bold;
     cursor: pointer;
-    z-index: var(--z-overlay);
+    z-index: var(--z-nav);
     transition: transform 0.2s, background-color 0.2s;
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
+.install-btn.hide-on-scroll {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+    transform: translateY(-20px) !important;
+    transition: all 0.3s ease, transform 0.2s ease
+        !important;
+}
+
 .install-btn:hover {
-    background-color: var(--primary-color);
     transform: translateY(-2px);
 }
 
