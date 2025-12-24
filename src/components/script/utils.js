@@ -106,6 +106,10 @@ function toggleTheme() {
     const isDark = document.documentElement.classList.toggle('dark-theme');
     const newTheme = isDark ? 'dark' : 'light';
     localStorage.setItem('theme', newTheme);
+    
+    if (window.updatePwaTheme) {
+        window.updatePwaTheme(newTheme);
+    }
 }
 
 // Helper to enable mouse wheel horizontal scrolling

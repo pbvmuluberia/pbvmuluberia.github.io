@@ -34,7 +34,7 @@
     /* Fixed navbar height */
 
     /* --- Light Theme --- */
-    --background-color: hsl(36, 76%, 90%);
+    --background-color: hsla(35, 76%, 90%, 1);
     /* Very light beige-yellow */
     --surface-color: hsl(36, 76%, 95%);
     /* Slightly darker beige for cards */
@@ -99,7 +99,7 @@
 
 .dark-theme {
     /* --- Dark Gruvbox Theme --- */
-    --background-color: hsl(20 0% 15%);
+    --background-color: hsla(0, 0%, 15%, 1);
     --surface-color: hsl(20, 0%, 20%);
     --surface-color-alt: hsl(20, 0%, 25%);
     --surface-color-top: hsl(20, 0%, 30%);
@@ -117,7 +117,7 @@
     --note-other: 209, 117, 203;
 
     /* FIX: Dark mode uses bright Yellow-Green for better contrast on dark */
-    --primary-color: hsl(61, 66%, 44%);
+    --primary-color: hsla(61, 66%, 44%, 1);
     --primary-color-rgb: 184, 187, 38;
     --primary-color-alpha: 184, 187, 38, 0.6;
 
