@@ -14,34 +14,22 @@
 
     /* --- Spacing System (Standardized) --- */
     --space-xs: 5px;
-    /* Extra Small spacing */
     --space-sm: 10px;
-    /* Small spacing */
     --space-md: 20px;
-    /* Medium/Standard spacing */
     --space-lg: 30px;
-    /* Large spacing */
     --space-xl: 40px;
-    /* Extra Large spacing */
     --space-2xl: 50px;
-    /* Section padding */
     --space-3xl: 80px;
-    /* Major section breaks */
 
     --container-padding: 5%;
-    /* Standard horizontal container padding */
     --nav-height: 70px;
-    /* Fixed navbar height */
 
     /* --- Light Theme --- */
     --background-color: hsla(35, 76%, 90%, 1);
-    /* Very light beige-yellow */
     --surface-color: hsl(36, 76%, 95%);
-    /* Slightly darker beige for cards */
     --surface-color-rgb: 251, 241, 226;
     --surface-color-alpha: hsl(36, 76%, 95% / 0.3);
     --surface-color-alt: hsl(36, 76%, 97%);
-    /* Alternate surface for contrast */
     --surface-color-top: hsl(36, 76%, 100%);
 
     --text-color-primary: hsl(20, 5%, 22%);
@@ -50,17 +38,13 @@
 
     --banner-background: rgba(var(--primary-color-rgb), 0.1);
 
-    /* FIX: Darkened from standard Gruvbox Orange (#d65d0e) to #bf530c 
-       to meet WCAG AA contrast ratio (4.5:1) against light text */
     --primary-color: hsl(24, 88%, 40%);
     --primary-color-rgb: 191, 83, 12;
     --primary-color-alpha: 191, 83, 12, 0.6;
 
-
     --error-color: hsl(0, 65%, 50%);
     --sucess-color: hsl(163. 88%, 20%);
 
-    /* Card Border (Transparent in light mode) */
     --card-border-color: rgba(0, 0, 0, 0.05);
 
     --note-100: 100, 93, 233;
@@ -70,12 +54,10 @@
     /* Language toggle colors */
     --lang-bg-active: var(--primary-color);
     --lang-text-active: hsl(36, 76%, 94%);
-    /* Ensure light text on orange bg */
     --lang-bg-inactive: var(--surface-color);
     --lang-text-inactive: var(--text-color-primary);
     --lang-border: var(--primary-color);
 
-    /* Consistent corner radius and shadow */
     --border-radius-large: 28px;
     --border-radius-medium: 20px;
     --border-radius-semi: 10px;
@@ -84,7 +66,6 @@
 
     /* --- Text Variables --- */
     --font-heading: 'Georgia', 'Times New Roman', serif;
-    /* Serif for "Book" feel */
     --font-body: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
     --font-size-h1: 2.4rem;
@@ -116,15 +97,12 @@
     --note-500: 162, 204, 123;
     --note-other: 209, 117, 203;
 
-    /* FIX: Dark mode uses bright Yellow-Green for better contrast on dark */
     --primary-color: hsla(61, 66%, 44%, 1);
     --primary-color-rgb: 184, 187, 38;
     --primary-color-alpha: 184, 187, 38, 0.6;
 
-    /* FIX: Add visible border for dark mode cards to separate from bg */
     --card-border-color: rgba(255, 255, 255, 0.1);
 
-    /* Language toggle colors */
     --lang-bg-active: var(--primary-color);
     --lang-text-active: var(--surface-color);
     --lang-border: var(--primary-color);
@@ -150,7 +128,6 @@
     box-sizing: border-box;
 }
 
-/* FIX: Global focus ring for keyboard navigation accessibility */
 :focus-visible {
     outline: 2px solid var(--primary-color);
     outline-offset: 4px;
@@ -161,13 +138,13 @@ body {
     background: var(--background-color);
     font-family: var(--font-body);
     color: var(--text-color-primary);
-    /* Ensure default text color */
     overflow-x: hidden;
-    /* Optimized transition */
     transition: background-color 0.3s ease, color 0.3s ease;
+    
+    /* MOBILE: Add padding to bottom so content isn't hidden behind the fixed nav */
+    padding-bottom: calc(var(--nav-height) + var(--space-md));
 }
 
-/* Headings Typography Update */
 h1,
 h2,
 h3,
@@ -183,41 +160,32 @@ h6 {
     border-radius: var(--space-sm);
     color: var(--surface-color);
     font-weight: var(--font-weight-semi);
-    /* FIX: Optimized transition for performance */
     transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
 }
 
 a {
-
-    /* link */
     &:link {
         display: inline-block;
         text-decoration: none;
         padding: var(--space-xs) 8px;
-        /* 8px is slightly less than sm */
         background-color: rgba(var(--primary-color-rgb), 0.1);
         color: var(--primary-color);
         border-radius: var(--border-radius-medium);
         border: 2px dotted rgb(var(--primary-color-rgb));
     }
 
-    /* visited link */
     &:visited {
         background-color: rgba(var(--primary-color-rgb), 0.1);
         color: var(--primary-color);
     }
 
-    /* mouse over link */
     &:hover {
-        /* FIX: Ensure high contrast on hover */
         color: var(--surface-color);
         background-color: var(--primary-color);
         border-style: solid;
-        /* Remove dotted border to prevent jumping */
         border-color: var(--primary-color);
     }
 
-    /* selected link */
     &:active {
         color: var(--surface-color);
         filter: brightness(0.9);
@@ -231,7 +199,7 @@ a {
     left: 0;
     transform: none;
     width: 100vw;
-    height: 70vh;
+    height: 90vh;
     background: #f5f5f5;
     overflow: hidden;
     cursor: grab;
@@ -258,16 +226,14 @@ a {
             background-repeat: no-repeat;
             display: inline-block;
             transition: left 0.5s, top 0.5s, width 0.5s, height 0.5s;
-            /* Specific */
 
             .content {
                 position: absolute;
-                padding-top: clamp(300px, 20%, 500px);
+                top: 60%;
                 padding-left: clamp(10px, 10vw, 100px);
                 width: min(65%, 400px);
                 text-align: left;
                 color: var(--surface-color);
-                /* Light text on image gradient */
                 transform: translate(0, -50%);
                 display: none;
 
@@ -277,7 +243,6 @@ a {
                     text-transform: uppercase;
                     font-weight: var(--font-weight-heavy);
                     opacity: 0;
-                    /* Fix: Force bright color for slide text as it's over dark image */
                     color: #fff;
                     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
                     animation: animate 1s ease-in-out 1 forwards;
@@ -288,7 +253,6 @@ a {
                     margin-bottom: var(--space-md);
                     opacity: 0;
                     color: #ddd;
-                    /* Lighter text for description on dark bg */
                     animation: animate 1s ease-in-out 0.3s 1 forwards;
                     font-size: var(--font-size-p);
                 }
@@ -330,7 +294,6 @@ a {
 
     p {
         margin-bottom: var(--space-md);
-        /* 1rem/16px approx */
         line-height: 1.6;
         text-align: justify;
         font-size: var(--font-size-p);
@@ -368,7 +331,6 @@ a {
     transition: opacity 0.3s, transform 0.3s;
     transform: translateX(100%);
     z-index: var(--z-toast);
-    /* FIX: Used variable */
 
     &.show {
         opacity: 1;
@@ -383,7 +345,6 @@ a {
     color: color-mix(in srgb, var(--primary-color), white 60%);
     border: 2px solid rgb(var(--primary-color-rgb));
     background-color: rgba(var(--primary-color-rgb), 0.15);
-    /* FIX: Optimized transition */
     transition: background-color 0.3s, transform 0.2s, color 0.3s, filter 0.3s;
 
     &:hover {
@@ -430,8 +391,6 @@ a {
     margin-bottom: var(--space-sm);
     background-color: var(--primary-color);
     color: var(--surface-color);
-    /* FIX: Ensure text contrast */
-    /* FIX: Optimized transition */
     transition: filter 0.3s, transform 0.2s;
 
     &:hover {
@@ -447,8 +406,11 @@ a {
 .install-btn {
     position: fixed;
     right: var(--space-md);
-    bottom: calc(var(--space-3xl) - var(--space-xs));
-    background-color: var(--primary-color); /* Matches your theme color */
+    
+    /* MOBILE: Position above the bottom navbar */
+    bottom: calc(var(--nav-height) + var(--space-3xl) + 10px);
+    
+    background-color: var(--primary-color);
     color: var(--surface-color);
     border: none;
     padding: var(--space-sm) var(--space-md);
@@ -468,8 +430,7 @@ a {
     visibility: hidden !important;
     pointer-events: none !important;
     transform: translateY(-20px) !important;
-    transition: all 0.3s ease, transform 0.2s ease
-        !important;
+    transition: all 0.3s ease, transform 0.2s ease !important;
 }
 
 .install-btn:hover {
@@ -485,8 +446,11 @@ a {
 
 #scrollToTopBtn {
     position: fixed;
-    bottom: var(--space-md);
+    
+    /* MOBILE: Position above the bottom navbar */
+    bottom: calc(var(--nav-height) + var(--space-md) + 10px);
     right: var(--space-md);
+    
     width: var(--space-2xl);
     height: var(--space-2xl);
     background-color: var(--primary-color);
@@ -502,7 +466,6 @@ a {
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.2s ease;
     z-index: var(--z-nav);
-    /* FIX: Used variable */
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 
     &.show {
@@ -518,7 +481,6 @@ a {
 
 /* FIX: Reduced Motion Support */
 @media (prefers-reduced-motion: reduce) {
-
     *,
     *::before,
     *::after {
@@ -526,5 +488,26 @@ a {
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
+    }
+}
+
+/* ------------------------- DESKTOP OVERRIDES ------------------------- */
+@media (min-width: 980px) {
+    /* RESET BODY PADDING */
+    body {
+        padding-bottom: 0;
+    }
+    
+    .container {
+        height: 100vh;
+    }
+    
+    /* RESET BUTTON POSITIONS */
+    .install-btn {
+        bottom: calc(var(--space-3xl) - var(--space-xs));
+    }
+    
+    #scrollToTopBtn {
+        bottom: var(--space-md);
     }
 }
