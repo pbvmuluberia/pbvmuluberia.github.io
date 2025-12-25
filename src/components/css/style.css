@@ -229,7 +229,7 @@ a {
 
             .content {
                 position: absolute;
-                top: 60%;
+                top: 60%  !important;
                 padding-left: clamp(10px, 10vw, 100px);
                 width: min(65%, 400px);
                 text-align: left;
@@ -499,7 +499,7 @@ a {
     }
     
     .container {
-        height: 100vh;
+        height: 70vh;
     }
     
     /* RESET BUTTON POSITIONS */
