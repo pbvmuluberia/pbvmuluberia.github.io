@@ -105,7 +105,7 @@ const ComponentGenerator = {
                                 <a href="./src/components/pages/programme/vigyan_adda_25.html">Read More</a>
                                 <p>&nbsp;</p>
                                 <li>Howrah Zilla Vigyan Manosikota-o-Medha Aviksha 2025 has been successfully completed.</li>
-                                <a href="./src/components/pages/aviksha/results.html">Result will be published Soon.</a>
+                                <a href="./src/components/pages/aviksha/results.html">CheckResult.</a>
                             </ul>
                         </div>
                         <div class="lang-content bn">
@@ -115,7 +115,7 @@ const ComponentGenerator = {
                                 <a href="./src/components/pages/programme/vigyan_adda_25.html">বিশদে দেখুন।</a>
                                 <p>&nbsp;</p>
                                 <li>হাওড়া জেলা বিজ্ঞান মানসিকতা-ও-মেধা অভিক্ষা ২০২৫ সফলভাবে সম্পন্ন হয়েছে।</li>
-                                <a href="./src/components/pages/aviksha/results.html">ফলাফল শীঘ্রই প্রকাশিত হবে।</a>
+                                <a href="./src/components/pages/aviksha/results.html">ফলাফল দেখুন।</a>
                             </ul>
                         </div>
                     </div>
