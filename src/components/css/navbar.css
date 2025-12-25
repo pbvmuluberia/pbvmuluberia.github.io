@@ -1,4 +1,8 @@
 #navbar-placeholder {
+    position: fixed;
+    bottom: 0;
+    top: auto;
+    z-index: var(--z-nav);
     min-height: 70px;
 }
 
@@ -91,8 +95,8 @@
 /* ------------------------- TAB STYLING START ------------------------- */
 
 nav.menu {
-    position: sticky;
-    top: 0;
+    position: fixed;
+    bottom: 0;
     width: 100%;
     height: max(10vh, var(--nav-height));
     background-color: var(--background-color);
@@ -152,11 +156,11 @@ nav.menu {
     flex-grow: 1;
     flex-direction: column;
     position: absolute;
-    top: min(10vh, 100px);
+    bottom: min(10vh, 100px);
     left: 0;
     width: 100%;
     background-color: var(--background-color);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 -8px 16px rgba(0, 0, 0, 0.15);
     padding: var(--space-md) 2.5%;
     z-index: var(--z-dropdown);
     /* FIX: Used variable */
