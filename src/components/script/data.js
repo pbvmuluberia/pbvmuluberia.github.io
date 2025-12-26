@@ -9,6 +9,7 @@
 // Language translation dictionary
 const translations = {
     'en': {
+        'organisation' : 'Paschim Banga Vigyan Mancha',
         'nav_menu': 'Menu',
         'nav_home': 'Home',
         'nav_about': 'About',
@@ -108,6 +109,7 @@ const translations = {
         'important_01': 'Four decades of scientific popularization.',
     },
     'bn': {
+        'organisation' : 'পশ্চিমবঙ্গ বিজ্ঞান মঞ্চ',
         'nav_menu': 'মেনু',
         'nav_home': 'হোম',
         'nav_about': 'আমাদের কথা',
