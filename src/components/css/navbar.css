@@ -98,7 +98,7 @@ nav.menu {
     margin-bottom: var(--space-sm);
     border-radius: var(--border-radius-medium);
     height: max(10vh, var(--nav-height));
-    background-color: var(--background-color);
+    background-color: hsl(from var(--surface-color-alt) h s l / 0.9);
     border: 2px solid var(--primary-color);
 
     /* Shadow upwards for bottom nav to separate from content */

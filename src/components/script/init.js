@@ -106,6 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const scrollToTopBtn = document.getElementById('scrollToTopBtn');
         const installBtn = document.getElementById('installBtn');
         const shouldShowScrollTop = window.scrollY > 300;
+        const dontShowInstallBtn = window.scrollY > 100;
 
         // Toggle Scroll to Top Button
         if (scrollToTopBtn) {
@@ -114,7 +115,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Toggle Install Button: Hide it when scrolling down (when scroll-to-top is shown)
         if (installBtn) {
-            installBtn.classList.toggle('hide-on-scroll', shouldShowScrollTop);
+            installBtn.classList.toggle('hide-on-scroll', dontShowInstallBtn);
         }
     });
 

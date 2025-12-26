@@ -417,7 +417,7 @@ a {
     right: var(--space-md);
 
     /* MOBILE: Position above the bottom navbar */
-    bottom: calc(var(--nav-height) + var(--space-3xl) + 10px + var(--space-sm));
+    bottom: calc(var(--nav-height) + var(--space-md) + 10px + var(--space-sm));
 
     background-color: var(--primary-color);
     color: var(--surface-color);
@@ -427,7 +427,7 @@ a {
     font-size: var(--font-size-p);
     font-weight: bold;
     cursor: pointer;
-    z-index: var(--z-nav);
+    z-index: var(--z-arrow);
     transition: transform 0.2s, background-color 0.2s;
     display: flex;
     align-items: center;
