@@ -93,7 +93,8 @@ nav.menu {
     left: 50%;
     transform: translateX(-50%);
     width: auto;
-    margin: var(--space-md);
+    margin: auto;
+    margin-bottom: var(--space-sm);
     border-radius: var(--border-radius-medium);
     height: max(10vh, var(--nav-height));
     gap: var(--space-md);

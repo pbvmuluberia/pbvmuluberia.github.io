@@ -140,7 +140,7 @@ body {
     color: var(--text-color-primary);
     overflow-x: hidden;
     transition: background-color 0.3s ease, color 0.3s ease;
-    
+
     /* MOBILE: Add padding to bottom so content isn't hidden behind the fixed nav */
     padding-bottom: calc(var(--nav-height) + var(--space-md));
 }
@@ -229,7 +229,7 @@ a {
 
             .content {
                 position: absolute;
-                top: 60%  !important;
+                top: 60% !important;
                 padding-left: clamp(10px, 10vw, 100px);
                 width: min(65%, 400px);
                 text-align: left;
@@ -415,10 +415,10 @@ a {
 .install-btn {
     position: fixed;
     right: var(--space-md);
-    
+
     /* MOBILE: Position above the bottom navbar */
-    bottom: calc(var(--nav-height) + var(--space-3xl) + 10px);
-    
+    bottom: calc(var(--nav-height) + var(--space-3xl) + 10px + var(--space-sm));
+
     background-color: var(--primary-color);
     color: var(--surface-color);
     border: none;
@@ -455,11 +455,11 @@ a {
 
 #scrollToTopBtn {
     position: fixed;
-    
+
     /* MOBILE: Position above the bottom navbar */
-    bottom: calc(var(--nav-height) + var(--space-md) + 10px);
+    bottom: calc(var(--nav-height) + var(--space-md) + var(--space-sm));
     right: var(--space-md);
-    
+
     width: var(--space-2xl);
     height: var(--space-2xl);
     background-color: var(--primary-color);
@@ -490,6 +490,7 @@ a {
 
 /* FIX: Reduced Motion Support */
 @media (prefers-reduced-motion: reduce) {
+
     *,
     *::before,
     *::after {
@@ -502,20 +503,21 @@ a {
 
 /* ------------------------- DESKTOP OVERRIDES ------------------------- */
 @media (min-width: 980px) {
+
     /* RESET BODY PADDING */
     body {
         padding-bottom: 0;
     }
-    
+
     .container {
         height: 70vh;
     }
-    
+
     /* RESET BUTTON POSITIONS */
     .install-btn {
         bottom: calc(var(--space-3xl) - var(--space-xs));
     }
-    
+
     #scrollToTopBtn {
         bottom: var(--space-md);
     }
