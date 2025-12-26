@@ -216,6 +216,10 @@ nav.menu {
     }
 }
 
+.menu-label-text:not(.current-menu-label) {
+    display: none;
+}
+
 /* Landscape/Desktop */
 @media (min-width: 980px) {
 

@@ -5,6 +5,17 @@ const ComponentGenerator = {
     getNavbar: function (activePageId) {
         const isActive = (id) => activePageId === id ? 'active-tab' : '';
 
+        // Define a map of page IDs to their FontAwesome icons
+        const iconMap = {
+            'home': 'fa-house',
+            'about': 'fa-user',
+            'projects': 'fa-flask',
+            'publications': 'fa-book',
+            'download': 'fa-download',
+            'events': 'fa-calendar-days',
+            'contact': 'fa-address-book'
+        };
+
         return `
         <nav class="menu">
           <img src="https://raw.githubusercontent.com/t4saha/PBVM-Uluberia-Vigyan-Kendra/main/Logo/pvbm_logo_gold.png" alt="Logo" class="nav-logo" onerror="this.onerror=null; this.src='https://placehold.co/50x50/d79921/3c3836?text=LOGO'">
@@ -14,7 +25,7 @@ const ComponentGenerator = {
               <button class="hamburger-menu" id="hamburgerBtn" onclick="toggleMenu()" aria-label="Toggle menu">
                   <i class="fa-solid fa-bars"></i>
               </button>
-              <span class="menu-label-text current-menu-label" id="currentMenuLabel" data-translate-key="nav_${activePageId}">Menu</span>
+              <span class="menu-label-text current-menu-label" id="currentMenuLabel"><i class="fa-solid ${iconMap[activePageId]}"></i></span>
           </div>
           
           <div class="nav-links" id="navLinks">
