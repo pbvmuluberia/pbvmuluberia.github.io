@@ -90,13 +90,19 @@ nav.menu {
     position: fixed;
     bottom: 0;
     top: auto;
-    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    margin: var(--space-md);
+    border-radius: var(--border-radius-medium);
     height: max(10vh, var(--nav-height));
+    gap: var(--space-md);
     background-color: var(--background-color);
-    
+    border: 2px solid var(--primary-color);
+
     /* Shadow upwards for bottom nav to separate from content */
     box-shadow: 0 -4px 15px rgba(0, 0, 0, 0.1);
-    
+
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -150,18 +156,20 @@ nav.menu {
     flex-grow: 1;
     flex-direction: column;
     position: absolute;
-    
+
     /* MOBILE: Position above the navbar */
     top: auto;
-    bottom: 100%; /* Anchors to the top of the bottom-nav */
+    bottom: 100%;
+    /* Anchors to the top of the bottom-nav */
     left: 0;
     width: 100%;
-    
+    margin-bottom: var(--space-sm);
+
     background-color: var(--background-color);
-    
+
     /* Shadow upwards for the menu */
-    box-shadow: 0 -8px 16px rgba(0, 0, 0, 0.15);
-    
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.15);
+
     padding: var(--space-md) 2.5%;
     z-index: var(--z-dropdown);
     height: auto;
@@ -169,10 +177,9 @@ nav.menu {
     overflow-y: auto;
     gap: 0.25rem;
     transition: all 0.3s ease-in-out;
-    
+
     /* Optional rounded corners for the top of the menu */
-    border-top-left-radius: var(--border-radius-medium);
-    border-top-right-radius: var(--border-radius-medium);
+    border-radius: var(--border-radius-medium);
 
     &.open {
         display: flex;
@@ -210,17 +217,24 @@ nav.menu {
 
 /* Landscape/Desktop */
 @media (min-width: 980px) {
-    
+
     #navbar-placeholder {
         min-height: 70px;
     }
-    
+
     nav.menu {
         /* DESKTOP: Sticky at Top */
         position: sticky;
         top: 0;
-        bottom: auto; /* Unset bottom */
-        box-shadow: var(--card-shadow); /* Standard downward shadow */
+        bottom: auto;
+        left: 0;
+        width: 100%;
+        transform: translateX(0);
+        margin: 0;
+        border-radius: 0;
+        /* Unset bottom */
+        border: none;
+        /* Standard downward shadow */
     }
 
     .menu-controls-mobile {
@@ -229,7 +243,8 @@ nav.menu {
 
     .nav-links {
         display: flex !important;
-        position: static; /* Reset absolute positioning */
+        position: static;
+        /* Reset absolute positioning */
         flex-direction: row;
         flex-grow: 1;
         justify-content: center;
@@ -240,7 +255,7 @@ nav.menu {
         max-height: none;
         overflow: hidden;
         border-radius: 0;
-        
+
         a {
             width: auto;
             text-align: center;
