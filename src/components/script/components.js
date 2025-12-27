@@ -59,8 +59,8 @@ const ComponentGenerator = {
         
         <div class="head">
         <img src="https://raw.githubusercontent.com/t4saha/PBVM-Uluberia-Vigyan-Kendra/main/Logo/pvbm_logo_gold.png" alt="Logo" class="nav-logo" onerror="this.onerror=null; this.src='https://placehold.co/50x50/d79921/3c3836?text=LOGO'">
-        <h1 data-translate-key="carousel_home_des">Paschim Banga Vigyan Mancha</h1>
-        <h2 data-translate-key="organisation">Uluberia Vigyan Kendra</h2>
+        <h1 data-translate-key="organisation">Paschim Banga Vigyan Mancha</h1>
+        <h2 data-translate-key="carousel_home_des">Uluberia Vigyan Kendra</h2>
     </div>
     
         <div class="container" style="overflow: hidden;">
