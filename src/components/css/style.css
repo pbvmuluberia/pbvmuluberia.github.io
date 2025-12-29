@@ -200,7 +200,7 @@ a {
     text-align: center;
     margin: var(--space-sm);
     gap: var(--space-xs);
-    
+
     h1 {
         color: var(--primary-color);
     }
@@ -214,6 +214,7 @@ a {
     transform: none;
     width: 100vw;
     height: 45vh;
+    min-height: 300px;
     background: #f5f5f5;
     overflow: hidden;
     cursor: grab;
@@ -522,7 +523,7 @@ a {
     body {
         padding-bottom: 0;
     }
-    
+
     .head {
         display: none;
     }
