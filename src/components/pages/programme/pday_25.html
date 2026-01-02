@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+    <link rel="manifest" href="../../../../manifest.json">
+
+    <link rel="apple-touch-icon" href="./src/icons/icon-192x192.png">
+    <meta name="apple-mobile-web-app-status-bar" id="meta-apple-status-bar" content="#bf530c">
+    <meta name="theme-color" id="meta-theme-color" content="#bf530c">
+
+    <script src="../../script/theme-pwa.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>40th Ceremony - Paschim Banga Vigyan Mancha</title>
+
+    <!-- External Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <!-- Global Styles -->
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/navbar.css">
+    <!-- Page Specific Styles -->
+    <link rel="stylesheet" href="../../css/ceremony.css">
+
+    <!-- Scripts -->
+    <script src="../../script/components.js" defer></script>
+    <!-- Assuming data.js and utils.js exist in your project as referenced in index.html -->
+    <script src="../../script/data.js" defer></script>
+    <script src="../../script/utils.js" defer></script>
+    <script src="../../script/modal.js" defer></script>
+    <script src="../../script/init.js" defer></script>
+
+    <script>
+        (function () {
+            // 1. Restore Theme immediately
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark-theme');
+            }
+
+            // 2. Restore Language immediately
+            window.savedLang = localStorage.getItem('language') || 'bn';
+        })();
+    </script>
+
+    <style>
+        /* Helper for language toggling visibility if not in style.css */
+        .lang-content {
+            display: none;
+        }
+
+        .lang-content.active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body id="ceremony">
+    <!-- Navbar Placeholder -->
+    <nav class="menu">
+        <img src="https://raw.githubusercontent.com/t4saha/PBVM-Uluberia-Vigyan-Kendra/main/Logo/pvbm_logo_gold.png"
+            alt="Logo" class="nav-logo"
+            onerror="this.onerror=null; this.src='https://placehold.co/50x50/d79921/3c3836?text=LOGO'">
+
+        <div class="menu-controls-mobile">
+            <span class="menu-label-text" data-translate-key="nav_menu">Menu</span>
+            <button class="hamburger-menu" id="hamburgerBtn" onclick="toggleMenu()">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <span class="menu-label-text current-menu-label" id="currentMenuLabel"
+                data-translate-key="nav${activePageID}">Menu</span>
+        </div>
+        <div class="nav-links" id="navLinks">
+            <a href="../../../../index.html" class="${isActive(menu_home)}" data-translate-key="nav_home">Home</a>
+        </div>
+
+        <div class="header-controls">
+            <button id="themeToggleIcon" onclick="toggleTheme()" class="theme-icon-button">
+                <i class="fa-solid fa-sun theme-icon sun-icon"></i>
+                <i class="fa-solid fa-moon theme-icon moon-icon"></i>
+            </button>
+            <div class="lang-toggle">
+                <span id="langEn" onclick="setLang('en')">EN</span>
+                <span id="langBn" onclick="setLang('bn')">বা</span>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- English Content Section -->
+    <div class="lang-content en">
+        <div class="ceremony-container">
+
+            <!-- Header Section -->
+            <header class="ceremony-header">
+                <h1>World Environment Day 2025</h1>
+                <p>Paschimbanga Vigyan Mancha &bull; June 5th, 2025</p><br>
+                <!-- Horizontal Scroll Gallery -->
+                <section class="gallery-section">
+                    <h2 class="section-heading">Ceremony Highlights</h2>
+
+                    <!-- IMPORTANT: Added id="galleryScroll" here so the JS can find it -->
+                    <div class="scroll-container" id="galleryScroll">
+                        <!-- Replace sources with actual images -->
+                        <!-- Replace sources with actual images -->
+                        <figure class="scroll-item">
+                            <img src="../../../gallary/env day 25/kalinagar pday 25.jpeg" alt="Rally">
+                            <figcaption class="item-caption">Fig.1 - Rally at Bahira, Kalinagar</figcaption>
+                        </figure>
+                        <figure class="scroll-item">
+                            <img src="../../../gallary/env day 25/jadurberia pday 25.jpeg" alt="Seminar">
+                            <figcaption class="item-caption">Fig.2 - A speech against plastic pollution</figcaption>
+                        </figure>
+                        <figure class="scroll-item">
+                            <img src="../../../gallary/env day 25/moubeshia pday 25 1.jpeg" alt="Tree Planting">
+                            <figcaption class="item-caption">Fig.3 - Sapling given to the students</figcaption>
+                        </figure>
+                        <figure class="scroll-item">
+                            <img src="../../../gallary/env day 25/moubeshia pday 25 2.jpeg" alt="Tree Planting">
+                            <figcaption class="item-caption">Fig.4 - Sapling given to the students</figcaption>
+                        </figure>
+                    </div>
+                    <!-- NEW: Dot Indicator Container -->
+                    <div class="scroll-dots" id="galleryDots"></div>
+                </section>
+                <h1 style="color: var(--text-color);">Kalinagar Vigyan Chakra</h1>
+            </header>
+
+            <!-- Key Dignitaries -->
+            <section class="dignitaries-section">
+                <h2 class="section-heading">Key Dignitaries Present</h2>
+                <ul class="dignitaries-grid">
+                    <li class="dignitary-card">
+                        <div class="role-badge">Secretary - Kalinagar Chakra</div>
+                        <img src="../../../Guests/Biswanath Pramanick.jpeg" alt="Speaker">
+                        <h3>Biswanath Pramanick</h3>
+                        <p>Teacher</p>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Special Program -->
+            <section class="program-section">
+                <div class="program-card">
+                    <div class="program-content">
+                        <h2>Environment Rally</h2>
+                        <h3>One tree, one life</h3>
+                        <p>On the occasion of World Environment Day, a colorful environment rally was organized by the
+                            <strong>Kalinagar Vigyan Chakra</strong> at Bahira area under the Uluberia Vigyan Kendra of
+                            <strong>Paschim
+                                Banga Vigyan Mancha</strong>. Through the rally, messages regarding environmental
+                            awareness and the necessity of tree plantation were spread among the local people.
+                        </p>
+                    </div>
+                    <div class="program-img"><img src="../../../gallary/env day 25/kalinagar pday 25.jpeg"
+                            alt="Environment Rally">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Header Section -->
+            <section class="ceremony-header">
+                <h1 style="color: var(--text-color);">Jadurberia Vigyan Chakra</h1>
+            </section>
+
+            <!-- Key Dignitaries -->
+            <section class="dignitaries-section">
+                <h2 class="section-heading">Key Dignitaries Present</h2>
+                <ul class="dignitaries-grid">
+                    <li class="dignitary-card">
+                        <div class="role-badge">Main Speaker</div>
+                        <img src="../../../Guests/Souvik Ghosh.jpeg" alt="Speaker">
+                        <h3>Souvik Ghosh</h3>
+                        <p>Professor</p>
+                    </li>
+                    <li class="dignitary-card">
+                        <div class="role-badge">President - Howrah District</div>
+                        <img src="../../../Guests/Kali Jasu.jpeg" alt="President Howrah District">
+                        <h3>Kalikrishna Jasu</h3>
+                        <p>Teacher</p>
+                    </li>
+                    <li class="dignitary-card">
+                        <div class="role-badge">President - Uluberia Kendra</div>
+                        <img src="../../../Guests/A Jasu.jpeg" alt="President Uluberia Kendra">
+                        <h3>Dr. Arun Jasu</h3>
+                        <p>Renowned Doctor</p>
+                    </li>
+                    <li class="dignitary-card">
+                        <div class="role-badge">Secretary - Uluberia Kendra</div>
+                        <img src="../../../Guests/Biswajit Paul.jpeg" alt="Secretary Uluberia Kendra">
+                        <h3>Biswajit Paul</h3>
+                        <p>Teacher</p>
+                    </li>
+                    <li class="dignitary-card">
+                        <div class="role-badge">President - Jadurberia Chakra</div>
+                        <img src="../../../Guests/Bikash Khamrui.jpeg" alt="President Jadurberia Chakra">
+                        <h3>Bikash Khamrui</h3>
+                        <p>Teacher</p>
+                    </li>
+                    <li class="dignitary-card">
+                        <div class="role-badge">Secretary - Jadurberia Chakra</div>
+                        <img src="../../../Guests/Pankaj jasu.jpeg" alt="Secretary Jadurberia Chakra">
+                        <h3>Pankaj Jasu</h3>
+                        <p>Teacher</p>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Special Program -->
+            <section class="program-section">
+                <div class="program-card">
+                    <div class="program-content">
+                        <h2>Seminar </h2>
+                        <h3>End Plastic Pollution</h3>
+                        <p>An important discussion meeting or seminar was organized by the Jadurberia Vigyan Chakra.
+                            Detailed discussions were held regarding one of the burning issues of the current time,
+                            plastic pollution. <b>Main Theme of Discussion: "End Plastic Pollution"</b></p>
+                    </div>
+                    <div class="program-img"><img src="../../../gallary/env day 25/jadurberia pday 25.jpeg"
+                            alt="Seminar">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Header Section -->
+            <section class="ceremony-header">
+                <h1 style="color: var(--text-color);">Moubeshia Vigyan Sabha</h1>
+            </section>
+
+            <!-- Key Dignitaries -->
+            <section class="dignitaries-section">
+                <h2 class="section-heading">Key Dignitaries Present</h2>
+                <ul class="dignitaries-grid">
+                    <li class="dignitary-card">
+                        <div class="role-badge">Guest</div>
+                        <img src="../../../Guests/Biswajit Paul.jpeg" alt="Secretary Uluberia Kendra">
+                        <h3>Biswajit Paul</h3>
+                        <p>Teacher</p>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Special Program -->
+            <section class="program-section">
+                <div class="program-card">
+                    <div class="program-content">
+                        <h2>Sapling Distribution</h2>
+                        <h3>Let's make the Earth green</h3>
+                        <p>A noble program was organized by the <strong>Acharya Prafulla Chandra Ray Vigyan
+                                Sabha</strong>, Moubeshia. Here, along with the recognition of merit, a pledge was taken
+                            to protect the environment. Awards are given to the successful meritorious students of the
+                            area in Madhyamik and Higher Secondary examinations. <strong>Tree saplings</strong> are
+                            distributed
+                            among all present to maintain environmental balance.</p>
+                    </div>
+                    <div class="program-img"><img src="../../../gallary/env day 25/moubeshia pday 25 1.jpeg"
+                            alt="Seminar">
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Bengali Content Section -->
+    <div class="lang-content bn">
+        <div class="ceremony-container">
+
+            <!-- Header Section -->
+            <header class="ceremony-header">
+                <h1>বিশ্ব পরিবেশ দিবস ২০২৫</h1>
+                <p>পশ্চিমবঙ্গ বিজ্ঞান মঞ্চ &bull; ৫ জুন, ২০২৫</p><br>
+                <!-- Horizontal Scroll Gallery -->
+                <section class="gallery-section">
+                    <h2 class="section-heading">অনুষ্ঠানের বিশেষ মুহূর্ত</h2>
+
+                    <!-- IMPORTANT: Added id="galleryScroll" here so the JS can find it -->
+                    <div class="scroll-container" id="galleryScroll">
+                        <!-- Replace sources with actual images -->
+                        <!-- Replace sources with actual images -->
+                        <figure class="scroll-item">
+                            <img src="../../../gallary/env day 25/kalinagar pday 25.jpeg" alt="পদযাত্রা">
+                            <figcaption class="item-caption">চিত্র ১ - পদযাত্রা, বহিরা, কালীনগর</figcaption>
+                        </figure>
+                        <figure class="scroll-item">
+                            <img src="../../../gallary/env day 25/jadurberia pday 25.jpeg" alt="আলোচনা সভা">
+                            <figcaption class="item-caption">চিত্র ২ - প্লাস্টিক দূষনের বিষয়ে বার্তা</figcaption>
+                        </figure>
+                        <figure class="scroll-item">
+                            <img src="../../../gallary/env day 25/moubeshia pday 25 1.jpeg" alt="চারা বিতরণ">
+                            <figcaption class="item-caption">চিত্র ৩ - গাছের চারা বিতরণ</figcaption>
+                        </figure>
+                        <figure class="scroll-item">
+                            <img src="../../../gallary/env day 25/moubeshia pday 25 2.jpeg" alt="চারা বিতরণ">
+                            <figcaption class="item-caption">চিত্র ৪ - গাছের চারা বিতরণ</figcaption>
+                        </figure>
+                    </div>
+                    <!-- NEW: Dot Indicator Container -->
+                    <div class="scroll-dots" id="galleryDots"></div>
+                </section>
+                <h1 style="color: var(--text-color);">কালীনগর বিজ্ঞান চক্র</h1>
+            </header>
+
+            <!-- Key Dignitaries -->
+            <section class="dignitaries-section">
+                <h2 class="section-heading">প্রধান অতিথি</h2>
+                <ul class="dignitaries-grid">
+                    <li class="dignitary-card">
+                        <div class="role-badge">সম্পাদক - কালীনগর বিজ্ঞান চক্র</div>
+                        <img src="../../../Guests/Biswanath Pramanick.jpeg" alt="আয়োজক">
+                        <h3>বিশ্বনাথ প্রমানিক</h3>
+                        <p>শিক্ষক</p>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Special Program -->
+            <section class="program-section">
+                <div class="program-card">
+                    <div class="program-content">
+                        <h2>পরিবেশ পদযাত্রা</h2>
+                        <h3>একটি গাছ, একটি প্রাণ</h3>
+                        <p>বিশ্ব পরিবেশ দিবস উপলক্ষে পশ্চিমবঙ্গ বিজ্ঞান মঞ্চের উলুবেড়িয়া বিজ্ঞান কেন্দ্রের অন্তর্গত
+                            বহিরা এলাকায় কালীনগর বিজ্ঞান চক্রের উদ্যোগে একটি বর্ণাঢ্য <b>পরিবেশ পদযাত্রা</b> আয়োজিত
+                            হয়েছিল। এই
+                            পদযাত্রার মাধ্যমে স্থানীয় মানুষের মাঝে পরিবেশ সচেতনতা এবং বৃক্ষরোপণের প্রয়োজনীয়তার বার্তা
+                            ছড়িয়ে দেওয়া হয়।</p>
+                    </div>
+                    <div class="program-img"><img src="../../../gallary/env day 25/kalinagar pday 25.jpeg"
+                            alt="Environment Rally">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Header Section -->
+            <section class="ceremony-header">
+                <h1 style="color: var(--text-color);">যদুরবেরিয়া বিজ্ঞান চক্র</h1>
+            </section>
+
+            <!-- Key Dignitaries -->
+            <section class="dignitaries-section">
+                <h2 class="section-heading">প্রধান অতিথি</h2>
+                <ul class="dignitaries-grid">
+                    <li class="dignitary-card">
+                        <div class="role-badge">প্রধান বক্তা</div>
+                        <img src="../../../Guests/Souvik Ghosh.jpeg" alt="প্রধান বক্তা">
+                        <h3>সৌভিক ঘোষ</h3>
+                        <p>অধ্যাপক</p>
+                    </li>
+                    <li class="dignitary-card">
+                        <div class="role-badge">সভাপতি - হাওড়া জেলা</div>
+                        <img src="../../../Guests/Kali Jasu.jpeg" alt="হাওড়া জেলা সভাপতি">
+                        <h3>কালিক্রিষ্ণ জাসু</h3>
+                        <p>শিক্ষক</p>
+                    </li>
+                    <li class="dignitary-card">
+                        <div class="role-badge">সভাপতি - উলুবেড়িয়া কেন্দ্র</div>
+                        <img src="../../../Guests/A Jasu.jpeg" alt="উলুবেড়িয়া কেন্দ্র সভাপতি">
+                        <h3>ডাঃ অরুন জাসু</h3>
+                        <p>প্রথিতযশা ডাক্তার</p>
+                    </li>
+                    <li class="dignitary-card">
+                        <div class="role-badge">সম্পাদক - উলুবেড়িয়া কেন্দ্র</div>
+                        <img src="../../../Guests/Biswajit Paul.jpeg" alt="উলুবেড়িয়া কেন্দ্র সম্পাদক">
+                        <h3>বিশ্বজিত পাল</h3>
+                        <p>শিক্ষক</p>
+                    </li>
+                    <li class="dignitary-card">
+                        <div class="role-badge">সভাপতি - যদুরবেড়িয়া চক্র</div>
+                        <img src="../../../Guests/Bikash Khamrui.jpeg" alt="যদুরবেড়িয়া চক্র সভাপতি">
+                        <h3>বিকাশ খমরুই</h3>
+                        <p>শিক্ষক</p>
+                    </li>
+                    <li class="dignitary-card">
+                        <div class="role-badge">সম্পাদক - যদুরবেড়িয়া চক্র</div>
+                        <img src="../../../Guests/Pankaj jasu.jpeg" alt="যদুরবেড়িয়া চক্র সম্পাদক">
+                        <h3>পঙ্কজ জাসু</h3>
+                        <p>সম্পাদক</p>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Special Program -->
+            <section class="program-section">
+                <div class="program-card">
+                    <div class="program-content">
+                        <h2>আলোচনা সভা </h2>
+                        <h3>প্লাস্টিক দূষন প্রতিরোধ</h3>
+                        <p>যদুবেড়িয়া বিজ্ঞান চক্রের উদ্যোগে একটি গুরুত্বপূর্ণ আলোচনা সভা বা সেমিনার আয়োজিত হয়েছিল।
+                            বর্তমান সময়ের অন্যতম জ্বলন্ত সমস্যা প্লাস্টিক দূষণ নিয়ে সেখানে বিস্তারিত আলোচনা করা হয়।
+                            <b>আলোচনার মূল বিষয়: "প্লাস্টিক দূষণ রোধ করুন"</b>
+                        </p>
+                    </div>
+                    <div class="program-img"><img src="../../../gallary/env day 25/jadurberia pday 25.jpeg"
+                            alt="Seminar">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Header Section -->
+            <section class="ceremony-header">
+                <h1 style="color: var(--text-color);">মৌবেশিয়া বিজ্ঞান সভা</h1>
+            </section>
+
+            <!-- Key Dignitaries -->
+            <section class="dignitaries-section">
+                <h2 class="section-heading">প্রধান অতিথি</h2>
+                <ul class="dignitaries-grid">
+                    <li class="dignitary-card">
+                        <div class="role-badge">প্রধান বক্তা</div>
+                        <img src="../../../Guests/Biswajit Paul.jpeg" alt="সম্পাদক - উলুবেড়িয়া কেন্দ্র">
+                        <h3>বিশ্বজিত পাল</h3>
+                        <p>শিক্ষক</p>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Special Program -->
+            <section class="program-section">
+                <div class="program-card">
+                    <div class="program-content">
+                        <h2>চারাগাছ বিতরণ</h2>
+                        <h3>আসুন সবুজ পৃথিবী গড়ে তুলি</h3>
+                        <p>মৌবেশিয়ার <b>আচার্য প্রফুল্ল চন্দ্র রায় বিজ্ঞান সভা</b>-র উদ্যোগে একটি মহতী অনুষ্ঠানের
+                            আয়োজন করা হয়েছিল। এখানে মেধার স্বীকৃতির পাশাপাশি পরিবেশ রক্ষার শপথ নেওয়া হয়। এলাকার
+                            মাধ্যমিক ও উচ্চ মাধ্যমিক পরীক্ষায় উত্তীর্ণ কৃতী ছাত্রছাত্রীদের সংবর্ধনা প্রদান করা হয়।
+                            পরিবেশের ভারসাম্য বজায় রাখতে উপস্থিত সকলের মাঝে <b>চারাগাছ</b> বিতরণ করা হয়।</p>
+                    </div>
+                    <div class="program-img"><img src="../../../gallary/env day 25/moubeshia pday 25 1.jpeg"
+                            alt="চারাগাছ বিতরণ">
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+
+    <!-- Modals -->
+    <div id="donation-modal-placeholder"></div>
+
+    <!-- Scroll To Top -->
+    <button id="scrollToTopBtn" onclick="scrollToTop()" aria-label="Scroll to top"><i
+            class="fa-solid fa-arrow-up"></i></button>
+
+    <!-- ACTIVATING THE SCROLL FUNCTION -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Apply horizontal scroll to both language sections. Note: the Bengali section ID is set to 'galleryScroll-bn'
+            if (typeof enableMouseWheelScroll === 'function') {
+                enableMouseWheelScroll('galleryScroll');
+                enableMouseWheelScroll('galleryScroll-bn'); // Apply to the new Bengali gallery
+                console.log("Horizontal scroll enabled for both galleries");
+            } else {
+                console.error("enableMouseWheelScroll function not found in utils.js");
+            }
+
+            // NEW: Initialize dot indicators for both galleries
+            if (typeof setupGalleryDots === 'function') {
+                setupGalleryDots('galleryScroll', 'galleryDots');
+                setupGalleryDots('galleryScroll-bn', 'galleryDots-bn');
+                console.log("Gallery dots initialized for both galleries");
+            } else {
+                console.error("setupGalleryDots function not found in utils.js");
+            }
+        });
+
+        function openWindow() {
+            window.open("../../../adultration/adultration Pt I.pdf", "_blank");
+        }
+    </script>
+</body>
