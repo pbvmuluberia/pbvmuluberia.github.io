@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+    <link rel="manifest" href="../../../../manifest.json">
+
+    <link rel="apple-touch-icon" href="./src/icons/icon-192x192.png">
+    <meta name="apple-mobile-web-app-status-bar" id="meta-apple-status-bar" content="#bf530c">
+    <meta name="theme-color" id="meta-theme-color" content="#bf530c">
+
+    <script src="../../script/theme-pwa.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>anti-superstition</title>
+
+    <!-- External Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <!-- Global Styles -->
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/navbar.css">
+    <!-- Page Specific Styles -->
+    <link rel="stylesheet" href="../../css/ceremony.css">
+
+    <!-- Scripts -->
+    <script src="../../script/components.js" defer></script>
+    <!-- Assuming data.js and utils.js exist in your project as referenced in index.html -->
+    <script src="../../script/data.js" defer></script>
+    <script src="../../script/utils.js" defer></script>
+    <script src="../../script/modal.js" defer></script>
+    <script src="../../script/init.js" defer></script>
+
+    <script>
+        (function () {
+            // 1. Restore Theme immediately
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark-theme');
+            }
+
+            // 2. Restore Language immediately
+            window.savedLang = localStorage.getItem('language') || 'bn';
+        })();
+    </script>
+
+    <style>
+        /* Helper for language toggling visibility if not in style.css */
+        .lang-content {
+            display: none;
+        }
+
+        .lang-content.active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body id="ceremony">
+    <!-- Navbar Placeholder -->
+    <nav class="menu">
+        <img src="https://raw.githubusercontent.com/t4saha/PBVM-Uluberia-Vigyan-Kendra/main/Logo/pvbm_logo_gold.png"
+            alt="Logo" class="nav-logo"
+            onerror="this.onerror=null; this.src='https://placehold.co/50x50/d79921/3c3836?text=LOGO'">
+
+        <div class="menu-controls-mobile">
+            <span class="menu-label-text" data-translate-key="nav_menu">Menu</span>
+            <button class="hamburger-menu" id="hamburgerBtn" onclick="toggleMenu()">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <span class="menu-label-text current-menu-label" id="currentMenuLabel"
+                data-translate-key="nav${activePageID}">Menu</span>
+        </div>
+        <div class="nav-links" id="navLinks">
+            <a href="../../../../index.html" class="${isActive(menu_home)}" data-translate-key="nav_home">Home</a>
+            <a href="./Anti_sup_9_25.html" class="active-tab" data-translate-key="tag-antiSup">Anti
+                Superstition</a>
+        </div>
+
+        <div class="header-controls">
+            <button id="themeToggleIcon" onclick="toggleTheme()" class="theme-icon-button">
+                <i class="fa-solid fa-sun theme-icon sun-icon"></i>
+                <i class="fa-solid fa-moon theme-icon moon-icon"></i>
+            </button>
+            <div class="lang-toggle">
+                <span id="langEn" onclick="setLang('en')">EN</span>
+                <span id="langBn" onclick="setLang('bn')">বা</span>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- English Content Section -->
+    <div class="lang-content en">
+        <div class="ceremony-container">
+
+            <!-- Header Section -->
+            <header class="ceremony-header">
+                <h1>Celebrating 206th Birthday of Iswar Chandra Vidyasagar</h1>
+                <p>Paschimbanga Vigyan Mancha &bull; September 26th, 2025</p><br>
+            </header>
+
+            <!-- Key Dignitaries -->
+            <section class="dignitaries-section">
+                <h2 class="section-heading">Key Dignitaries Present</h2>
+                <ul class="dignitaries-grid">
+                    <li class="dignitary-card">
+                        <div class="role-badge">Secretary -Uluberia Kendra</div>
+                        <img src="../../../Guests/Biswajit Paul.jpeg" alt="Speaker">
+                        <h3>Biswajit Paul</h3>
+                        <p>Teacher</p>
+                    </li>
+                    <li class="dignitary-card">
+                        <div class="role-badge">Secretary -Kalinagar Chakra</div>
+                        <img src="../../../Guests/Biswanath Pramanick.jpeg" alt="Speaker">
+                        <h3>Biswanath Pramanick</h3>
+                        <p>Teacher</p>
+                    </li>
+                    <li class="dignitary-card">
+                        <div class="role-badge">Secretary -Nabagram Chakra</div>
+                        <img src="../../../Guests/Kartick Samanta.jpeg" alt="Speaker">
+                        <h3>Kartick Samanta</h3>
+                        <p>Teacher</p>
+                    </li>
+                    <li class="dignitary-card">
+                        <div class="role-badge">Main Speaker</div>
+                        <img src="../../../Guests/Hemanta Tripathi.jpeg" alt="Speaker">
+                        <h3>Hemanta Tripathi</h3>
+                        <p>Professor</p>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Special Program -->
+            <section class="program-section">
+                <div class="program-card">
+                    <div class="program-content">
+                        <h2>Vidyasagar's Birthday Celebration</h2>
+                        <h3>Eliminating blind faith from the community</h3>
+                        <p>The main speaker of the event was Professor Hemanta Tripathi, a distinguished professor from
+                            Uluberia College. In his speech, he highlighted the aspect of Vidyasagar's philosophy of
+                            life that remains highly relevant today—logic and a scientific mindset. He stated,
+                            "Vidyasagar was not just an 'Ocean of Kindness,' he was also an 'Ocean of Knowledge.' He
+                            sought to build a modern, logic-based society by eliminating blind faith from the
+                            community."</p><br>
+                    </div>
+                    <div class="program-img"><img src="../../../gallary/anti superstition/anti_sup_09_25-2.jpeg"
+                            alt="Anti Superstition Awareness Campaign">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Special Program -->
+            <section class="program-section">
+                <div class="program-card">
+                    <div class="program-content">
+                        <h2>Anti Superstition Exhibition</h2>
+                        <h3>Eliminating superstition from the community</h3>
+                        <p>Alongside the birthday celebration, a special attraction of the event was the
+                            anti-superstition exhibition. On behalf of the Uluberia Science Centre, the scientific
+                            reasons behind various common superstitions were explained to the general public. It was
+                            demonstrated through hands-on experiments that so-called "miracles" or "magic" are actually
+                            simple scientific techniques. The primary objective of this program was to bring the light
+                            of logic and science to the people of rural Bengal.</p>
+                    </div>
+                    <div class="program-img"><img src="../../../gallary/anti superstition/anti_sup_09_25.jpeg"
+                            alt="Anti Superstition Exhibition">
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- Bengali Content Section -->
+    <div class="lang-content bn">
+        <div class="ceremony-container">
+
+            <!-- Header Section -->
+            <header class="ceremony-header">
+                <h1>ঈশ্বরচন্দ্র বিদ্যাসাগরের ২০৬ তম জন্মদিন</h1>
+                <p>পশ্চিমবঙ্গ বিজ্ঞান মঞ্চ &bull; ২৬শে সেপ্টেম্বর, ২০২৫</p>
+            </header>
+
+            <!-- Key Dignitaries -->
+            <section class="dignitaries-section">
+                <h2 class="section-heading">প্রধান অতিথি</h2>
+                <ul class="dignitaries-grid">
+                    <li class="dignitary-card">
+                        <div class="role-badge">সম্পাদক - উলুবেড়িয়া কেন্দ্র</div>
+                        <img src="../../../Guests/Biswajit Paul.jpeg" alt="উলুবেড়িয়া কেন্দ্র সম্পাদক">
+                        <h3>বিশ্বজিত পাল</h3>
+                        <p>শিক্ষক</p>
+                    </li>
+                    <li class="dignitary-card">
+                        <div class="role-badge">সম্পাদক - কালীনগর চক্র</div>
+                        <img src="../../../Guests/Biswanath Pramanick.jpeg" alt="আয়োজক">
+                        <h3>বিশ্বনাথ প্রমানিক</h3>
+                        <p>শিক্ষক</p>
+                    </li>
+                    <li class="dignitary-card">
+                        <div class="role-badge">সম্পাদক - নবগ্রাম চক্র</div>
+                        <img src="../../../Guests/Kartick Samanta.jpeg" alt="সম্পাদক">
+                        <h3>কার্ত্তিক সামান্ত</h3>
+                        <p>পরিবেশ কর্মী</p>
+                    </li>
+                    <li class="dignitary-card">
+                        <div class="role-badge">মূল বক্তা</div>
+                        <img src="../../../Guests/Hemanta Tripathi.jpeg" alt="মূল বক্তা">
+                        <h3>হেমন্ত ত্রিপাঠী</h3>
+                        <p>অধ্যাপক</p>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Special Program -->
+            <section class="program-section">
+                <div class="program-card">
+                    <div class="program-content">
+                        <h2>বিদ্যাসাগরের জীবনদর্শন</h2>
+                        <h3>আসুন কুসংস্কার মুক্ত সমাজ গড়ে তুলি</h3>
+                        <p>অনুষ্ঠানের প্রধান বক্তা হিসেবে উপস্থিত ছিলেন উলুবেড়িয়া কলেজের <b>বিশিষ্ট অধ্যাপক হেমন্ত
+                                ত্রিপাঠী</b> মহাশয়। তিনি তাঁর বক্তব্যে বিদ্যাসাগরের জীবনদর্শনের সেই দিকটি তুলে ধরেন যা
+                            আজও অত্যন্ত প্রাসঙ্গিক— সেটি হলো যুক্তি ও বিজ্ঞানমনস্কতা। তিনি বলেন, <b>"বিদ্যাসাগর কেবল
+                                দয়ার সাগর ছিলেন না, তিনি ছিলেন জ্ঞানেরও সাগর। তিনি সমাজ থেকে অন্ধবিশ্বাস দূর করে
+                                যুক্তিনির্ভর আধুনিক সমাজ গড়তে চেয়েছিলেন।"</b></p><br>
+                    </div>
+                    <div class="program-img"><img src="../../../gallary/anti superstition/anti_sup_09_25-2.jpeg"
+                            alt="কুসংস্কার সচেতনতা">
+                    </div>
+                </div>
+            </section>
+
+            <section class="program-section">
+                <div class="program-card">
+                    <div class="program-content">
+                        <h2>কুসংস্কার বিরোধী প্রদর্শনী</h2>
+                        <h3>আসুন কুসংস্কার মুক্ত সমাজ গড়ে তুলি</h3>
+                        <p>জন্মদিন উদযাপনের পাশাপাশি অনুষ্ঠানের একটি বিশেষ আকর্ষণ ছিল <b>কুসংস্কার বিরোধী প্রদর্শনী</b>।
+                            উলুবেড়িয়া বিজ্ঞান কেন্দ্রের পক্ষ থেকে সাধারণ মানুষের মধ্যে প্রচলিত নানাবিধ অন্ধবিশ্বাসের
+                            পেছনের বৈজ্ঞানিক কারণগুলো ব্যাখ্যা করা হয়। তথাকথিত "অলৌকিক ঘটনা" বা "জাদু" যে আসলে বিজ্ঞানের
+                            সাধারণ কিছু কৌশল, তা পরীক্ষা-নিরীক্ষার মাধ্যমে হাতে-কলমে দেখানো হয়। গ্রামবাংলার মানুষের মনে
+                            যুক্তি ও বিজ্ঞানের আলো পৌঁছে দেওয়াই ছিল এই কর্মসূচির মূল উদ্দেশ্য।</p><br>
+                    </div>
+                    <div class="program-img"><img src="../../../gallary/anti superstition/anti_sup_09_25.jpeg"
+                            alt="কুসংস্কার বিরোধী প্রদর্শনী">
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+
+    <!-- Scroll To Top -->
+    <button id="scrollToTopBtn" onclick="scrollToTop()" aria-label="Scroll to top"><i
+            class="fa-solid fa-arrow-up"></i></button>
+
+    <!-- ACTIVATING THE SCROLL FUNCTION -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Apply horizontal scroll to both language sections. Note: the Bengali section ID is set to 'galleryScroll-bn'
+            if (typeof enableMouseWheelScroll === 'function') {
+                enableMouseWheelScroll('galleryScroll');
+                enableMouseWheelScroll('galleryScroll-bn'); // Apply to the new Bengali gallery
+                console.log("Horizontal scroll enabled for both galleries");
+            } else {
+                console.error("enableMouseWheelScroll function not found in utils.js");
+            }
+
+            // NEW: Initialize dot indicators for both galleries
+            if (typeof setupGalleryDots === 'function') {
+                setupGalleryDots('galleryScroll', 'galleryDots');
+                setupGalleryDots('galleryScroll-bn', 'galleryDots-bn');
+                console.log("Gallery dots initialized for both galleries");
+            } else {
+                console.error("setupGalleryDots function not found in utils.js");
+            }
+        });
+
+        function openWindow() {
+            window.open("../../../adultration/adultration Pt I.pdf", "_blank");
+        }
+    </script>
+</body>

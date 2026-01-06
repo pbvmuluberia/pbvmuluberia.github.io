@@ -9,7 +9,7 @@
 // Language translation dictionary
 const translations = {
     'en': {
-        'organisation' : 'Paschim Banga Vigyan Mancha',
+        'organisation': 'Paschim Banga Vigyan Mancha',
         'nav_menu': 'Menu',
         'nav_home': 'Home',
         'nav_about': 'About',
@@ -103,13 +103,14 @@ const translations = {
         'tag-vday': 'National Science Day',
         'tag-pday': 'World Environment Day',
         'tag-treeWeek': 'Forest Week',
+        'tag-antiSup': 'Anti Superstition',
         'btn_read_more': 'READ MORE »',
         'popular_posts': 'Popular Posts',
         'tags': 'Tags',
         'important_01': 'Four decades of scientific popularization.',
     },
     'bn': {
-        'organisation' : 'পশ্চিমবঙ্গ বিজ্ঞান মঞ্চ',
+        'organisation': 'পশ্চিমবঙ্গ বিজ্ঞান মঞ্চ',
         'nav_menu': 'মেনু',
         'nav_home': 'হোম',
         'nav_about': 'আমাদের কথা',
@@ -201,6 +202,7 @@ const translations = {
         'tag-adda': 'বিজ্ঞান আড্ডা',
         'tag-sky': 'আকাশ দেখো',
         'tag-adultration': 'ভেজাল',
+        'tag-antiSup': 'কুসংস্কার বিরোধী অভিযান',
         'tag-vday': 'জাতীয় বিজ্ঞান দিবস',
         'tag-pday': 'বিশ্ব পরিবেশ দিবস',
         'tag-treeWeek': 'অরণ্য সপ্তাহ',

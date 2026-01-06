@@ -152,7 +152,7 @@
 .dignitaries-grid {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--space-lg);
+    gap: var(--space-xl);
     /* 30px */
     justify-content: center;
     margin-bottom: var(--space-2xl);
