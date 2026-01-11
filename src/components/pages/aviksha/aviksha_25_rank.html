@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+    <link rel="manifest" href="../../../../manifest.json">
+
+    <link rel="apple-touch-icon" href="./src/icons/icon-192x192.png">
+    <meta name="apple-mobile-web-app-status-bar" id="meta-apple-status-bar" content="#bf530c">
+    <meta name="theme-color" id="meta-theme-color" content="#bf530c">
+
+    <script src="../../script/theme-pwa.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rank Holder of 2024</title>
+
+    <!-- External Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <!-- Global Styles -->
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/navbar.css">
+    <!-- Page Specific Styles -->
+    <link rel="stylesheet" href="../../css/ceremony.css">
+
+    <!-- Scripts -->
+    <script src="../../script/components.js" defer></script>
+    <!-- Assuming data.js and utils.js exist in your project as referenced in index.html -->
+    <script src="../../script/data.js" defer></script>
+    <script src="../../script/utils.js" defer></script>
+    <script src="../../script/modal.js" defer></script>
+    <script src="../../script/init.js" defer></script>
+
+    <script>
+        (function () {
+            // 1. Restore Theme immediately
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark-theme');
+            }
+
+            // 2. Restore Language immediately
+            window.savedLang = localStorage.getItem('language') || 'bn';
+        })();
+    </script>
+
+    <style>
+        /* Helper for language toggling visibility if not in style.css */
+        .lang-content {
+            display: none;
+        }
+
+        .lang-content.active {
+            display: block;
+        }
+    </style>
+
+    <style>
+        /* Custom tweaks for the results page */
+        .rank-badge {
+            background: var(--primary-color) !important;
+            color: var(--surface-color) !important;
+        }
+
+        .score-text {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-top: var(--space-sm);
+            display: block;
+        }
+
+        .school-name {
+            font-size: 0.85rem;
+            color: var(--text-color-secondary);
+            min-height: 3em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="menu">
+        <img src="https://raw.githubusercontent.com/t4saha/PBVM-Uluberia-Vigyan-Kendra/main/Logo/pvbm_logo_gold.png"
+            alt="Logo" class="nav-logo"
+            onerror="this.onerror=null; this.src='https://placehold.co/50x50/d79921/3c3836?text=LOGO'">
+
+        <div class="menu-controls-mobile">
+            <span class="menu-label-text" data-translate-key="nav_menu">Menu</span>
+            <button class="hamburger-menu" id="hamburgerBtn" onclick="toggleMenu()">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <span class="menu-label-text current-menu-label" id="currentMenuLabel"
+                data-translate-key="nav${activePageID}">Menu</span>
+        </div>
+        <div class="nav-links" id="navLinks">
+            <a href="../../../../index.html" class="${isActive(menu_home)}" data-translate-key="nav_home">Home</a>
+            <a href="../aviksha/results.html" class="${isActive(menu_home)}" data-translate-key="nav_result">Result</a>
+            <a href="../aviksha/results.html" class="active-tab" data-translate-key="nav_rank">Rank</a>
+        </div>
+
+        <div class="header-controls">
+            <button id="themeToggleIcon" onclick="toggleTheme()" class="theme-icon-button">
+                <i class="fa-solid fa-sun theme-icon sun-icon"></i>
+                <i class="fa-solid fa-moon theme-icon moon-icon"></i>
+            </button>
+            <div class="lang-toggle">
+                <span id="langEn" onclick="setLang('en')">EN</span>
+                <span id="langBn" onclick="setLang('bn')">বা</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- English Content Section -->
+    <div class="lang-content en">
+        <div class="ceremony-container">
+            <header class="ceremony-header">
+                <h1>Vigyan Manosikota-O-Medha Aviksha 2025</h1>
+                <p class="subtitle">Rank Holders in Uluberia Vigyan Kendra</p>
+                <div class="ribbon">Successful Candidates</div>
+            </header>
+
+            <section class="result-section">
+                <h2 class="section-heading">Class III</h2>
+                <ul class="dignitaries-grid">
+                    <li class="dignitary-card">
+                        <span class="role-badge rank-badge">1st Rank</span>
+                        <img style="border: none;" src="../../../icons/1st.png" alt="">
+                        <h3>FAHEEM AKRAM</h3>
+                        <p class="school-name">SAINI INTERNATIONAL SCHOOL (CBSE)</p>
+                        <span class="score-text">Total: 62.00</span>
+                    </li>
+                    <li class="dignitary-card">
+                        <span class="role-badge rank-badge">2nd Rank</span>
+                        <img style="border: none;" src="../../../icons/2nd.png" alt="">
+                        <h3>SWASTIK SEN</h3>
+                        <p class="school-name">SARADA SISHU MANDIR</p>
+                        <span class="score-text">Total: 61.00</span>
+                    </li>
+                    <li class="dignitary-card">
+                        <span class="role-badge rank-badge">2nd Rank</span>
+                        <img style="border: none;" src="../../../icons/2nd.png" alt="">
+                        <h3>ARNIT NATH</h3>
+                        <p class="school-name">SARADA SISHU MANDIR</p>
+                        <span class="score-text">Total: 61.00</span>
+                    </li>
+                    <li class="dignitary-card">
+                        <span class="role-badge rank-badge">3rd Rank</span>
+                        <img style="border: none;" src="../../../icons/3rd.png" alt="">
+                        <h3>RUPESH PAUL</h3>
+                        <p class="school-name">JADURBERIA NIMNA BUNIYADI VIDYALAYA</p>
+                        <span class="score-text">Total: 53.00</span>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="result-section">
+                <h2 class="section-heading">Class IV</h2>
+                <ul class="dignitaries-grid">
+                    <li class="dignitary-card">
+                        <span class="role-badge rank-badge">1st Rank</span>
+                        <img style="border: none;" src="../../../icons/1st.png" alt="">
+                        <h3>SHARANYA GOLE</h3>
+                        <p class="school-name">ULUBERIA TOWN MISSION SCHOOL</p>
+                        <span class="score-text">Total: 64.00</span>
+                    </li>
+                    <li class="dignitary-card">
+                        <span class="role-badge rank-badge">2nd Rank</span>
+                        <img style="border: none;" src="../../../icons/2nd.png" alt="">
+                        <h3>AYAN MONDAL</h3>
+                        <p class="school-name">ICHHAPUR PRIMARY SCHOOL</p>
+                        <span class="score-text">Total: 58.00</span>
+                    </li>
+                    <li class="dignitary-card">
+                        <span class="role-badge rank-badge">3rd Rank</span>
+                        <img style="border: none;" src="../../../icons/3rd.png" alt="">
+                        <h3>ADRIJA SEN</h3>
+                        <p class="school-name">BINAPANI GIRLS' PRIMARY SCHOOL</p>
+                        <span class="score-text">Total: 57.00</span>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="result-section">
+                <h2 class="section-heading">Class V</h2>
+                <ul class="dignitaries-grid">
+                    <li class="dignitary-card">
+                        <span class="role-badge rank-badge">1st Rank</span>
+                        <img style="border: none;" src="../../../icons/1st.png" alt="">
+                        <h3>SUHRID PRAMANIK</h3>
+                        <p class="school-name">BENAPUR CHANDANAPARA HIGH SCHOOL</p>
+                        <span class="score-text">Total: 86.00</span>
+                    </li>
+                    <li class="dignitary-card">
+                        <span class="role-badge rank-badge">2nd Rank</span>
+                        <img style="border: none;" src="../../../icons/2nd.png" alt="">
+                        <h3>SANDHYODEEP DAS</h3>
+                        <p class="school-name">LINCOLN INTERNATIONAL SCHOOL</p>
+                        <span class="score-text">Total: 85.00</span>
+                    </li>
+                    <li class="dignitary-card">
+                        <span class="role-badge rank-badge">3rd Rank</span>
+                        <img style="border: none;" src="../../../icons/3rd.png" alt="">
+                        <h3>MANDAKRANTA DAS</h3>
+                        <p class="school-name">ULUBERIA BINAPANI GIRLS' HIGH SCHOOL (H.S.)</p>
+                        <span class="score-text">Total: 76.00</span>
+                    </li>
+                    <li class="dignitary-card">
+                        <span class="role-badge rank-badge">3rd Rank</span>
+                        <img style="border: none;" src="../../../icons/3rd.png" alt="">
+                        <h3>ADRIJA DAS</h3>
+                        <p class="school-name">BINAPANI GIRLS' PRIMARY SCHOOL</p>
+                        <span class="score-text">Total: 76.00</span>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="result-section">
+                <h2 class="section-heading">Class VI</h2>
+                <ul class="dignitaries-grid">
+                    <li class="dignitary-card">
+                        <span class="role-badge rank-badge">1st Rank</span>
+                        <img style="border: none;" src="../../../icons/1st.png" alt="">
+                        <h3>SK. MD SHAYYAN IKRAM</h3>
+                        <p class="school-name">ULUBERIA HIGH SCHOOL (H.S.)</p>
+                        <span class="score-text">Total: 70.00</span>
+                    </li>
+                    <li class="dignitary-card">
+                        <span class="role-badge rank-badge">2nd Rank</span>
+                        <img style="border: none;" src="../../../icons/2nd.png" alt="">
+                        <h3>SAMRIDDHA MONDAL</h3>
+                        <p class="school-name">KHALISANI JATIYA VIDYAPITH HIGH SCHOOL (H.S.)</p>
+                        <span class="score-text">Total: 69.00</span>
+                    </li>
+                    <li class="dignitary-card">
+                        <span class="role-badge rank-badge">3rd Rank</span>
+                        <img style="border: none;" src="../../../icons/3rd.png" alt="">
+                        <h3>SAMRIDH KULIA</h3>
+                        <p class="school-name">ULUBERIA HIGH SCHOOL (H.S.)</p>
+                        <span class="score-text">Total: 68.00</span>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="result-section">
+                <h2 class="section-heading">Class VII</h2>
+                <ul class="dignitaries-grid">
+                    <li class="dignitary-card">
+                        <span class="role-badge rank-badge">1st Rank</span>
+                        <img style="border: none;" src="../../../icons/1st.png" alt="">
+                        <h3>AFSHEEN KAZI</h3>
+                        <p class="school-name">ASIAN INTERNATIONAL SCHOOL</p>
+                        <span class="score-text">Total: 66.00</span>
+                    </li>
+                    <li class="dignitary-card">
+                        <span class="role-badge rank-badge">2nd Rank</span>
+                        <img style="border: none;" src="../../../icons/2nd.png" alt="">
+                        <h3>UDITA JASU</h3>
+                        <p class="school-name">ST AUGUSTIN'S DAY SCHOOL</p>
+                        <span class="score-text">Total: 65.00</span>
+                    </li>
+                    <li class="dignitary-card">
+                        <span class="role-badge rank-badge">3rd Rank</span>
+                        <img style="border: none;" src="../../../icons/3rd.png" alt="">
+                        <h3>SRINJANA DAS</h3>
+                        <p class="school-name">SARADA SISHU MANDIR</p>
+                        <span class="score-text">Total: 63.00</span>
+                    </li>
+                    <li class="dignitary-card">
+                        <span class="role-badge rank-badge">3rd Rank</span>
+                        <img style="border: none;" src="../../../icons/3rd.png" alt="">
+                        <h3>UDBODHAN DHARA</h3>
+                        <p class="school-name">BANIBAN JADURBERIA VIDYAPITH</p>
+                        <span class="score-text">Total: 63.00</span>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="result-section">
+                <h2 class="section-heading">Class VIII</h2>
+                <ul class="dignitaries-grid">
+                    <li class="dignitary-card">
+                        <span class="role-badge rank-badge">1st Rank</span>
+                        <img style="border: none;" src="../../../icons/1st.png" alt="">
+                        <h3>HRITTIZ HALDER</h3>
+                        <p class="school-name">ULUBERIA HIGH SCHOOL</p>
+                        <span class="score-text">Total: 80.00</span>
+                    </li>
+                    <li class="dignitary-card">
+                        <span class="role-badge rank-badge">2nd Rank</span>
+                        <img style="border: none;" src="../../../icons/2nd.png" alt="">
+                        <h3>SUMAN MARIK</h3>
+                        <p class="school-name">ULUBERIA HIGH SCHOOL (H.S.)</p>
+                        <span class="score-text">Total: 76.00</span>
+                    </li>
+                    <li class="dignitary-card">
+                        <span class="role-badge rank-badge">2nd Rank</span>
+                        <img style="border: none;" src="../../../icons/2nd.png" alt="">
+                        <h3>SEHAN MOLLA</h3>
+                        <p class="school-name">ULUBERIA HIGH SCHOOL (H.S.)</p>
+                        <span class="score-text">Total: 76.00</span>
+                    </li>
+                    <li class="dignitary-card">
+                        <span class="role-badge rank-badge">3rd Rank</span>
+                        <img style="border: none;" src="../../../icons/3rd.png" alt="">
+                        <h3>RISHAB KUMAR MAITY</h3>
+                        <p class="school-name">ULUBERIA HIGH SCHOOL (H.S.)</p>
+                        <span class="score-text">Total: 74.00</span>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="result-section">
+                <h2 class="section-heading">Class IX</h2>
+                <ul class="dignitaries-grid">
+                    <li class="dignitary-card">
+                        <span class="role-badge rank-badge">1st Rank</span>
+                        <img style="border: none;" src="../../../icons/1st.png" alt="">
+                        <h3>TANISHA DAS</h3>
+                        <p class="school-name">KHALISANI JATIYA VIDYAPITH HIGH SCHOOL (H.S.)</p>
+                        <span class="score-text">Total: 80.00</span>
+                    </li>
+                    <li class="dignitary-card">
+                        <span class="role-badge rank-badge">2nd Rank</span>
+                        <img style="border: none;" src="../../../icons/2nd.png" alt="">
+                        <h3>HINDOL KHANRA</h3>
+                        <p class="school-name">ULUBERIA HIGH SCHOOL (H.S.)</p>
+                        <span class="score-text">Total: 74.00</span>
+                    </li>
+                    <li class="dignitary-card">
+                        <span class="role-badge rank-badge">3rd Rank</span>
+                        <img style="border: none;" src="../../../icons/3rd.png" alt="">
+                        <h3>AKASHDEEP MANNA</h3>
+                        <p class="school-name">ULUBERIA HIGH SCHOOL (H.S.)</p>
+                        <span class="score-text">Total: 73.00</span>
+                    </li>
+                </ul>
+            </section>
+        </div>
+    </div>
+
+    <!-- Bengali Content Section -->
+    <div class="lang-content bn">
+        <div class="ceremony-container">
+            <header class="ceremony-header">
+                <h1>বিজ্ঞান মানসিকতা ও মেধা অভীক্ষা ২০২৫</h1>
+                <p class="subtitle">উলুবেড়িয়া বিজ্ঞান কেন্দ্রে স্থানাধিকারী</p>
+                <div class="ribbon">সফল পরীক্ষার্থী</div>
+            </header>
+
+            <section class="result-section">
+                <h2 class="section-heading">৩য় শ্রেণী</h2>
+                <ul class="dignitaries-grid">
+                    <li class="dignitary-card">
+                        <span class="role-badge rank-badge">প্রথম</span>
+                        <img style="border: none;" src="../../../icons/1st.png" alt="">
+                        <h3>ফাহিম আক্রম</h3>
+                        <p class="school-name">সাইনি ইন্টারন্যাশনাল স্কুল (CBSE)</p>
+                        <span class="score-text">প্রাপ্ত নম্বর: ৬২.০০</span>
+                    </li>
+                    <li class="dignitary-card">
+                        <span class="role-badge rank-badge">দ্বিতীয়</span>
+                        <img style="border: none;" src="../../../icons/2nd.png" alt="">
+                        <h3>স্বস্তিক সেন</h3>
+                        <p class="school-name">সরদা শিশু মন্দির</p>
+                        <span class="score-text">প্রাপ্ত নম্বর: ৬১.০০</span>
+                    </li>
+                    <li class="dignitary-card">
+                        <span class="role-badge rank-badge">দ্বিতীয়</span>
+                        <img style="border: none;" src="../../../icons/2nd.png" alt="">
+                        <h3>অর্নিত নাথ</h3>
+                        <p class="school-name">সরদা শিশু মন্দির</p>
+                        <span class="score-text">প্রাপ্ত নম্বর: ৬১.০০</span>
+                    </li>
+                    <li class="dignitary-card">
+                        <span class="role-badge rank-badge">তৃতীয়</span>
+                        <img style="border: none;" src="../../../icons/3rd.png" alt="">
+                        <h3>রুপেশ পাল</h3>
+                        <p class="school-name">যদুরবেরিয়া নিম্ন বুনিয়াদী বিদ্যালয়</p>
+                        <span class="score-text">প্রাপ্ত নম্বর: ৫৩.০০</span>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="result-section">
+                <h2 class="section-heading">৪র্থ শ্রেণী</h2>
+                <ul class="dignitaries-grid">
+                    <li class="dignitary-card">
+                        <span class="role-badge rank-badge">প্রথম</span>
+                        <img style="border: none;" src="../../../icons/1st.png" alt="">
+                        <h3>শরণ্যা গোলে</h3>
+                        <p class="school-name">উলুবেরিয়া টাউন মিশন স্কুল</p>
+                        <span class="score-text">প্রাপ্ত নম্বর: ৬৪.০০</span>
+                    </li>
+                    <li class="dignitary-card">
+                        <span class="role-badge rank-badge">দ্বিতীয়</span>
+                        <img style="border: none;" src="../../../icons/2nd.png" alt="">
+                        <h3>অয়ন মন্ডল</h3>
+                        <p class="school-name">ইছাপুর প্রাথমিক বিদ্যালয়</p>
+                        <span class="score-text">প্রাপ্ত নম্বর: ৫৮.০০</span>
+                    </li>
+                    <li class="dignitary-card">
+                        <span class="role-badge rank-badge">তৃতীয়</span>
+                        <img style="border: none;" src="../../../icons/3rd.png" alt="">
+                        <h3>অদ্রিজা সেন</h3>
+                        <p class="school-name">বীণাপাণি বালিকা প্রাথমিক বিদ্যালয়</p>
+                        <span class="score-text">প্রাপ্ত নম্বর: ৫৭.০০</span>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="result-section">
+                <h2 class="section-heading">৫ম শ্রেণী</h2>
+                <ul class="dignitaries-grid">
+                    <li class="dignitary-card">
+                        <span class="role-badge rank-badge">প্রথম</span>
+                        <img style="border: none;" src="../../../icons/1st.png" alt="">
+                        <h3>সুহৃদ প্রামানিক</h3>
+                        <p class="school-name">বেনাপুর চন্দনপাড়া উচ্চ বিদ্যালয়</p>
+                        <span class="score-text">প্রাপ্ত নম্বর: ৮৬.০০</span>
+                    </li>
+                    <li class="dignitary-card">
+                        <span class="role-badge rank-badge">দ্বিতীয়</span>
+                        <img style="border: none;" src="../../../icons/2nd.png" alt="">
+                        <h3>সান্ধ্যদীপ দাস</h3>
+                        <p class="school-name">লিনকলন ইন্টারন্যাশনাল স্কুল</p>
+                        <span class="score-text">প্রাপ্ত নম্বর: ৮৫.০০</span>
+                    </li>
+                    <li class="dignitary-card">
+                        <span class="role-badge rank-badge">তৃতীয়</span>
+                        <img style="border: none;" src="../../../icons/3rd.png" alt="">
+                        <h3>মন্দাক্রান্তা দাস</h3>
+                        <p class="school-name">উলুবেরিয়া বীণাপাণি বালিকা উচ্চ বিদ্যালয় (উঃ মাঃ)</p>
+                        <span class="score-text">প্রাপ্ত নম্বর: ৭৬.০০</span>
+                    </li>
+                    <li class="dignitary-card">
+                        <span class="role-badge rank-badge">তৃতীয়</span>
+                        <img style="border: none;" src="../../../icons/3rd.png" alt="">
+                        <h3>অদ্রিজা দাস</h3>
+                        <p class="school-name">বীণাপাণি বালিকা প্রাথমিক বিদ্যালয়</p>
+                        <span class="score-text">প্রাপ্ত নম্বর: ৭৬.০০</span>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="result-section">
+                <h2 class="section-heading">৬ষ্ঠ শ্রেণী</h2>
+                <ul class="dignitaries-grid">
+                    <li class="dignitary-card">
+                        <span class="role-badge rank-badge">প্রথম</span>
+                        <img style="border: none;" src="../../../icons/1st.png" alt="">
+                        <h3>সেখ মহঃ সায়ণ ইক্রাম</h3>
+                        <p class="school-name">উলুবেড়িয়া উচ্চ বিদ্যালয় (উঃ মাঃ)</p>
+                        <span class="score-text">প্রাপ্ত নম্বর: ৭০.০০</span>
+                    </li>
+                    <li class="dignitary-card">
+                        <span class="role-badge rank-badge">দ্বিতীয়</span>
+                        <img style="border: none;" src="../../../icons/2nd.png" alt="">
+                        <h3>সমৃদ্ধা মন্ডল</h3>
+                        <p class="school-name">খলিসানি জাতীয় বিদ্যাপিঠ (উঃ মাঃ)</p>
+                        <span class="score-text">প্রাপ্ত নম্বর: ৬৯.০০</span>
+                    </li>
+                    <li class="dignitary-card">
+                        <span class="role-badge rank-badge">তৃতীয়</span>
+                        <img style="border: none;" src="../../../icons/3rd.png" alt="">
+                        <h3>সমৃদ্ধ কুইলা</h3>
+                        <p class="school-name">উলুবেড়িয়া উচ্চ বিদ্যালয় (উঃ মাঃ)</p>
+                        <span class="score-text">প্রাপ্ত নম্বর: ৬৮.০০</span>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="result-section">
+                <h2 class="section-heading">৭ম শ্রেণী</h2>
+                <ul class="dignitaries-grid">
+                    <li class="dignitary-card">
+                        <span class="role-badge rank-badge">প্রথম</span>
+                        <img style="border: none;" src="../../../icons/1st.png" alt="">
+                        <h3>আফসিন কাজি</h3>
+                        <p class="school-name">আশিয়ান ইন্টারন্যাশনাল স্কুল</p>
+                        <span class="score-text">প্রাপ্ত নম্বর: ৬৬.০০</span>
+                    </li>
+                    <li class="dignitary-card">
+                        <span class="role-badge rank-badge">দ্বিতীয়</span>
+                        <img style="border: none;" src="../../../icons/2nd.png" alt="">
+                        <h3>উদিতা জাসু</h3>
+                        <p class="school-name">সেন্ট অগাস্টিন ডে স্কুল</p>
+                        <span class="score-text">প্রাপ্ত নম্বর: ৬৫.০০</span>
+                    </li>
+                    <li class="dignitary-card">
+                        <span class="role-badge rank-badge">তৃতীয়</span>
+                        <img style="border: none;" src="../../../icons/3rd.png" alt="">
+                        <h3>সৃঞ্জনা দাস</h3>
+                        <p class="school-name">সরদা সিশু মন্দির</p>
+                        <span class="score-text">প্রাপ্ত নম্বর: ৬৩.০০</span>
+                    </li>
+                    <li class="dignitary-card">
+                        <span class="role-badge rank-badge">তৃতীয়</span>
+                        <img style="border: none;" src="../../../icons/3rd.png" alt="">
+                        <h3>উদ্বোধন ধাড়া</h3>
+                        <p class="school-name">বানিবান যদুরবেরিয়া বিদ্যাপিঠ</p>
+                        <span class="score-text">প্রাপ্ত নম্বর: ৬৩.০০</span>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="result-section">
+                <h2 class="section-heading">৮ম শ্রেণী</h2>
+                <ul class="dignitaries-grid">
+                    <li class="dignitary-card">
+                        <span class="role-badge rank-badge">প্রথম</span>
+                        <img style="border: none;" src="../../../icons/1st.png" alt="">
+                        <h3>হৃত্তিজ হালদার</h3>
+                        <p class="school-name">উলুবেড়িয়া উচ্চ বিদ্যালয় (উঃ মাঃ)</p>
+                        <span class="score-text">প্রাপ্ত নম্বর: ৮০.০০</span>
+                    </li>
+                    <li class="dignitary-card">
+                        <span class="role-badge rank-badge">দ্বিতীয়</span>
+                        <img style="border: none;" src="../../../icons/2nd.png" alt="">
+                        <h3>সুমন মারিক</h3>
+                        <p class="school-name">উলুবেড়িয়া উচ্চ বিদ্যালয় (উঃ মাঃ)</p>
+                        <span class="score-text">প্রাপ্ত নম্বর: ৭৬.০০</span>
+                    </li>
+                    <li class="dignitary-card">
+                        <span class="role-badge rank-badge">দ্বিতীয়</span>
+                        <img style="border: none;" src="../../../icons/2nd.png" alt="">
+                        <h3>সেহান মোল্লা</h3>
+                        <p class="school-name">উলুবেড়িয়া উচ্চ বিদ্যালয় (উঃ মাঃ)</p>
+                        <span class="score-text">প্রাপ্ত নম্বর: ৭৬.০০</span>
+                    </li>
+                    <li class="dignitary-card">
+                        <span class="role-badge rank-badge">তৃতীয়</span>
+                        <img style="border: none;" src="../../../icons/3rd.png" alt="">
+                        <h3>রিশভ কুমার মাইতি</h3>
+                        <p class="school-name">উলুবেড়িয়া উচ্চ বিদ্যালয় (উঃ মাঃ)</p>
+                        <span class="score-text">প্রাপ্ত নম্বর: ৭৪.০০</span>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="result-section">
+                <h2 class="section-heading">৯ম শ্রেণী</h2>
+                <ul class="dignitaries-grid">
+                    <li class="dignitary-card">
+                        <span class="role-badge rank-badge">প্রথম</span>
+                        <img style="border: none;" src="../../../icons/1st.png" alt="">
+                        <h3>তানিষা দাস</h3>
+                        <p class="school-name">খলিসানি জাতীয় বিদ্যাপিঠ (উঃ মাঃ)</p>
+                        <span class="score-text">প্রাপ্ত নম্বর: ৮০.০০</span>
+                    </li>
+                    <li class="dignitary-card">
+                        <span class="role-badge rank-badge">দ্বিতীয়</span>
+                        <img style="border: none;" src="../../../icons/2nd.png" alt="">
+                        <h3>হিন্দোল খাঁড়া</h3>
+                        <p class="school-name">উলুবেড়িয়া উচ্চ বিদ্যালয় (উঃ মাঃ)</p>
+                        <span class="score-text">প্রাপ্ত নম্বর: ৭৪.০০</span>
+                    </li>
+                    <li class="dignitary-card">
+                        <span class="role-badge rank-badge">তৃতীয়</span>
+                        <img style="border: none;" src="../../../icons/3rd.png" alt="">
+                        <h3>আকাশদীপ মান্না</h3>
+                        <p class="school-name">উলুবেড়িয়া উচ্চ বিদ্যালয় (উঃ মাঃ)</p>
+                        <span class="score-text">প্রাপ্ত নম্বর: ৭৩.০০</span>
+                    </li>
+                </ul>
+            </section>
+        </div>
+    </div>
+
+    <button id="scrollToTopBtn" onclick="scrollToTop()" aria-label="Scroll to top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <!-- ACTIVATING THE SCROLL FUNCTION -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Apply horizontal scroll to both language sections. Note: the Bengali section ID is set to 'galleryScroll-bn'
+            if (typeof enableMouseWheelScroll === 'function') {
+                enableMouseWheelScroll('galleryScroll');
+                enableMouseWheelScroll('galleryScroll-bn'); // Apply to the new Bengali gallery
+                console.log("Horizontal scroll enabled for both galleries");
+            } else {
+                console.error("enableMouseWheelScroll function not found in utils.js");
+            }
+
+            // NEW: Initialize dot indicators for both galleries
+            if (typeof setupGalleryDots === 'function') {
+                setupGalleryDots('galleryScroll', 'galleryDots');
+                setupGalleryDots('galleryScroll-bn', 'galleryDots-bn');
+                console.log("Gallery dots initialized for both galleries");
+            } else {
+                console.error("setupGalleryDots function not found in utils.js");
+            }
+        });
+    </script>
+</body>
+
+
+</html>
