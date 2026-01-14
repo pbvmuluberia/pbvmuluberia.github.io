@@ -6,7 +6,7 @@
     max-width: 1200px;
     margin: 0 auto;
     /* Use standardized variables */
-    padding: var(--space-md) var(--container-padding);
+    padding: var(--space-md);
     /* Calculate top padding based on nav height */
 
     font-family: var(--font-body);
@@ -166,7 +166,7 @@
         background: var(--surface-color);
         border: 1px solid var(--card-border-color);
         border-radius: var(--border-radius-medium);
-        padding: var(--space-md) var(--space-sm);
+        padding: var(--space-md) var(--space-md);
         width: 160px;
         /* 30px */
         text-align: center;

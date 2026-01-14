@@ -1,0 +1,221 @@
+/* ceremony.css - Specific styles for the ceremony page (Nested) */
+/* Adapted to match Gruvbox-inspired theme from style.css */
+:root {
+    --gold: linear-gradient(145deg, hsla(52, 100%, 50%, 0.3), hsla(43, 100%, 50%, 0.3));
+    --silver: linear-gradient(145deg, hsla(0, 0%, 88%, 0.3), hsla(0, 0%, 74%, 0.3));
+    --bronze: linear-gradient(145deg, hsla(30, 61%, 50%, 0.3), hsla(19, 56%, 40%, 0.3));
+}
+
+/* Container overrides */
+.ceremony-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    /* Use standardized variables */
+    padding: var(--space-md);
+    /* Calculate top padding based on nav height */
+
+    font-family: var(--font-body);
+
+    /* Header Styles */
+    .ceremony-header {
+        text-align: center;
+        margin-bottom: var(--space-xl);
+        /* 40px */
+        color: var(--text-color-primary);
+
+        h1 {
+            font-family: var(--font-heading);
+            font-size: var(--font-size-h1);
+            color: var(--primary-color);
+            margin-bottom: var(--space-sm);
+        }
+
+        img {
+            width: 70%;
+        }
+    }
+
+    /* Shared Section Heading */
+    .section-heading {
+        font-family: var(--font-heading);
+        text-align: center;
+        margin: var(--space-xl) 0 var(--space-lg);
+        /* 40px 0 30px */
+        font-size: var(--font-size-h2);
+        color: var(--primary-color);
+        position: relative;
+        padding-bottom: var(--space-sm);
+    }
+}
+
+/* Dignitaries Grid */
+.dignitaries-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xl);
+    /* 30px */
+    justify-content: center;
+    margin-bottom: var(--space-2xl);
+    /* 50px */
+
+    li::marker {
+        content: "";
+    }
+
+    .dignitary-card {
+        display: flex;
+        background: var(--surface-color);
+        border: 1px solid var(--card-border-color);
+        border-radius: var(--border-radius-medium);
+        padding: var(--space-md) var(--space-md);
+        width: 80%;
+        gap: var(--space-sm);
+        min-width: 160px;
+        /* 30px */
+        text-align: center;
+        position: relative;
+        box-shadow: var(--card-shadow);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .role-badge {
+            position: absolute;
+            top: -10px;
+            left: 85px;
+            transform: translateX(-50%);
+            background: var(--primary-color);
+            color: var(--surface-color);
+            /* Light text on primary bg */
+            padding: var(--space-xs) var(--space-sm);
+            /* 5px 10px */
+            border-radius: var(--border-radius-medium);
+            font-size: calc(var(--font-size-p)*0.8);
+            font-weight: var(--font-weight-heavy);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            white-space: nowrap;
+        }
+
+        img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--surface-color-alt);
+            margin: var(--space-md) 0;
+        }
+
+        h3 {
+            font-family: var(--font-heading);
+            font-size: var(--font-size-h3);
+            margin: var(--space-sm) 0 var(--space-xs);
+            /* 10px 0 5px */
+            color: var(--text-color-primary);
+        }
+    }
+}
+
+/* HTML: <div class="ribbon">Your text content</div> */
+.ribbon {
+    --s: 1.8em;
+    /* the ribbon size */
+    --d: .8em;
+    /* the depth */
+    --c: .8em;
+    /* the cutout part */
+
+    padding: var(--d) calc(var(--s) + .5em) 0;
+    line-height: 1.8;
+    background:
+        conic-gradient(from 45deg at left var(--s) top var(--d),
+            hsla(0, 0%, 0%, 0.533) 12.5%, hsla(0, 0%, 0%, 0) 0 37.5%, hsla(0, 0%, 0%, 0.267) 0) 0 /50% 100% no-repeat,
+        conic-gradient(from -45deg at right var(--s) top var(--d),
+            hsla(0, 0%, 0%, 0.267) 62.5%, hsla(0, 0%, 0%, 0) 0 87.5%, hsla(0, 0%, 0%, 0.533) 0) 100%/50% 100% no-repeat;
+    clip-path: polygon(0 0, calc(var(--s) + var(--d)) 0, calc(var(--s) + var(--d)) var(--d), calc(100% - var(--s) - var(--d)) var(--d), calc(100% - var(--s) - var(--d)) 0, 100% 0, calc(100% - var(--c)) calc(50% - var(--d)/2), 100% calc(100% - var(--d)), calc(100% - var(--s)) calc(100% - var(--d)), calc(100% - var(--s)) 100%, var(--s) 100%, var(--s) calc(100% - var(--d)), 0 calc(100% - var(--d)), var(--c) calc(50% - var(--d)/2));
+    background-color: var(--primary-color);
+    /* the main color */
+    font-size: var(--font-size-p);
+    font-weight: bold;
+    color: var(--surface-color);
+    align-items: center;
+    justify-content: center;
+}
+
+.clubbed-student-list {
+    display: flex;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    border-left: 1px solid var(--card-border-color);
+    border-radius: var(--border-radius-medium);
+    border-top: 0;
+}
+
+figure {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.student-entry {
+    min-width: 40%;
+    margin: var(--space-md);
+}
+
+.student-entry h3 {
+    margin-bottom: 2px !important;
+}
+
+.rank-badge {
+    background: var(--primary-color) !important;
+    color: var(--surface-color) !important;
+}
+
+.first {
+    background: var(--gold) !important;
+}
+
+.second {
+    background: var(--silver) !important;
+}
+
+.third {
+    background: var(--bronze) !important;
+}
+
+.score-text {
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-bottom: var(--space-sm);
+    display: block;
+}
+
+.school-name {
+    font-size: 0.85rem;
+    color: var(--text-color-secondary);
+    min-height: 3em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (min-width: 900px) {
+    .dignitary-card {
+        flex-direction: column !important;
+        width: 30% !important;
+    }
+
+    .role-badge {
+        left: 50% !important
+    }
+
+    .clubbed-student-list {
+        border-top: 1px solid var(--card-border-color);
+        border-left: 0;
+    }
+}

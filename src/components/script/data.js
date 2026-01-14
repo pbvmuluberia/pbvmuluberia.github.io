@@ -120,7 +120,7 @@ const translations = {
         'nav_download': 'ডাউনলোড',
         'nav_contact': 'যোগাযোগ',
         'nav_events': 'প্রতিবেদন',
-        'nav_rank': 'স্থানাধিকার',
+        'nav_rank': 'মেধাক্রম',
         'install': ' অ্যাপ ইন্সটল করুন',
         'carousel_home_name': 'অভিনন্দন',
         'carousel_home_des': 'উলুবেড়িয়া বিজ্ঞান কেন্দ্র',
