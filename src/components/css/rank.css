@@ -68,7 +68,7 @@
         border: 1px solid var(--card-border-color);
         border-radius: var(--border-radius-medium);
         padding: var(--space-md) var(--space-md);
-        width: 80%;
+        width: 100%;
         gap: var(--space-sm);
         min-width: 160px;
         /* 30px */
