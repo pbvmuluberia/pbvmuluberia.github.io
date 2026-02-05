@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+    <link rel="manifest" href="../../../../manifest.json">
+
+    <link rel="apple-touch-icon" href="./src/icons/icon-192x192.png">
+    <meta name="apple-mobile-web-app-status-bar" id="meta-apple-status-bar" content="#bf530c">
+    <meta name="theme-color" id="meta-theme-color" content="#bf530c">
+
+    <script src="../../script/theme-pwa.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Environment Day</title>
+
+    <!-- External Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <!-- Global Styles -->
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/navbar.css">
+    <!-- Page Specific Styles -->
+    <link rel="stylesheet" href="../../css/ceremony.css">
+    <link rel="stylesheet" href="../../css/rank.css">
+
+    <!-- Scripts -->
+    <script src="../../script/components.js" defer></script>
+    <!-- Assuming data.js and utils.js exist in your project as referenced in index.html -->
+    <script src="../../script/data.js" defer></script>
+    <script src="../../script/utils.js" defer></script>
+    <script src="../../script/modal.js" defer></script>
+    <script src="../../script/init.js" defer></script>
+
+    <script>
+        (function () {
+            // 1. Restore Theme immediately
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark-theme');
+            }
+
+            // 2. Restore Language immediately
+            window.savedLang = localStorage.getItem('language') || 'bn';
+        })();
+    </script>
+
+    <style>
+        /* Helper for language toggling visibility if not in style.css */
+        .lang-content {
+            display: none;
+        }
+
+        .lang-content.active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body id="ceremony">
+    <!-- Navbar Placeholder -->
+    <nav class="menu">
+        <img src="https://raw.githubusercontent.com/t4saha/PBVM-Uluberia-Vigyan-Kendra/main/Logo/pvbm_logo_gold.png"
+            alt="Logo" class="nav-logo"
+            onerror="this.onerror=null; this.src='https://placehold.co/50x50/d79921/3c3836?text=LOGO'">
+
+        <div class="menu-controls-mobile">
+            <span class="menu-label-text" data-translate-key="nav_menu">Menu</span>
+            <button class="hamburger-menu" id="hamburgerBtn" onclick="toggleMenu()">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <span class="menu-label-text current-menu-label" id="currentMenuLabel"
+                data-translate-key="nav${activePageID}">Menu</span>
+        </div>
+        <div class="nav-links" id="navLinks">
+            <a href="../../../../index.html" class="${isActive(menu_home)}" data-translate-key="nav_home">Home</a>
+        </div>
+
+        <div class="header-controls">
+            <button id="themeToggleIcon" onclick="toggleTheme()" class="theme-icon-button">
+                <i class="fa-solid fa-sun theme-icon sun-icon"></i>
+                <i class="fa-solid fa-moon theme-icon moon-icon"></i>
+            </button>
+            <div class="lang-toggle">
+                <span id="langEn" onclick="setLang('en')">EN</span>
+                <span id="langBn" onclick="setLang('bn')">বা</span>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- English Content Section -->
+    <div class="lang-content en">
+        <div class="ceremony-container">
+
+            <!-- Header Section -->
+            <header class="ceremony-header">
+                <img src="../../../banner/40 years.png" alt="🌎 🌲" style="border-radius: var(--space-md);"></img>
+                <p></p>
+                <h1>At every turn, in every lane and byway</h1>
+                <p>Paschim Banga Bigyan Mancha &bull; 24th & 25th January, 2026</p>
+                <!-- Horizontal Scroll Gallery -->
+                <h1 style="color: var(--text-color);"><br>Awareness and Path Sabha</h1>
+            </header>
+
+            <!-- Special Program -->
+            <section class="program-section">
+                <div class="program-card">
+                    <div class="program-content">
+                        <h2>From the main road to the locality:</h2>
+                        <h3>Path Sabha by Jadurberia Bigyan Chakra</h3>
+                        <p>"Let the light of science shine in every home" - under this slogan, a special program was
+                            organized by the Jadurberia Bigyan Chakra, a unit of Uluberia Bigyan Kendra, to spread
+                            scientific thinking among the people. The main attraction of the program was a colorful
+                            path sabha organized at 6 important intersections in the area, where a call was made to
+                            build
+                            a superstition-free society through songs, recitations, and strong discussions. This program
+                            was organized to spread scientific thinking among the general people and to convey the
+                            message of the organization's four-decade-long struggle.</p>
+                    </div>
+                    <div class="program-img"><img src="../../../gallary/patha sabha jan 26/slide 1.jpg"
+                            alt="Patha Sabha">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Key Dignitaries -->
+            <section class="dignitaries-section">
+                <h2 class="section-heading">Dignitaries</h2>
+                <ul class="dignitaries-grid">
+                    <li class="dignitary-card">
+                        <div class="role-badge">President Howrah District</div>
+                        <img src="../../../Guests/Kali Jasu.jpeg" alt="President - Howrah District">
+                        <h3>Kalikrishna Jasu</h3>
+                        <p>Teacher</p>
+                    </li>
+                    <li class="dignitary-card">
+                        <div class="role-badge">Secretary Uluberia Circle</div>
+                        <img src="../../../Guests/Biswajit Paul.jpeg" alt="Secretary - Uluberia Circle">
+                        <h3>Biswajit Paul</h3>
+                        <p>Teacher</p>
+                    </li>
+                    <li class="dignitary-card">
+                        <div class="role-badge">Secretary Jadurberia Circle</div>
+                        <img src="../../../Guests/Pankaj jasu.jpeg" alt="Secretary - Jadurberia Circle">
+                        <h3>Pankaj Jasu</h3>
+                        <p>Science activist</p>
+                    </li>
+                    <li class="dignitary-card">
+                        <div class="role-badge">Secretary Kalinagar Circle</div>
+                        <img src="../../../Guests/Biswanath Pramanick.jpeg" alt="Secretary - Kalinagar Circle">
+                        <h3>Biswanath Pramanick</h3>
+                        <p>Teacher</p>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Header Section -->
+            <section class="ceremony-header">
+                <h1 style="color: var(--text-color);">Drawing Competition</h1>
+            </section>
+
+            <!-- Special Program -->
+            <section class="program-section">
+                <div class="program-card">
+                    <div class="program-content">
+                        <h2>The triumph of science through brushstrokes</h2>
+                        <h3>Baneetala came alive with colorful programs</h3>
+                        <p>Following this public awareness campaign, the next day, on January 25th, a drawing
+                            competition
+                            was held at Banitola Rajdoot Sangha, where 45 participants showcased their creativity.
+                            Through
+                            science-based drawings, they spread the message of environmental awareness and scientific
+                            thinking. Divided into three categories, the young artists depicted nature, science, and a
+                            superstition-free society through their brushstrokes.
+                        </p>
+                    </div>
+                    <div class="program-img"><img src="../../../gallary/patha sabha jan 26/slide 2.jpg"
+                            alt="Drawing Competition">
+                    </div>
+                </div>
+            </section>
+
+            <section class="rank-section">
+                <h2 class="rank-heading">A-Division (Free Hand Drawing)</h2>
+                <ul class="rank-grid">
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">1st</span>
+                        <figure>
+                            <img style="border: none;" src="../../../icons/1st.png" alt="">
+
+                        </figure>
+                        <div class="clubbed-student-list first">
+                            <div class="student-entry">
+                                <h3>Rajdeep Ghosh</h3>
+                                <img src="../../../gallary/patha sabha jan 26/Rajdeep Ghosh a 1.jpg" alt="">
+                            </div>
+
+                        </div>
+                    </li>
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">2nd</span>
+                        <figure>
+                            <img style="border: none;" src="../../../icons/2nd.png" alt="">
+
+                        </figure>
+                        <div class="clubbed-student-list second">
+                            <div class="student-entry">
+                                <h3>Arshiya Mukherjee</h3>
+                                <img src="../../../gallary/patha sabha jan 26/arshiya mukherjee a 2.jpg" alt="">
+                            </div>
+
+                        </div>
+                    </li>
+
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">3rd</span>
+                        <figure>
+                            <img style="border: none;" src="../../../icons/3rd.png" alt="">
+
+                        </figure>
+                        <div class="clubbed-student-list third">
+                            <div class="student-entry">
+                                <h3>Dipayan Das</h3>
+                                <img src="../../../gallary/patha sabha jan 26/dipayan das a 3.jpg" alt="">
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="rank-section">
+                <h2 class="rank-heading">B-Division (Environmental Awareness)</h2>
+                <ul class="rank-grid">
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">1st</span>
+                        <figure>
+                            <img style="border: none;" src="../../../icons/1st.png" alt="">
+
+                        </figure>
+                        <div class="clubbed-student-list first">
+                            <div class="student-entry">
+                                <h3>Apratim Mondal</h3>
+                                <img src="../../../gallary/patha sabha jan 26/apratim mondal b 1.jpg" alt="">
+                            </div>
+
+                        </div>
+                    </li>
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">2nd</span>
+                        <figure>
+                            <img style="border: none;" src="../../../icons/2nd.png" alt="">
+
+                        </figure>
+                        <div class="clubbed-student-list second">
+                            <div class="student-entry">
+                                <h3>Kamalika Manna</h3>
+                                <img src="../../../gallary/patha sabha jan 26/kamalika manna b 2.jpg" alt="">
+                            </div>
+
+                        </div>
+                    </li>
+
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">3rd</span>
+                        <figure>
+                            <img style="border: none;" src="../../../icons/3rd.png" alt="">
+
+                        </figure>
+                        <div class="clubbed-student-list third">
+                            <div class="student-entry">
+                                <h3>Dipu Mondal</h3>
+                                <img src="../../../gallary/patha sabha jan 26/dipu mondal b 3.jpg" alt="">
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="rank-section">
+                <h2 class="rank-heading">C-Division (Pollution Free Earth)</h2>
+                <ul class="rank-grid">
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">1st</span>
+                        <figure>
+                            <img style="border: none;" src="../../../icons/1st.png" alt="">
+
+                        </figure>
+                        <div class="clubbed-student-list first">
+                            <div class="student-entry">
+                                <h3>Sreeja Malik</h3>
+                                <img src="../../../gallary/patha sabha jan 26/sreeja malik c 1.jpg" alt="">
+                            </div>
+
+                        </div>
+                    </li>
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">2nd</span>
+                        <figure>
+                            <img style="border: none;" src="../../../icons/2nd.png" alt="">
+
+                        </figure>
+                        <div class="clubbed-student-list second">
+                            <div class="student-entry">
+                                <h3>Sumana Das</h3>
+                                <img src="../../../gallary/patha sabha jan 26/sumana das c 2.jpg" alt="">
+                            </div>
+
+                        </div>
+                    </li>
+
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">3rd</span>
+                        <figure>
+                            <img style="border: none;" src="../../../icons/3rd.png" alt="">
+
+                        </figure>
+                        <div class="clubbed-student-list third">
+                            <div class="student-entry">
+                                <h3>Sreejita Malik</h3>
+                                <img src="../../../gallary/patha sabha jan 26/sreejita malik c 3.jpg" alt="">
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+
+            <!-- Header Section -->
+            <section class="ceremony-header">
+                <h1 style="color: var(--text-color);">Evening Program</h1>
+            </section>
+
+            <!-- Special Program -->
+            <section class="program-section">
+                <div class="program-card">
+                    <div class="program-content">
+                        <h2>Let the light of science shine in every home</h2>
+                        <h3>Cultural Harmony Spreading Scientific Temperament</h3>
+                        <p>The celebration concluded in the evening with a delightful cultural program and prize
+                            distribution ceremony, graced by the presence of District President Kalikrishna Jasu, Dr.
+                            Himadri Shekhar Mukherjee, Biswajit Paul, and Plabon Das. The entire event was successfully
+                            conducted by the Circle Secretary Pankaj Jasu and Soma Chowdhury.</p>
+                    </div>
+                    <div class="program-img"><img src="../../../gallary/patha sabha jan 26/slide 3.jpg"
+                            alt="Prize Distribution">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Key Dignitaries -->
+            <section class="dignitaries-section">
+                <h2 class="section-heading">Dignitaries</h2>
+                <ul class="dignitaries-grid">
+                    <li class="dignitary-card">
+                        <div class="role-badge">President Howrah District</div>
+                        <img src="../../../Guests/Kali Jasu.jpeg" alt="President Howrah District">
+                        <h3>Kalikrishna Jasu</h3>
+                        <p>Teacher</p>
+                    </li>
+                    <li class="dignitary-card">
+                        <div class="role-badge">Guest</div>
+                        <img src="../../../Guests/Himadri Sekhar.jpeg" alt="Dr. Himadri Sekhar">
+                        <h3>Dr. Himadri Sekhar Mukherjee</h3>
+                        <p>Renowned Doctor</p>
+                    </li>
+                    <li class="dignitary-card">
+                        <div class="role-badge">Secretary Uluberia Zone</div>
+                        <img src="../../../Guests/Biswajit Paul.jpeg" alt="Secretary Uluberia Zone">
+                        <h3>Biswajit Paul</h3>
+                        <p>Teacher</p>
+                    </li>
+                    <li class="dignitary-card">
+                        <div class="role-badge">Secretary Jadurberia Circle</div>
+                        <img src="../../../Guests/Pankaj jasu.jpeg" alt="Secretary Jadurberia Circle">
+                        <h3>Pankaj Jasu</h3>
+                        <p>Science activist</p>
+                    </li>
+                    <li class="dignitary-card">
+                        <div class="role-badge">Science activist</div>
+                        <img src="../../../Guests/Soma Chowdhury.jpeg" alt="Science activist">
+                        <h3>Soma Chowdhury</h3>
+                        <p>-</p>
+                    </li>
+                </ul>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Bengali Content Section -->
+    <div class="lang-content bn">
+        <div class="ceremony-container">
+
+            <!-- Header Section -->
+            <header class="ceremony-header">
+                <img src="../../../banner/40 years.png" alt="🌎 🌲" style="border-radius: var(--space-md);"></img>
+                <p></p>
+                <h1>মোড়ে মোড়ে ওলিতে গলিতে বিজ্ঞান</h1>
+                <p>পশ্চিমবঙ্গ বিজ্ঞান মঞ্চ &bull; ২৪ ও ২৫শে জানুয়ারী, ২০২৬</p>
+                <!-- Horizontal Scroll Gallery -->
+                <h1 style="color: var(--text-color);"><br>প্রচার ও পথসভা</h1>
+            </header>
+
+            <!-- Special Program -->
+            <section class="program-section">
+                <div class="program-card">
+                    <div class="program-content">
+                        <h2>রাজপথ থেকে লোকালয়:</h2>
+                        <h3>পথসভায় বিজ্ঞানের বার্তা পৌঁছে দিল যদুরবেড়িয়া বিজ্ঞান চক্র</h3>
+                        <p>"বিজ্ঞানের আলো, প্রতি ঘরে জ্বালো" এই স্লোগানকে পাথেয় করে জনমানসে বিজ্ঞানমনস্কতা ছড়িয়ে দিতে
+                            উলুবেড়িয়া বিজ্ঞান কেন্দ্রের অন্তর্গত যদুরবেড়িয়া বিজ্ঞান চক্রের উদ্যোগে এক বিশেষ কর্মসূচি
+                            পালিত হলো। অনুষ্ঠানের মূল আকর্ষণ ছিল এলাকার ৬টি গুরুত্বপূর্ণ মোড়ে আয়োজিত বর্ণাঢ্য পথসভা,
+                            যেখানে গান, আবৃত্তি ও বলিষ্ঠ আলোচনার মাধ্যমে কুসংস্কারমুক্ত সমাজ গড়ার ডাক দেওয়া হয়। সাধারণ
+                            মানুষের মধ্যে বিজ্ঞানমনস্কতা ছড়িয়ে
+                            দিতে এবং সংগঠনের দীর্ঘ চার দশকের লড়াইয়ের বার্তা পৌঁছে দিতেই এই কর্মসূচি নেওয়া হয়েছিল।</p>
+                    </div>
+                    <div class="program-img"><img src="../../../gallary/patha sabha jan 26/slide 1.jpg" alt="পথসভা">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Key Dignitaries -->
+            <section class="dignitaries-section">
+                <h2 class="section-heading">প্রধান অতিথি</h2>
+                <ul class="dignitaries-grid">
+                    <li class="dignitary-card">
+                        <div class="role-badge">সভাপতি - হাওড়া জেলা</div>
+                        <img src="../../../Guests/Kali Jasu.jpeg" alt="হাওড়া জেলা সভাপতি">
+                        <h3>কালিকৃষ্ণ জাসু</h3>
+                        <p>শিক্ষক</p>
+                    </li>
+                    <li class="dignitary-card">
+                        <div class="role-badge">সম্পাদক - উলুবেড়িয়া কেন্দ্র</div>
+                        <img src="../../../Guests/Biswajit Paul.jpeg" alt="উলুবেড়িয়া কেন্দ্র সম্পাদক">
+                        <h3>বিশ্বজিত পাল</h3>
+                        <p>শিক্ষক</p>
+                    </li>
+                    <li class="dignitary-card">
+                        <div class="role-badge">সম্পাদক - যদুরবেড়িয়া চক্র</div>
+                        <img src="../../../Guests/Pankaj jasu.jpeg" alt="যদুরবেড়িয়া চক্র সম্পাদক">
+                        <h3>পঙ্কজ জাসু</h3>
+                        <p>সম্পাদক</p>
+                    </li>
+                    <li class="dignitary-card">
+                        <div class="role-badge">সম্পাদক - কালীনগর চক্র</div>
+                        <img src="../../../Guests/Biswanath Pramanick.jpeg" alt="কালীনগর চক্র সম্পাদক">
+                        <h3>বিশ্বনাথ প্রমানিক</h3>
+                        <p>শিক্ষক</p>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Header Section -->
+            <section class="ceremony-header">
+                <h1 style="color: var(--text-color);">বসে আঁকো প্রতিযোগিতা</h1>
+            </section>
+
+            <!-- Special Program -->
+            <section class="program-section">
+                <div class="program-card">
+                    <div class="program-content">
+                        <h2>তুলির টানে বিজ্ঞানের জয়গান</h2>
+                        <h3>বর্ণিল কর্মসূচিতে মুখর বানীতলা</h3>
+                        <p>এই জনসচেতনতামূলক প্রচারের রেশ ধরে পরবর্তী দিন ২৫শে জানুয়ারি বানীতলা রাজদূত সঙ্ঘে একটি বসে
+                            আঁকো প্রতিযোগিতা অনুষ্ঠিত হয়, যেখানে ৪৫ জন প্রতিযোগী তাদের সৃজনশীলতা তুলে ধরে। বিজ্ঞান
+                            ভিত্তিক চিত্রাঙ্কনের মাধ্যমে তারা পরিবেশ সচেতনতা ও বিজ্ঞানমনস্কতার বার্তা ছড়িয়ে দেয়। তিনটি
+                            বিভাগে বিভক্ত এই প্রতিযোগিতায় খুদে শিল্পীরা তাদের তুলির আঁচড়ে ফুটিয়ে তোলে প্রকৃতি, বিজ্ঞান ও
+                            কুসংস্কারমুক্ত সমাজের ছবি।
+                        </p>
+                    </div>
+                    <div class="program-img"><img src="../../../gallary/patha sabha jan 26/slide 2.jpg"
+                            alt="বসে আঁকো প্রতিযোগিতা">
+                    </div>
+                </div>
+            </section>
+
+            <section class="rank-section">
+                <h2 class="rank-heading">ক-বিভাগ (যেমন খুশি আঁকো)</h2>
+                <ul class="rank-grid">
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">প্রথম</span>
+                        <figure>
+                            <img style="border: none;" src="../../../icons/1st.png" alt="">
+
+                        </figure>
+                        <div class="clubbed-student-list first">
+                            <div class="student-entry">
+                                <h3>রাজদীপ ঘোষ</h3>
+                                <img src="../../../gallary/patha sabha jan 26/Rajdeep Ghosh a 1.jpg" alt="">
+                            </div>
+
+                        </div>
+                    </li>
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">দ্বিতীয়</span>
+                        <figure>
+                            <img style="border: none;" src="../../../icons/2nd.png" alt="">
+
+                        </figure>
+                        <div class="clubbed-student-list second">
+                            <div class="student-entry">
+                                <h3>আরশিয়া মুখার্জী</h3>
+                                <img src="../../../gallary/patha sabha jan 26/arshiya mukherjee a 2.jpg" alt="">
+                            </div>
+
+                        </div>
+                    </li>
+
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">তৃতীয়</span>
+                        <figure>
+                            <img style="border: none;" src="../../../icons/3rd.png" alt="">
+
+                        </figure>
+                        <div class="clubbed-student-list third">
+                            <div class="student-entry">
+                                <h3>দীপায়ন দাস</h3>
+                                <img src="../../../gallary/patha sabha jan 26/dipayan das a 3.jpg" alt="">
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="rank-section">
+                <h2 class="rank-heading">খ-বিভাগ (পরিবেশ সচেতনতা মূলক ছবি)</h2>
+                <ul class="rank-grid">
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">প্রথম</span>
+                        <figure>
+                            <img style="border: none;" src="../../../icons/1st.png" alt="">
+
+                        </figure>
+                        <div class="clubbed-student-list first">
+                            <div class="student-entry">
+                                <h3>অপ্রতিম মন্ডল</h3>
+                                <img src="../../../gallary/patha sabha jan 26/apratim mondal b 1.jpg" alt="">
+                            </div>
+
+                        </div>
+                    </li>
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">দ্বিতীয়</span>
+                        <figure>
+                            <img style="border: none;" src="../../../icons/2nd.png" alt="">
+
+                        </figure>
+                        <div class="clubbed-student-list second">
+                            <div class="student-entry">
+                                <h3>কমলিকা মান্না</h3>
+                                <img src="../../../gallary/patha sabha jan 26/kamalika manna b 2.jpg" alt="">
+                            </div>
+
+                        </div>
+                    </li>
+
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">তৃতীয়</span>
+                        <figure>
+                            <img style="border: none;" src="../../../icons/3rd.png" alt="">
+
+                        </figure>
+                        <div class="clubbed-student-list third">
+                            <div class="student-entry">
+                                <h3>দীপু মন্ডল</h3>
+                                <img src="../../../gallary/patha sabha jan 26/dipu mondal b 3.jpg" alt="">
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="rank-section">
+                <h2 class="rank-heading">গ-বিভাগ (দূষণ মুক্ত পৃথিবী)</h2>
+                <ul class="rank-grid">
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">প্রথম</span>
+                        <figure>
+                            <img style="border: none;" src="../../../icons/1st.png" alt="">
+
+                        </figure>
+                        <div class="clubbed-student-list first">
+                            <div class="student-entry">
+                                <h3>সৃজা মালিক</h3>
+                                <img src="../../../gallary/patha sabha jan 26/sreeja malik c 1.jpg" alt="">
+                            </div>
+
+                        </div>
+                    </li>
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">দ্বিতীয়</span>
+                        <figure>
+                            <img style="border: none;" src="../../../icons/2nd.png" alt="">
+
+                        </figure>
+                        <div class="clubbed-student-list second">
+                            <div class="student-entry">
+                                <h3>সুমনা দাস</h3>
+                                <img src="../../../gallary/patha sabha jan 26/sumana das c 2.jpg" alt="">
+                            </div>
+
+                        </div>
+                    </li>
+
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">তৃতীয়</span>
+                        <figure>
+                            <img style="border: none;" src="../../../icons/3rd.png" alt="">
+
+                        </figure>
+                        <div class="clubbed-student-list third">
+                            <div class="student-entry">
+                                <h3>সৃজিতা মালিক</h3>
+                                <img src="../../../gallary/patha sabha jan 26/sreejita malik c 3.jpg" alt="">
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+
+            <!-- Header Section -->
+            <section class="ceremony-header">
+                <h1 style="color: var(--text-color);">সান্ধ্যানুষ্ঠান</h1>
+            </section>
+
+            <!-- Special Program -->
+            <section class="program-section">
+                <div class="program-card">
+                    <div class="program-content">
+                        <h2>প্রতি ঘরে জ্বালো বিজ্ঞানের আলো</h2>
+                        <h3>সাংস্কৃতিক মেলবন্ধনে বিজ্ঞান মনস্কতার প্রসার</h3>
+                        <p>ওই দিন সন্ধ্যায় এক মনোজ্ঞ সাংস্কৃতিক অনুষ্ঠান ও পুরস্কার বিতরণী সভার মধ্য দিয়ে উদযাপনের
+                            সমাপ্তি ঘটে, যেখানে উপস্থিত ছিলেন জেলা সভাপতি কালিকৃষ্ণ জাষু, ডাঃ হিমাদ্রী শেখর মুখার্জী,
+                            বিশ্বজিৎ পাল ও প্লাবন দাস এবং সমগ্র অনুষ্ঠানটি সফলভাবে পরিচালনা করেন চক্রের সম্পাদক পঙ্কজ
+                            জাষু ও সোমা চৌধুরী।</p>
+                    </div>
+                    <div class="program-img"><img src="../../../gallary/patha sabha jan 26/slide 3.jpg"
+                            alt="পুরস্কার বিতরণ">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Key Dignitaries -->
+            <section class="dignitaries-section">
+                <h2 class="section-heading">প্রধান অতিথি</h2>
+                <ul class="dignitaries-grid">
+                    <li class="dignitary-card">
+                        <div class="role-badge">সভাপতি - হাওড়া জেলা</div>
+                        <img src="../../../Guests/Kali Jasu.jpeg" alt="হাওড়া জেলা সভাপতি">
+                        <h3>কালিকৃষ্ণ জাসু</h3>
+                        <p>শিক্ষক</p>
+                    </li>
+                    <li class="dignitary-card">
+                        <div class="role-badge">অতিথি</div>
+                        <img src="../../../Guests/Himadri Sekhar.jpeg" alt="উলুবেড়িয়া কেন্দ্র সভাপতি">
+                        <h3>ডাঃ হিমাদ্রী শেখর মুখার্জী</h3>
+                        <p>প্রথিতযশা ডাক্তার</p>
+                    </li>
+                    <li class="dignitary-card">
+                        <div class="role-badge">সম্পাদক - উলুবেড়িয়া কেন্দ্র</div>
+                        <img src="../../../Guests/Biswajit Paul.jpeg" alt="উলুবেড়িয়া কেন্দ্র সম্পাদক">
+                        <h3>বিশ্বজিত পাল</h3>
+                        <p>শিক্ষক</p>
+                    </li>
+                    <li class="dignitary-card">
+                        <div class="role-badge">সম্পাদক - যদুরবেড়িয়া চক্র</div>
+                        <img src="../../../Guests/Pankaj jasu.jpeg" alt="যদুরবেড়িয়া চক্র সম্পাদক">
+                        <h3>পঙ্কজ জাসু</h3>
+                        <p>বিজ্ঞানকর্মী</p>
+                    </li>
+                    <li class="dignitary-card">
+                        <div class="role-badge">বিজ্ঞানকর্মী</div>
+                        <img src="../../../Guests/Soma Chowdhury.jpeg" alt="যদুরবেড়িয়া চক্র সম্পাদক">
+                        <h3>সোমা চৌধুরী</h3>
+                        <p>-</p>
+                    </li>
+                </ul>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Scroll To Top -->
+    <button id="scrollToTopBtn" onclick="scrollToTop()" aria-label="Scroll to top"><i
+            class="fa-solid fa-arrow-up"></i></button>
+
+    <!-- ACTIVATING THE SCROLL FUNCTION -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Apply horizontal scroll to both language sections. Note: the Bengali section ID is set to 'galleryScroll-bn'
+            if (typeof enableMouseWheelScroll === 'function') {
+                enableMouseWheelScroll('galleryScroll');
+                enableMouseWheelScroll('galleryScroll-bn'); // Apply to the new Bengali gallery
+                console.log("Horizontal scroll enabled for both galleries");
+            } else {
+                console.error("enableMouseWheelScroll function not found in utils.js");
+            }
+
+            // NEW: Initialize dot indicators for both galleries
+            if (typeof setupGalleryDots === 'function') {
+                setupGalleryDots('galleryScroll', 'galleryDots');
+                setupGalleryDots('galleryScroll-bn', 'galleryDots-bn');
+                console.log("Gallery dots initialized for both galleries");
+            } else {
+                console.error("setupGalleryDots function not found in utils.js");
+            }
+        });
+
+        function openWindow() {
+            window.open("../../../adultration/adultration Pt I.pdf", "_blank");
+        }
+    </script>
+</body>

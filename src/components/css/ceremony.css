@@ -166,7 +166,7 @@
         background: var(--surface-color);
         border: 1px solid var(--card-border-color);
         border-radius: var(--border-radius-medium);
-        padding: var(--space-md) var(--space-md);
+        padding: var(--space-md) 0;
         width: 160px;
         /* 30px */
         text-align: center;
