@@ -118,6 +118,11 @@
     }
 }
 
+.rank-icon {
+    font-family: 'Noto Color Emoji';
+    font-size: 8rem;
+}
+
 /* HTML: <div class="ribbon">Your text content</div> */
 .ribbon {
     --s: 1.8em;

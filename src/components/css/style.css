@@ -134,6 +134,12 @@
     border-radius: 4px;
 }
 
+.noto-color-emoji-regular {
+    font-family: "Noto Color Emoji", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
 body {
     background: var(--background-color);
     font-family: var(--font-body);
