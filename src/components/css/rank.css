@@ -85,7 +85,7 @@
         .role-badge {
             position: absolute;
             top: -10px;
-            left: 110px;
+            left: 85px;
             transform: translateX(-50%);
             background: var(--primary-color);
             color: var(--surface-color);
@@ -120,7 +120,8 @@
 
 .rank-icon {
     font-family: 'Noto Color Emoji';
-    font-size: 8rem;
+    font-size: 6rem;
+    margin-bottom: var(--space-xs);
 }
 
 /* HTML: <div class="ribbon">Your text content</div> */
@@ -205,6 +206,7 @@
     color: var(--primary-color);
     margin-bottom: var(--space-sm);
     display: block;
+    font-size: calc(var(--font-size-p)*0.9);
 }
 
 .school-name {
@@ -229,5 +231,13 @@
     .clubbed-student-list {
         border-top: 1px solid var(--card-border-color);
         border-left: 0;
+    }
+
+    .rank-icon {
+        font-size: 8rem;
+    }
+
+    .score-text {
+        font-size: var(--font-size-p);
     }
 }
