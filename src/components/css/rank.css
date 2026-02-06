@@ -160,7 +160,7 @@
     border-top: 0;
 }
 
-figure {
+.figurine {
     display: flex;
     align-items: center;
     justify-content: center;
