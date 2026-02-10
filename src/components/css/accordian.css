@@ -37,7 +37,6 @@ details.styled[open] {
     .details-d {
         block-size: auto;
         margin-top: 1rem;
-        ;
         font-size: var(--font-size-p);
         color: var(--text-color-secondary);
 
@@ -95,4 +94,8 @@ summary:before {
 
 details[open] summary:before {
     content: "-";
+}
+
+ol {
+    padding-left: 1rem;
 }
