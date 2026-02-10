@@ -43,7 +43,7 @@
     --primary-color-alpha: 191, 83, 12, 0.6;
 
     --error-color: hsl(0, 65%, 50%);
-    --sucess-color: hsl(163. 88%, 20%);
+    --sucess-color: hsl(163, 88%, 20%);
 
     --card-border-color: rgba(0, 0, 0, 0.05);
 
@@ -89,7 +89,7 @@
     --text-color-secondary: hsl(40, 36%, 74%);
 
     --error-color: hsl(0, 65%, 70%);
-    --sucess-color: hsl(163. 88%, 50%);
+    --sucess-color: hsl(163, 88%, 50%);
 
     --banner-background: hsl(50, 50%, 80%);
 
