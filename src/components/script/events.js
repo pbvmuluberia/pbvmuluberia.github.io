@@ -100,7 +100,7 @@ function mapSheetDataToBlogFormat(row) {
     return {
         rowNumber: row["Row Number"],
         image: row.image || 'https://via.placeholder.com/800x400',
-        alt: row.alt || 'Blog Image',
+        alt: row.alt || '',
         en: {
             title: row.title || '',
             date: row.date || '',
@@ -124,6 +124,22 @@ function createCardHTML(post) {
     // Use the helper to get both languages for the button
     const readMoreHTML = getDualLangHTML('btn_read_more');
 
+    // 1. Create a variable to hold the button HTML
+    let buttonHTML = '';
+
+    // 2. Check if alt exists and is not an empty string
+    if (mappedPost.alt && mappedPost.alt.trim() !== "") {
+        buttonHTML = `
+            <div class="row">
+                <div class="col-main">
+                    <button class="action-btn" style="margin-bottom: var(--space-sm);" onclick="window.open('${mappedPost.alt}', '_self')">
+                        <b>${readMoreHTML}</b>
+                    </button>
+                </div>
+            </div>
+        `;
+    }
+
     return `
         <div class="card fade-in" data-row-number="${mappedPost.rowNumber}">
             <img src="${mappedPost.image}" alt="" class="card-header-image">
@@ -140,13 +156,9 @@ function createCardHTML(post) {
                     <p style="text-align:right"><br> - ${mappedPost.bn.author}</p>
                     <p><br>${mappedPost.bn.text}</p>
                 </div>
-                <div class="row">
-                    <div class="col-main">
-                        <button class="action-btn" style="margin-bottom: var(--space-sm);" onclick="window.open('${mappedPost.alt}', '_self')">
-                            <b>${readMoreHTML}</b>
-                        </button>
-                    </div>
-                </div>
+                
+                ${buttonHTML}
+                
             </div>
         </div>
     `;
@@ -158,6 +170,7 @@ function renderPosts() {
     if (!container || fetchedPosts.length === 0) return;
 
     container.innerHTML = fetchedPosts.map(createCardHTML).join('');
+
 
     // Re-apply language visibility after rendering
     if (typeof window.switchVisuals === 'function') {

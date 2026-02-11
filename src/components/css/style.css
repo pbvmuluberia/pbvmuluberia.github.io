@@ -509,6 +509,10 @@ a {
     }
 }
 
+ol {
+    padding-left: var(--space-md);
+}
+
 /* FIX: Reduced Motion Support */
 @media (prefers-reduced-motion: reduce) {
 

@@ -20,6 +20,10 @@ details.styled {
     padding: 3%;
     list-style: none;
     background-color: hsla(calc(0 + var(--i) * 35), 70%, 60%, 0.5);
+
+    .dark-theme & {
+        background-color: hsla(calc(0 + var(--i) * 35), 70%, 60%, 0.2);
+    }
 }
 
 .details-d {
@@ -98,4 +102,9 @@ details[open] summary:before {
 
 ol {
     padding-left: 1rem;
+
+    li::marker {
+        font-size: var(--font-size-h3);
+        font-weight: bold;
+    }
 }
