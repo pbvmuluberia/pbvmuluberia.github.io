@@ -216,8 +216,8 @@ const translations = {
     }
 };
 
-const JSON_URL_EN = "https://gist.githubusercontent.com/pbvmuluberia/b6bf520cce8c1b0167a6657b2c60e4d2/raw/eb327ee9d32d9f3e57f45c4dd0c6c2ec16c4d895/book.json";
-const JSON_URL_BN = "https://gist.githubusercontent.com/pbvmuluberia/e5e2122ddf3ac7489e61be9f81e475fd/raw/211d2029afbc4e1785f7bc22e552f459493b64e1/book_bn.json";
+const JSON_URL_EN = "https://gist.githubusercontent.com/pbvmuluberia/b6bf520cce8c1b0167a6657b2c60e4d2/raw/de662cd94dc4b4ff0f83aed00461851370a651f8/book.json";
+const JSON_URL_BN = "https://gist.githubusercontent.com/pbvmuluberia/e5e2122ddf3ac7489e61be9f81e475fd/raw/32e1b563d2e57a0417da5bd4dbe868089acae575/book_bn.json";
 
 // Global data store for fetched book data
 window.bookData = { en: null, bn: null };
