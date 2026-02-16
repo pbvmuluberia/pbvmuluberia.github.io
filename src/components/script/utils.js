@@ -39,8 +39,8 @@ function applyTranslations() {
 }
 
 function showSubscriptionMessage(messageKey) {
-    const messageBox = document.getElementById('subscription-message-box');
-    const messageElement = document.getElementById('subscription-message');
+    const messageBox = document.getElementById('messageBox');
+    const messageElement = document.getElementById('message');
     if (messageBox && messageElement && window.translations) {
         const lang = getLang();
         const message = window.translations[lang]?.messages?.[messageKey] || window.translations['bn']?.messages?.[messageKey];
@@ -106,7 +106,7 @@ function toggleTheme() {
     const isDark = document.documentElement.classList.toggle('dark-theme');
     const newTheme = isDark ? 'dark' : 'light';
     localStorage.setItem('theme', newTheme);
-    
+
     if (window.updatePwaTheme) {
         window.updatePwaTheme(newTheme);
     }

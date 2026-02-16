@@ -369,6 +369,10 @@ a {
     }
 }
 
+#message {
+    font-size: var(--font-size-p);
+}
+
 /* ------------------------- BUTTON ------------------------- */
 
 .donate-btn {
