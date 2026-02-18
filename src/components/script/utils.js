@@ -43,11 +43,19 @@ function showSubscriptionMessage(messageKey) {
     const messageElement = document.getElementById('message');
     if (messageBox && messageElement && window.translations) {
         const lang = getLang();
-        const message = window.translations[lang]?.messages?.[messageKey] || window.translations['bn']?.messages?.[messageKey];
-        if (message) {
-            messageElement.textContent = message;
+        const text = window.translations[lang]?.[messageKey] ||
+            window.translations['bn']?.[messageKey];
+
+        if (text) {
+            messageElement.textContent = text;
             messageBox.classList.add('show');
-            setTimeout(() => messageBox.classList.remove('show'), 4000);
+
+            // Auto-hide the message after 4 seconds
+            setTimeout(() => {
+                messageBox.classList.remove('show');
+            }, 4000);
+        } else {
+            console.error("Translation missing for key:", messageKey);
         }
     }
 }

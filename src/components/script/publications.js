@@ -27,7 +27,7 @@ function generatePublicationsContent(bookArray) {
     const lang = window.getLang();
     const langDict = window.translations[lang];
     const hasMagazines = bookArray.some(book => book.isMagazine);
-    let subscribeButtonHtml = hasMagazines ? `<div class="subscribe-button-container"><p class="subscribe-text">${langDict.pub_subscribe_prompt}</p><button class="subscribe-button" onclick="window.showSubscriptionMessage('msg_subscribe_dev')"><i class="fa-solid fa-bell"></i> ${langDict.pub_subscribe_btn}</button></div>` : '';
+    let subscribeButtonHtml = hasMagazines ? `<div class="subscribe-button-container"><p class="subscribe-text">${langDict.pub_subscribe_prompt}</p><button class="subscribe-button" onclick="window.showSubscriptionMessage('msg_subscription')"><i class="fa-solid fa-bell"></i> ${langDict.pub_subscribe_btn}</button></div>` : '';
     const bookCardsHtml = generateBookCardsHtml(bookArray);
     return `<h2>${langDict.pub_featured_title}</h2>${bookCardsHtml}${subscribeButtonHtml}`;
 }
@@ -85,10 +85,12 @@ function showBookDetails(cardElement) {
         badgeElement.style.display = 'inline-block';
         badgeElement.style.position = 'static';
         actionBtn.textContent = langDict.book_btn_buy;
+        actionBtn.onclick = () => showSubscriptionMessage('msg_purchase_dev');
     } else {
         badgeElement.style.display = 'none';
         if (book.isMagazine) actionBtn.textContent = langDict.book_btn_subscribe;
         else actionBtn.textContent = langDict.book_btn_download;
+        actionBtn.onclick = () => showSubscriptionMessage('msg_subscription');
     }
 
     document.getElementById('detailBookCover').src = book.url;
