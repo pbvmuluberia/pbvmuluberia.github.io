@@ -69,7 +69,7 @@ const ComponentGenerator = {
                     style="--bg-image: url('${bgImage}'); position: relative; width: 100%; top: 0; left: 0; transform: none; border-radius: 0;">
                     <div class="content"
                         style="display: block; opacity: 1; transform: translate(0, -50%); padding-top: 0; top: 30%;">
-                        <h2 class="name" data-translate-key="${titleKey}">Welcome</h2>
+                        <h2 class="name" data-translate-key="${titleKey}">Join the Revolution</h2>
                         <p class="des" data-translate-key="${descKey}">Description</p>
                         <button class="button action-btn" onclick="scrollToContent()"
                             data-translate-key="${btnKey}">Read More</button>

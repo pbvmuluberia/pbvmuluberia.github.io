@@ -123,7 +123,7 @@ const translations = {
         'nav_events': 'প্রতিবেদন',
         'nav_rank': 'মেধাক্রম',
         'install': ' অ্যাপ ইন্সটল করুন',
-        'carousel_home_name': 'অভিনন্দন',
+        'carousel_home_name': 'স্বাগতম',
         'carousel_home_des': 'উলুবেড়িয়া বিজ্ঞান কেন্দ্র',
         'carousel_home_btn': 'নতুন কি দেখুন',
         'carousel_donate_btn': 'অনুদান',
