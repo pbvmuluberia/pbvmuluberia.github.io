@@ -120,7 +120,7 @@ const translations = {
         'nav_publications': 'প্রকাশনা',
         'nav_download': 'ডাউনলোড',
         'nav_contact': 'যোগাযোগ',
-        'nav_events': 'প্রতিবেদন',
+        'nav_events': 'কার্যক্রম',
         'nav_rank': 'মেধাক্রম',
         'install': ' অ্যাপ ইন্সটল করুন',
         'carousel_home_name': 'স্বাগতম',
