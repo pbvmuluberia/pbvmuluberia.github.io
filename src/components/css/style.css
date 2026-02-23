@@ -26,6 +26,7 @@
 
     /* --- Light Theme --- */
     --background-color: hsla(35, 76%, 90%, 1);
+    --nav-menu-color: hsla(35, 75%, 80%, 1);
     --surface-color: hsl(36, 76%, 95%);
     --surface-color-rgb: 251, 241, 226;
     --surface-color-alpha: hsl(36, 76%, 95% / 0.3);
@@ -81,6 +82,7 @@
 .dark-theme {
     /* --- Dark Gruvbox Theme --- */
     --background-color: hsla(0, 0%, 15%, 1);
+    --nav-menu-color: hsla(0, 0%, 5%, 1);
     --surface-color: hsl(20, 0%, 20%);
     --surface-color-alt: hsl(20, 0%, 25%);
     --surface-color-top: hsl(20, 0%, 30%);

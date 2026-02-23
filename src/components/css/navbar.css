@@ -179,6 +179,8 @@ nav.menu {
     gap: 0.25rem;
     transition: all 0.3s ease-in-out;
 
+    border: 2px solid var(--primary-color);
+
     /* Optional rounded corners for the top of the menu */
     border-radius: var(--border-radius-medium);
 
@@ -211,7 +213,7 @@ nav.menu {
             color: var(--surface-color);
             font-weight: var(--font-weight-heavy);
             transform: none;
-            border-radius: 12px;
+            border-radius: var(--border-radius-medium);
         }
     }
 }
@@ -225,6 +227,10 @@ nav.menu {
 
     #navbar-placeholder {
         min-height: 70px;
+        position: sticky;
+        top: 0;
+        left: 0;
+        z-index: var(--z-nav);
     }
 
     nav.menu {
@@ -237,7 +243,7 @@ nav.menu {
         transform: translateX(0);
         margin: 0;
         border-radius: 0;
-        background-color: var(--background-color);
+        background-color: var(--nav-menu-color);
         /* Unset bottom */
         border: none;
         /* Standard downward shadow */
@@ -256,23 +262,20 @@ nav.menu {
         justify-content: center;
         gap: 0.5rem;
         padding: var(--space-xs);
-        background-color: var(--background-color);
+        background-color: var(--nav-menu-color);
         box-shadow: none;
         height: auto;
         max-height: none;
         overflow: hidden;
         border-radius: 0;
+        margin: 0;
+        border: none;
 
         a {
             width: auto;
             text-align: center;
             font-size: 1rem;
             border-radius: var(--border-radius-medium);
-
-            &.active-tab {
-                border-radius: var(--border-radius-medium);
-                transform: translateY(-2px);
-            }
         }
     }
 }
