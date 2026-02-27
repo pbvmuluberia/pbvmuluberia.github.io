@@ -19,6 +19,7 @@ const translations = {
         'nav_contact': 'Contact',
         'nav_events': 'Events',
         'nav_rank': 'Rank',
+        'nav_admit': 'Admit Card',
         'install': ' Install App',
         'carousel_home_name': 'Welcome',
         'carousel_home_des': 'Uluberia Vigyan Kendra',
@@ -110,6 +111,12 @@ const translations = {
         'popular_posts': 'Popular Posts',
         'tags': 'Tags',
         'important_01': 'Four decades of scientific popularization.',
+        'name_label': 'Enter Name',
+        'name_placeholder': 'Student Name',
+        'school_placeholder': 'Select School',
+        'admit_card': 'Admit Card',
+        'previous_paper': 'Previous Paper',
+        'no_students_found': 'No students found.',
     },
     'bn': {
         'organisation': 'পশ্চিমবঙ্গ বিজ্ঞান মঞ্চ',
@@ -171,6 +178,7 @@ const translations = {
         'exam': 'হাওড়া জেলা বিজ্ঞান মানসিকতা ও মেধা অভীক্ষা',
         'uluberia': 'উলুবেড়িয়া বিজ্ঞান কেন্দ্র',
         'nav_result': 'ফলাফল',
+        'nav_admit': 'অ্যাডমিট কার্ড',
         'result_finder_title': 'ফলাফল অনুসন্ধান',
         'result_finder_subtitle': 'আপনার ফলাফল দেখতে রোল নম্বর লিখুন।',
         'result_header': 'ফলাফল - হাওড়া জেলা বিজ্ঞান মানসিকতা ও মেধা অভীক্ষা - ',
@@ -215,6 +223,12 @@ const translations = {
         'popular_posts': 'বিশেষ প্রতিবেদন',
         'tags': 'ট্যাগস',
         'important_01': 'বিজ্ঞানকে জনপ্রিয় করার চার দশক',
+        'name_label': 'পরীক্ষার্থীর নাম',
+        'name_placeholder': 'নাম লিখুন',
+        'admit_card': 'অ্যাডমিট কার্ড',
+        'previous_paper': 'পূর্বের প্রশ্নাবলী',
+        'school_placeholder': 'বিদ্যালয়ের নাম বেছে নিন',
+        'no_students_found': 'এই নামে কোনো পরীক্ষার্থী নেই।',
     }
 };
 
