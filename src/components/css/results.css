@@ -80,11 +80,21 @@
     font-weight: bold;
 }
 
-
+.input-group select,
+.input-group input[type="text"] {
+    padding: var(--space-sm) var(--space-md);
+    border: 2px solid var(--border-color);
+    border-radius: var(--border-radius-medium);
+    font-size: var(--font-size-p);
+    color: var(--text-color-primary);
+    background-color: var(--background-color);
+    width: 20ch;
+}
 
 .input-group select {
     appearance: base-select;
-    width: 45ch;
+    width: 40ch;
+    font-size: calc(var(--font-size-p)*0.9);
 
     &::picker-icon {
         color: var(--primary-color);
@@ -104,14 +114,16 @@
         appearance: base-select;
         color: var(--text-color-primary);
         background-color: var(--background-color);
-        top: var(--space-xs);
+        top: var(--space-md);
         border-radius: var(--border-radius-medium);
         scrollbar-width: none;
+        max-width: 45ch;
+        max-height: 20lh;
     }
 
 
     option {
-        padding: var(--space-xs) var(--space-md);
+        padding: var(--space-sm);
         transition: 0.4s ease;
 
         &:checked {
@@ -125,20 +137,6 @@
         }
     }
 
-}
-
-
-
-.input-group select,
-.input-group input[type="text"] {
-    padding: var(--space-sm) var(--space-md);
-    border: 2px solid var(--border-color);
-    border-radius: var(--border-radius-medium);
-    font-size: var(--font-size-p);
-    color: var(--text-color-primary);
-    background-color: var(--background-color);
-    min-width: 30ch;
-    max-width: 70ch;
 }
 
 
@@ -206,7 +204,7 @@
     display: flex;
     width: 100%;
     background-color: transparent;
-    padding: var(--space-lg);
+    padding: var(--space-sm);
     width: 100%;
     text-align: left;
     margin: 0 auto;
@@ -248,6 +246,7 @@
     color: var(--error-color);
     background-color: rgba(255, 0, 0, 0.1);
     font-weight: bold;
+    margin: 0 auto;
     border: 1px solid hsl(354, 100%, 90%);
     padding: var(--space-sm) var(--space-md);
     border-radius: var(--border-radius-medium);
@@ -279,6 +278,12 @@ table {
     border-bottom-left-radius: var(--border-radius-medium);
     border-bottom-right-radius: var(--border-radius-medium);
     border-spacing: 0;
+    overflow: hidden;
+    
+    a {
+    background-color: transparent !important;
+    border: none !important;
+    }
 }
 
 th,

@@ -72,7 +72,7 @@ const translations = {
         'result_finder_title': 'Result Finder',
         'result_finder_subtitle': 'Enter your Roll Number to view your results.',
         'result_header': 'Performance Report - Howrah Zilla Vigyan Manosikata-o-Medha Aviksha - ',
-        'roll_number_label': 'Roll Number',
+        'roll_number_label': 'Roll No',
         'roll_number_placeholder': 'e.g. UL/12345',
         'search_result_button': 'Search Result',
         'print_result_button': 'Print Result',
@@ -92,6 +92,7 @@ const translations = {
         'network_error': '🚨 Critical Network Error: ${error.message}. Check browser console.',
         'enter_roll_number': 'Please enter a valid Roll Number. e.g., UL/12345',
         'default_result_display': 'Please enter your Roll Number above and click Search Result to view your performance.',
+        'default_admit_display': 'Please enter your Name above and click Search to download your admit',
         'loading_blog_posts': 'Loading blog posts...',
         'no_more_posts': 'No more posts',
         'previous_button': '« Previous',
@@ -229,6 +230,7 @@ const translations = {
         'previous_paper': 'পূর্বের প্রশ্নাবলী',
         'school_placeholder': 'বিদ্যালয়ের নাম বেছে নিন',
         'no_students_found': 'এই নামে কোনো পরীক্ষার্থী নেই।',
+        'default_admit_display': 'আপনার অ্যাডমিট পেতে সঠিক নাম লিখুন',
     }
 };
 
