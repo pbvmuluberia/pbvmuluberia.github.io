@@ -205,6 +205,7 @@ const translations = {
         'error_found': '❌ এই বছরের ফলাফল উপলব্ধ নেই।',
         'network_error': '🚨 গুরুত্বপূর্ণ বিভ্রাট: ${error.message}. ব্রাউজার কনসোল চেক করুন।',
         'enter_roll_number': 'আপনি রোল নম্বরটি ঠিক লেখেন নি। যেমন: UL/12345',
+        'enter_valid_year': 'আপনি কোন বছর সেটি লেখেন নি। যেমন: 2024',
         'enter_valid_name': 'কমকরে আপনার নামের প্রথম ৭টি অক্ষর লিখুন',
         'enter_valid_school': 'আপনার বিদ্যালয়ের নাম বেছে নিন',
         'default_result_display': 'আপনার ফলাফল দেখতে সঠিক রোল নম্বর লিখুন।',
