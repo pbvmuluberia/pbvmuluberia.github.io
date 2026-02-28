@@ -196,6 +196,24 @@
         const name = document.getElementById('name').value;
         const school = document.getElementById('school').value;
         const resultsDiv = document.getElementById('result-display');
+        
+        const school_name = school.trim();
+        
+        if(!school_name) {
+          resultsDiv.setAttribute('data-translate-key', 'enter_valid_school');
+          resultsDiv.innerHTML = 'Please select your school';
+          resultsDiv.className = 'error';
+          if (window.applyTranslations) window.applyTranslations();
+          return;
+        }
+        
+        if(!name || name.length < 7) {
+          resultsDiv.setAttribute('data-translate-key', 'enter_valid_name');
+          resultsDiv.innerHTML = 'Please enter atleast first 7 letter of your name';
+          resultsDiv.className = 'error';
+          if (window.applyTranslations) window.applyTranslations();
+          return;
+        }
 
         //DISABLE BUTTON & SHOW LOADER
         searchBtn.disabled = true; // Disable the button

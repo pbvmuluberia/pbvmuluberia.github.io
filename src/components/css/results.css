@@ -242,11 +242,12 @@
 /* Error state */
 #result-display.error {
     display: flex;
-    width: 100%;
+    width: 95%;
     color: var(--error-color);
     background-color: rgba(255, 0, 0, 0.1);
     font-weight: bold;
-    margin: 0 auto;
+    margin: var(--space-sm);
+    margin-top: var(--space-md);
     border: 1px solid hsl(354, 100%, 90%);
     padding: var(--space-sm) var(--space-md);
     border-radius: var(--border-radius-medium);
@@ -259,7 +260,7 @@
 @keyframes fadeSlideUp {
     from {
         opacity: 0;
-        transform: translateY(20px) scale(0.98);
+        transform: translateY(20px) scale(0.9);
     }
 
     to {
