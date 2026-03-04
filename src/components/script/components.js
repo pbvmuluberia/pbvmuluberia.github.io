@@ -119,8 +119,8 @@ const ComponentGenerator = {
                         <div class="lang-content en">
                             <p class="notice-subtitle" data-translate-key="notice_subtitle_en">Current Events</p>
                             <ul>
-                                <li>An exceptional 'Science Adda' (Science Chat) comprising four special segments was held at the Uluberia Science Centre last Friday, December 19, 2025. Dr. Taparati Gangopadhyay was present as the keynote speaker. </li>
-                                <a href="./src/components/pages/programme/vigyan_adda_25.html">Read More</a>
+                                <li>🏆 <b>Save the Date!</b> The Prize Distribution Ceremony for the 2025 Howrah Zilla Vigyan Manosikota-o-Medha Aviksha is happening soon!<br><br>📅 <b>When:</b> March 14, 2026, at 1:30 PM<br><br>📍 <b>Where:</b> Jadurberia Girls High School (H.S.)</li>
+                                <a href="./src/components/pages/aviksha/aviksha_25_rank.html">See Ranks</a>
                                 <p>&nbsp;</p>
                                 <li>Howrah Zilla Vigyan Manosikota-o-Medha Aviksha 2025 has been successfully completed.</li>
                                 <a href="./src/components/pages/aviksha/results.html">CheckResult.</a>
@@ -129,8 +129,8 @@ const ComponentGenerator = {
                         <div class="lang-content bn">
                             <p class="notice-subtitle" data-translate-key="notice_subtitle_bn">বর্তমান ঘটনাবলী</p>
                             <ul>
-                                <li>গত ১৯শে ডিসেম্বর, ২০২৫, শুক্রবার উলুবেড়িয়া বিজ্ঞান কেন্দ্রে চারটি বিশেষ চক্রের সমন্বয়ে একটি ব্যতিক্রমী 'বিজ্ঞানের আড্ডা' অনুষ্ঠিত হয়, যেখানে মূল বক্তা হিসেবে উপস্থিত ছিলেন ডঃ তপারতি গঙ্গোপাধ্যায়।</li>
-                                <a href="./src/components/pages/programme/vigyan_adda_25.html">বিশদে দেখুন।</a>
+                            <li>🏆 <b>দিনটি মনে রাখুন!</b> ২০২৫ সালের হাওড়া জেলা বিজ্ঞান মানসিকতা ও মেধা অভীক্ষার পুরস্কার বিতরণী অনুষ্ঠান শীঘ্রই অনুষ্ঠিত হতে চলেছে!<br><br>📅 <b>কখন:</b> ১৪ মার্চ, ২০২৬, দুপুর ১:৩০ মিনিটে<br>📍 <b>কোথায়:</b> যদুরবেড়িয়া উচ্চ বালিকা বিদ্যালয় (উচ্চ মাধ্যমিক)</li>
+                            <a href="./src/components/pages/aviksha/aviksha_25_rank.html">মেধাক্রম দেখুন</a>
                                 <p>&nbsp;</p>
                                 <li>হাওড়া জেলা বিজ্ঞান মানসিকতা-ও-মেধা অভিক্ষা ২০২৫ সফলভাবে সম্পন্ন হয়েছে।</li>
                                 <a href="./src/components/pages/aviksha/results.html">ফলাফল দেখুন।</a>
