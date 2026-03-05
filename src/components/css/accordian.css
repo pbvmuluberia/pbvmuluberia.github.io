@@ -1,19 +1,16 @@
-details.styled {
+details {
     background-color: var(--surface-color);
     border: 2px solid transparent;
     border-radius: var(--border-radius-medium);
     margin-bottom: 1rem;
     overflow: hidden;
-    transition: all 0.3s ease-in-out;
-    transition-behavior: allow-discrete;
-    max-height: 110px;
 
     &:hover {
         border: 2px solid var(--primary-color);
     }
 }
 
-.detailed-summary {
+summary {
     font-size: var(--font-size-h3);
     color: var(--text-color-primary);
     text-align: start;
@@ -26,36 +23,44 @@ details.styled {
     }
 }
 
-.details-d {
+.details::details-content {
+    display: block;
+    margin-inline: 2rem;
+    padding: 3% 3% 0 3%;
     block-size: 0;
     overflow: hidden;
-    padding: 0% 3% 3% 3%;
+    transition-property: block-size, content-visibility;
+    transition-duration: 0.5s;
+    transition-behavior: allow-discrete;
 }
 
-details.styled[open] {
+.details[open]::details-content {
+    /* Fallback for browsers that don't support calc-size() function */
+    block-size: auto;
 
-    max-height: 5000px;
-    text-overflow: ellipsis;
-    border: 2px solid var(--primary-color);
+    /* calc-size() function allows transition to height: auto; */
+    block-size: calc-size(auto, size);
+    padding: 3%;
 
-    .details-d {
-        block-size: auto;
-        margin-top: 1rem;
-        font-size: var(--font-size-p);
-        color: var(--text-color-secondary);
+    li {
+        text-align: justify;
+        line-height: 1.5;
+    }
+}
 
-        li {
-            text-align: justify;
-            line-height: 1.5;
-        }
+.more-btn {
+    position: relative;
+    left: 100%;
+    translate: -100%;
+    color: var(--primary-color);
+    background-color: transparent !important;
 
-        .donate-btn {
-            position: relative;
-            left: 100%;
-            translate: -100%;
-            color: var(--primary-color);
-            background-color: transparent;
-        }
+    &:hover {
+        background-color: transparent !important;
+    }
+
+    &:active {
+        transform: scale(0.9);
     }
 }
 
