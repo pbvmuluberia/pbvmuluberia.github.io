@@ -114,8 +114,8 @@
         appearance: base-select;
         color: var(--text-color-primary);
         background-color: var(--background-color);
-        top: var(--space-md);
-        border-radius: var(--border-radius-medium);
+        top: var(--space-sm);
+        border-radius: 10px;
         scrollbar-width: none;
         max-width: 45ch;
         max-height: 20lh;
@@ -137,6 +137,10 @@
         }
     }
 
+}
+
+hr {
+    border-color: var(--border-color) !important;
 }
 
 

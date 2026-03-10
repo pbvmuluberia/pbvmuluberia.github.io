@@ -39,10 +39,43 @@ const ComponentGenerator = {
           </div>
           
           <div class="header-controls">
-              <button id="themeToggleIcon" onclick="toggleTheme()" class="theme-icon-button">
-                  <i class="fa-solid fa-sun theme-icon sun-icon"></i>
-                  <i class="fa-solid fa-moon theme-icon moon-icon"></i>
-              </button>
+              
+              <div class="theme-container">
+
+                <!-- Selection State (Radio Buttons) -->
+                <input type="radio" name="theme" id="light" class="theme-radio">
+                <input type="radio" name="theme" id="dark" class="theme-radio">
+                <input type="radio" name="theme" id="system" class="theme-radio" checked>
+
+                <!-- The Checkbox Toggle -->
+                <input type="checkbox" id="menu-toggle">
+        
+                <!-- The Overlay (allows clicking outside to close) -->
+                <label for="menu-toggle" class="menu-overlay"></label>
+
+                <!-- The Trigger -->
+                <label for="menu-toggle" class="theme-btn-label">
+                    <span class="selected-icon"></span>
+                </label>
+
+                <!-- The Menu -->
+                <div class="dropdown-menu">
+                    <label class="option-item" onclick="toggleTheme('light')">
+                        <span class="icon">☀️</span>
+                        <span class="label">Light Mode</span>
+                    </label>
+
+                    <label class="option-item" onclick="toggleTheme('dark')">
+                        <span class="icon">🌖</span>
+                        <span class="label">Dark Mode</span>
+                    </label>
+
+                    <label class="option-item" onclick="toggleTheme('system')">
+                        <span class="icon">🎴</span>
+                        <span class="label">System</span>
+                    </label>
+                </div>
+            </div>
               <div class="lang-toggle">
                   <span id="langEn" onclick="setLang('en')">EN</span>
                   <span id="langBn" onclick="setLang('bn')">বা</span>

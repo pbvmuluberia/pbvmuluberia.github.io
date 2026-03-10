@@ -110,14 +110,30 @@ function toggleMenu() {
     }
 }
 
-function toggleTheme() {
-    const isDark = document.documentElement.classList.toggle('dark-theme');
-    const newTheme = isDark ? 'dark' : 'light';
-    localStorage.setItem('theme', newTheme);
+function toggleTheme(themeId) {
+    // Update the radio selection
+    const radio = document.getElementById(themeId);
+    if (radio) radio.checked = true;
 
-    if (window.updatePwaTheme) {
-        window.updatePwaTheme(newTheme);
+    // Close the menu
+    const toggle = document.getElementById('menu-toggle');
+    if (toggle) toggle.checked = false;
+
+    // FIX: Use data attributes instead of CSS variables
+    if (themeId === 'system') {
+        document.documentElement.removeAttribute('data-theme');
+        console.log('system');
+    } else {
+        document.documentElement.setAttribute('data-theme', themeId);
+        console.log(themeId);
     }
+    //const isDark = document.documentElement.classList.toggle('dark-theme');
+    //const newTheme = isDark ? 'dark' : 'light';
+    //localStorage.setItem('theme', newTheme);
+
+    //if (window.updatePwaTheme) {
+    //    window.updatePwaTheme(newTheme);
+    //}
 }
 
 // Helper to enable mouse wheel horizontal scrolling
