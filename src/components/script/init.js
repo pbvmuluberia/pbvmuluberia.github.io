@@ -54,7 +54,13 @@ async function loadDataAndInit() {
         noticeContainer.innerHTML = ComponentGenerator.getNoticeModal();
     }
 
-    // 4. Inject Hero/Carousel
+    // 4. Inject Theme Toggle
+    const themeContainer = document.getElementById('theme-placeholder');
+    if (themeContainer && typeof ComponentGenerator !== 'undefined' && typeof ComponentGenerator.getThemeToggle === 'function') {
+        themeContainer.innerHTML = ComponentGenerator.getThemeToggle();
+    }
+
+    // 5. Inject Hero/Carousel
     const heroContainer = document.getElementById('hero-placeholder');
     if (heroContainer && typeof ComponentGenerator !== 'undefined' && typeof ComponentGenerator.getHero === 'function') {
 
@@ -67,11 +73,11 @@ async function loadDataAndInit() {
         heroContainer.innerHTML = ComponentGenerator.getHero(titleKey, descKey, btnKey, bgImage);
     }
 
-    // 5. Apply Initial Language and Translations (FIX: Moved up to show visuals immediately)
+    // 6. Apply Initial Language and Translations (FIX: Moved up to show visuals immediately)
     // This resolves the issue by activating the correct language visuals *before* network calls.
     window.switchVisuals(window.savedLang);
 
-    // 6. Load Publication Data (if on publications page, or pre-cache both languages) (Original Step 5)
+    // 7. Load Publication Data (if on publications page, or pre-cache both languages) (Original Step 5)
     if (pageId === 'publications') {
         // The publications page needs data loaded immediately. This awaits the network response.
         await window.generatePublicationsContent(window.savedLang);
@@ -83,13 +89,13 @@ async function loadDataAndInit() {
         } catch (e) { console.error("Failed to load primary data on non-publications page:", e); }
     }
 
-    // 7. Initialize Gallery Dots if they exist (only for publications) (Original Step 7)
+    // 8. Initialize Gallery Dots if they exist (only for publications) (Original Step 7)
     if (document.body.id === 'publications' && document.querySelector('.book-covers-container')) {
         window.setupGalleryDots('book-covers-carousel-1');
     }
     window.switchVisuals(window.savedLang);
 
-    // 8. Load data for the *other* language (for fast switching) (Original Step 8)
+    // 9. Load data for the *other* language (for fast switching) (Original Step 8)
     try {
         // Use global constant JSON_URL_EN
         const url = (window.savedLang === 'bn') ? window.JSON_URL_EN : window.JSON_URL_BN;

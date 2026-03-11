@@ -7,13 +7,13 @@ const ComponentGenerator = {
 
         // Define a map of page IDs to their FontAwesome icons
         const iconMap = {
-            'home': 'fa-house',
-            'about': 'fa-user',
-            'projects': 'fa-flask',
-            'publications': 'fa-book',
-            'download': 'fa-download',
-            'events': 'fa-calendar-days',
-            'contact': 'fa-address-book'
+            'home': '🏡',
+            'about': '🙋🏾‍♀️',
+            'projects': '🧪',
+            'publications': '📚',
+            'download': '📥',
+            'events': '🗓️',
+            'contact': '☎️'
         };
 
         return `
@@ -25,7 +25,7 @@ const ComponentGenerator = {
               <button class="hamburger-menu" id="hamburgerBtn" onclick="toggleMenu()" aria-label="Toggle menu">
                   <i class="fa-solid fa-bars"></i>
               </button>
-              <span class="menu-label-text current-menu-label" id="currentMenuLabel"><i class="fa-solid ${iconMap[activePageId]}"></i></span>
+              <span class="menu-label-text current-menu-label" id="currentMenuLabel">${iconMap[activePageId]}</i></span>
           </div>
           
           <div class="nav-links" id="navLinks">
@@ -62,17 +62,17 @@ const ComponentGenerator = {
                 <div class="dropdown-menu">
                     <label class="option-item" onclick="toggleTheme('light')">
                         <span class="icon">☀️</span>
-                        <span class="label">Light Mode</span>
+                        <span class="label" data-translate-key="theme_light">Light Mode</span>
                     </label>
 
                     <label class="option-item" onclick="toggleTheme('dark')">
                         <span class="icon">🌖</span>
-                        <span class="label">Dark Mode</span>
+                        <span class="label" data-translate-key="theme_dark">Dark Mode</span>
                     </label>
 
                     <label class="option-item" onclick="toggleTheme('system')">
                         <span class="icon">🎴</span>
-                        <span class="label">System</span>
+                        <span class="label" data-translate-key="theme_system">System</span>
                     </label>
                 </div>
             </div>
@@ -172,6 +172,46 @@ const ComponentGenerator = {
                     </div>
                 </div>
         </dialog>
+        `;
+    },
+
+    // 5. THE THEME TOGGLE HTML
+    getThemeToggle: function () {
+
+        return `
+                <!-- Selection State (Radio Buttons) -->
+                <input type="radio" name="theme" id="light" class="theme-radio">
+                <input type="radio" name="theme" id="dark" class="theme-radio">
+                <input type="radio" name="theme" id="system" class="theme-radio" checked>
+
+                <!-- The Checkbox Toggle -->
+                <input type="checkbox" id="menu-toggle">
+        
+                <!-- The Overlay (allows clicking outside to close) -->
+                <label for="menu-toggle" class="menu-overlay"></label>
+
+                <!-- The Trigger -->
+                <label for="menu-toggle" class="theme-btn-label">
+                    <span class="selected-icon"></span>
+                </label>
+
+                <!-- The Menu -->
+                <div class="dropdown-menu">
+                    <label class="option-item" onclick="toggleTheme('light')">
+                        <span class="icon">☀️</span>
+                        <span class="label" data-translate-key="theme_light">Light Mode</span>
+                    </label>
+
+                    <label class="option-item" onclick="toggleTheme('dark')">
+                        <span class="icon">🌖</span>
+                        <span class="label" data-translate-key="theme_dark">Dark Mode</span>
+                    </label>
+
+                    <label class="option-item" onclick="toggleTheme('system')">
+                        <span class="icon">🎴</span>
+                        <span class="label" data-translate-key="theme_system">System</span>
+                    </label>
+                </div>
         `;
     }
 };

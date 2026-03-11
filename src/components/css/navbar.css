@@ -89,7 +89,7 @@ nav.menu {
 
 .menu-label-text {
     color: var(--text-color-primary);
-    font-size: 1rem;
+    font-size: var(--font-size-h2);
     font-weight: var(--font-weight-normal);
     white-space: nowrap;
 }
@@ -156,7 +156,7 @@ nav.menu {
     }
 
     a {
-        width: 100%;
+        width: fit-content;
         border: none;
         text-align: left;
         flex-shrink: 0;
@@ -232,9 +232,9 @@ nav.menu {
 
     position: absolute;
 
-    bottom: anchor(top);
+    bottom: anchor(center);
     left: anchor(center);
-    margin-bottom: var(--space-md);
+    margin-bottom: calc(var(--nav-height)/2 + var(--space-sm) - 2px);
     transform: translateX(-50%);
 
     width: fit-content;
@@ -358,7 +358,8 @@ nav.menu {
     }
 
     .dropdown-menu {
-        top: anchor(bottom);
+        top: anchor(center);
+        margin-top: calc(var(--nav-height)/2 + var(--space-sm));
         height: fit-content;
     }
 

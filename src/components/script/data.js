@@ -120,6 +120,9 @@ const translations = {
         'admit_card': 'Admit Card',
         'previous_paper': 'Previous Paper',
         'no_students_found': 'No students found.',
+        'theme_light': 'Light Mode',
+        'theme_dark': 'Dark Mode',
+        'theme_system': 'System',
     },
     'bn': {
         'organisation': 'পশ্চিমবঙ্গ বিজ্ঞান মঞ্চ',
@@ -236,6 +239,9 @@ const translations = {
         'school_placeholder': 'বিদ্যালয়ের নাম বেছে নিন',
         'no_students_found': 'এই নামে কোনো পরীক্ষার্থী নেই।',
         'default_admit_display': 'আপনার অ্যাডমিট পেতে সঠিক নাম লিখুন',
+        'theme_light': 'শ্বেতাভ রূপ',
+        'theme_dark': 'কৃষ্ণাভ রূপ',
+        'theme_system': 'সিস্টেম নির্ধারিত',
     }
 };
 
