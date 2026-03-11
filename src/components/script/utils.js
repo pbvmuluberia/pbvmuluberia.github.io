@@ -119,21 +119,22 @@ function toggleTheme(themeId) {
     const toggle = document.getElementById('menu-toggle');
     if (toggle) toggle.checked = false;
 
+    // Save preference to localStorage
+    localStorage.setItem('theme', themeId);
+
     // FIX: Use data attributes instead of CSS variables
     if (themeId === 'system') {
         document.documentElement.removeAttribute('data-theme');
-        console.log('system');
     } else {
         document.documentElement.setAttribute('data-theme', themeId);
-        console.log(themeId);
     }
     //const isDark = document.documentElement.classList.toggle('dark-theme');
     //const newTheme = isDark ? 'dark' : 'light';
     //localStorage.setItem('theme', newTheme);
 
-    //if (window.updatePwaTheme) {
-    //    window.updatePwaTheme(newTheme);
-    //}
+    if (window.updatePwaTheme) {
+        window.updatePwaTheme(newTheme);
+    }
 }
 
 // Helper to enable mouse wheel horizontal scrolling

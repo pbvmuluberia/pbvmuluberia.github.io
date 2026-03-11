@@ -8,19 +8,20 @@
 
 // Helper function to restore theme early (though the inline script in HTML handles the critical FOUC prevention)
 function init() {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-        document.documentElement.classList.add('dark-theme');
+    const savedTheme = localStorage.getItem('theme') || 'system';
+    if (savedTheme === 'system') {
+        document.documentElement.removeAttribute('data-theme');
     } else {
-        document.documentElement.classList.remove('dark-theme');
+        document.documentElement.setAttribute('data-theme', savedTheme);
     }
 }
 
 // Cross-Tab Synchronization Listener
 window.addEventListener('storage', (e) => {
     if (e.key === 'theme') {
-        if (e.newValue === 'dark') document.documentElement.classList.add('dark-theme');
-        else document.documentElement.classList.remove('dark-theme');
+        const newTheme = e.newValue || 'system';
+        if (e.newValue === 'system') document.documentElement.removeAttribute('data-theme');
+        else document.documentElement.setAttribute('data-theme', savedTheme);
     }
     if (e.key === 'language') {
         // switchVisuals is available via window (from utils.js)
