@@ -110,30 +110,27 @@ function toggleMenu() {
     }
 }
 
-function toggleTheme(themeId) {
-    // Update the radio selection
-    const radio = document.getElementById(themeId);
+function toggleTheme(theme) {
+    // 1. Save to storage
+    localStorage.setItem('theme', theme);
+
+    // 2. Apply to document
+    if (theme === 'system') {
+        document.documentElement.removeAttribute('data-theme');
+    } else {
+        document.documentElement.setAttribute('data-theme', theme);
+    }
+
+    // 3. Ensure the radio button is checked (for UI consistency)
+    const radio = document.getElementById(theme);
     if (radio) radio.checked = true;
 
-    // Close the menu
+    //4. Close the menu
     const toggle = document.getElementById('menu-toggle');
     if (toggle) toggle.checked = false;
 
-    // Save preference to localStorage
-    localStorage.setItem('theme', themeId);
-
-    // FIX: Use data attributes instead of CSS variables
-    if (themeId === 'system') {
-        document.documentElement.removeAttribute('data-theme');
-    } else {
-        document.documentElement.setAttribute('data-theme', themeId);
-    }
-    //const isDark = document.documentElement.classList.toggle('dark-theme');
-    //const newTheme = isDark ? 'dark' : 'light';
-    //localStorage.setItem('theme', newTheme);
-
     if (window.updatePwaTheme) {
-        window.updatePwaTheme(newTheme);
+        window.updatePwaTheme(themeId);
     }
 }
 

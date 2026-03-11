@@ -16,13 +16,19 @@ function init() {
     }
 }
 
+init();
+
 // Cross-Tab Synchronization Listener
 window.addEventListener('storage', (e) => {
     if (e.key === 'theme') {
         const newTheme = e.newValue || 'system';
         if (e.newValue === 'system') document.documentElement.removeAttribute('data-theme');
-        else document.documentElement.setAttribute('data-theme', savedTheme);
+        else document.documentElement.setAttribute('data-theme', newTheme);
     }
+    // Sync the radio button UI in the background tab too
+    const radio = document.getElementById(newTheme);
+    if (radio) radio.checked = true;
+
     if (e.key === 'language') {
         // switchVisuals is available via window (from utils.js)
         window.switchVisuals(e.newValue);
@@ -59,6 +65,12 @@ async function loadDataAndInit() {
     const themeContainer = document.getElementById('theme-placeholder');
     if (themeContainer && typeof ComponentGenerator !== 'undefined' && typeof ComponentGenerator.getThemeToggle === 'function') {
         themeContainer.innerHTML = ComponentGenerator.getThemeToggle();
+    }
+
+    const savedTheme = localStorage.getItem('theme') || 'system';
+    const activeThemeRadio = document.getElementById(savedTheme);
+    if (activeThemeRadio) {
+        activeThemeRadio.checked = true;
     }
 
     // 5. Inject Hero/Carousel

@@ -40,10 +40,6 @@
     <script>
         (function () {
             // 1. Restore Theme immediately
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark') {
-                document.documentElement.classList.add('dark-theme');
-            }
 
             // 2. Restore Language immediately (Optional, but helps reducing text flicker)
             // This sets a global variable that script.js can use later to skip reading storage again
