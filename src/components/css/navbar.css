@@ -234,7 +234,7 @@ nav.menu {
 
     bottom: anchor(center);
     left: anchor(center);
-    margin-bottom: calc(var(--nav-height)/2 + var(--space-sm) - 2px);
+    margin-bottom: calc(var(--nav-height)/2 + var(--space-sm) + 0.5rem - 2px);
     transform: translateX(-50%);
 
     width: fit-content;
