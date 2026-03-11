@@ -156,7 +156,7 @@ nav.menu {
     }
 
     a {
-        width: fit-content;
+        width: 100%;
         border: none;
         text-align: left;
         flex-shrink: 0;
