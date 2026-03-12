@@ -124,19 +124,34 @@
     padding: var(--space-md);
     border-radius: var(--border-radius-large);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    max-width: 90%;
-    max-height: 90%;
-    width: 600px;
+    max-width: 90vw;
+    max-height: 90vh;
+
+    /* STEP 1: Card is initially only the image size + padding */
+    width: calc(600px + 2 * var(--space-md));
+    height: calc(300px + 2 * var(--space-md));
     position: relative;
 
     transform: scale(0.8);
-    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.27), opacity 0.3s ease;
     opacity: 0;
-    overflow-y: auto;
+    overflow-y: hidden;
+
+    /* Reverse animation: shrink width first, then fade out */
+    transition: height 0.2s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s,
+        opacity 0.2s ease 0.7s,
+        transform 0.2s ease 0.7s;
 
     &.show {
         transform: scale(1);
+        overflow-y: auto;
         opacity: 1;
+        /* Expanded size (Cover + Gap + Text + Padding) */
+        height: calc(600px + 2 * var(--space-md));
+        /* Forward animation: fade in first, then expand width */
+        transition: opacity 0.3s ease 0s,
+            transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.27) 0s,
+            height 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) 0.4s;
+
     }
 }
 
@@ -157,11 +172,12 @@
     align-items: center;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
+    transition: opacity 0.3s ease 0.7s, visibility 0.3s ease 0.7s;
 
     &.show {
         opacity: 1;
         visibility: visible;
+        transition: opacity 0.3s ease 0s, visibility 0.3s ease 0s;
     }
 }
 
@@ -212,6 +228,18 @@
     margin-top: 1rem;
     font-size: var(--font-size-p);
     width: 100%;
+
+    /* SEQUENCE STEP 3: Buttons initial hidden state */
+    opacity: 0;
+    transform: translateY(20px);
+    /* Reverse animation: Fast fade out on close */
+    transition: opacity 0.1s ease 0s, transform 0.2s ease 0s;
+}
+
+.book-detail-card.show .description-placeholder {
+    opacity: 1;
+    transform: translateX(0);
+    transition: opacity 0.5s ease 0.7s, transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) 0.7s;
 }
 
 .detail-actions {
@@ -221,12 +249,52 @@
     width: 100%;
     justify-content: flex-end;
     margin-top: 1.5rem;
+
+    /* SEQUENCE STEP 3: Buttons initial hidden state */
+    opacity: 0;
+    transform: translateY(20px);
+    /* Reverse animation: Fast fade out on close */
+    transition: opacity 0.1s ease 0s, transform 0.2s ease 0s;
+}
+
+.book-detail-card.show .detail-actions {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.5s ease 1.0s, transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) 1.0s;
+}
+
+.close-btn {
+    opacity: 0 !important;
+    transition: opacity 0.2s ease 0s, color 0.2s, background-color 0.2s !important;
+}
+
+.book-detail-card.show .close-btn {
+    opacity: 1 !important;
+    transition: opacity 0.3s ease 1s, color 0.2s, background-color 0.2s !important;
 }
 
 @media (min-width: 600px) {
+    .book-detail-card {
+        width: calc(200px + 2 * var(--space-md));
+        height: auto !important;
+        overflow: hidden;
+        transition: width 0.2s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s,
+            opacity 0.2s ease 0.7s,
+            transform 0.2s ease 0.7s;
+
+        &.show {
+            width: calc(600px + 2 * var(--space-md));
+            /* Forward animation: fade in first, then expand width */
+            transition: opacity 0.3s ease 0s,
+                transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.27) 0s,
+                width 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) 0.4s;
+        }
+    }
+
     .detail-content {
         flex-direction: row;
         text-align: justify;
+        width: 600px;
     }
 
     .detail-cover {
