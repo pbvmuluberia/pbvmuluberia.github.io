@@ -129,10 +129,10 @@
 
     /* STEP 1: Card is initially only the image size + padding */
     width: calc(600px + 2 * var(--space-md));
-    height: calc(300px + 2 * var(--space-md));
+    height: calc(300px + 2 * var(--space-xl));
     position: relative;
 
-    transform: scale(0.8);
+    transform: scale(0.5);
     opacity: 0;
     overflow-y: hidden;
 
@@ -143,10 +143,9 @@
 
     &.show {
         transform: scale(1);
-        overflow-y: auto;
         opacity: 1;
         /* Expanded size (Cover + Gap + Text + Padding) */
-        height: calc(600px + 2 * var(--space-md));
+        height: calc(640px + 2 * var(--space-md));
         /* Forward animation: fade in first, then expand width */
         transition: opacity 0.3s ease 0s,
             transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.27) 0s,
