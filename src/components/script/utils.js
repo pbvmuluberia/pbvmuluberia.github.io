@@ -111,26 +111,40 @@ function toggleMenu() {
 }
 
 function toggleTheme(theme) {
-    // 1. Save to storage
-    localStorage.setItem('theme', theme);
+    const savedTheme = localStorage.getItem('theme');
 
-    // 2. Apply to document
-    if (theme === 'system') {
-        document.documentElement.removeAttribute('data-theme');
-    } else {
-        document.documentElement.setAttribute('data-theme', theme);
+    // Function to handle the actual DOM changes
+    const updateDOM = () => {
+        // 1. Save to storage
+        localStorage.setItem('theme', theme);
+
+        // 2. Apply to document
+        if (theme === 'system') {
+            document.documentElement.removeAttribute('data-theme');
+        } else {
+            document.documentElement.setAttribute('data-theme', theme);
+        }
+
+        // 3. Ensure the radio button is checked
+        const radio = document.getElementById(theme);
+        if (radio) radio.checked = true;
+
+        // 4. Close the menu
+        const menuToggle = document.getElementById('menu-toggle');
+        if (menuToggle) menuToggle.checked = false;
+    };
+
+    // Check if the browser supports View Transitions
+    if (!document.startViewTransition) {
+        updateDOM();
+        return;
     }
 
-    // 3. Ensure the radio button is checked (for UI consistency)
-    const radio = document.getElementById(theme);
-    if (radio) radio.checked = true;
-
-    //4. Close the menu
-    const toggle = document.getElementById('menu-toggle');
-    if (toggle) toggle.checked = false;
+    // Trigger the transition
+    document.startViewTransition(() => updateDOM());
 
     if (window.updatePwaTheme) {
-        window.updatePwaTheme(themeId);
+        window.updatePwaTheme(theme);
     }
 }
 

@@ -1,5 +1,45 @@
 /* Gruvbox-inspired custom theme colors - OPTIMIZED & ACCESSIBLE */
 
+::view-transition-old(root) {
+    animation-delay: 500ms;
+}
+
+::view-transition-new(root) {
+    animation: circle-in 500ms;
+}
+
+@keyframes move-in {
+    from {
+        translate: 0 -100%;
+    }
+
+    to {
+        translate: 0 0;
+    }
+}
+
+@keyframes circle-in {
+    from {
+        clip-path: circle(0% at 58% 93%);
+    }
+
+    to {
+        clip-path: circle(140% at 58% 93%);
+    }
+}
+
+@media (min-width: 980px) {
+    @keyframes circle-in {
+        from {
+            clip-path: circle(0% at 89% 6%);
+        }
+
+        to {
+            clip-path: circle(140% at 89% 6%);
+        }
+    }
+}
+
 :root {
     /* --- Z-INDEX REGISTRY (No more magic numbers) --- */
     --z-negative: -1;
@@ -412,7 +452,8 @@ a {
     position: fixed;
     top: var(--space-md);
     right: var(--space-md);
-    padding: 12px 20px;
+    max-width: 300px !important;
+    padding: var(--space-md) var(--space-lg);
     background-color: #10b981;
     color: white;
     border-radius: 8px;

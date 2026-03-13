@@ -40,12 +40,12 @@ const ComponentGenerator = {
           
           <div class="header-controls">
               
-              <div class="theme-container">
+              <div Id="theme-container" class="theme-container">
 
                 <!-- Selection State (Radio Buttons) -->
-                <input type="radio" name="theme" id="light" class="theme-radio">
-                <input type="radio" name="theme" id="dark" class="theme-radio">
-                <input type="radio" name="theme" id="system" class="theme-radio">
+                <input type="radio" name="theme" id="light" value="light" class="theme-radio">
+                <input type="radio" name="theme" id="dark" value="dark" class="theme-radio">
+                <input type="radio" name="theme" id="system" value="system" class="theme-radio">
 
                 <!-- The Checkbox Toggle -->
                 <input type="checkbox" id="menu-toggle">
@@ -76,11 +76,10 @@ const ComponentGenerator = {
                     </label>
                 </div>
             </div>
-              <div class="lang-toggle">
-                  <span id="langEn" onclick="setLang('en')">EN</span>
-                  <span id="langBn" onclick="setLang('bn')">বা</span>
-              </div>
-          </div>
+            <div class="lang-toggle">
+                <span id="langEn" onclick="setLang('en')">EN</span>
+                <span id="langBn" onclick="setLang('bn')">বা</span>
+            </div>
         </nav>
         `;
     },
