@@ -179,9 +179,9 @@ const ComponentGenerator = {
 
         return `
                 <!-- Selection State (Radio Buttons) -->
-                <input type="radio" name="theme" id="light" class="theme-radio">
-                <input type="radio" name="theme" id="dark" class="theme-radio">
-                <input type="radio" name="theme" id="system" class="theme-radio">
+                <input type="radio" name="theme" id="light" value="light" class="theme-radio">
+                <input type="radio" name="theme" id="dark" value="dark" class="theme-radio">
+                <input type="radio" name="theme" id="system" value="system" class="theme-radio">
 
                 <!-- The Checkbox Toggle -->
                 <input type="checkbox" id="menu-toggle">

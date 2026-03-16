@@ -36,6 +36,9 @@
     .col-sidebar {
         flex: 0 0 33.33333%;
         max-width: 33.33333%;
+        position: sticky;
+        align-self: flex-start;
+        top: calc(var(--nav-height) + var(--space-md));
     }
 }
 
@@ -60,6 +63,9 @@
 
 .card-content {
     padding: var(--space-md);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 
 .card-header-image {
@@ -183,7 +189,7 @@
     height: 50px;
     border-radius: var(--border-radius-semi);
     margin-right: 16px;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .hide-small {
