@@ -130,8 +130,8 @@ function createCardHTML(post) {
     // 2. Check if alt exists and is not an empty string
     if (mappedPost.alt && mappedPost.alt.trim() !== "") {
         buttonHTML = `
-            <div class="row">
-                <div class="col-main">
+            <div class="row" style="flex: 1">
+                <div class="col-main" style="flex-basis: 100%;max-width: 100%;display: flex;justify-content: end;">
                     <button class="action-btn" style="margin-bottom: var(--space-sm);" onclick="window.open('${mappedPost.alt}', '_self')">
                         <b>${readMoreHTML}</b>
                     </button>
