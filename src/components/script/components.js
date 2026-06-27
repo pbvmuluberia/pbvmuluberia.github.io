@@ -151,6 +151,11 @@ const ComponentGenerator = {
                         <div class="lang-content en">
                             <p class="notice-subtitle" data-translate-key="notice_subtitle_en">Current Events</p>
                             <ul>
+                                <li>Form Fill up of <b>Howrah Zilla Vigyan Manosikota-o-Medha Aviksha 2026</b> has been started. Please Contact your school or nearest commitee member.</li>
+                                <p><b>Check your registration status after 15<sup>th</sup> August'26</b></p>
+                                <p>&nbsp;</p>
+                                <a href="./download.html">Previous Papers</a>
+                                <p>&nbsp;</p>
                                 <li>Howrah Zilla Vigyan Manosikota-o-Medha Aviksha 2025 has been successfully completed.</li>
                                 <a href="./src/components/pages/aviksha/results.html">CheckResult.</a>
                             </ul>
@@ -158,6 +163,11 @@ const ComponentGenerator = {
                         <div class="lang-content bn">
                             <p class="notice-subtitle" data-translate-key="notice_subtitle_bn">বর্তমান ঘটনাবলী</p>
                             <ul>
+                                <li><b>হাওড়া জেলা বিজ্ঞান মানসিকতা-ও-মেধা অভিক্ষা ২০২৬</b> এর ফর্ম দেওয়া শুরু হয়েছে। অনুগ্রহ করে বিদ্যালয় বা নিকটবর্তী বিজ্ঞান কর্মীদের সাথে যোগাযোগ করুন।</li> 
+                                <p><b>আপনার রেজিস্ট্রেশন তথ্য ১৫ই আগষ্টের পর চেক করুন</b></p>
+                                <p>&nbsp;</p>
+                                <a href="./download.html">বিগত বছরের প্রশ্ন</a>
+                                <p>&nbsp;</p>
                                 <li>হাওড়া জেলা বিজ্ঞান মানসিকতা-ও-মেধা অভিক্ষা ২০২৫ সফলভাবে সম্পন্ন হয়েছে।</li>
                                 <a href="./src/components/pages/aviksha/results.html">ফলাফল দেখুন।</a>
                             </ul>
@@ -173,9 +183,9 @@ const ComponentGenerator = {
 
         return `
                 <!-- Selection State (Radio Buttons) -->
-                <input type="radio" name="theme" id="light" value="light" class="theme-radio">
-                <input type="radio" name="theme" id="dark" value="dark" class="theme-radio">
-                <input type="radio" name="theme" id="system" value="system" class="theme-radio">
+                <input type="radio" name="theme" id="light" class="theme-radio">
+                <input type="radio" name="theme" id="dark" class="theme-radio">
+                <input type="radio" name="theme" id="system" class="theme-radio">
 
                 <!-- The Checkbox Toggle -->
                 <input type="checkbox" id="menu-toggle">

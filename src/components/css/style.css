@@ -440,8 +440,6 @@ a {
         list-style: disc;
         padding-left: var(--space-md);
         margin-bottom: 1rem;
-        text-align: justify;
-        line-height: 2rem;
     }
 
     li {
