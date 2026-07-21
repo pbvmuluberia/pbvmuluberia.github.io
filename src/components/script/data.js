@@ -52,10 +52,12 @@ const translations = {
         'book_type_standard': 'Type: Standard Publication',
         'book_no_description': 'No description available for this publication.',
         'book_btn_buy': 'Buy Now',
+        'book_btn_buy_qbank': 'Buy Now',
         'book_btn_subscribe': 'Subscribe',
         'book_btn_download': 'Download / Read More',
         'msg_subscription': 'Subscription will start from 1st August 2026. Thank you for your interest!',
         'msg_purchase_dev': 'Purchase/Download feature is under development.',
+        'msg_qbank_purchase': 'To purchase Question Bank, contact 9803577576 directly.',
         'msg_subscribe_dev': 'Subscription feature is under development. Thank you for your interest!',
         'msg_upi_copied': 'UPI ID copied to clipboard!',
         'msg_upi_fail': 'Failed to copy UPI ID.',
@@ -167,11 +169,13 @@ const translations = {
         'book_type_standard': 'ধরন: বই',
         'book_no_description': 'এই প্রকাশনার জন্য কোন বিবরণ উপলব্ধ নেই।',
         'book_btn_buy': 'এখনই কিনুন',
+        'book_btn_buy_qbank': 'এখনই কিনুন',
         'book_btn_subscribe': 'গ্রাহক হন',
         'book_btn_download': 'ডাউনলোড / আরও পড়ুন',
         'msg_purchase_dev': 'ক্রয়/ডাউনলোড বৈশিষ্ট্যটি নির্মাণাধীন।',
         'msg_subscription': '১লা আগষ্ট, ২০২৬ থেকে সাবস্ক্রিপশন শুরু হবে। আপনার আগ্রহের জন্য ধন্যবাদ!',
         'msg_subscribe_dev': 'সাবস্ক্রিপশন বৈশিষ্ট্যটি নির্মাণাধীন। আপনার আগ্রহের জন্য ধন্যবাদ!',
+        'msg_qbank_purchase': 'প্রশ্নবিচিত্রা কিনতে সরাসরি যোগাযোগ করুন 9803577576 নম্বরে।',
         'msg_upi_copied': 'UPI ID ক্লিপবোর্ডে কপি করা হয়েছে!',
         'msg_upi_fail': 'UPI ID কপি করতে ব্যর্থ।',
         'pub_subscribe_prompt': ' আপনি কি আমাদের নিয়মিত পত্রিকা উপভোগ করতে চান? আজই গ্রাহক হন!',
@@ -245,8 +249,8 @@ const translations = {
     }
 };
 
-const JSON_URL_EN = "https://gist.githubusercontent.com/pbvmuluberia/b6bf520cce8c1b0167a6657b2c60e4d2/raw/de662cd94dc4b4ff0f83aed00461851370a651f8/book.json";
-const JSON_URL_BN = "https://gist.githubusercontent.com/pbvmuluberia/e5e2122ddf3ac7489e61be9f81e475fd/raw/32e1b563d2e57a0417da5bd4dbe868089acae575/book_bn.json";
+const JSON_URL_EN = "https://gist.githubusercontent.com/pbvmuluberia/b6bf520cce8c1b0167a6657b2c60e4d2/raw/68adff64273fcfea2321bd24c08bf617ef572773/book.json";
+const JSON_URL_BN = "https://gist.githubusercontent.com/pbvmuluberia/e5e2122ddf3ac7489e61be9f81e475fd/raw/1665350c2f9f4e6a39cc10528c31e22092a1a40d/book_bn.json";
 
 // Global data store for fetched book data
 window.bookData = { en: null, bn: null };

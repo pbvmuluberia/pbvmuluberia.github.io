@@ -13,7 +13,7 @@ function generateBookCardsHtml(bookArray) {
     bookArray.forEach(book => {
         const bookJsonString = JSON.stringify(book).replace(/"/g, '&quot;');
         const fallbackUrl = `https://placehold.co/150x225/d79921/3c3836?text=Book+Cover`;
-        const badgeHtml = book.isMagazine ? '<span class="magazine-badge">MAGAZINE</span>' : '';
+        const badgeHtml = book.isMagazine ? '<span class="magazine-badge">MAGAZINE</span>' : book.isQBank ? '<span class="qbank-badge">Question Bank</span>' : '';//Qbank//
 
         // stringToHslColor is available via window (from utils.js)
         const borderColor = window.stringToHslColor(book.title, 70, 40);
@@ -80,17 +80,21 @@ function showBookDetails(cardElement) {
     const borderColor = window.stringToHslColor(book.title, 70, 40);
     const actionBtn = document.getElementById('detailActionBtn');
 
-    if (book.price) {
-        badgeElement.textContent = book.price;
-        badgeElement.style.display = 'inline-block';
-        badgeElement.style.position = 'static';
-        actionBtn.textContent = langDict.book_btn_buy;
-        actionBtn.onclick = () => showSubscriptionMessage('msg_purchase_dev');
-    } else {
-        badgeElement.style.display = 'none';
-        if (book.isMagazine) actionBtn.textContent = langDict.book_btn_subscribe;
-        else actionBtn.textContent = langDict.book_btn_download;
+    badgeElement.textContent = book.price;
+    badgeElement.style.display = 'inline-block';
+    badgeElement.style.position = 'static';
+
+    if (book.isMagazine) {
+        actionBtn.textContent = langDict.book_btn_subscribe;
         actionBtn.onclick = () => showSubscriptionMessage('msg_subscription');
+    }
+    else if (book.isQBank) {
+        actionBtn.textContent = langDict.book_btn_buy_qbank;
+        actionBtn.onclick = () => showSubscriptionMessage('msg_qbank_purchase');
+    }
+    else {
+        actionBtn.textContent = langDict.book_btn_download;
+        actionBtn.onclick = () => showSubscriptionMessage('msg_purchase_dev');
     }
 
     document.getElementById('detailBookCover').src = book.url;
