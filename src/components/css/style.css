@@ -451,7 +451,7 @@ a {
     display: flex;
     position: fixed;
     top: var(--space-md);
-    right: var(--space-md);
+    left: 50%;
     max-width: 300px !important;
     padding: var(--space-md) var(--space-lg);
     background-color: #10b981;
@@ -460,13 +460,13 @@ a {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     opacity: 0;
     transition: opacity 0.3s, transform 0.3s;
-    transform: translateX(100%);
+    transform: translate(-50%, 0%);
     z-index: var(--z-toast);
 
     &.show {
         opacity: 1;
         visibility: visible;
-        transform: translateX(0) translateY(0);
+        transform: translate(-50%, 20%);
     }
 }
 
