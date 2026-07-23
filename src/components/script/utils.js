@@ -71,6 +71,23 @@ function stringToHslColor(str) {
     return `hsl(${h}, 70%, 75%)`;
 }
 
+window.addEventListener("DOMContentLoaded", () => {
+    // Check if the URL has ?scroll=something
+    const urlParams = new URLSearchParams(window.location.search);
+    const scrollTarget = urlParams.get('scroll');
+
+    if (scrollTarget) {
+        const targetElement = document.getElementById(scrollTarget);
+
+        if (targetElement) {
+            // Add a slight delay to ensure CSS has loaded and painted
+            setTimeout(() => {
+                targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
+            }, 100);
+        }
+    }
+});
+
 function scrollToContent(id) {
     const targetId = id || 'main-content';
     const element = document.getElementById(targetId);

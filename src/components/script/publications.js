@@ -110,6 +110,7 @@ function hideBookDetails() {
     document.body.style.overflow = '';
 }
 
+
 // Attach to window for external/inline access
 window.generateBookCardsHtml = generateBookCardsHtml;
 window.generatePublicationsContent = generatePublicationsContent;

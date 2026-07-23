@@ -618,6 +618,10 @@ ol {
     padding-left: var(--space-md);
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 /* FIX: Reduced Motion Support */
 @media (prefers-reduced-motion: reduce) {
 
@@ -638,6 +642,11 @@ ol {
     body {
         padding-bottom: 0;
     }
+
+    .main-content {
+        scroll-margin-top: max(10vh, var(--nav-height));
+    }
+
 
     .head {
         display: none;
