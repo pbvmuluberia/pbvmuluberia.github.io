@@ -71,6 +71,7 @@ function stringToHslColor(str) {
     return `hsl(${h}, 70%, 75%)`;
 }
 
+//smooth scrol from other pages
 window.addEventListener("DOMContentLoaded", () => {
     // Check if the URL has ?scroll=something
     const urlParams = new URLSearchParams(window.location.search);
