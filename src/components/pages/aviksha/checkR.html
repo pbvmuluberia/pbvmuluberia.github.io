@@ -59,8 +59,7 @@
     </div>
     <div class="nav-links" id="navLinks">
       <a href="../../../../index.html" class="${isActive(menu_home)}" data-translate-key="nav_home">Home</a>
-      <a href="./admit.html" class="active-tab" data-translate-key="nav_admit">Admit Card</a>
-      <a href="./results.html" class="${isActive(menu_home)}" data-translate-key="nav_result">Results</a>
+      <a href="./checkR.html" class="active-tab" data-translate-key="nav_check_details">Check Details</a>
     </div>
 
     <div class="header-controls">
@@ -81,8 +80,8 @@
     <div class="search-form-card">
       <div class="input-group">
         <div style="align-self: right;">
-          <label data-translate-key="name_label" for="name">Enter Name:</label>
-          <input data-translate-key="name_placeholder" type="text" id="name" placeholder="Student Name" required>
+          <label data-translate-key="formno_label" for="formno">Enter Form No:</label>
+          <input data-translate-key="formno_placeholder" type="text" id="formno" placeholder="Enter Form No" required>
         </div>
         <div class="custom-select" style="align-self: right;">
           <select id="school" name="school">
@@ -260,16 +259,16 @@
         </div>
       </div>
 
-      <div id="result-display" data-translate-key="default_admit_display">
-        Please enter your Name above and click Search to download your admit
+      <div id="result-display" data-translate-key="default_reg_display">
+        Please enter your Form No and School above and click Search to check your registration
       </div>
     </div>
 
     <script>
       const SCRIPT_URL =
-        "https://script.google.com/macros/s/AKfycbyoM-UWki3lnK_esoNkjXyWh9JLt6YSwTYfaKUdidvlwdrMnGZxlNbmJNoE9Mx-XnpodA/exec";
+        "https://script.google.com/macros/s/AKfycbyJoBMePTLQw_tE8k1ymfjbtM7KSPa3pX0UGBiA3C3R7d-LGCNmBWxVbWOQdM3I944b6Q/exec";
       async function fetchData() {
-        const name = document.getElementById('name').value;
+        const formno = document.getElementById('formno').value;
         const school = document.getElementById('school').value;
         const resultsDiv = document.getElementById('result-display');
 
@@ -283,9 +282,9 @@
           return;
         }
 
-        if (!name || name.length < 7) {
-          resultsDiv.setAttribute('data-translate-key', 'enter_valid_name');
-          resultsDiv.innerHTML = 'Please enter atleast first 7 letter of your name';
+        if (!formno) {
+          resultsDiv.setAttribute('data-translate-key', 'enter_valid_formno');
+          resultsDiv.innerHTML = 'Please enter your offline Form No';
           resultsDiv.className = 'error';
           if (window.applyTranslations) window.applyTranslations();
           return;
@@ -299,7 +298,7 @@
 
         try {
           // Construct the URL with query parameters
-          const finalUrl = `${SCRIPT_URL}?name=${encodeURIComponent(name)}&school=${encodeURIComponent(school)}`;
+          const finalUrl = `${SCRIPT_URL}?formno=${encodeURIComponent(formno)}&school=${encodeURIComponent(school)}`;
 
           // Fetch from GAS (Google handles the Redirect/CORS automatically via this method)
           const response = await fetch(finalUrl);
@@ -317,7 +316,7 @@
                   <table>
                       <thead>
                           <tr>
-                              <th colspan="2" class="table-header"><span data-translate-key="result_header">Howrah Zilla Vigyan Manosikata-o-Medha Aviksha - </span>2025</th>
+                              <th colspan="2" class="table-header"><span data-translate-key="registration_header">Howrah Zilla Vigyan Manosikata-o-Medha Aviksha</span> - 2026</th>
                           </tr>
                       </thead>
                       <tbody>
@@ -326,24 +325,12 @@
                               <td>${student.name}</td>
                           </tr>
                           <tr>
-                              <td data-translate-key="roll">Roll Number:</td>
-                              <td>${student.roll}</td>
-                          </tr>
-                          <tr>
                               <td data-translate-key="class">Class:</td>
                               <td>${student.class}</td>
                           </tr>
                           <tr>
-                              <td data-translate-key="school">School:</td>
-                              <td>${student.school}</td>
-                          </tr>
-                          <tr class="highlight-row">
-                              <td data-translate-key="admit_card">Admit Card:</td>
-                              <td class="result-value"><a href="${student.pdfLink}" target="_blank" class="pdf-icon"><i class="fa-solid fa-file-pdf"></i></a></td>
-                          </tr>
-                          <tr class="highlight-row">
-                              <td data-translate-key="previous_paper">Previous Paper:</td>
-                              <td class="grade-highlight result-value"><a href="${student.questionLink}" target="_blank" class="pdf-icon"><i class="fa-solid fa-file-pdf"></i></a></td>
+                              <td data-translate-key="medium">Medium:</td>
+                              <td>${student.medium}</td>
                           </tr>
                       </tbody>
                   </table>

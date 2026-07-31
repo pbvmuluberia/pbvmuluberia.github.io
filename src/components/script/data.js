@@ -125,6 +125,12 @@ const translations = {
         'theme_light': 'Light Mode',
         'theme_dark': 'Dark Mode',
         'theme_system': 'System',
+        'registration_header': 'Howrah Zilla Vigyan Manosikata-o-Medha Aviksha',
+        'medium': 'Medium',
+        'formno_placeholder': 'Ex: 8244',
+        'formno_label': 'Enter Form Number',
+        'enter_valid_formno': 'Invalid Form Number',
+        'default_reg_display': 'Please enter your Form No and School above and click Search to check your registration details.'
     },
     'bn': {
         'organisation': 'পশ্চিমবঙ্গ বিজ্ঞান মঞ্চ',
@@ -189,6 +195,7 @@ const translations = {
         'uluberia': 'উলুবেড়িয়া বিজ্ঞান কেন্দ্র',
         'nav_result': 'ফলাফল',
         'nav_admit': 'অ্যাডমিট কার্ড',
+        'nav_check_details': 'পরীক্ষার্থীর বিবরণ',
         'result_finder_title': 'ফলাফল অনুসন্ধান',
         'result_finder_subtitle': 'আপনার ফলাফল দেখতে রোল নম্বর লিখুন।',
         'result_header': 'ফলাফল - হাওড়া জেলা বিজ্ঞান মানসিকতা ও মেধা অভীক্ষা - ',
@@ -246,6 +253,12 @@ const translations = {
         'theme_light': 'শ্বেতাভ রূপ',
         'theme_dark': 'কৃষ্ণাভ রূপ',
         'theme_system': 'সিস্টেম নির্ধারিত',
+        'registration_header': 'হাওড়া জেলা বিজ্ঞান মানসিকতা ও মেধা অভীক্ষা',
+        'medium': 'মাধ্যম',
+        'formno_placeholder': 'যেমন: 8244',
+        'formno_label': 'ফর্ম নম্বর :',
+        'enter_valid_formno': 'এই ফর্ম নম্বরটি নেই।',
+        'default_reg_display': 'আপনার রেজিস্ট্রেশন তথ্য জানতে ফর্ম নম্বর এবং বিদ্যালয় নির্বাচন করুন।'
     }
 };
 
