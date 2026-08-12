@@ -99,5 +99,34 @@
             class="fa-solid fa-arrow-up"></i></button>
 
 </body>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        // Check if the URL contains the query parameter
+        const urlParams = new URLSearchParams(window.location.search);
+
+        if (urlParams.get('openFirst') === 'true') {
+            const contentBody = document.getElementById('content-body');
+
+            // Create a MutationObserver to wait for the async content to load
+            const observer = new MutationObserver((mutations, obs) => {
+                // Find the first dynamically generated book card
+                const firstBookCard = document.querySelector('.book-card');
+
+                if (firstBookCard) {
+                    // Trigger the existing function to show the modal
+                    window.showBookDetails(firstBookCard);
+
+                    // Stop observing once the modal is triggered
+                    obs.disconnect();
+                }
+            });
+
+            // Start observing the content body for child element additions
+            if (contentBody) {
+                observer.observe(contentBody, { childList: true, subtree: true });
+            }
+        }
+    });
+</script>
 
 </html>
