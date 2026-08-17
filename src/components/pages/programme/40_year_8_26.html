@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+    <link rel="manifest" href="../../../../manifest.json">
+
+    <link rel="apple-touch-icon" href="./src/icons/icon-192x192.png">
+    <meta name="apple-mobile-web-app-status-bar" id="meta-apple-status-bar" content="#bf530c">
+    <meta name="theme-color" id="meta-theme-color" content="#bf530c">
+
+    <script src="../../script/theme-pwa.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>40 Years of Vigyan Mancha</title>
+
+    <!-- External Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <!-- Global Styles -->
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/navbar.css">
+    <!-- Page Specific Styles -->
+    <link rel="stylesheet" href="../../css/ceremony.css">
+    <link rel="stylesheet" href="../../css/rank.css">
+
+    <!-- Scripts -->
+    <script src="../../script/components.js" defer></script>
+    <!-- Assuming data.js and utils.js exist in your project as referenced in index.html -->
+    <script src="../../script/data.js" defer></script>
+    <script src="../../script/utils.js" defer></script>
+    <script src="../../script/modal.js" defer></script>
+    <script src="../../script/init.js" defer></script>
+
+    <script>
+        (function () {
+            // 1. Restore Theme immediately
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark-theme');
+            }
+
+            // 2. Restore Language immediately
+            window.savedLang = localStorage.getItem('language') || 'bn';
+        })();
+    </script>
+
+    <style>
+        /* Helper for language toggling visibility if not in style.css */
+        .lang-content {
+            display: none;
+        }
+
+        .lang-content.active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body id="ceremony">
+    <!-- Navbar Placeholder -->
+    <nav class="menu">
+        <img src="https://raw.githubusercontent.com/t4saha/PBVM-Uluberia-Vigyan-Kendra/main/Logo/pvbm_logo_gold.png"
+            alt="Logo" class="nav-logo"
+            onerror="this.onerror=null; this.src='https://placehold.co/50x50/d79921/3c3836?text=LOGO'">
+
+        <div class="menu-controls-mobile">
+            <span class="menu-label-text" data-translate-key="nav_menu">Menu</span>
+            <button class="hamburger-menu" id="hamburgerBtn" onclick="toggleMenu()">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <span class="menu-label-text current-menu-label" id="currentMenuLabel"
+                data-translate-key="nav_menu">Menu</span>
+        </div>
+        <div class="nav-links" id="navLinks">
+            <a href="../../../../index.html" class="${isActive(menu_home)}" data-translate-key="nav_home">Home</a>
+        </div>
+
+        <div class="header-controls">
+            <div id="theme-placeholder"></div>
+            <div class="lang-toggle">
+                <span id="langEn" onclick="setLang('en')">EN</span>
+                <span id="langBn" onclick="setLang('bn')">বা</span>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- English Content Section -->
+    <div class="lang-content en">
+        <div class="ceremony-container">
+
+            <!-- Header Section -->
+            <header class="ceremony-header">
+                <img src="../../../banner/40 years.png" alt="🌎 🌲" style="border-radius: var(--space-md);"></img>
+                <p></p>
+                <h1>Cultural Competetion</h1>
+                <p>Paschim Banga Bigyan Mancha &bull; 16th August, 2026</p>
+                <!-- Horizontal Scroll Gallery -->
+            </header>
+
+            <!-- Key Dignitaries -->
+            <section class="dignitaries-section">
+                <h2 class="section-heading">Dignitaries</h2>
+                <ul class="dignitaries-grid">
+                    <li class="dignitary-card">
+                        <div class="role-badge">President Howrah District</div>
+                        <img src="../../../Guests/Kali Jasu.jpeg" alt="President - Howrah District">
+                        <h3>Kalikrishna Jasu</h3>
+                        <p>Teacher</p>
+                    </li>
+                    <li class="dignitary-card">
+                        <div class="role-badge">Secretary Uluberia Kendra</div>
+                        <img src="../../../Guests/Biswajit Paul.jpeg" alt="Secretary - Uluberia Chakra">
+                        <h3>Biswajit Paul</h3>
+                        <p>Teacher</p>
+                    </li>
+                    <li class="dignitary-card">
+                        <div class="role-badge">Secretary Jadurberia Chakra</div>
+                        <img src="../../../Guests/Pankaj jasu.jpeg" alt="Secretary - Jadurberia Chakra">
+                        <h3>Pankaj Jasu</h3>
+                        <p>Science activist</p>
+                    </li>
+                    <li class="dignitary-card">
+                        <div class="role-badge">Secretary Kalinagar Chakra</div>
+                        <img src="../../../Guests/Biswanath Pramanick.jpeg" alt="Secretary - Kalinagar Chakra">
+                        <h3>Biswanath Pramanick</h3>
+                        <p>Teacher</p>
+                    </li>
+                    <li class="dignitary-card">
+                        <div class="role-badge">Secretary Nabagram Chakra</div>
+                        <img src="../../../Guests/Kartick Samanta.jpeg" alt="Secretary - Nabagram Chakra">
+                        <h3>Kartick Samanta</h3>
+                        <p>Teacher</p>
+                    </li>
+                    <li class="dignitary-card">
+                        <div class="role-badge">Secretary Uluberia Chakra</div>
+                        <img src="../../../Guests/Plaban Das.jpg" alt="Secretary - Uluberia Chakra">
+                        <h3>Plaban Das</h3>
+                        <p>Teacher</p>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Header Section -->
+            <section class="ceremony-header">
+                <h1 style="color: var(--text-color);">Drawing Competition</h1>
+            </section>
+
+            <section class="program-section">
+                <div class="program-card">
+                    <div class="program-content">
+                        <h2>The triumph of science through brushstrokes</h2>
+                        <p>Deep in a quiet, untouched valley, the river ran crystal clear past simple cottages where
+                            villagers lived in gentle harmony with the surrounding forest. Through these vibrant green
+                            fields walked a wandering minstrel, who paused beneath the open sky to throw his arms wide,
+                            singing praise to a land free from the stain of industrial decay. As his melody echoed
+                            across the hills, it expanded into a universal prayer for the entire world. High above, a
+                            pure white dove soared over a thriving planet Earth, uniting diverse cultures and wild
+                            creatures in a shared commitment to protect the delicate balance of their home.
+                        </p>
+                    </div>
+                    <div class="program-img"><img src="../../../gallary/cul ceremony 26/drawing.jpeg"
+                            alt="Drawing Competition">
+                    </div>
+                </div>
+            </section>
+
+            <section class="rank-section">
+                <h2 class="rank-heading">A-Division (Free Hand Drawing)</h2>
+                <ul class="rank-grid">
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">1st</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥇</p>
+                        </div>
+                        <div class="clubbed-student-list first">
+                            <div class="student-entry">
+                                <h3>Priyom Mondal</h3>
+                                <h2>Moula Netaji Vidyalay</h2>
+                                <h2>V</h2>
+                                <img src="../../../gallary/cul ceremony 26/a1.jpeg" alt="">
+                            </div>
+
+                        </div>
+                    </li>
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">2nd</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥈</p>
+                        </div>
+                        <div class="clubbed-student-list second">
+                            <div class="student-entry">
+                                <h3>Suvangi santra</h3>
+                                <h2>Maheshpur Primary School</h2>
+                                <h2>III</h2>
+                                <img src="../../../gallary/cul ceremony 26/a2.jpeg" alt="">
+                            </div>
+
+                        </div>
+                    </li>
+
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">3rd</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥉</p>
+                        </div>
+                        <div class="clubbed-student-list third">
+                            <div class="student-entry">
+                                <h3>Kankana Debnath</h3>
+                                <h2>Sarada Sishu Mandir</h2>
+                                <h2>V</h2>
+                                <img src="../../../gallary/cul ceremony 26/a3.jpeg" alt="">
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="rank-section">
+                <h2 class="rank-heading">B-Division (Natural Bengal)</h2>
+                <ul class="rank-grid">
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">1st</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥇</p>
+                        </div>
+                        <div class="clubbed-student-list first">
+                            <div class="student-entry">
+                                <h3>Bristhi Banerjee</h3>
+                                <h2>jadurberia balika Vidyalaya</h2>
+                                <h2>VI</h2>
+                                <img src="../../../gallary/cul ceremony 26/b1.jpeg" alt="">
+                            </div>
+
+                        </div>
+                    </li>
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">2nd</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥈</p>
+                        </div>
+                        <div class="clubbed-student-list second">
+                            <div class="student-entry">
+                                <h3>Pratapaditya Kodali</h3>
+                                <h2>Khalisani Jatiya Vidyapith</h2>
+                                <h2>VIII</h2>
+                                <img src="../../../gallary/cul ceremony 26/b2.jpeg" alt="">
+                            </div>
+
+                        </div>
+                    </li>
+
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">3rd</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥉</p>
+                        </div>
+                        <div class="clubbed-student-list third">
+                            <div class="student-entry">
+                                <h3>Apratim Mondal</h3>
+                                <h2>Vivekananda Mission School</h2>
+                                <img src="../../../gallary/cul ceremony 26/b3.jpeg" alt="">
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="rank-section">
+                <h2 class="rank-heading">C-Division (Earth & Diversity)</h2>
+                <ul class="rank-grid">
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">1st</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥇</p>
+                        </div>
+                        <div class="clubbed-student-list first">
+                            <div class="student-entry">
+                                <h3>Priyom Santra</h3>
+                                <h2>Ayma Gajonkol High School</h2>
+                                <h2>IX</h2>
+                                <img src="../../../gallary/cul ceremony 26/c1.jpeg" alt="">
+                            </div>
+
+                        </div>
+                    </li>
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">2nd</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥈</p>
+                        </div>
+                        <div class="clubbed-student-list second">
+                            <div class="student-entry">
+                                <h3>Prantik Hazra</h3>
+                                <h2>Vivekananda Mission School</h2>
+                                <h2>VIII</h2>
+                                <img src="../../../gallary/cul ceremony 26/c2.jpeg" alt="">
+                            </div>
+
+                        </div>
+                    </li>
+
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">3rd</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥉</p>
+                        </div>
+                        <div class="clubbed-student-list third">
+                            <div class="student-entry">
+                                <h3>Sreeja Malik</h3>
+                                <h2>Vivekananda Mission School</h2>
+                                <h2>IX</h2>
+                                <img src="../../../gallary/cul ceremony 26/c3.jpeg" alt="">
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="ceremony-header">
+                <h1 style="color: var(--text-color);">Recitations Competetion</h1>
+            </section>
+
+            <section class="program-section">
+                <div class="program-card">
+                    <div class="program-content">
+                        <h2>Cosmic Harmony and the Spirit of Equality</h2>
+                        <p>Rabindranath Tagore, Kazi Nazrul Islam, and Sukumar Ray weave human kinship directly into the
+                            natural world—Tagore through cosmic harmony, Nazrul through fiery egalitarianism, and Ray
+                            through ego-dissolving humor. Embodying this organic oneness. Together, their recitations
+                            dismantle societal divides, reminding us that we share a single root and belong boundlessly
+                            to nature and to one another.
+                        </p>
+                    </div>
+                    <div class="program-img"><img src="../../../gallary/cul ceremony 26/recit.jpeg"
+                            alt="Recitations Competition">
+                    </div>
+                </div>
+            </section>
+
+            <section class="rank-section">
+                <h2 class="rank-heading">A-Division (Sukumar Ray)</h2>
+                <ul class="rank-grid">
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">1st</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥇</p>
+                        </div>
+                        <div class="clubbed-student-list first">
+                            <div class="student-entry">
+                                <h3>Soumili Doli</h3>
+                                <h2>Uluberia Binapani Girls' High School</h2>
+                                <h2>VII</h2>
+                            </div>
+
+                        </div>
+                    </li>
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">2nd</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥈</p>
+                        </div>
+                        <div class="clubbed-student-list second">
+                            <div class="student-entry">
+                                <h3>Diptashree Nayak</h3>
+                                <h2>KhaliShani Jatiyo Bidyapith</h2>
+                                <h2>VI</h2>
+                            </div>
+
+                        </div>
+                    </li>
+
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">3rd</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥉</p>
+                        </div>
+                        <div class="clubbed-student-list third">
+                            <div class="student-entry">
+                                <h3>Supriti Manna</h3>
+                                <h2></h2>
+                                <h2></h2>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="rank-section">
+                <h2 class="rank-heading">B-Division (Rabindranath Tagore)</h2>
+                <ul class="rank-grid">
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">1st</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥇</p>
+                        </div>
+                        <div class="clubbed-student-list first">
+                            <div class="student-entry">
+                                <h3>Sounak Adhikary</h3>
+                                <h2>Uluberia High School</h2>
+                                <h2>VIII</h2>
+
+                            </div>
+
+                        </div>
+                    </li>
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">2nd</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥈</p>
+                        </div>
+                        <div class="clubbed-student-list second">
+                            <div class="student-entry">
+                                <h3>Shreya Roy</h3>
+                                <h2></h2>
+                                <h2>VIII</h2>
+
+                            </div>
+
+                        </div>
+                    </li>
+
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">3rd</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥉</p>
+                        </div>
+                        <div class="clubbed-student-list third">
+                            <div class="student-entry">
+                                <h3>Srayandrita Mondal</h3>
+                                <h2></h2>
+                                <h2>VII</h2>
+
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Header Section -->
+            <section class="ceremony-header">
+                <h1 style="color: var(--text-color);">Song Competition</h1>
+            </section>
+
+            <section class="program-section">
+                <div class="program-card">
+                    <div class="program-content">
+                        <h2>Water of Bengal, Soil of Bengal</h2>
+                        <p>By weaving the timeless, soulful humanism of Rabindra Sangeet with the stirring cadence of
+                            patriotic melodies, school students across categories transformed the competetion into a
+                            canvas of living heritage and intellectual awakening. Their performances resonated far
+                            beyond pure technique, blending flawless vocal melody, crisp rhythm, and poetic diction to
+                            honor Tagore’s visionary art while igniting a modern spirit of social consciousness and
+                            scientific inquiry. Through every nuanced note, these young voices bridged emotion and
+                            intellect, illustrating how art can simultaneously nurture the heart and enlighten the mind.
+                        </p>
+                    </div>
+                    <div class="program-img"><img src="../../../gallary/cul ceremony 26/song.jpeg"
+                            alt="song competetion">
+                    </div>
+                </div>
+            </section>
+
+            <section class="rank-section">
+                <h2 class="rank-heading">A-Division (Rabindra Sangeet)</h2>
+                <ul class="rank-grid">
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">1st</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥇</p>
+                        </div>
+                        <div class="clubbed-student-list first">
+                            <div class="student-entry">
+                                <h3>Lagnajita Banerjee</h3>
+                                <h2>ST Xavier's Public School</h2>
+                                <h2></h2>
+                            </div>
+
+                        </div>
+                    </li>
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">2nd</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥈</p>
+                        </div>
+                        <div class="clubbed-student-list second">
+                            <div class="student-entry">
+                                <h3>Mayukh Santra</h3>
+                                <h2>Divine Mercy School</h2>
+                                <h2>VI</h2>
+                            </div>
+
+                        </div>
+                    </li>
+
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">3rd</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥉</p>
+                        </div>
+                        <div class="clubbed-student-list third">
+                            <div class="student-entry">
+                                <h3>Olivia Ghosh</h3>
+                                <h2>Srikrishnapur Chittaranjan High School</h2>
+                                <h2>VI</h2>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="rank-section">
+                <h2 class="rank-heading">B-Division (Patriotic Songs)</h2>
+                <ul class="rank-grid">
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">1st</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥇</p>
+                        </div>
+                        <div class="clubbed-student-list first">
+                            <div class="student-entry">
+                                <h3>Adrita Pahari</h3>
+                                <h2>Mugkalyan Girls High School</h2>
+                                <h2>VIII</h2>
+
+                            </div>
+
+                        </div>
+                    </li>
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">2nd</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥈</p>
+                        </div>
+                        <div class="clubbed-student-list second">
+                            <div class="student-entry">
+                                <h3>Priti Maji</h3>
+                                <h2>Gutinagari Aloktirth Bidyaniketan</h2>
+                                <h2>IX</h2>
+
+                            </div>
+
+                        </div>
+                    </li>
+
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">3rd</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥉</p>
+                        </div>
+                        <div class="clubbed-student-list third">
+                            <div class="student-entry">
+                                <h3>Poulomi Ghosh</h3>
+                                <h2></h2>
+                                <h2></h2>
+
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Header Section -->
+            <section class="ceremony-header">
+                <h1 style="color: var(--text-color);">Essay Competition</h1>
+            </section>
+
+            <section class="program-section">
+                <div class="program-card">
+                    <div class="program-content">
+                        <h2>Half the particles in the universe obey him!</h2>
+                        <p><b>Satyendra Nath Bose co-developed quantum statistics defining bosons</b></p>
+                        <p>India’s foundational scientific breakthroughs spanned physics, chemistry, and medicine,
+                            driven by a generation of visionary pioneers. Acharya Jagadish Chandra Bose pioneered
+                            millimeter microwave transmission and proved plant responsiveness using the crescograph,
+                            while Meghnad Saha
+                            formulated his ionization equation to decipher stellar compositions. In chemistry and
+                            medicine, Acharya Prafulla Chandra Ray discovered mercurous nitrite and founded India's
+                            pharmaceutical industry, alongside Dr. Upendranath Brahmachari, whose development of Urea
+                            Stibamine cured millions of Kala-azar.
+                        </p>
+                    </div>
+                    <div class="program-img"><img src="../../../gallary/cul ceremony 26/essay.jpeg"
+                            alt="essay competetion">
+                    </div>
+                </div>
+            </section>
+
+            <section class="rank-section">
+                <h2 class="rank-heading">A-Division (Favorite Scientist)</h2>
+                <ul class="rank-grid">
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">1st</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥇</p>
+                        </div>
+                        <div class="clubbed-student-list first">
+                            <div class="student-entry">
+                                <h3>Usri Purkait</h3>
+                                <h2></h2>
+                                <h2></h2>
+                            </div>
+
+                        </div>
+                    </li>
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">2nd</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥈</p>
+                        </div>
+                        <div class="clubbed-student-list second">
+                            <div class="student-entry">
+                                <h3>Srinjana Das</h3>
+                                <h2>Sarada Sishu Mandir</h2>
+                                <h2>VIII</h2>
+                            </div>
+
+                        </div>
+                    </li>
+
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">3rd</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥉</p>
+                        </div>
+                        <div class="clubbed-student-list third">
+                            <div class="student-entry">
+                                <h3>Swadhrita Hait</h3>
+                                <h2>Narayana School</h2>
+                                <h2>VIII</h2>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="rank-section">
+                <h2 class="rank-heading">B-Division (AI in our life)</h2>
+                <ul class="rank-grid">
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">1st</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥇</p>
+                        </div>
+                        <div class="clubbed-student-list first">
+                            <div class="student-entry">
+                                <h3>Anubhav Bera</h3>
+                                <h2>Uluberia High School</h2>
+                                <h2>XI</h2>
+
+                            </div>
+
+                        </div>
+                    </li>
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">2nd</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥈</p>
+                        </div>
+                        <div class="clubbed-student-list second">
+                            <div class="student-entry">
+                                <h3>Solanki Mishra</h3>
+                                <h2>Uluberia Binapani Girls' High School</h2>
+                                <h2>XII</h2>
+
+                            </div>
+
+                        </div>
+                    </li>
+
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">3rd</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥉</p>
+                        </div>
+                        <div class="clubbed-student-list third">
+                            <div class="student-entry">
+                                <h3>Juha Tanish</h3>
+                                <h2>Uluberia Binapani Girls High School</h2>
+                                <h2>XI</h2>
+
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+
+        </div>
+    </div>
+
+    <!-- Bengali Content Section -->
+    <div class="lang-content bn">
+        <div class="ceremony-container">
+
+            <!-- Header Section -->
+            <header class="ceremony-header">
+                <img src="../../../banner/40 years.png" alt="🌎 🌲" style="border-radius: var(--space-md);"></img>
+                <p></p>
+                <h1>সাংস্কৃতিক প্রতিযোগিতা</h1>
+                <p> পশ্চিমবঙ্গ বিজ্ঞান মঞ্চ &bull; ১৬ই আগস্ট, ২০২৬</p>
+                <!-- Horizontal Scroll Gallery -->
+            </header>
+
+            <!-- Key Dignitaries -->
+            <section class="dignitaries-section">
+                <h2 class="section-heading">প্রধান অতিথি</h2>
+                <ul class="dignitaries-grid">
+                    <li class="dignitary-card">
+                        <div class="role-badge">সভাপতি - হাওড়া জেলা</div>
+                        <img src="../../../Guests/Kali Jasu.jpeg" alt="হাওড়া জেলা সভাপতি">
+                        <h3>কালিকৃষ্ণ জাসু</h3>
+                        <p>শিক্ষক</p>
+                    </li>
+                    <li class="dignitary-card">
+                        <div class="role-badge">সম্পাদক - উলুবেড়িয়া কেন্দ্র</div>
+                        <img src="../../../Guests/Biswajit Paul.jpeg" alt="উলুবেড়িয়া কেন্দ্র সম্পাদক">
+                        <h3>বিশ্বজিত পাল</h3>
+                        <p>শিক্ষক</p>
+                    </li>
+                    <li class="dignitary-card">
+                        <div class="role-badge">সম্পাদক - যদুরবেড়িয়া চক্র</div>
+                        <img src="../../../Guests/Pankaj jasu.jpeg" alt="যদুরবেড়িয়া চক্র সম্পাদক">
+                        <h3>পঙ্কজ জাসু</h3>
+                        <p>সম্পাদক</p>
+                    </li>
+                    <li class="dignitary-card">
+                        <div class="role-badge">সম্পাদক - কালীনগর চক্র</div>
+                        <img src="../../../Guests/Biswanath Pramanick.jpeg" alt="কালীনগর চক্র সম্পাদক">
+                        <h3>বিশ্বনাথ প্রমানিক</h3>
+                        <p>শিক্ষক</p>
+                    </li>
+                    <li class="dignitary-card">
+                        <div class="role-badge">সম্পাদক - নবগ্রাম চক্র</div>
+                        <img src="../../../Guests/Kartick Samanta.jpeg" alt="নবগ্রাম চক্র সম্পাদক">
+                        <h3>কার্ত্তিক সামন্ত</h3>
+                        <p>শিক্ষক</p>
+                    </li>
+                    <li class="dignitary-card">
+                        <div class="role-badge">সম্পাদক - উলুবেড়িয়া চক্র</div>
+                        <img src="../../../Guests/Plaban Das.jpg" alt="সম্পাদক - উলুবেড়িয়া চক্র">
+                        <h3>প্লাবন দাস</h3>
+                        <p>শিক্ষক</p>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Header Section -->
+            <section class="ceremony-header">
+                <h1 style="color: var(--text-color);">বসে আঁকো প্রতিযোগিতা</h1>
+            </section>
+
+            <section class="program-section">
+                <div class="program-card">
+                    <div class="program-content">
+                        <h2>তুলির টানে প্রকৃতির জয়গান</h2>
+                        <p>এক শান্ত, অস্পর্শী উপত্যকার গভীরে, বনের সাথে নিবিড় সম্প্রীতিতে বাঁচা গ্রামবাসীদের
+                            কুঁড়েঘরের
+                            পাশ দিয়ে বয়ে যেত কাঁচের মতো স্বচ্ছ নদী। সেই প্রাণবন্ত সবুজ মাঠের বুক চিরে হেঁটে চলতেন এক
+                            চারণকবি; খোলা আকাশের নিচে দু’হাত ছড়িয়ে তিনি গাইতেন শিল্পায়নের কলঙ্ক মুক্ত এক নির্মল
+                            প্রকৃতির
+                            জয়গান। পাহাড়ে পাহাড়ে ধ্বনিত তাঁর সেই সুর যেন পুরো বিশ্বের জন্য এক বিশ্বজনীন প্রার্থনায়
+                            রূপ
+                            নিল। আর উঁচুতে, নীল আকাশে ডানা মেলল এক শুভ্র পায়রা, যা সজীব পৃথিবীর বুক চিরে নানা
+                            সংস্কৃতি
+                            আর বন্যপ্রাণীদের নিজদের এই অপূর্ব ভারসাম্যময় বাসভূমিকে রক্ষা করার এক অভিন্ন অঙ্গীকারে
+                            একসূত্রে বেঁধে দিল।
+                        </p>
+                    </div>
+                    <div class="program-img"><img src="../../../gallary/cul ceremony 26/drawing.jpeg"
+                            alt="বসে আঁকো প্রতিযোগিতা">
+                    </div>
+                </div>
+            </section>
+
+            <section class="rank-section">
+                <h2 class="rank-heading">ক-বিভাগ (যেমন খুশি আঁকো)</h2>
+                <ul class="rank-grid">
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">প্রথম</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥇</p>
+                        </div>
+                        <div class="clubbed-student-list first">
+                            <div class="student-entry">
+                                <h3>প্রিয়ম মন্ডল</h3>
+                                <h2>মৌলা নেতাজী বিদ্যালয়</h2>
+                                <h2>V</h2>
+                                <img src="../../../gallary/cul ceremony 26/a1.jpeg" alt="">
+                            </div>
+
+                        </div>
+                    </li>
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">দ্বিতীয়</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥈</p>
+                        </div>
+                        <div class="clubbed-student-list second">
+                            <div class="student-entry">
+                                <h3>সুভাঙ্গি সাঁতরা</h3>
+                                <h2>মহেশপুর প্রাথমিক বিদ্যালয়</h2>
+                                <h2>III</h2>
+                                <img src="../../../gallary/cul ceremony 26/a2.jpeg" alt="">
+                            </div>
+
+                        </div>
+                    </li>
+
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">তৃতীয়</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥉</p>
+                        </div>
+                        <div class="clubbed-student-list third">
+                            <div class="student-entry">
+                                <h3>কঙ্কনা দেবনাথ</h3>
+                                <h2>সারদা শিশু মন্দির</h2>
+                                <h2>V</h2>
+                                <img src="../../../gallary/cul ceremony 26/a3.jpeg" alt="">
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="rank-section">
+                <h2 class="rank-heading">খ-বিভাগ (বাংলার প্রকৃতি)</h2>
+                <ul class="rank-grid">
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">প্রথম</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥇</p>
+                        </div>
+                        <div class="clubbed-student-list first">
+                            <div class="student-entry">
+                                <h3>বৃষ্টি ব্যানার্জী</h3>
+                                <h2>যদুরবেড়িয়া বালিকা বিদ্যালয়</h2>
+                                <h2>VI</h2>
+                                <img src="../../../gallary/cul ceremony 26/b1.jpeg" alt="">
+                            </div>
+
+                        </div>
+                    </li>
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">দ্বিতীয়</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥈</p>
+                        </div>
+                        <div class="clubbed-student-list second">
+                            <div class="student-entry">
+                                <h3>প্রতাপাদিত্য কোদালী</h3>
+                                <h2>খলিশানী জাতীয় বিদ্যাপীঠ</h2>
+                                <h2>VII</h2>
+                                <img src="../../../gallary/cul ceremony 26/b2.jpeg" alt="">
+                            </div>
+
+                        </div>
+                    </li>
+
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">তৃতীয়</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥉</p>
+                        </div>
+                        <div class="clubbed-student-list third">
+                            <div class="student-entry">
+                                <h3>অপ্রতীম মন্ডল</h3>
+                                <h2>বিবেকানন্দ মিশন হাই স্কুল</h2>
+                                <h2>IX</h2>
+                                <img src="../../../gallary/cul ceremony 26/b3.jpeg" alt="">
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="rank-section">
+                <h2 class="rank-heading">গ-বিভাগ (বৈচিত্রময় পৃথিবী)</h2>
+                <ul class="rank-grid">
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">প্রথম</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥇</p>
+                        </div>
+                        <div class="clubbed-student-list first">
+                            <div class="student-entry">
+                                <h3>প্রিয়ম সাঁতরা</h3>
+                                <h2>আয়মা গাজোনকোল হাই স্কুল</h2>
+                                <h2>IX</h2>
+                                <img src="../../../gallary/cul ceremony 26/c1.jpeg" alt="">
+                            </div>
+
+                        </div>
+                    </li>
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">দ্বিতীয়</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥈</p>
+                        </div>
+                        <div class="clubbed-student-list second">
+                            <div class="student-entry">
+                                <h3>প্রান্তিক হাজরা</h3>
+                                <h2>বিবেকানন্দ মিশন হাই স্কুল</h2>
+                                <h2>VIII</h2>
+                                <img src="../../../gallary/cul ceremony 26/c2.jpeg" alt="">
+                            </div>
+
+                        </div>
+                    </li>
+
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">তৃতীয়</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥉</p>
+                        </div>
+                        <div class="clubbed-student-list third">
+                            <div class="student-entry">
+                                <h3>শ্রীজা মালিক</h3>
+                                <h2>বিবেকানন্দ মিশন হাই স্কুল</h2>
+                                <h2>IX</h2>
+                                <img src="../../../gallary/cul ceremony 26/c3.jpeg" alt="">
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+
+            <!-- Header Section -->
+            <section class="ceremony-header">
+                <h1 style="color: var(--text-color);">আবৃত্তি প্রতিযোগিতা</h1>
+            </section>
+
+            <section class="program-section">
+                <div class="program-card">
+                    <div class="program-content">
+                        <h2>মহাজাগতিক মেলবন্ধন ও সাম্যের চেতনা</h2>
+                        <p>রবীন্দ্রনাথ ঠাকুর, কাজী নজরুল ইসলাম এবং সুকুমার রায় মানুষের পরম আত্মীয়তাকে প্রকৃতির
+                            সাথে এক সুতোয় বুনেছেন—রবীন্দ্রনাথ মহাজাগতিক মেলবন্ধনের সুর সাধনায়, নজরুল অগ্নিগর্ভ
+                            সাম্যবাদে এবং সুকুমার রায় অহংকার-গলানো নিখাদ হাস্যরসে। প্রাকৃতিক একাত্মতার এই অবিনাশী
+                            চেতনাকে ধারণ করে তাঁদের সৃষ্টি সামাজিক বৈষম্য ও বিভেদের প্রাচীর চুরমার করে দেয়; আমাদের
+                            স্মরণ করিয়ে দেয় যে আমরা সবাই একই মূলের শাশ্বত অংশ এবং প্রকৃতি ও মানুষের সাথে এক
+                            সীমাহীন আত্মীয়তার বন্ধনে আবদ্ধ।
+                        </p>
+                    </div>
+                    <div class="program-img"><img src="../../../gallary/cul ceremony 26/recit.jpeg"
+                            alt="আবৃত্তি প্রতিযোগিতা">
+                    </div>
+                </div>
+            </section>
+
+            <section class="rank-section">
+                <h2 class="rank-heading">ক-বিভাগ (সুকুমার রায়)</h2>
+                <ul class="rank-grid">
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">প্রথম</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥇</p>
+                        </div>
+                        <div class="clubbed-student-list first">
+                            <div class="student-entry">
+                                <h3>সৌমিলি ডলি</h3>
+                                <h2>উলুবেড়িয়া বীণাপাণি উচ্চ বালিকা বিদ্যালয়</h2>
+                                <h2>VII</h2>
+                            </div>
+
+                        </div>
+                    </li>
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">দ্বিতীয়</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥈</p>
+                        </div>
+                        <div class="clubbed-student-list second">
+                            <div class="student-entry">
+                                <h3>দীপ্তশ্রী নায়ক</h3>
+                                <h2>খলিশানী জাতীয় বিদ্যাপীঠ</h2>
+                                <h2>VI</h2>
+                            </div>
+
+                        </div>
+                    </li>
+
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">তৃতীয়</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥉</p>
+                        </div>
+                        <div class="clubbed-student-list third">
+                            <div class="student-entry">
+                                <h3>সুপ্রীতি মান্না</h3>
+                                <h2></h2>
+                                <h2></h2>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="rank-section">
+                <h2 class="rank-heading">খ-বিভাগ (রবীন্দ্রনাথ ঠাকুর)</h2>
+                <ul class="rank-grid">
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">প্রথম</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥇</p>
+                        </div>
+                        <div class="clubbed-student-list first">
+                            <div class="student-entry">
+                                <h3>শৌনক অধিকারী</h3>
+                                <h2>উলুবেড়িয়া হাই স্কুল</h2>
+                                <h2>VIII</h2>
+
+                            </div>
+
+                        </div>
+                    </li>
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">দ্বিতীয়</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥈</p>
+                        </div>
+                        <div class="clubbed-student-list second">
+                            <div class="student-entry">
+                                <h3>শ্রেয়া রায়</h3>
+                                <h2></h2>
+                                <h2>VIII</h2>
+
+                            </div>
+
+                        </div>
+                    </li>
+
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">তৃতীয়</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥉</p>
+                        </div>
+                        <div class="clubbed-student-list third">
+                            <div class="student-entry">
+                                <h3>শ্রায়নদ্রিতা মন্ডল</h3>
+                                <h2></h2>
+                                <h2>VII</h2>
+
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Header Section -->
+            <section class="ceremony-header">
+                <h1 style="color: var(--text-color);">সংগীত প্রতিযোগিতা</h1>
+            </section>
+
+            <section class="program-section">
+                <div class="program-card">
+                    <div class="program-content">
+                        <h2>বাংলার মাটি বাংলার জল</h2>
+                        <p>রবীন্দ্রসংগীতের কালজয়ী, প্রাণস্পর্শী মানবতাবাদ এবং দেশাত্মবোধক সুরের আলোড়ন সৃষ্টিকারী
+                            লয়-ছন্দকে একসূত্রে গেঁথে, বিভিন্ন বিভাগের শিক্ষার্থী-শিল্পীরা এই প্রতিযোগিতাটিকে এক জীবন্ত
+                            ঐতিহ্য ও মননশীল জাগরণের ক্যানভাসে রূপান্তরিত করেছিল। তাদের এই পরিবেশনা স্রেফ কারিগরি দক্ষতার
+                            গণ্ডি পেরিয়ে এক গভীর সাড়া ফেলেছিল—যেখানে নিখুঁত কণ্ঠমাধুর্য, স্পষ্ট তাল-লয় এবং কাব্যিক
+                            উচ্চারণের মেলবন্ধন রবীন্দ্রনাথের দূরদর্শী শিল্পভাবনাকে যেমন সম্মানিত করেছিল, তেমনই
+                            প্রজ্জ্বলিত করেছিল আধুনিক সামাজিক চেতনা ও বৈজ্ঞানিক অনুসন্ধিৎসার নতুন স্পন্দন। সুরের প্রতিটি
+                            সূক্ষ্ম বিন্যাসে এই তরুণ কণ্ঠগুলো আবেগ ও মননের মাঝে এক অপূর্ব সেতুবন্ধন গড়ে তুলেছিল, যা
+                            প্রত্যক্ষভাবে দেখিয়ে দেয় কীভাবে শিল্প একই সাথে হৃদয়কে সিক্ত করতে এবং মনকে আলোকিত করতে
+                            পারে।
+                        </p>
+                    </div>
+                    <div class="program-img"><img src="../../../gallary/cul ceremony 26/song.jpeg"
+                            alt="সংগীত প্রতিযোগিতা">
+                    </div>
+                </div>
+            </section>
+
+            <section class="rank-section">
+                <h2 class="rank-heading">ক-বিভাগ (রবীন্দ্র সংগীত)</h2>
+                <ul class="rank-grid">
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">প্রথম</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥇</p>
+                        </div>
+                        <div class="clubbed-student-list first">
+                            <div class="student-entry">
+                                <h3>লগ্নজিতা ব্যানার্জী</h3>
+                                <h2>সেন্ট জেভিয়ার্স পাবলিক স্কুল</h2>
+                                <h2></h2>
+                            </div>
+
+                        </div>
+                    </li>
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">দ্বিতীয়</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥈</p>
+                        </div>
+                        <div class="clubbed-student-list second">
+                            <div class="student-entry">
+                                <h3>ময়ূখ সাঁতরা</h3>
+                                <h2>ডিভাইন মারসি স্কুল</h2>
+                                <h2>VI</h2>
+                            </div>
+
+                        </div>
+                    </li>
+
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">তৃতীয়</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥉</p>
+                        </div>
+                        <div class="clubbed-student-list third">
+                            <div class="student-entry">
+                                <h3>অলিভিয়া ঘোষ</h3>
+                                <h2>শ্রীকৃষ্ণপুর চিত্তরঞ্জন হাই স্কুল</h2>
+                                <h2>VI</h2>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="rank-section">
+                <h2 class="rank-heading">খ-বিভাগ (দেশাত্মবোধক গান)</h2>
+                <ul class="rank-grid">
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">প্রথম</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥇</p>
+                        </div>
+                        <div class="clubbed-student-list first">
+                            <div class="student-entry">
+                                <h3>আদৃতা পাহাড়ী</h3>
+                                <h2>মুগকল্যান গার্লস হাই স্কুল</h2>
+                                <h2>VIII</h2>
+
+                            </div>
+
+                        </div>
+                    </li>
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">দ্বিতীয়</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥈</p>
+                        </div>
+                        <div class="clubbed-student-list second">
+                            <div class="student-entry">
+                                <h3>প্রীতি মাজী</h3>
+                                <h2>গুটীনাগরী আলোকতীর্থ বিদ্যানিকেতন</h2>
+                                <h2>IX</h2>
+
+                            </div>
+
+                        </div>
+                    </li>
+
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">তৃতীয়</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥉</p>
+                        </div>
+                        <div class="clubbed-student-list third">
+                            <div class="student-entry">
+                                <h3>পৌলমী ঘোষ</h3>
+                                <h2></h2>
+                                <h2></h2>
+
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            <!-- Header Section -->
+            <section class="ceremony-header">
+                <h1 style="color: var(--text-color);">প্রবন্ধ রচনা</h1>
+            </section>
+
+            <section class="program-section">
+                <div class="program-card">
+                    <div class="program-content">
+                        <h2>মহাবিশ্বের অর্ধেক কণা তাঁকে অনুসরণ করে!</h2>
+                        <p><b>সত্যেন্দ্রনাথ বসু 'বোসন' কণার চরিত্র নির্ধারণকারী 'বোস-আইনস্টাইন পরিসংখ্যান'
+                                যৌথভাবে বিকাশ করেন</b></p>
+                        <p>পদার্থবিজ্ঞান, রসায়ন ও চিকিৎসাবিজ্ঞানে একঝাঁক দূরদর্শী পথিকৃৎ বিজ্ঞানীর যুগান্তকারী অবদান
+                            ভারতের বৈজ্ঞানিক ভিত্তিকে সুদৃঢ় করেছিল। আচার্য জগদীশচন্দ্র বসু মিলিমিটার মাইক্রোওয়েভ
+                            তারহীন যোগাযোগের সূচনা করেন এবং ক্রেসকোগ্রাফের সাহায্যে উদ্ভিদের সংবেদনশীলতা প্রমাণ করেন,
+                            অন্যদিকে মেঘনাদ সাহা নক্ষত্রের তাপমাত্রা ও উপাদান উন্মোচনে তাঁর 'আয়নন সমীকরণ'
+                            উদ্ভাবন করেন। রসায়ন ও চিকিৎসা ক্ষেত্রে, আচার্য প্রফুল্লচন্দ্র রায় মারকিউরাস নাইট্রাইট
+                            আবিষ্কারের পাশাপাশি ভারতের ওষুধ শিল্পের ভিত্তি স্থাপন করেন, আর ড. উপেন্দ্রনাথ ব্রহ্মচারী
+                            'ইউরিয়া স্টিবামাইন' উদ্ভাবন করে কালাজ্বরে আক্রান্ত লক্ষ লক্ষ মানুষকে আরোগ্য দান করেন।
+                        </p>
+                    </div>
+                    <div class="program-img"><img src="../../../gallary/cul ceremony 26/essay.jpeg" alt="প্রবন্ধ রচনা">
+                    </div>
+                </div>
+            </section>
+
+            <section class="rank-section">
+                <h2 class="rank-heading">ক-বিভাগ (প্রিয় বিজ্ঞানী)</h2>
+                <ul class="rank-grid">
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">প্রথম</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥇</p>
+                        </div>
+                        <div class="clubbed-student-list first">
+                            <div class="student-entry">
+                                <h3>উস্রি পুরকাইত</h3>
+                                <h2></h2>
+                                <h2></h2>
+                            </div>
+
+                        </div>
+                    </li>
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">দ্বিতীয়</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥈</p>
+                        </div>
+                        <div class="clubbed-student-list second">
+                            <div class="student-entry">
+                                <h3>সৃজনা দাস</h3>
+                                <h2>সারদা শিশু মন্দির</h2>
+                                <h2>VIII</h2>
+                            </div>
+
+                        </div>
+                    </li>
+
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">তৃতীয়</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥉</p>
+                        </div>
+                        <div class="clubbed-student-list third">
+                            <div class="student-entry">
+                                <h3>স্বধৃতা হাইত</h3>
+                                <h2>নারায়না স্কুল</h2>
+                                <h2>VIII</h2>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+            <section class="rank-section">
+                <h2 class="rank-heading">খ-বিভাগ (দিনচারণে AI)</h2>
+                <ul class="rank-grid">
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">প্রথম</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥇</p>
+                        </div>
+                        <div class="clubbed-student-list first">
+                            <div class="student-entry">
+                                <h3>অনুভব বেরা</h3>
+                                <h2>উলুবেড়িয়া হাই স্কুল</h2>
+                                <h2>XI</h2>
+
+                            </div>
+
+                        </div>
+                    </li>
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">2nd</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥈</p>
+                        </div>
+                        <div class="clubbed-student-list second">
+                            <div class="student-entry">
+                                <h3>সোলাঙ্কি মিশ্র</h3>
+                                <h2>উলুবেড়িয়া বীণাপাণি গার্লস হাই স্কুল</h2>
+                                <h2>XII</h2>
+
+                            </div>
+
+                        </div>
+                    </li>
+
+                    <li class="rank-card">
+                        <span class="role-badge rank-badge">3rd</span>
+                        <br>
+                        <div class="figurine">
+                            <p class="rank-icon">🥉</p>
+                        </div>
+                        <div class="clubbed-student-list third">
+                            <div class="student-entry">
+                                <h3>জুহা তানিশ</h3>
+                                <h2>উলুবেড়িয়া বীণাপাণি গার্লস হাই স্কুল</h2>
+                                <h2>XI</h2>
+
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Scroll To Top -->
+    <button id="scrollToTopBtn" onclick="scrollToTop()" aria-label="Scroll to top"><i
+            class="fa-solid fa-arrow-up"></i></button>
+
+    <!-- ACTIVATING THE SCROLL FUNCTION -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Apply horizontal scroll to both language sections. Note: the Bengali section ID is set to 'galleryScroll-bn'
+            if (typeof enableMouseWheelScroll === 'function') {
+                enableMouseWheelScroll('galleryScroll');
+                enableMouseWheelScroll('galleryScroll-bn'); // Apply to the new Bengali gallery
+                console.log("Horizontal scroll enabled for both galleries");
+            } else {
+                console.error("enableMouseWheelScroll function not found in utils.js");
+            }
+
+            // NEW: Initialize dot indicators for both galleries
+            if (typeof setupGalleryDots === 'function') {
+                setupGalleryDots('galleryScroll', 'galleryDots');
+                setupGalleryDots('galleryScroll-bn', 'galleryDots-bn');
+                console.log("Gallery dots initialized for both galleries");
+            } else {
+                console.error("setupGalleryDots function not found in utils.js");
+            }
+        });
+
+        function openWindow() {
+            window.open("../../../adultration/adultration Pt I.pdf", "_blank");
+        }
+    </script>
+</body>

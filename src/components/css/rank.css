@@ -115,6 +115,15 @@
             /* 10px 0 5px */
             color: var(--text-color-primary);
         }
+
+        h2 {
+            font-family: var(--font-body);
+            font-size: var(--font-size-p);
+            font-weight: var(--font-weight-normal);
+            margin: var(--space-sm) 0 var(--space-xs);
+            /* 10px 0 5px */
+            color: var(--text-color-primary);
+        }
     }
 }
 

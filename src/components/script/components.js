@@ -156,8 +156,8 @@ const ComponentGenerator = {
                                 <p>&nbsp;</p>
                                 <a href="./download.html?scroll=main-content">Previous Papers</a> <a href="./publications.html?scroll=main-content&openFirst=true">Buy Question Bank</a>
                                 <p>&nbsp;</p>
-                                <li>Howrah Zilla Vigyan Manosikota-o-Medha Aviksha 2025 has been successfully completed.</li>
-                                <a href="./src/components/pages/aviksha/results.html">CheckResult.</a>
+                                <li>Cultural Competition 2026 has been successfully completed.</li>
+                                <a href="./src/components/pages/programme/40_year_8_26.html">CheckResult.</a>
                             </ul>
                         </div>
                         <div class="lang-content bn">
@@ -168,8 +168,8 @@ const ComponentGenerator = {
                                 <p>&nbsp;</p>
                                 <a href="./download.html?scroll=main-content">বিগত বছরের প্রশ্ন</a> <a href="./publications.html?scroll=main-content&openFirst=true">প্রশ্ন বিচিত্রা কিনুন</a>
                                 <p>&nbsp;</p>
-                                <li>হাওড়া জেলা বিজ্ঞান মানসিকতা-ও-মেধা অভিক্ষা ২০২৫ সফলভাবে সম্পন্ন হয়েছে।</li>
-                                <a href="./src/components/pages/aviksha/results.html">ফলাফল দেখুন।</a>
+                                <li>সাংস্কৃতিক প্রতিযোগীতা ২০২৬ সফলভাবে সম্পন্ন হয়েছে।</li>
+                                <a href="./src/components/pages/programme/40_year_8_26.html">ফলাফল দেখুন।</a>
                             </ul>
                         </div>
                     </div>
