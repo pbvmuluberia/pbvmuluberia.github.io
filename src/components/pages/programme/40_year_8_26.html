@@ -141,11 +141,11 @@
                         <p>Teacher</p>
                     </li>
                     <li class="dignitary-card">
-    <div class="role-badge">Convener Cultural Sub Committee</div>
-    <img src="../../../Guests/MD faruque.jpeg" alt="Convener">
-    <h3>MD Faruque</h3>
-    <p>Teacher</p>
-</li>
+                        <div class="role-badge">Convener Cultural Sub Committee</div>
+                        <img src="../../../Guests/MD faruque.jpeg" alt="Convener">
+                        <h3>MD Faruque</h3>
+                        <p>Teacher</p>
+                    </li>
                 </ul>
             </section>
 
@@ -187,7 +187,7 @@
                                 <h3>Priyom Mondal</h3>
                                 <h2>Moula Netaji Vidyalay</h2>
                                 <h2>V</h2>
-                                <img src="../../../gallary/cul ceremony 26/a1.jpeg" alt="">
+                                <img src="../../../gallary/cul ceremony 26/a1.jpeg" alt="" onclick="openImgModal(src)">
                             </div>
 
                         </div>
@@ -778,11 +778,11 @@
                         <p>শিক্ষক</p>
                     </li>
                     <li class="dignitary-card">
-    <div class="role-badge">আহ্বায়ক সাংস্কৃতিক উপসমিতি</div>
-    <img src="../../../Guests/MD faruque.jpeg" alt="আহ্বায়ক">
-    <h3>মহম্মদ ফারুক</h3>
-    <p>শিক্ষক</p>
-</li>
+                        <div class="role-badge">আহ্বায়ক সাংস্কৃতিক উপসমিতি</div>
+                        <img src="../../../Guests/MD faruque.jpeg" alt="আহ্বায়ক">
+                        <h3>মহম্মদ ফারুক</h3>
+                        <p>শিক্ষক</p>
+                    </li>
                 </ul>
             </section>
 
@@ -1245,7 +1245,8 @@
                 <div class="program-card">
                     <div class="program-content">
                         <h2>মহাবিশ্বের অর্ধেক কণা তাঁকে অনুসরণ করে!</h2>
-                        <p><b>সত্যেন্দ্রনাথ বসু 'বোসন' কণার চরিত্র নির্ধারণকারী 'বোস-আইনস্টাইন পরিসংখ্যান' উদ্ভাবন করেন।</b></p>
+                        <p><b>সত্যেন্দ্রনাথ বসু 'বোসন' কণার চরিত্র নির্ধারণকারী 'বোস-আইনস্টাইন পরিসংখ্যান' উদ্ভাবন
+                                করেন।</b></p>
                         <p>পদার্থবিজ্ঞান, রসায়ন ও চিকিৎসাবিজ্ঞানে একঝাঁক দূরদর্শী পথিকৃৎ বিজ্ঞানীর যুগান্তকারী অবদান
                             ভারতের বৈজ্ঞানিক ভিত্তিকে সুদৃঢ় করেছিল। আচার্য জগদীশচন্দ্র বসু মিলিমিটার মাইক্রোওয়েভ
                             তারহীন যোগাযোগের সূচনা করেন এবং ক্রেসকোগ্রাফের সাহায্যে উদ্ভিদের সংবেদনশীলতা প্রমাণ করেন,
@@ -1368,6 +1369,13 @@
         </div>
     </div>
 
+    <!-- Img Modal -->
+    <dialog id="modal" style="margin: auto;">
+        <!-- The expanding-image class will be toggled here -->
+        <img src="" alt="Expanded Image" id="modalImage">
+    </dialog>
+
+
     <!-- Scroll To Top -->
     <button id="scrollToTopBtn" onclick="scrollToTop()" aria-label="Scroll to top"><i
             class="fa-solid fa-arrow-up"></i></button>
@@ -1375,23 +1383,92 @@
     <!-- ACTIVATING THE SCROLL FUNCTION -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            // Apply horizontal scroll to both language sections. Note: the Bengali section ID is set to 'galleryScroll-bn'
+            // Apply horizontal scroll to both language sections.
             if (typeof enableMouseWheelScroll === 'function') {
                 enableMouseWheelScroll('galleryScroll');
-                enableMouseWheelScroll('galleryScroll-bn'); // Apply to the new Bengali gallery
+                enableMouseWheelScroll('galleryScroll-bn');
                 console.log("Horizontal scroll enabled for both galleries");
-            } else {
-                console.error("enableMouseWheelScroll function not found in utils.js");
             }
 
-            // NEW: Initialize dot indicators for both galleries
+            // Initialize dot indicators for both galleries
             if (typeof setupGalleryDots === 'function') {
                 setupGalleryDots('galleryScroll', 'galleryDots');
                 setupGalleryDots('galleryScroll-bn', 'galleryDots-bn');
                 console.log("Gallery dots initialized for both galleries");
-            } else {
-                console.error("setupGalleryDots function not found in utils.js");
             }
+        });
+
+        // --- View Transition Image Modal Logic ---
+
+        const modal = document.getElementById('modal');
+        const modalImage = document.getElementById('modalImage');
+        let currentActiveThumbnail = null;
+
+        // Use event delegation to catch clicks on any student image
+        document.addEventListener('click', (e) => {
+            // Check if clicked element is an image inside a student-entry
+            if (e.target.tagName === 'IMG' && e.target.closest('.student-entry')) {
+                const clickedImg = e.target;
+
+                // Fallback for browsers that don't support View Transitions
+                if (!document.startViewTransition) {
+                    modalImage.src = clickedImg.src;
+                    modal.showModal();
+                    return;
+                }
+
+                // Assign the transition name to the clicked thumbnail
+                clickedImg.classList.add('expanding-image');
+                currentActiveThumbnail = clickedImg;
+
+                // Start the view transition
+                document.startViewTransition(() => {
+                    modalImage.src = clickedImg.src;
+
+                    // Move transition name to modal image and display dialog
+                    clickedImg.classList.remove('expanding-image');
+                    modalImage.classList.add('expanding-image');
+                    modal.showModal();
+                });
+            }
+        });
+
+        function hideImgModal() {
+            if (!modal.open) return;
+
+            // Fallback
+            if (!document.startViewTransition) {
+                modal.close();
+                modalImage.src = "";
+                return;
+            }
+            document.documentElement.classList.add('modal-is-closing');
+
+            document.startViewTransition(() => {
+                // Close dialog and move transition name back to thumbnail
+                modal.close();
+                if (currentActiveThumbnail) {
+                    currentActiveThumbnail.classList.add('expanding-image');
+                }
+            }).finished.then(() => {
+                // Clean up state
+                if (currentActiveThumbnail) {
+                    currentActiveThumbnail.classList.remove('expanding-image');
+                    currentActiveThumbnail = null;
+                }
+                modalImage.src = "";
+                document.documentElement.classList.remove('modal-is-closing');
+            });
+
+        }
+
+        // Close modal when clicking the image/backdrop
+        modal.addEventListener('click', hideImgModal);
+
+        // Intercept native Escape key press to use View Transitions for closing
+        modal.addEventListener('cancel', (e) => {
+            e.preventDefault();
+            hideImgModal();
         });
 
         function openWindow() {
