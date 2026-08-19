@@ -32,6 +32,7 @@
     <script src="../../script/utils.js" defer></script>
     <script src="../../script/modal.js" defer></script>
     <script src="../../script/init.js" defer></script>
+    <script src="../../script/rank.js" defer></script>
 
     <script>
         (function () {
@@ -60,7 +61,7 @@
 
 <body id="ceremony">
     <!-- Navbar Placeholder -->
-    <nav class="menu">
+    <nav id="menu" class="menu">
         <img src="https://raw.githubusercontent.com/t4saha/PBVM-Uluberia-Vigyan-Kendra/main/Logo/pvbm_logo_gold.png"
             alt="Logo" class="nav-logo"
             onerror="this.onerror=null; this.src='https://placehold.co/50x50/d79921/3c3836?text=LOGO'">
@@ -190,7 +191,7 @@
                         </div>
                         <div class="clubbed-student-list first">
                             <div class="student-entry">
-                                <h3>Rajdeep Ghosh</h3>
+                                <h3><span class="hide-rank">🥇⠀</span>Rajdeep Ghosh</h3>
                                 <img src="../../../gallary/patha sabha jan 26/Rajdeep Ghosh a 1.jpg" alt="">
                             </div>
 
@@ -204,7 +205,7 @@
                         </div>
                         <div class="clubbed-student-list second">
                             <div class="student-entry">
-                                <h3>Arshiya Mukherjee</h3>
+                                <h3><span class="hide-rank">🥈⠀</span>Arshiya Mukherjee</h3>
                                 <img src="../../../gallary/patha sabha jan 26/arshiya mukherjee a 2.jpg" alt="">
                             </div>
 
@@ -219,7 +220,7 @@
                         </div>
                         <div class="clubbed-student-list third">
                             <div class="student-entry">
-                                <h3>Dipayan Das</h3>
+                                <h3><span class="hide-rank">🥉⠀</span>Dipayan Das</h3>
                                 <img src="../../../gallary/patha sabha jan 26/dipayan das a 3.jpg" alt="">
                             </div>
                         </div>
@@ -238,7 +239,7 @@
                         </div>
                         <div class="clubbed-student-list first">
                             <div class="student-entry">
-                                <h3>Apratim Mondal</h3>
+                                <h3><span class="hide-rank">🥇⠀</span>Apratim Mondal</h3>
                                 <img src="../../../gallary/patha sabha jan 26/apratim mondal b 1.jpg" alt="">
                             </div>
 
@@ -252,7 +253,7 @@
                         </div>
                         <div class="clubbed-student-list second">
                             <div class="student-entry">
-                                <h3>Kamalika Manna</h3>
+                                <h3><span class="hide-rank">🥈⠀</span>Kamalika Manna</h3>
                                 <img src="../../../gallary/patha sabha jan 26/kamalika manna b 2.jpg" alt="">
                             </div>
 
@@ -267,7 +268,7 @@
                         </div>
                         <div class="clubbed-student-list third">
                             <div class="student-entry">
-                                <h3>Dipu Mondal</h3>
+                                <h3><span class="hide-rank">🥉⠀</span>Dipu Mondal</h3>
                                 <img src="../../../gallary/patha sabha jan 26/dipu mondal b 3.jpg" alt="">
                             </div>
                         </div>
@@ -286,7 +287,7 @@
                         </div>
                         <div class="clubbed-student-list first">
                             <div class="student-entry">
-                                <h3>Sreeja Malik</h3>
+                                <h3><span class="hide-rank">🥇⠀</span>Sreeja Malik</h3>
                                 <img src="../../../gallary/patha sabha jan 26/sreeja malik c 1.jpg" alt="">
                             </div>
 
@@ -300,7 +301,7 @@
                         </div>
                         <div class="clubbed-student-list second">
                             <div class="student-entry">
-                                <h3>Sumana Das</h3>
+                                <h3><span class="hide-rank">🥈⠀</span>Sumana Das</h3>
                                 <img src="../../../gallary/patha sabha jan 26/sumana das c 2.jpg" alt="">
                             </div>
 
@@ -315,7 +316,7 @@
                         </div>
                         <div class="clubbed-student-list third">
                             <div class="student-entry">
-                                <h3>Sreejita Malik</h3>
+                                <h3><span class="hide-rank">🥉⠀</span>Sreejita Malik</h3>
                                 <img src="../../../gallary/patha sabha jan 26/sreejita malik c 3.jpg" alt="">
                             </div>
                         </div>
@@ -484,7 +485,7 @@
                         </div>
                         <div class="clubbed-student-list first">
                             <div class="student-entry">
-                                <h3>রাজদীপ ঘোষ</h3>
+                                <h3><span class="hide-rank">🥇 </span>রাজদীপ ঘোষ</h3>
                                 <img src="../../../gallary/patha sabha jan 26/Rajdeep Ghosh a 1.jpg" alt="">
                             </div>
 
@@ -498,7 +499,7 @@
                         </div>
                         <div class="clubbed-student-list second">
                             <div class="student-entry">
-                                <h3>আরশিয়া মুখার্জী</h3>
+                                <h3><span class="hide-rank">🥈 </span>আরশিয়া মুখার্জী</h3>
                                 <img src="../../../gallary/patha sabha jan 26/arshiya mukherjee a 2.jpg" alt="">
                             </div>
 
@@ -513,7 +514,7 @@
                         </div>
                         <div class="clubbed-student-list third">
                             <div class="student-entry">
-                                <h3>দীপায়ন দাস</h3>
+                                <h3><span class="hide-rank">🥉 </span>দীপায়ন দাস</h3>
                                 <img src="../../../gallary/patha sabha jan 26/dipayan das a 3.jpg" alt="">
                             </div>
                         </div>
@@ -532,7 +533,7 @@
                         </div>
                         <div class="clubbed-student-list first">
                             <div class="student-entry">
-                                <h3>অপ্রতিম মন্ডল</h3>
+                                <h3><span class="hide-rank">🥇 </span>অপ্রতিম মন্ডল</h3>
                                 <img src="../../../gallary/patha sabha jan 26/apratim mondal b 1.jpg" alt="">
                             </div>
 
@@ -546,7 +547,7 @@
                         </div>
                         <div class="clubbed-student-list second">
                             <div class="student-entry">
-                                <h3>কমলিকা মান্না</h3>
+                                <h3><span class="hide-rank">🥈 </span>কমলিকা মান্না</h3>
                                 <img src="../../../gallary/patha sabha jan 26/kamalika manna b 2.jpg" alt="">
                             </div>
 
@@ -561,7 +562,7 @@
                         </div>
                         <div class="clubbed-student-list third">
                             <div class="student-entry">
-                                <h3>দীপু মন্ডল</h3>
+                                <h3><span class="hide-rank">🥉 </span>দীপু মন্ডল</h3>
                                 <img src="../../../gallary/patha sabha jan 26/dipu mondal b 3.jpg" alt="">
                             </div>
                         </div>
@@ -580,7 +581,7 @@
                         </div>
                         <div class="clubbed-student-list first">
                             <div class="student-entry">
-                                <h3>সৃজা মালিক</h3>
+                                <h3><span class="hide-rank">🥇 </span>সৃজা মালিক</h3>
                                 <img src="../../../gallary/patha sabha jan 26/sreeja malik c 1.jpg" alt="">
                             </div>
 
@@ -594,7 +595,7 @@
                         </div>
                         <div class="clubbed-student-list second">
                             <div class="student-entry">
-                                <h3>সুমনা দাস</h3>
+                                <h3><span class="hide-rank">🥈 </span>সুমনা দাস</h3>
                                 <img src="../../../gallary/patha sabha jan 26/sumana das c 2.jpg" alt="">
                             </div>
 
@@ -609,7 +610,7 @@
                         </div>
                         <div class="clubbed-student-list third">
                             <div class="student-entry">
-                                <h3>সৃজিতা মালিক</h3>
+                                <h3><span class="hide-rank">🥉 </span>সৃজিতা মালিক</h3>
                                 <img src="../../../gallary/patha sabha jan 26/sreejita malik c 3.jpg" alt="">
                             </div>
                         </div>
@@ -679,6 +680,12 @@
 
         </div>
     </div>
+
+    <!-- Img Modal -->
+    <dialog id="modal" style="margin: auto;">
+        <!-- The expanding-image class will be toggled here -->
+        <img src="" alt="Expanded Image" id="modalImage">
+    </dialog>
 
     <!-- Scroll To Top -->
     <button id="scrollToTopBtn" onclick="scrollToTop()" aria-label="Scroll to top"><i

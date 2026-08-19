@@ -76,6 +76,15 @@ nav.menu {
     justify-content: space-around;
     padding: 0.5rem 2.5%;
     z-index: var(--z-nav);
+
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+nav.menu.nav-hidden {
+    /* Mobile: Slides down relative to its fixed bottom position */
+    transform: translate(-50%, 150%);
+    opacity: 0;
+    pointer-events: none;
 }
 
 .menu-controls-mobile {
@@ -351,6 +360,11 @@ nav.menu {
         /* Unset bottom */
         border: none;
         /* Standard downward shadow */
+    }
+
+    nav.menu.nav-hidden {
+        /* Desktop: Slides up relative to its sticky top position */
+        transform: translateY(-100%);
     }
 
     .menu-controls-mobile {

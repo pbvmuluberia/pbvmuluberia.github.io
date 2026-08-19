@@ -85,7 +85,7 @@
         .role-badge {
             position: absolute;
             top: -10px;
-            left: 85px;
+            left: 50%;
             transform: translateX(-50%);
             background: var(--primary-color);
             color: var(--surface-color);
@@ -114,6 +114,10 @@
             margin: var(--space-sm) 0 var(--space-xs);
             /* 10px 0 5px */
             color: var(--text-color-primary);
+
+            .hide-rank {
+                display: inline-flex;
+            }
         }
 
         h2 {
@@ -124,6 +128,7 @@
             /* 10px 0 5px */
             color: var(--text-color-primary);
         }
+
     }
 }
 
@@ -171,10 +176,7 @@
 }
 
 .figurine {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
+    display: none;
 }
 
 .student-entry {
@@ -302,11 +304,22 @@
     .rank-card {
         flex-direction: column !important;
         width: 30% !important;
+
+        h3 {
+            .hide-rank {
+                display: none !important;
+            }
+        }
     }
 
-    .role-badge {
-        left: 50% !important
+    .figurine {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
     }
+
+
 
     .clubbed-student-list {
         border-top: 1px solid var(--card-border-color);
