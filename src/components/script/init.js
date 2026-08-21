@@ -67,6 +67,14 @@ async function loadDataAndInit() {
         themeContainer.innerHTML = ComponentGenerator.getThemeToggle();
     }
 
+    // 4. Inject School List
+    const schoolContainer = document.getElementById('schoolList');
+
+    if (schoolContainer && typeof ComponentGenerator !== 'undefined' && typeof ComponentGenerator.getSchoolList === 'function') {
+        schoolContainer.innerHTML = ComponentGenerator.getSchoolList();
+        console.log(schoolContainer)
+    }
+
     const savedTheme = localStorage.getItem('theme') || 'system';
     const activeThemeRadio = document.getElementById(savedTheme);
     if (activeThemeRadio) {

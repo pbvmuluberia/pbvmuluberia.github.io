@@ -46,6 +46,24 @@
    Form and Input Styles
    ------------------------------------------- */
 
+#correctionModal {
+    margin: auto;
+    padding: var(--space-md);
+    background-color: var(--surface-color) !important;
+    border-radius: var(--border-radius-medium);
+    height: 20lh;
+
+    &::backdrop {
+        backdrop-filter: blur(10px);
+    }
+}
+
+.inputFormRow {
+    padding: var(--space-sm);
+    display: flex;
+    flex-direction: row;
+}
+
 .search-form-card {
     background-color: var(--surface-color);
     padding: var(--space-sm);
@@ -72,7 +90,7 @@
     max-width: 1200px;
 }
 
-.input-group label {
+label {
     margin: 0 var(--space-sm);
     font-family: var(--font-heading);
     color: var(--primary-color);
@@ -80,8 +98,8 @@
     font-weight: bold;
 }
 
-.input-group select,
-.input-group input[type="text"] {
+select,
+input[type="text"] {
     padding: var(--space-sm) var(--space-md);
     border: 2px solid var(--border-color);
     border-radius: var(--border-radius-medium);
@@ -89,9 +107,10 @@
     color: var(--text-color-primary);
     background-color: var(--background-color);
     width: 20ch;
+    flex-grow: 1;
 }
 
-.input-group select {
+select {
     appearance: base-select;
     width: 40ch;
     font-size: calc(var(--font-size-p)*0.9);

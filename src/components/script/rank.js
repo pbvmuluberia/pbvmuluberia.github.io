@@ -21,18 +21,16 @@ document.addEventListener('click', (e) => {
         // Assign the transition name to the clicked thumbnail
         clickedImg.classList.add('expanding-image');
         currentActiveThumbnail = clickedImg;
-        setTimeout(() => {
-            // Start the view transition
-            document.startViewTransition(() => {
-                modalImage.src = clickedImg.src;
+        // Start the view transition
+        document.startViewTransition(() => {
+            modalImage.src = clickedImg.src;
 
-                // Move transition name to modal image and display dialog
-                clickedImg.classList.remove('expanding-image');
-                modalImage.classList.add('expanding-image');
-                menu.classList.add('nav-hidden');
-                modal.showModal();
-            });
-        }, 300);
+            // Move transition name to modal image and display dialog
+            clickedImg.classList.remove('expanding-image');
+            modalImage.classList.add('expanding-image');
+            menu.classList.add('nav-hidden');
+            modal.showModal();
+        });
     }
 });
 

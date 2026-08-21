@@ -69,7 +69,7 @@
         border-radius: var(--border-radius-medium);
         padding: var(--space-md) var(--space-md);
         width: 100%;
-        gap: var(--space-sm);
+        gap: 0;
         min-width: 160px;
         /* 30px */
         text-align: center;
@@ -165,7 +165,7 @@
 }
 
 .clubbed-student-list {
-    display: flex;
+    display: block;
     flex-wrap: wrap;
     flex-grow: 1;
     align-items: center;
@@ -173,6 +173,10 @@
     border-left: 1px solid var(--card-border-color);
     border-radius: var(--border-radius-medium);
     border-top: 0;
+
+    .hide-rank {
+        display: inline-flex;
+    }
 }
 
 .figurine {
@@ -304,11 +308,20 @@
     .rank-card {
         flex-direction: column !important;
         width: 30% !important;
+        gap: var(--space-sm);
 
         h3 {
             .hide-rank {
                 display: none !important;
             }
+        }
+    }
+
+    .clubbed-student-list {
+        display: flex;
+
+        .hide-rank {
+            display: none !important;
         }
     }
 
