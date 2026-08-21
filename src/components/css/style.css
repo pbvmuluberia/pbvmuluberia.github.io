@@ -472,6 +472,11 @@ a {
 
 #message {
     font-size: var(--font-size-p);
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-direction: column;
 }
 
 /* ------------------------- BUTTON ------------------------- */

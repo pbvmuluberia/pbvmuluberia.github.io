@@ -51,7 +51,7 @@
     padding: var(--space-md);
     background-color: var(--surface-color) !important;
     border-radius: var(--border-radius-medium);
-    height: 20lh;
+    height: 25lh;
 
     &::backdrop {
         backdrop-filter: blur(10px);
