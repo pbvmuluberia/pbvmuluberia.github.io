@@ -154,6 +154,8 @@ const ComponentGenerator = {
                                 <li>Form Fill up of <b>Howrah Zilla Vigyan Manosikota-o-Medha Aviksha 2026</b> has been started. Please Contact your school or nearest commitee member.</li>
                                 <a href="./src/components/pages/aviksha/checkR.html"><b>Check your registration status</b></a>
                                 <p>&nbsp;</p>
+                                <a href="./publications.html?scroll=main- content&openFirst=true">Buy Question Bank</ a>
+                                <p>&nbsp;</p>
                                 <li>Cultural Competition 2026 has been successfully completed.</li>
                                 <a href="./src/components/pages/programme/40_year_8_26.html">CheckResult.</a>
                             </ul>
@@ -163,6 +165,8 @@ const ComponentGenerator = {
                             <ul>
                                 <li><b>হাওড়া জেলা বিজ্ঞান মানসিকতা-ও-মেধা অভিক্ষা ২০২৬</b> এর ফর্ম দেওয়া শুরু হয়েছে। অনুগ্রহ করে বিদ্যালয় বা নিকটবর্তী বিজ্ঞান কর্মীদের সাথে যোগাযোগ করুন।</li> 
                                 <a href="./src/components/pages/aviksha/checkR.html"><b>আপনার রেজিস্ট্রেশন তথ্য চেক করুন</b></a>
+                                <p>&nbsp;</p> <
+a href = "./publications.html?scroll=main- content&openFirst=true" > প্রশ্ন বিচিত্রা কিনুন < / a>
                                 <p>&nbsp;</p>
                                 <li>সাংস্কৃতিক প্রতিযোগীতা ২০২৬ সফলভাবে সম্পন্ন হয়েছে।</li>
                                 <a href="./src/components/pages/programme/40_year_8_26.html">ফলাফল দেখুন।</a>
