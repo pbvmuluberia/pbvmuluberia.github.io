@@ -89,10 +89,10 @@
         </div>
         <div class="btn-group" style="display: flex; gap: var(--space-sm);">
           <button id="searchBtn" class="donate-btn"
-            style="align-self: center; border-radius: var(--border-radius-medium); padding: var(--space-sm) var(--space-md);"
+            style="font-size: var(--font-size-h3); align-self: center; border-radius: var(--border-radius-medium); padding: var(--space-sm) var(--space-md);"
             onclick="fetchData()" data-translate-key="search_result_button">Search Result</button>
           <button class="donate-btn"
-            style="align-self: center; border-radius: var(--border-radius-medium); padding: var(--space-sm) var(--space-md);"
+            style="font-size: var(--font-size-h3); align-self: center; border-radius: var(--border-radius-medium); padding: var(--space-sm) var(--space-md);"
             id="correctionBtn" data-translate-key="correct" onclick="openCorrectionForm()">correct</button>
         </div>
       </div>
@@ -107,7 +107,7 @@
       <form id="correctionForm">
         <div class="inputFormRow">
           <label for="formNO" data-translate-key="formno_label">Form No:</label>
-          <input type="text" id="formNO" name="formNO" disabled>
+          <input type="text" id="formNO" name="formNO" readonly>
         </div>
         <div class="inputFormRow">
           <label for="name" data-translate-key="name">Name:</label>
@@ -138,7 +138,7 @@
           <input type="text" id="mobileNo" name="mobileNo" placeholder="Enter your mobile no" required>
         </div>
         <div class="inputFormRow">
-          <button type="submit" id="submitBtn" class="donate-btn"
+          <button type="submit" id="submitBtn" class="action-btn"
             style="align-self: center; border-radius: var(--border-radius-medium); flex-grow: 1; padding: var(--space-sm) var(--space-md);"
             data-translate-key="submit_correction">Submit Correction</button>
         </div>
@@ -268,19 +268,28 @@
       }
 
       document.getElementById("correctionForm").addEventListener("submit", function (e) {
-        e.preventDefault(); // Prevent page from reloading
+        e.preventDefault();
 
         var messageDiv = document.getElementById("message");
         var submitBtn = document.getElementById("submitBtn");
 
+        // Helper to fetch the exact translated string from data.js
+        function getTr(key) {
+          var lang = localStorage.getItem('language') || window.savedLang || 'bn';
+          if (window.translations && window.translations[lang] && window.translations[lang][key]) {
+            return window.translations[lang][key];
+          }
+          return key;
+        }
+
+        // 1. SUBMITTING STATE
         messageDiv.style.color = "blue";
-        messageDiv.innerText = "Submitting data...";
+        messageDiv.setAttribute('data-translate-key', 'Submitting_data');
+        messageDiv.innerText = getTr('Submitting_data');
         submitBtn.disabled = true;
 
-        // REPLACE THIS URL WITH YOUR DEPLOYED GOOGLE APPS SCRIPT WEB APP URL
         var webAppUrl = "https://script.google.com/macros/s/AKfycbw8dcaLI2FSOHw2ycEZl2UYkDpzabth_CEkmDYOaLgbdiAA09Hdmw_SRhNKMsY5ZzujUA/exec";
 
-        // Using URLSearchParams formats the data properly for Google Apps Script doPost
         var formData = new FormData(this);
         var data = new URLSearchParams();
         for (const pair of formData) {
@@ -294,19 +303,30 @@
           .then(response => response.text())
           .then(result => {
             submitBtn.disabled = false;
-            messageDiv.innerText = result;
 
             if (result.includes("Success")) {
+              // 2. SUCCESS STATE
               messageDiv.style.color = "green";
-              document.getElementById("correctionForm").reset(); // Clear the form
+              messageDiv.setAttribute('data-translate-key', 'submit_success');
+              messageDiv.innerText = getTr('submit_success');
+              document.getElementById("correctionForm").reset();
             } else {
+              // 3. SERVER ERROR / MISMATCH STATE
               messageDiv.style.color = "red";
+              messageDiv.setAttribute('data-translate-key', 'submit_error');
+              messageDiv.innerText = getTr('submit_error');
             }
+
+            if (window.applyTranslations) window.applyTranslations();
           })
           .catch(error => {
+            // 4. NETWORK ERROR STATE
             submitBtn.disabled = false;
             messageDiv.style.color = "red";
-            messageDiv.innerText = "An error occurred. Check the console.";
+            messageDiv.setAttribute('data-translate-key', 'submit_error');
+            messageDiv.innerText = getTr('submit_error');
+
+            if (window.applyTranslations) window.applyTranslations();
             console.error('Error:', error);
           });
       });

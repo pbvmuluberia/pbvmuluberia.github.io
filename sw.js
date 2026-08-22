@@ -1,4 +1,4 @@
-const CACHE_NAME = 'pbvm-ulb-v28';
+const CACHE_NAME = 'pbvm-ulb-v30';
 const ASSETS_TO_CACHE = [
     './',
     './index.html',

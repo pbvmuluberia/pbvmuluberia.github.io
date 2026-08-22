@@ -462,6 +462,7 @@ a {
     transition: opacity 0.3s, transform 0.3s;
     transform: translate(-50%, 0%);
     z-index: var(--z-toast);
+    font-weight: bold;
 
     &.show {
         opacity: 1;
