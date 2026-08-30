@@ -329,6 +329,8 @@ const ComponentGenerator = {
     <hr>
     <option value="KALIDAHA AKSHAY KUMAR HIGH SCHOOL">KALIDAHA AKSHAY KUMAR HIGH SCHOOL</option>
     <hr>
+    <option value="KAJIBERIA PRIMARY SCHOOL">KAJIBERIA PRIMARY SCHOOL</option>
+    <hr>
     <option value="KALINAGAR HIGH SCHOOL (H.S.)">KALINAGAR HIGH SCHOOL (H.S.)</option>
     <hr>
     <option value="KALINAGAR JUNIOR NEW SETUP HIGH SCHOOL">KALINAGAR JUNIOR NEW SETUP HIGH SCHOOL</option>
