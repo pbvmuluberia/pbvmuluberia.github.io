@@ -144,6 +144,7 @@ select {
     option {
         padding: var(--space-sm);
         transition: 0.4s ease;
+        background: var(--surface-color-top);
 
         &:checked {
             font-weight: bold;
