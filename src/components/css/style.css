@@ -126,7 +126,7 @@ body {
     --nav-menu-color: hsla(35, 75%, 80%, 1);
     --surface-color: hsl(36, 76%, 95%);
     --surface-color-rgb: 251, 241, 226;
-    --surface-color-alpha: hsl(36, 76%, 95% / 0.3);
+    --surface-color-alpha: hsl(36, 76%, 95%, 0.3);
     --surface-color-alt: hsl(36, 76%, 97%);
     --surface-color-top: hsl(36, 76%, 100%);
 
@@ -166,6 +166,7 @@ body {
     --background-color: hsla(0, 0%, 15%, 1);
     --nav-menu-color: hsla(0, 0%, 5%, 1);
     --surface-color: hsl(20, 0%, 20%);
+    --surface-color-alpha: hsl(20, 0%, 20%, 0.3);
     --surface-color-alt: hsl(20, 0%, 25%);
     --surface-color-top: hsl(20, 0%, 30%);
     --surface-color-rgb: 60, 56, 54;
