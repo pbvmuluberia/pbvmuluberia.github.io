@@ -188,6 +188,11 @@ hr {
         flex-direction: row;
     }
 
+    select,
+    input[type="text"] {
+        margin-left: var(--space-sm);
+    }
+
     .search-form-card {
         padding: var(--space-md);
     }
