@@ -139,7 +139,7 @@ select {
         top: var(--space-sm);
         border-radius: 10px;
         scrollbar-width: none;
-        max-width: 45ch;
+        max-width: 30ch;
         max-height: 20lh;
     }
 
@@ -148,6 +148,8 @@ select {
         padding: var(--space-sm);
         transition: 0.4s ease;
         background: var(--surface-color-top);
+        white-space: normal;
+        word-break: break-word;
 
         &:hover {
             background-color: var(--surface-color-alpha);
