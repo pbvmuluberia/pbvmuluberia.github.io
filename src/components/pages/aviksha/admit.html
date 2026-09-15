@@ -101,10 +101,10 @@
 
     <script>
       const SCRIPT_URL =
-        "https://script.google.com/macros/s/AKfycbyoM-UWki3lnK_esoNkjXyWh9JLt6YSwTYfaKUdidvlwdrMnGZxlNbmJNoE9Mx-XnpodA/exec";
+        "https://script.google.com/macros/s/AKfycbwdR3-YJWh1zBmUi4e3VxsLodW7JRLcjkOxlr6RR_ABymgb6teIsFLxizi16fUQE5Lq/exec";
       async function fetchData() {
         const name = document.getElementById('name').value;
-        const school = document.getElementById('school').value;
+        const school = document.getElementById('schoolList').value;
         const resultsDiv = document.getElementById('result-display');
 
         const school_name = school.trim();
@@ -157,23 +157,23 @@
                       <tbody>
                           <tr>
                               <td data-translate-key="name">Name:</td>
-                              <td>${student.name}</td>
+                              <td id="sname">${student.name}</td>
                           </tr>
                           <tr>
                               <td data-translate-key="roll">Roll Number:</td>
-                              <td>${student.roll}</td>
+                              <td id="sroll">${student.roll}</td>
                           </tr>
                           <tr>
                               <td data-translate-key="class">Class:</td>
-                              <td>${student.class}</td>
+                              <td id="sclass">${student.class}</td>
                           </tr>
                           <tr>
                               <td data-translate-key="school">School:</td>
-                              <td>${student.school}</td>
+                              <td id="sschool">${student.school}</td>
                           </tr>
                           <tr class="highlight-row">
                               <td data-translate-key="admit_card">Admit Card:</td>
-                              <td class="result-value"><a href="${student.pdfLink}" target="_blank" class="pdf-icon"><i class="fa-solid fa-file-pdf"></i></a></td>
+                              <td class="result-value"><a href="javascript:void(0);" onclick="generateAdmitCard()" class="pdf-icon"><i class="fa-solid fa-file-pdf"></i></a></td>
                           </tr>
                           <tr class="highlight-row">
                               <td data-translate-key="previous_paper">Previous Paper:</td>
@@ -207,6 +207,449 @@
         if (window.applyTranslations) {
           window.applyTranslations();
         }
+      }
+
+      function generateAdmitCard() {
+        const admitWindow = window.open('', '_blank');
+        const sname = document.getElementById('sname').textContent;
+        const sroll = document.getElementById('sroll').textContent;
+        const sclass = document.getElementById('sclass').textContent;
+        const sschool = document.getElementById('sschool').textContent;
+        let htmlContent = ``;
+
+        if (['III', 'IV', 'V'].includes(sclass)) {
+          htmlContent = `
+        <!DOCTYPE html>
+        <html lang="bn">
+        <head>
+            <meta charset="UTF-8">
+            <title>Admit Card - Tandrita Mondal</title>
+            <style>
+              @page {
+                size: A4 landscape;
+                margin: 8mm;
+              }
+              
+              html, body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+              }
+
+              table {
+                width: 100%;
+                height: 100%;
+                box-sizing: border-box;
+                page-break-inside: avoid;
+              }
+
+              td, th {
+                padding: 5px;
+              }
+              
+              .print-watermark {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: -1000; /* Pushes it completely behind text content */
+                pointer-events: none; /* Prevents text selection issues */
+              }
+              
+              .print-watermark p {
+                vertical-align: center;
+                font-size: 5rem;
+                font-weight: bold;
+                color: rgba(0, 0, 0, 0.08) !important; /* Kept very light so text remains legible */
+                text-transform: uppercase;
+                transform: rotate(-45deg);
+              }
+
+              .print-btn-container {
+                  text-align: right;
+                  margin-bottom: 20px;
+              }
+              .btn-print {
+                  background-color: #0056b3;
+                  color: #fff;
+                  border: none;
+                  padding: 8px 16px;
+                  font-size: 14px;
+                  cursor: pointer;
+                  border-radius: 4px;
+              }
+
+              @media print {
+                .print-btn-container {
+                    display: none;
+                }
+              }
+            </style>
+        </head>
+        <body>
+
+        <div class="print-btn-container">
+          <button class="btn-print" onclick="window.print()">🖨️ Print / Save as PDF</button>
+        </div>
+        
+        <div class="print-watermark" aria-hidden="true">
+          <p>DUPLICATE COPY</p>
+        </div>
+
+            <table style="vertical-align: top; border-collapse: collapse;">
+             <thead>
+                            <tr>
+                                <th style="width: 30%;"></th>
+                                <th style="width: 30%;"></th>
+                                <th style="width: 25%;"></th>
+                                <th style="width: 15%;"></th>
+                            </tr>
+                        </thead>
+              <tr>
+                <td colspan="4" style="font-weight: bold; border: solid;">
+                  <div style="display: grid; grid-template-columns: auto 1fr; align-items: center; justify-items: center;">
+                    
+                    <!-- Logo -->
+                    <img style="height: 3.2lh; filter: invert(1);" src="https://raw.githubusercontent.com/t4saha/PBVM-Uluberia-Vigyan-Kendra/main/Logo/pvbm_logo_gold.png" alt="Logo" class="nav-logo" onerror="this.onerror=null; this.src='https://placehold.co/50x50/d79921/3c3836?text=LOGO'">
+                    
+                    <!-- Text Content -->
+                    <div style="text-align: center; width: 100%;">
+                      <h3 style="margin: 0;">VIGYAN MANASHIKATA-O-MEDHA-AVIKSHA, 2026</h3>
+                      <h3 style="margin: 0;">PASCHIM BANGA VIGYAN MANCHA, HOWRAH DISTRICT COMMITTEE</h3>
+                      <h3 style="color: orange; margin: 0;">ADMIT CARD</h3>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="2" style="font-weight: bold; text-align: left; border-top-style:solid; border-left-style:solid; border-bottom-style:solid;">
+                  <p>DATE : 2nd OCTOBER 2026</p>
+                </td>
+                <td colspan="2" style="font-weight: bold; text-align: right; border-top-style:solid; border-bottom-style:solid; border-right-style:solid;">
+                  <p>TIME : 12.00 NOON TO 2.30 PM</p>
+                </td>
+              </tr>
+              <tr>
+                <td style="border-left-style:solid; border-top-style:solid;">
+                  <p style="font-weight: bold;">NAME ( নাম ) :</p>
+                </td>
+                <td style="border-top-style:solid; border-right-style:solid;">
+                  <p>${sname}</p>
+                </td>
+                <td style="font-weight: bold; border-top-style:solid;">
+                  <p>ROLL CODE ( রোল কোড ) :</p>
+                </td>
+                <td style="border-right-style:solid; border-top-style:solid;">
+                  <p>UL</p>
+                </td>
+              </tr>
+              <tr>
+                <td style="font-weight: bold; border-left-style:solid;">
+                  <p>CLASS ( ক্লাস ) :</p>
+                </td>
+                <td style="border-right-style:solid;">
+                  <p>${sclass}</p>
+                </td>
+                <td style="font-weight: bold;">
+                  <p>ROLL NUMBER ( রোল নম্বর ) :</p>
+                </td>
+                <td style="border-right-style:solid;">
+                  <p>${sroll}</p>
+                </td>
+              </tr>
+              <tr>
+                <td style="font-weight: bold; border-bottom-style:solid; border-left-style:solid;">
+                  <p>NAME OF THE SCHOOL :</p>
+                  <pstyle="margin: 2px;>( বিদ্যালয়ে নাম )</p>
+                </td>
+                <td style="vertical-align: top; border-bottom-style:solid; border-right-style:solid;">
+                  <p>${sschool}</p>
+                </td>
+                <td style="font-weight: bold; border-bottom-style:solid;">
+                  <p>MEDIUM ( মাধ্যম ) :</p>
+                </td>
+                <td style="border-bottom-style:solid; border-right-style:solid;">
+                  <p>BENGALI</p>
+                </td>
+              </tr>
+              <tr>
+                <td style="font-weight: bold; border-left-style:solid; border-top-style:solid;">
+                  <p>EXAM CENTRE : </p>
+                  <p style="margin: 2px;">( পরীক্ষা কেন্দ্র )</p>
+                </td>
+                <td style="vertical-align: top; font-weight: bold; border-top-style:solid;">
+                  <p>NONA HIGH SCHOOL (H.S.)</p>
+                </td>
+                <td style="border-top-style:solid;"> </td>
+                <td style="border-right-style:solid; border-top-style:solid;"> </td>
+              </tr>
+              <tr>
+                <td style="border-bottom-style:solid; border-left-style:solid;"> </td>
+                <td style="border-bottom-style:solid;"> </td>
+                <td colspan="2" style="text-align: center; font-weight: bold; border-bottom-style:solid; border-right-style:solid;">
+                  <img style="width: 25%;" src="/src/background/K jasu sign.png" alt="Logo" ">
+                  <div style="border-top: 2px solid #000; width: 100%; margin: 2px 0;"></div>
+                  <p style="font-size: 0.9rem; margin-top: 0;">কালীকৃষ্ণ জাসু (সভাপতি) পশ্চিমবঙ্গ বিজ্ঞান মঞ্চ, হাওড়া জেলা কমিটি</p>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="4" style="font-weight: bold; border-top-style:solid; border-left-style:solid; border-bottom-style:solid; border-right-style:solid;">
+                  <p style="font-size: 1.05rem;">** You must enter the exam centre 30 minutes before commencement of exam / আপনাকে পরীক্ষা শুরুর 30 মিনিট আগে পরীক্ষাকেন্দ্রে প্রবেশ করতে হবে।<br>
+                    ** You must bring admit card otherwise you will not be allowed to sit in exam / আপনাকে অবশ্যই প্রবেশপত্র আনতে হবে, অন্যথায় আপনাকে পরীক্ষায় বসতে দেওয়া হবে না।</p>
+                  <p style="color: red;">** If necessary, change the above date with due intimation / অনিবার্য কারণবশত পরীক্ষার দিন পরিবর্তন হলে ছাত্র - ছাত্রী ও স্কুল কর্তৃপক্ষকে আগাম জানানো হবে।</p>
+                </td>
+              </tr>
+            </table>
+        <\/body>
+        <\/html>`;
+        } else {
+          htmlContent = `<!DOCTYPE html>
+        <html lang="bn">
+        <head>
+            <meta charset="UTF-8">
+            <title>Admit Card - Tandrita Mondal</title>
+            <style>
+              @page {
+                size: A4 landscape;
+                margin: 8mm;
+              }
+              
+              html, body {
+                height: 100%;
+                margin: 0;
+                padding: 0;
+              }
+
+              table {
+                width: 100%;
+                height: 100%;
+                box-sizing: border-box;
+                page-break-inside: avoid;
+              }
+
+              td, th {
+                padding: 5px;
+              }
+              
+              p {
+                padding: 0;
+                margin: 0;
+              }
+              
+              .print-watermark {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: -1000; /* Pushes it completely behind text content */
+                pointer-events: none; /* Prevents text selection issues */
+              }
+              
+              .print-watermark p {
+                vertical-align: center;
+                font-size: 5rem;
+                font-weight: bold;
+                color: rgba(0, 0, 0, 0.08) !important; /* Kept very light so text remains legible */
+                text-transform: uppercase;
+                transform: rotate(-45deg);
+              }
+
+              .print-btn-container {
+                  text-align: right;
+                  margin-bottom: 20px;
+              }
+              .btn-print {
+                  background-color: #0056b3;
+                  color: #fff;
+                  border: none;
+                  padding: 8px 16px;
+                  font-size: 14px;
+                  cursor: pointer;
+                  border-radius: 4px;
+              }
+
+              @media print {
+                .print-btn-container {
+                    display: none;
+                }
+              }
+            </style>
+        </head>
+        <body>
+
+        <div class="print-btn-container">
+          <button class="btn-print" onclick="window.print()">🖨️ Print / Save as PDF</button>
+        </div>
+        
+        <div class="print-watermark" aria-hidden="true">
+    <p>DUPLICATE COPY</p>
+  </div>
+
+            <table style="vertical-align: top; border-collapse: collapse;">
+             <thead>
+                            <tr>
+                                <th style="width: 20%;"></th>
+                                <th style="width: 30%;"></th>
+                                <th style="width: 22%;"></th>
+                                <th style="width: 28%;"></th>
+                            </tr>
+                        </thead>
+              <tr>
+                <td colspan="4" style="font-weight: bold; border: double; border-bottom-style: solid;">
+                  <div style="display: grid; grid-template-columns: auto 1fr; align-items: center; justify-items: center;">
+                    
+                    <!-- Logo -->
+                    <img style="height: 3.2lh; filter: invert(1);" src="https://raw.githubusercontent.com/t4saha/PBVM-Uluberia-Vigyan-Kendra/main/Logo/pvbm_logo_gold.png" alt="Logo" class="nav-logo" onerror="this.onerror=null; this.src='https://placehold.co/50x50/d79921/3c3836?text=LOGO'">
+                    
+                    <!-- Text Content -->
+                    <div style="text-align: center; width: 100%;">
+                      <h3 style="margin: 0;">VIGYAN MANASHIKATA-O-MEDHA-AVIKSHA, 2026</h3>
+                      <h3 style="margin: 0;">PASCHIM BANGA VIGYAN MANCHA, HOWRAH DISTRICT COMMITTEE</h3>
+                      <h3 style="color: orange; margin: 0;">ADMIT CARD</h3>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="1" style="font-weight: bold; text-align: left; border-top-style:solid; border-left-style:double;">
+                  <p>DATE :</p>
+                </td>
+                <td colspan="1" style="text-align: left; border-top-style:solid; border-right-style:solid;">
+                  <p>2nd OCTOBER 2026</p>
+                </td>
+                <td colspan="2" style="font-weight: bold; text-align: center; border-top-style:solid; border-bottom-style:solid; border-right-style:double;">
+                  <p>INSTRUCTIONS FOR FILLING THE OMR SHEET</p>
+                </td>
+              </tr>
+                <td colspan="1" style="font-weight: bold; text-align: left; border-left-style:double;">
+                  <p>TIME :</p>
+                </td>
+                <td colspan="1" style="text-align: left; border-right-style:solid;">
+                  <p>12.00 NOON TO 2.30 PM</p>
+                </td>
+                <td colspan="2" rowspan="6" style="text-align: left; vertical-align: center; border-top-style:solid; border-bottom-style:solid; border-right-style:double;">
+                  <p>1. Use only black/blue ball point pen to fill the circles.<br>
+                    2. Circles should be darkened completely and properly.<br>
+                    3. Use of pencil is strictly prohibited.<br>
+                    4. You must bring admit card otherwise you will not be allowed to sit in
+                    exam.<br><br>
+                    1. বৃত্ত পূরণ করতে শুধু মাত্র কালো / নীল বল পয়েন্ট কলম ব্যবহার করুন।<br>
+2. বৃত্তগুলি সম্পূর্ণ এবং সঠিক ভাবে কালো করা উচিত।<br>
+3. পেন্সিল ব্যবহার কঠোর ভাবে নিষিদ্ধ।<br>
+4. আপনাকে Admit Card আনতে হবে অন্যথায আপনাকে পরীক্ষায় বসতে দেওয়া হবে না।</p>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="1" style="border-left-style:double;">
+                  <p style="font-weight: bold;">NAME ( নাম ) :</p>
+                </td>
+                <td colspan="1" style="border-right-style:solid;">
+                  <p>${sname}</p>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="1" style="font-weight: bold; border-left-style:double;">
+                  <p>NAME OF THE SCHOOL :</p>
+                  <pstyle="margin: 2px;>( বিদ্যালয়ে নাম )</p>
+                </td>
+                <td colspan="1" style="vertical-align: top; border-right-style:solid;">
+                  <p>${sschool}</p>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="1" style="font-weight: bold; border-left-style:double;">
+                  <p>CLASS ( ক্লাস ) :</p>
+                </td>
+                <td colspan="1" style="vertical-align: top; border-right-style:solid;">
+                  <p>${sclass}</p>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="1" style="font-weight: bold; border-left-style:double;">
+                  <p>ROLL CODE :</p>
+                  <p style="margin: 2px;">( রোল কোড ) </p>
+                </td>
+                <td colspan="1" style="border-right-style:solid;">
+                  <p>UL</p>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="1" style="font-weight: bold; border-left-style:double;">
+                  <p>ROLL NUMBER :</p>
+                  <p style="margin: 2px;">( রোল নম্বর ) </p>
+                </td>
+                <td colspan="1" style="border-right-style:solid;">
+                  <p>${sroll}</p>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="1" style="font-weight: bold; border-left-style:double;">
+                  <p>MEDIUM :</p>
+                   <p style="margin: 2px;">( মাধ্যম ) </p>
+                </td>
+                <td colspan="1" style="border-right-style:solid;">
+                  <p>BENGALI</p>
+                </td>
+                  <td colspan="1" style="border-top-style:solid; border-right-style:solid;">
+                  <p>5. Sample method for marking Roll number (পরোল নম্বর চিহ্নিত করার নমুনা পদ্ধতি)</p>
+                  </td>
+                  </td>
+                  <td colspan="1" style="border-top-style:solid; border-right-style:double;">
+                  <p>6. Sample for filling OMR Answer Sheet (উত্তরপত্র পূরণের নমুনা)</p>
+                  </td>
+              </tr>
+              <tr>
+                <td colspan="1" style="font-weight: bold; border-left-style:double; border-bottom-style:solid;">
+                  <p>EXAM CENTRE : </p>
+                  <p style="margin: 2px;">( পরীক্ষা কেন্দ্র )</p>
+                </td>
+                <td colspan="1" style="vertical-align: top; font-weight: bold; border-right-style:solid; border-bottom-style:solid;">
+                  <p>NONA HIGH SCHOOL (H.S.)</p>
+                </td>
+                <td colspan="1" style="text-align: center; border-bottom-style:solid; border-right-style:solid;">
+                  <img style="width: 50%;" src="/src/background/omr.png" alt="Logo" ">
+                </td>
+                </td>
+                <td colspan="1" style="border-bottom-style:solid; border-right-style:double;">
+                  <p>NAME (নাম): NAJRICK BANERJEE<br>
+                  NAME OF THE SCHOOL: F.P. SCHOOL<br>
+                  (বিদ্যালয়ের নাম)<br>
+                  CLASS (ক্লাস) : V<br>
+                  ROLL NUMBER: SL-00001<br>
+                  (রোল নম্বর)</p>
+                  </td>
+              </tr>
+              <tr>
+                <td colspan="2" style="text-align: justify; border-bottom-style:solid; border-left-style:double;">
+                  <p>@ It shall be the duty of the examinee to obtain the signature of the invigilator on submission of the OMR. examinees are instructed to fill up OMR Sheet(s) as per instructions printed on the OMR sheet.</p>
+                </td>
+                <td colspan="2" style="text-align: center; font-weight: bold; border-bottom-style:solid; border-right-style:double; border-left-style:solid;">
+                  <img style="width: 25%;" src="/src/background/K jasu sign.png" alt="Logo" ">
+                  <div style="text-align: center; border-top: 2px solid #000; width: 100%; margin: 2px 0;"></div>
+                  <p style="font-size: 0.9rem; margin-top: 0;">কালীকৃষ্ণ জাসু (সভাপতি) পশ্চিমবঙ্গ বিজ্ঞান মঞ্চ, হাওড়া জেলা কমিটি</p>
+                </td>
+              </tr>
+              <tr>
+                <td colspan="4" style="font-weight: bold; border-top-style:solid; border-left-style:double; border-bottom-style:double; border-right-style:double;">
+                  <p style="font-size: 1.05rem;">** You must enter the exam centre 30 minutes before commencement of exam / আপনাকে পরীক্ষা শুরুর 30 মিনিট আগে পরীক্ষাকেন্দ্রে প্রবেশ করতে হবে।
+                  <p style="color: red;">** If necessary, change the above date with due intimation / অনিবার্য কারণবশত পরীক্ষার দিন পরিবর্তন হলে ছাত্র - ছাত্রী ও স্কুল কর্তৃপক্ষকে আগাম জানানো হবে।</p>
+                </td>
+              </tr>
+            </table>
+        <\/body>
+        <\/html>`;
+        }
+
+        admitWindow.document.write(htmlContent);
+        admitWindow.document.close();
       }
     </script>
 </body>
