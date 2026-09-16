@@ -217,6 +217,7 @@ hr {
     border-radius: var(--border-radius-large);
     font-size: var(--font-size-p);
     line-height: 1.5;
+    min-width: 150px;
     min-height: 100px;
     display: flex;
     align-items: center;
@@ -326,8 +327,6 @@ table {
         &:hover {
             cursor: pointer;
             color: var(--primary-color);
-            scale: 1.5;
-            transition: 0.4s ease;
         }
     }
 }
@@ -393,6 +392,103 @@ table tr td:last-child {
     margin: 0 auto;
     /* Centers the loader horizontally */
 }
+
+.search-loader {
+    --color-1: var(--primary-color);
+    --size: 1px;
+
+    width: calc(48 * var(--size));
+    height: calc(48 * var(--size));
+    display: block;
+    margin: calc(20 * var(--size)) auto;
+    position: relative;
+    border: calc(3 * var(--size)) solid var(--color-1);
+    border-radius: 50%;
+    box-sizing: border-box;
+    animation: animloader 2s linear infinite;
+}
+
+.search-loader::after {
+    content: '';
+    box-sizing: border-box;
+    width: calc(6 * var(--size));
+    height: calc(24 * var(--size));
+    background: var(--color-1);
+    transform: rotate(-45deg);
+    position: absolute;
+    bottom: calc(-20 * var(--size));
+    left: calc(46 * var(--size));
+}
+
+@keyframes animloader {
+    0% {
+        transform: translate(calc(-10 * var(--size)), calc(-10 * var(--size)));
+    }
+
+    25% {
+        transform: translate(calc(-10 * var(--size)), calc(10 * var(--size)));
+    }
+
+    50% {
+        transform: translate(calc(10 * var(--size)), calc(10 * var(--size)));
+    }
+
+    75% {
+        transform: translate(calc(10 * var(--size)), calc(-10 * var(--size)));
+    }
+
+    100% {
+        transform: translate(calc(-10 * var(--size)), calc(-10 * var(--size)));
+    }
+}
+
+.download-loader {
+    --color-1: #fff;
+    --size: 1px;
+
+    width: calc(48 * var(--size));
+    height: calc(12 * var(--size));
+    background: var(--color-1);
+    margin-top: calc(40 * var(--size));
+    display: inline-block;
+    position: relative;
+}
+
+.download-loader::after {
+    content: '';
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, 0);
+    position: absolute;
+    border: calc(15 * var(--size)) solid transparent;
+    border-top-color: var(--color-1);
+    box-sizing: border-box;
+    animation: bump 0.4s ease-in-out infinite alternate;
+}
+
+.download-loader::before {
+    content: '';
+    left: 50%;
+    bottom: calc(25 * var(--size));
+    transform: translate(-50%, 0);
+    position: absolute;
+    width: calc(15 * var(--size));
+    height: calc(20 * var(--size));
+    background: var(--color-1);
+    box-sizing: border-box;
+    animation: bump 0.4s ease-in-out infinite alternate;
+}
+
+@keyframes bump {
+    0% {
+        transform: translate(-50%, calc(5 * var(--size)));
+    }
+
+    100% {
+        transform: translate(-50%, calc(-5 * var(--size)));
+    }
+}
+
 
 .donate-btn {
     color: var(--primary-color);

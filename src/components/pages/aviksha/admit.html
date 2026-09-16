@@ -128,7 +128,7 @@
         //DISABLE BUTTON & SHOW LOADER
         searchBtn.disabled = true; // Disable the button
         resultsDiv.removeAttribute('data-translate-key');
-        resultsDiv.innerHTML = '<div class="loader"><br></div>';
+        resultsDiv.innerHTML = '<div class="search-loader"><br></div>';
 
 
         try {
@@ -173,7 +173,7 @@
                           </tr>
                           <tr class="highlight-row">
                               <td data-translate-key="admit_card">Admit Card:</td>
-                              <td class="result-value"><a href="javascript:void(0);" onclick="generateAdmitCard()" class="pdf-icon"><i class="fa-solid fa-file-pdf"></i></a></td>
+                              <td class="result-value"><a href="javascript:void(0);" onclick="generateAdmitCard()" class="pdf-icon"><i class="fa-solid fa-download fa-beat"></i></a></td>
                           </tr>
                           <tr class="highlight-row">
                               <td data-translate-key="previous_paper">Previous Paper:</td>
