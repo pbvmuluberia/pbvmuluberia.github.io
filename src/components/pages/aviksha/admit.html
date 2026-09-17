@@ -89,8 +89,11 @@
         </div>
         <div class="btn-group" style="display: flex; gap: var(--space-sm);">
           <button id="searchBtn" class="donate-btn"
-            style="align-self: center; border-radius: var(--border-radius-medium); padding: var(--space-sm) var(--space-md);"
+            style="font-size: var(--font-size-h3); align-self: center; border-radius: var(--border-radius-medium); padding: var(--space-sm) var(--space-md);"
             onclick="fetchData()" data-translate-key="search_result_button">Search Result</button>
+          <button class="donate-btn"
+            style="font-size: var(--font-size-h3); align-self: center; border-radius: var(--border-radius-medium); padding: var(--space-sm) var(--space-md);"
+            id="correctionBtn" data-translate-key="correct" onclick="openCorrectionForm()">correct</button>
         </div>
       </div>
 
@@ -98,6 +101,52 @@
         Please enter your Name above and click Search to download your admit
       </div>
     </div>
+
+    <dialog id="correctionModal" style="background-color: var(--bg-color); color: var(--text-color);">
+      <h2 data-translate-key="update_student_data">Update Student Data</h2>
+      <form id="correctionForm">
+        <div class="inputFormRow">
+          <label for="roll" data-translate-key="roll">Roll No:</label>
+          <input type="text" id="roll" name="roll" readonly>
+        </div>
+        <div class="inputFormRow">
+          <label for="name" data-translate-key="name">Name:</label>
+          <input type="text" id="stdname" name="name" required>
+        </div>
+        <div class="inputFormRow">
+          <label for="studentClass" data-translate-key="class">Class:</label>
+          <select id="studentClass" name="studentClass" required>
+            <option value="V">III</option>
+            <option value="V">IV</option>
+            <option value="V">V</option>
+            <option value="VI">VI</option>
+            <option value="VII">VII</option>
+            <option value="VIII">VIII</option>
+            <option value="IX">IX</option>
+          </select>
+        </div>
+        <div class="inputFormRow">
+          <label for="medium" data-translate-key="medium">Medium:</label>
+          <select id="medium" name="medium" required>
+            <option value="BENGALI">Bengali</option>
+            <option value="ENGLISH">English</option>
+          </select>
+        </div>
+        <div class="inputFormRow">
+          <label for="mobileNo" data-translate-key="mobileNo">Mobile No:</label>
+          <input type="text" id="mobileNo" name="mobileNo" data-translate-key="enter_valid_mobno"
+            placeholder="Enter your mobile no" required>
+        </div>
+        <div class="inputFormRow">
+          <button type="submit" id="submitBtn" class="action-btn"
+            style="align-self: center; border-radius: var(--border-radius-medium); flex-grow: 1; padding: var(--space-sm) var(--space-md);"
+            data-translate-key="submit_correction">Submit Correction</button>
+        </div>
+
+      </form>
+
+      <div id="message"></div>
+    </dialog>
 
     <script>
       const SCRIPT_URL =
@@ -171,6 +220,10 @@
                               <td data-translate-key="school">School:</td>
                               <td id="sschool">${student.school}</td>
                           </tr>
+                          <tr style="display: none;">
+                              <td data-translate-key="school">School:</td>
+                              <td id="sschool">${student.medium}</td>
+                          </tr>
                           <tr class="highlight-row">
                               <td data-translate-key="admit_card">Admit Card:</td>
                               <td class="result-value"><a href="javascript:void(0);" onclick="generateAdmitCard()" class="pdf-icon"><i class="fa-solid fa-download fa-beat"></i></a></td>
@@ -241,6 +294,11 @@
 
               td, th {
                 padding: 5px;
+
+                p {
+                  margin: 0;
+                  font-size: 0.8rem;
+                }
               }
               
               .print-watermark {
@@ -285,9 +343,9 @@
                 }
                 
                 @page {
-size: A4 landscape;
-margin: 8mm;
-}
+                  size: A4 landscape;
+                  margin: 8mm;
+                }
               }
             </style>
         </head>
@@ -365,7 +423,7 @@ margin: 8mm;
               <tr>
                 <td style="font-weight: bold; border-bottom-style:solid; border-left-style:solid;">
                   <p>NAME OF THE SCHOOL :</p>
-                  <pstyle="margin: 2px;>( বিদ্যালয়ে নাম )</p>
+                  <p>( বিদ্যালয়ে নাম )</p>
                 </td>
                 <td style="vertical-align: top; border-bottom-style:solid; border-right-style:solid;">
                   <p>${sschool}</p>
@@ -394,12 +452,12 @@ margin: 8mm;
                 <td colspan="2" style="text-align: center; font-weight: bold; border-bottom-style:solid; border-right-style:solid;">
                   <img style="width: 25%;" src="/src/background/K jasu sign.png" alt="Logo" ">
                   <div style="border-top: 2px solid #000; width: 100%; margin: 2px 0;"></div>
-                  <p style="font-size: 0.9rem; margin-top: 0;">কালীকৃষ্ণ জাসু (সভাপতি) পশ্চিমবঙ্গ বিজ্ঞান মঞ্চ, হাওড়া জেলা কমিটি</p>
+                  <p style="margin-top: 0;">কালীকৃষ্ণ জাসু (সভাপতি) পশ্চিমবঙ্গ বিজ্ঞান মঞ্চ, হাওড়া জেলা কমিটি</p>
                 </td>
               </tr>
               <tr>
                 <td colspan="4" style="font-weight: bold; border-top-style:solid; border-left-style:solid; border-bottom-style:solid; border-right-style:solid;">
-                  <p style="font-size: 1.05rem;">** You must enter the exam centre 30 minutes before commencement of exam / আপনাকে পরীক্ষা শুরুর 30 মিনিট আগে পরীক্ষাকেন্দ্রে প্রবেশ করতে হবে।<br>
+                  <p>** You must enter the exam centre 30 minutes before commencement of exam / আপনাকে পরীক্ষা শুরুর 30 মিনিট আগে পরীক্ষাকেন্দ্রে প্রবেশ করতে হবে।<br>
                     ** You must bring admit card otherwise you will not be allowed to sit in exam / আপনাকে অবশ্যই প্রবেশপত্র আনতে হবে, অন্যথায় আপনাকে পরীক্ষায় বসতে দেওয়া হবে না।</p>
                   <p style="color: red;">** If necessary, change the above date with due intimation / অনিবার্য কারণবশত পরীক্ষার দিন পরিবর্তন হলে ছাত্র - ছাত্রী ও স্কুল কর্তৃপক্ষকে আগাম জানানো হবে।</p>
                 </td>
@@ -430,6 +488,11 @@ margin: 8mm;
 
               td, th {
                 padding: 5px;
+
+                P {
+                  margin: 0;
+                  font-size: 0.8rem;
+                }
               }
               
               p {
@@ -509,7 +572,7 @@ margin: 8mm;
                   <div style="display: grid; grid-template-columns: auto 1fr; align-items: center; justify-items: center;">
                     
                     <!-- Logo -->
-                    <img style="height: 4lh; filter: invert(1);" src="https://raw.githubusercontent.com/t4saha/PBVM-Uluberia-Vigyan-Kendra/main/Logo/pvbm_logo_gold.png" alt="Logo" class="nav-logo" onerror="this.onerror=null; this.src='https://placehold.co/50x50/d79921/3c3836?text=LOGO'">
+                    <img style="height: 3lh; filter: invert(1);" src="https://raw.githubusercontent.com/t4saha/PBVM-Uluberia-Vigyan-Kendra/main/Logo/pvbm_logo_gold.png" alt="Logo" class="nav-logo" onerror="this.onerror=null; this.src='https://placehold.co/50x50/d79921/3c3836?text=LOGO'">
                     
                     <!-- Text Content -->
                     <div style="text-align: center; width: 100%;">
@@ -544,9 +607,9 @@ margin: 8mm;
                     4. You must bring admit card otherwise you will not be allowed to sit in
                     exam.<br><br>
                     1. বৃত্ত পূরণ করতে শুধু মাত্র কালো / নীল বল পয়েন্ট কলম ব্যবহার করুন।<br>
-2. বৃত্তগুলি সম্পূর্ণ এবং সঠিক ভাবে কালো করা উচিত।<br>
-3. পেন্সিল ব্যবহার কঠোর ভাবে নিষিদ্ধ।<br>
-4. আপনাকে Admit Card আনতে হবে অন্যথায আপনাকে পরীক্ষায় বসতে দেওয়া হবে না।</p>
+                    2. বৃত্তগুলি সম্পূর্ণ এবং সঠিক ভাবে কালো করা উচিত।<br>
+                    3. পেন্সিল ব্যবহার কঠোর ভাবে নিষিদ্ধ।<br>
+                    4. আপনাকে Admit Card আনতে হবে অন্যথায আপনাকে পরীক্ষায় বসতে দেওয়া হবে না।</p>
                 </td>
               </tr>
               <tr>
@@ -560,7 +623,7 @@ margin: 8mm;
               <tr>
                 <td colspan="1" style="font-weight: bold; border-left-style:double;">
                   <p>NAME OF THE SCHOOL :</p>
-                  <pstyle="margin: 2px;>( বিদ্যালয়ে নাম )</p>
+                  <p style="font-weight: bold;">( বিদ্যালয়ে নাম )</p>
                 </td>
                 <td colspan="1" style="vertical-align: top; border-right-style:solid;">
                   <p>${sschool}</p>
@@ -621,7 +684,7 @@ margin: 8mm;
                 </td>
                 </td>
                 <td colspan="1" style="border-bottom-style:solid; border-right-style:double;">
-                  <p>NAME (নাম): NAJRICK BANERJEE<br>
+                  <p style="font-size: 0.7rem;">NAME (নাম): NAJRICK BANERJEE<br>
                   NAME OF THE SCHOOL: F.P. SCHOOL<br>
                   (বিদ্যালয়ের নাম)<br>
                   CLASS (ক্লাস) : V<br>
@@ -636,12 +699,12 @@ margin: 8mm;
                 <td colspan="2" style="text-align: center; font-weight: bold; border-bottom-style:solid; border-right-style:double; border-left-style:solid;">
                   <img style="width: 25%;" src="/src/background/K jasu sign.png" alt="Logo" ">
                   <div style="text-align: center; border-top: 2px solid #000; width: 100%; margin: 2px 0;"></div>
-                  <p style="font-size: 0.9rem; margin-top: 0;">কালীকৃষ্ণ জাসু (সভাপতি) পশ্চিমবঙ্গ বিজ্ঞান মঞ্চ, হাওড়া জেলা কমিটি</p>
+                  <p style="margin-top: 0;">কালীকৃষ্ণ জাসু (সভাপতি) পশ্চিমবঙ্গ বিজ্ঞান মঞ্চ, হাওড়া জেলা কমিটি</p>
                 </td>
               </tr>
               <tr>
                 <td colspan="4" style="font-weight: bold; border-top-style:solid; border-left-style:double; border-bottom-style:double; border-right-style:double;">
-                  <p style="font-size: 1.05rem;">** You must enter the exam centre 30 minutes before commencement of exam / আপনাকে পরীক্ষা শুরুর 30 মিনিট আগে পরীক্ষাকেন্দ্রে প্রবেশ করতে হবে।
+                  <p>** You must enter the exam centre 30 minutes before commencement of exam / আপনাকে পরীক্ষা শুরুর 30 মিনিট আগে পরীক্ষাকেন্দ্রে প্রবেশ করতে হবে।
                   <p style="color: red;">** If necessary, change the above date with due intimation / অনিবার্য কারণবশত পরীক্ষার দিন পরিবর্তন হলে ছাত্র - ছাত্রী ও স্কুল কর্তৃপক্ষকে আগাম জানানো হবে।</p>
                 </td>
               </tr>
@@ -653,6 +716,87 @@ margin: 8mm;
         admitWindow.document.write(htmlContent);
         admitWindow.document.close();
       }
+
+      const correctionModal = document.getElementById('correctionModal');
+      const correctionBtn = document.getElementById('correctionBtn'); // Fixed ID
+
+      // Open the modal
+      function openCorrectionForm() {
+
+        const snameEl = document.getElementById('sname');
+        const srollEl = document.getElementById('sroll');
+        const sclassEl = document.getElementById('sclass');
+
+        document.getElementById("stdname").value = snameEl.textContent;
+        document.getElementById("studentClass").value = sclassEl.textContent;
+        document.getElementById("roll").value = srollEl.textContent;
+
+        correctionModal.showModal();
+      }
+
+      document.getElementById("correctionForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        var messageDiv = document.getElementById("message");
+        var submitBtn = document.getElementById("submitBtn");
+
+        // Helper to fetch the exact translated string from data.js
+        function getTr(key) {
+          var lang = localStorage.getItem('language') || window.savedLang || 'bn';
+          if (window.translations && window.translations[lang] && window.translations[lang][key]) {
+            return window.translations[lang][key];
+          }
+          return key;
+        }
+
+        // 1. SUBMITTING STATE
+        messageDiv.style.color = "blue";
+        messageDiv.setAttribute('data-translate-key', 'Submitting_data');
+        messageDiv.innerText = getTr('Submitting_data');
+        submitBtn.disabled = true;
+
+        var webAppUrl = "https://script.google.com/macros/s/AKfycbzUs6i4fhyKK6vafgT92kagMaDJUSr8tAlCeXQoqYu3pV2pCQHnBDOgXZpTAVii_vSl/exec";
+
+        var formData = new FormData(this);
+        var data = new URLSearchParams();
+        for (const pair of formData) {
+          data.append(pair[0], pair[1]);
+        }
+
+        fetch(webAppUrl, {
+          method: "POST",
+          body: data
+        })
+          .then(response => response.text())
+          .then(result => {
+            submitBtn.disabled = false;
+
+            if (result.includes("Success")) {
+              // 2. SUCCESS STATE
+              messageDiv.style.color = "green";
+              messageDiv.setAttribute('data-translate-key', 'submit_success');
+              messageDiv.innerText = getTr('submit_success');
+              document.getElementById("correctionForm").reset();
+            } else {
+              // 3. SERVER ERROR / MISMATCH STATE
+              messageDiv.style.color = "red";
+              messageDiv.setAttribute('data-translate-key', 'submit_error');
+              messageDiv.innerText = getTr('submit_error');
+            }
+
+            if (window.applyTranslations) window.applyTranslations();
+          })
+          .catch(error => {
+            // 4. NETWORK ERROR STATE
+            submitBtn.disabled = false;
+            messageDiv.style.color = "red";
+            messageDiv.setAttribute('data-translate-key', 'submit_error');
+            messageDiv.innerText = getTr('submit_error');
+
+            if (window.applyTranslations) window.applyTranslations();
+            console.error('Error:', error);
+          });
+      });
     </script>
 </body>
 
