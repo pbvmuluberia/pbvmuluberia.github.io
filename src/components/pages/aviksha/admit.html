@@ -113,6 +113,10 @@
           <label for="name" data-translate-key="name">Name:</label>
           <input type="text" id="stdname" name="name" required>
         </div>
+        <div class="custom-select inputFormRow" style="align-self: right;">
+          <label for="school" data-translate-key="school">School:</label>
+          <select id="modalSchoolList" name="school"></select>
+        </div>
         <div class="inputFormRow">
           <label for="studentClass" data-translate-key="class">Class:</label>
           <select id="studentClass" name="studentClass" required>
@@ -436,7 +440,7 @@
                 </td>
               </tr>
               <tr>
-                <td style="font-weight: bold; border-left-style:solid; border-top-style:solid;">
+                <td style="vertical-align: top; font-weight: bold; border-left-style:solid; border-top-style:solid;">
                   <p>EXAM CENTRE : </p>
                   <p style="margin: 2px;">( পরীক্ষা কেন্দ্র )</p>
                 </td>
@@ -621,7 +625,7 @@
                 </td>
               </tr>
               <tr>
-                <td colspan="1" style="font-weight: bold; border-left-style:double;">
+                <td colspan="1" style="vertical-align: top; font-weight: bold; border-left-style:double;">
                   <p>NAME OF THE SCHOOL :</p>
                   <p style="font-weight: bold;">( বিদ্যালয়ে নাম )</p>
                 </td>
@@ -726,10 +730,15 @@
         const snameEl = document.getElementById('sname');
         const srollEl = document.getElementById('sroll');
         const sclassEl = document.getElementById('sclass');
+        const sschoolEL = document.getElementById('sschool');
+        const mainSchoolSelect = document.getElementById('schoolList');
+        const modalSchoolSelect = document.getElementById('modalSchoolList');
 
         document.getElementById("stdname").value = snameEl.textContent;
         document.getElementById("studentClass").value = sclassEl.textContent;
         document.getElementById("roll").value = srollEl.textContent;
+        modalSchoolSelect.innerHTML = mainSchoolSelect.innerHTML;
+        document.getElementById("modalSchoolList").value = sschoolEL.textContent;
 
         correctionModal.showModal();
       }
@@ -776,7 +785,6 @@
               messageDiv.style.color = "green";
               messageDiv.setAttribute('data-translate-key', 'submit_success');
               messageDiv.innerText = getTr('submit_success');
-              document.getElementById("correctionForm").reset();
             } else {
               // 3. SERVER ERROR / MISMATCH STATE
               messageDiv.style.color = "red";
@@ -796,6 +804,15 @@
             if (window.applyTranslations) window.applyTranslations();
             console.error('Error:', error);
           });
+      });
+
+      const dialog = document.getElementById('correctionModal');
+
+      dialog.addEventListener('click', (event) => {
+        // If the user clicks directly on the dialog backdrop (outside child content)
+        if (event.target === dialog) {
+          dialog.close();
+        }
       });
     </script>
 </body>

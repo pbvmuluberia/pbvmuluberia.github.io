@@ -51,7 +51,7 @@
     padding: var(--space-md);
     background-color: var(--surface-color) !important;
     border-radius: var(--border-radius-medium);
-    height: 25lh;
+    min-height: 25lh;
 
     &::backdrop {
         backdrop-filter: blur(10px);
@@ -109,6 +109,7 @@ input[type="text"] {
     flex-grow: 1;
 }
 
+select,
 input[type="text"] {
     margin-left: var(--space-sm);
 }
@@ -192,11 +193,6 @@ hr {
 @media (min-width: 900px) {
     .input-group {
         flex-direction: row;
-    }
-
-    select,
-    input[type="text"] {
-        margin-left: var(--space-sm);
     }
 
     .search-form-card {
@@ -395,7 +391,7 @@ table tr td:last-child {
 
 .search-loader {
     --color-1: var(--primary-color);
-    --size: 1px;
+    --size: 0.6px;
 
     width: calc(48 * var(--size));
     height: calc(48 * var(--size));
