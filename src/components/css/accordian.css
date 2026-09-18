@@ -119,7 +119,7 @@ ol {
     }
 }
 
-@media(min-width: 500px) {
+@media(min-width: 900px) {
     .details::details-content {
         margin-inline: 2px;
     }
