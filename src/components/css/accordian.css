@@ -25,7 +25,6 @@ summary {
 
 .details::details-content {
     display: block;
-    margin-inline: 2rem;
     padding: 3% 3% 0 3%;
     block-size: 0;
     overflow: hidden;
@@ -70,6 +69,7 @@ summary {
     border-radius: var(--border-radius-medium);
     padding: 3%;
     font-size: var(--font-size-p);
+    text-align: justify;
 }
 
 table {
@@ -105,11 +105,22 @@ details[open] summary:before {
     content: "-";
 }
 
+ul,
 ol {
-    padding-left: 1rem;
+    padding: 3%;
 
-    li::marker {
-        font-size: var(--font-size-h3);
-        font-weight: bold;
+    li{
+        text-align: justify;
+        
+        &::marker {
+            font-size: var(--font-size-h3);
+            font-weight: bold;
+        }
+    }
+}
+
+@media(min-width: 500px) {
+    .details::details-content {
+        margin-inline: 2px;
     }
 }
