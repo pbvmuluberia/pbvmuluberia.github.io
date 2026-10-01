@@ -200,7 +200,7 @@
             width: 140px;
             height: 140px;
             border-radius: 50%;
-            object-fit: cover;
+            object-fit: contain;
             border: 4px solid var(--surface-color-alt);
             margin: var(--space-md) 0;
         }
