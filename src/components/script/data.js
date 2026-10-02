@@ -202,7 +202,7 @@ const translations = {
         'exam': 'হাওড়া জেলা বিজ্ঞান মানসিকতা ও মেধা অভীক্ষা',
         'uluberia': 'উলুবেড়িয়া বিজ্ঞান কেন্দ্র',
         'nav_result': 'ফলাফল',
-        'nav_admit': 'অ্যাডমিট কার্ড',
+        'nav_admit': 'প্রবেশপত্র',
         'nav_check_details': 'পরীক্ষার্থীর বিবরণ',
         'result_finder_title': 'ফলাফল অনুসন্ধান',
         'result_finder_subtitle': 'আপনার ফলাফল দেখতে রোল নম্বর লিখুন।',
@@ -260,11 +260,11 @@ const translations = {
         'important_01': 'বিজ্ঞানকে জনপ্রিয় করার চার দশক',
         'name_label': 'পরীক্ষার্থীর নাম',
         'name_placeholder': 'নাম লিখুন',
-        'admit_card': 'অ্যাডমিট কার্ড',
+        'admit_card': 'প্রবেশপত্র',
         'previous_paper': 'পূর্বের প্রশ্নাবলী',
         'school_placeholder': 'বিদ্যালয়ের নাম বেছে নিন',
         'no_students_found': 'এই নামে কোনো পরীক্ষার্থী নেই।',
-        'default_admit_display': 'আপনার অ্যাডমিট পেতে সঠিক নাম লিখুন',
+        'default_admit_display': 'আপনার প্রবেশপত্র পেতে সঠিক নাম লিখুন',
         'enter_valid_mobno': 'সঠিক মোবাইল নঃ লিখুন',
         'theme_light': 'শ্বেতাভ রূপ',
         'theme_dark': 'কৃষ্ণাভ রূপ',
@@ -274,7 +274,7 @@ const translations = {
         'formno_placeholder': 'যেমন: 8244',
         'formno_label': 'ফর্ম নম্বর :',
         'enter_valid_formno': 'এই ফর্ম নম্বরটি নেই।',
-        'default_reg_display': 'আপনার রেজিস্ট্রেশন তথ্য জানতে ফর্ম নম্বর এবং বিদ্যালয় নির্বাচন করুন।'
+        'default_reg_display': 'আপনার রেজিস্ট্রেশন তথ্য জানতে ফর্ম নম্বর এবং বিদ্যালয় নির্বাচন করুন।',
     }
 };
 

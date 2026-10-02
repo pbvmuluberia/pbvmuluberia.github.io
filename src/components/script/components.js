@@ -150,9 +150,7 @@ const ComponentGenerator = {
                         <div class="lang-content en">
                             <p class="notice-subtitle" data-translate-key="notice_subtitle_en">Current Events</p>
                             <ul>
-                                <li>Admit distribution of <b>Howrah Zilla Vigyan Manosikota-o-Medha Aviksha 2026</b> has been started. Please Contact your school or nearest commitee member.</li>
-                                <a href="./src/components/pages/aviksha/checkR.html"><b>Check your registration status</b></a>
-                                <p>&nbsp;</p>
+                                <li><b>Howrah Zilla Vigyan Manosikota-o-Medha Aviksha 2026</b> has been completed. Visit here for results.</li>
                                 <a href="./publications.html?scroll=main- content&openFirst=true">Buy Question Bank</a>
                                 <a href="./src/components/pages/aviksha/admit.html">Admit Card</a>
                                 <p>&nbsp;</p>
@@ -163,9 +161,8 @@ const ComponentGenerator = {
                         <div class="lang-content bn">
                             <p class="notice-subtitle" data-translate-key="notice_subtitle_bn">বর্তমান ঘটনাবলী</p>
                             <ul>
-                                <li><b>হাওড়া জেলা বিজ্ঞান মানসিকতা-ও-মেধা অভিক্ষা ২০২৬</b> এর অ্যাডমিট দেওয়া শুরু হয়েছে। অনুগ্রহ করে বিদ্যালয় বা নিকটবর্তী বিজ্ঞান কর্মীদের সাথে যোগাযোগ করুন।</li> 
-                                <a href="./src/components/pages/aviksha/checkR.html"><b>আপনার রেজিস্ট্রেশন তথ্য চেক করুন</b></a>
-                                <p>&nbsp;</p> <a href = "./publications.html?scroll=main- content&openFirst=true" > প্রশ্ন বিচিত্রা কিনুন </a>
+                                <li><b>হাওড়া জেলা বিজ্ঞান মানসিকতা-ও-মেধা অভিক্ষা ২০২৬</b> সফলভাবে সম্পন্ন হয়েছে। ফলাফলের জন্য যোগাযোগ রাখুন।</li> 
+                                <a href = "./publications.html?scroll=main- content&openFirst=true" > প্রশ্ন বিচিত্রা কিনুন </a>
                                 <a href="./src/components/pages/aviksha/admit.html">অ্যাডমিট</a>
                                 <p>&nbsp;</p>
                                 <li>সাংস্কৃতিক প্রতিযোগীতা ২০২৬ সফলভাবে সম্পন্ন হয়েছে।</li>
