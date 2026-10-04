@@ -1,19 +1,18 @@
 // publications.js
 
 /**
- * --- Publication/Book Management ---
+- --- Publication/Book Management ---
  */
 
 "use strict";
 
-function generateBookCardsHtml(bookArray) {
-    const containerId = 'book-covers-carousel-1';
+function generateBookCardsHtml(bookArray, containerId = 'book-covers-carousel-1') {
     let cardsHtml = '';
     if (!bookArray) return '';
     bookArray.forEach(book => {
         const bookJsonString = JSON.stringify(book).replace(/"/g, '&quot;');
         const fallbackUrl = `https://placehold.co/150x225/d79921/3c3836?text=Book+Cover`;
-        const badgeHtml = book.isMagazine ? '<span class="magazine-badge">MAGAZINE</span>' : book.isQBank ? '<span class="qbank-badge">Question Bank</span>' : '';//Qbank//
+        const badgeHtml = book.isMagazine ? '<span class="magazine-badge">MAGAZINE</span>' : book.isQBank ? '<span class="qbank-badge">Question Bank</span>' : '';
 
         // stringToHslColor is available via window (from utils.js)
         const borderColor = window.stringToHslColor(book.title, 70, 40);
@@ -26,10 +25,31 @@ function generateBookCardsHtml(bookArray) {
 function generatePublicationsContent(bookArray) {
     const lang = window.getLang();
     const langDict = window.translations[lang];
-    const hasMagazines = bookArray.some(book => book.isMagazine);
+
+    // Group 1: Magazines and Question Banks together in carousel-1
+    const magazinesAndQBanks = bookArray.filter(book => book.isMagazine || book.isQBank);
+
+    // Group 2: All other books in carousel-2
+    const otherBooks = bookArray.filter(book => !book.isMagazine && !book.isQBank);
+
+    const hasMagazines = magazinesAndQBanks.some(book => book.isMagazine);
     let subscribeButtonHtml = hasMagazines ? `<div class="subscribe-button-container"><p class="subscribe-text">${langDict.pub_subscribe_prompt}</p><button class="subscribe-button" onclick="window.showSubscriptionMessage('msg_subscription')"><i class="fa-solid fa-bell"></i> ${langDict.pub_subscribe_btn}</button></div>` : '';
-    const bookCardsHtml = generateBookCardsHtml(bookArray);
-    return `<h2>${langDict.pub_featured_title}</h2>${bookCardsHtml}${subscribeButtonHtml}`;
+
+    // Generate carousels based on the new grouping
+    const magAndQBankCarouselHtml = magazinesAndQBanks.length > 0 ? generateBookCardsHtml(magazinesAndQBanks, 'book-covers-carousel-1') : '';
+    const otherBooksCarouselHtml = otherBooks.length > 0 ? generateBookCardsHtml(otherBooks, 'book-covers-carousel-2') : '';
+
+    let magAndQBankSection = '';
+    if (magazinesAndQBanks.length > 0) {
+        magAndQBankSection = `<h2>${langDict.pub_mag_qbank_title || 'Magazines & Question Banks'}</h2>${magAndQBankCarouselHtml}`;
+    }
+
+    let otherBooksSection = '';
+    if (otherBooks.length > 0) {
+        otherBooksSection = `<h2>${langDict.pub_featured_title || 'Books'}</h2>${otherBooksCarouselHtml}`;
+    }
+
+    return `${magAndQBankSection}${otherBooksSection}${subscribeButtonHtml}`;
 }
 
 function scrollCarousel(containerId, direction) {
@@ -50,7 +70,6 @@ async function updatePublicationsContent(lang) {
     if (window.bookData[lang]) {
         htmlContent = generatePublicationsContent(window.bookData[lang]);
     } else {
-        // Use window.JSON_URL_EN/BN
         const url = (lang === 'bn') ? window.JSON_URL_BN : window.JSON_URL_EN;
         try {
             const response = await fetch(url);
@@ -61,12 +80,13 @@ async function updatePublicationsContent(lang) {
         }
     }
     contentBody.innerHTML = htmlContent;
-    // enableMouseWheelScroll is available via window (from utils.js)
+
+    // Enable mouse wheel scroll for both carousels
     window.enableMouseWheelScroll('book-covers-carousel-1');
+    window.enableMouseWheelScroll('book-covers-carousel-2');
 }
 
 function showBookDetails(cardElement) {
-    // hideDonationPopup is available via window (from modal.js)
     window.hideDonationPopup();
     const overlay = document.getElementById('bookDetailOverlay');
     const detailCard = document.getElementById('bookDetailCard');
@@ -75,9 +95,6 @@ function showBookDetails(cardElement) {
     const book = JSON.parse(cardElement.getAttribute('data-book-json').replace(/&quot;/g, '"'));
 
     const badgeElement = document.getElementById('detailBookBadge');
-
-    // Use window.stringToHslColor
-    const borderColor = window.stringToHslColor(book.title, 70, 40);
     const actionBtn = document.getElementById('detailActionBtn');
 
     badgeElement.textContent = book.price;
@@ -101,7 +118,9 @@ function showBookDetails(cardElement) {
     document.getElementById('detailBookType').textContent = book.isMagazine ? langDict.book_type_magazine : langDict.book_type_standard;
     document.getElementById('detailBookDescription').textContent = book.description || langDict.book_no_description;
 
-    overlay.classList.add('show'); detailCard.classList.add('show'); document.body.style.overflow = 'hidden';
+    overlay.classList.add('show');
+    detailCard.classList.add('show');
+    document.body.style.overflow = 'hidden';
 }
 
 function hideBookDetails() {
@@ -109,7 +128,6 @@ function hideBookDetails() {
     document.getElementById('bookDetailCard').classList.remove('show');
     document.body.style.overflow = '';
 }
-
 
 // Attach to window for external/inline access
 window.generateBookCardsHtml = generateBookCardsHtml;
