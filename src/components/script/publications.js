@@ -86,10 +86,21 @@ async function updatePublicationsContent(lang) {
     window.enableMouseWheelScroll('book-covers-carousel-2');
 }
 
+// Tracks the card <img> that has view-transition-name so we can clean it up
+let _lastTransitionCardImg = null;
+
+function _clearBookCardTransitionName() {
+    if (_lastTransitionCardImg) {
+        _lastTransitionCardImg.style.viewTransitionName = '';
+        _lastTransitionCardImg = null;
+    }
+}
+
 function showBookDetails(cardElement) {
     window.hideDonationPopup();
     const overlay = document.getElementById('bookDetailOverlay');
     const detailCard = document.getElementById('bookDetailCard');
+    const detailCoverImg = document.getElementById('detailBookCover');
     const lang = window.getLang();
     const langDict = window.translations[lang];
     const book = JSON.parse(cardElement.getAttribute('data-book-json').replace(/&quot;/g, '"'));
@@ -104,29 +115,94 @@ function showBookDetails(cardElement) {
     if (book.isMagazine) {
         actionBtn.textContent = langDict.book_btn_subscribe;
         actionBtn.onclick = () => showSubscriptionMessage('msg_subscription');
-    }
-    else if (book.isQBank) {
+    } else if (book.isQBank) {
         actionBtn.textContent = langDict.book_btn_buy_qbank;
         actionBtn.onclick = () => showSubscriptionMessage('msg_qbank_purchase');
-    }
-    else {
+    } else {
         actionBtn.textContent = langDict.book_btn_download;
         actionBtn.onclick = () => showSubscriptionMessage('msg_purchase_dev');
     }
 
-    document.getElementById('detailBookCover').src = book.url;
     document.getElementById('detailBookType').textContent = book.isMagazine ? langDict.book_type_magazine : langDict.book_type_standard;
     document.getElementById('detailBookDescription').textContent = book.description || langDict.book_no_description;
 
-    overlay.classList.add('show');
-    detailCard.classList.add('show');
-    document.body.style.overflow = 'hidden';
+    const cardImg = cardElement.querySelector('img');
+
+    if (document.startViewTransition && cardImg) {
+        // Clear any stale name from a previous card first
+        _clearBookCardTransitionName();
+
+        // ── OLD STATE snapshot ──────────────────────────────────────────────
+        // Set the transition-name on the CARD image BEFORE startViewTransition
+        // so the browser captures it in the "old" snapshot.
+        cardImg.style.viewTransitionName = 'book-cover-hero';
+        _lastTransitionCardImg = cardImg;
+
+        const transition = document.startViewTransition(() => {
+            // ── NEW STATE snapshot ──────────────────────────────────────────
+            // Transfer the name to the MODAL image, remove it from the card.
+            // Browser will now see: old=card-img, new=modal-img → morphs between them.
+            cardImg.style.viewTransitionName = '';
+            detailCoverImg.style.viewTransitionName = 'book-cover-hero';
+            detailCoverImg.src = book.url;
+
+            // Show the modal. vt-active only on overlay (suppresses its own
+            // opacity/visibility CSS transition; the card's expand + description
+            // fade-in animations are left intact so they play as designed).
+            overlay.classList.add('show', 'vt-active');
+            detailCard.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        });
+
+        transition.finished.finally(() => {
+            overlay.classList.remove('vt-active');
+            // Keep view-transition-name on modal img so close can transition back
+        });
+    } else {
+        // Fallback: no View Transition API support
+        detailCoverImg.src = book.url;
+        overlay.classList.add('show');
+        detailCard.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    }
 }
 
 function hideBookDetails() {
-    document.getElementById('bookDetailOverlay').classList.remove('show');
-    document.getElementById('bookDetailCard').classList.remove('show');
-    document.body.style.overflow = '';
+    const overlay = document.getElementById('bookDetailOverlay');
+    const detailCard = document.getElementById('bookDetailCard');
+    const detailCoverImg = document.getElementById('detailBookCover');
+
+    if (document.startViewTransition && _lastTransitionCardImg) {
+        // ── OLD STATE snapshot ──────────────────────────────────────────────
+        // detailCoverImg already has viewTransitionName = 'book-cover-hero'
+        // _lastTransitionCardImg is where we want to morph back to.
+
+        const cardImg = _lastTransitionCardImg;
+
+        const transition = document.startViewTransition(() => {
+            // ── NEW STATE snapshot ──────────────────────────────────────────
+            // Transfer name back to the card image so browser can morph back.
+            detailCoverImg.style.viewTransitionName = '';
+            cardImg.style.viewTransitionName = 'book-cover-hero';
+
+            overlay.classList.remove('show');
+            overlay.classList.add('vt-active');
+            detailCard.classList.remove('show');
+            document.body.style.overflow = '';
+        });
+
+        transition.finished.finally(() => {
+            overlay.classList.remove('vt-active');
+            _clearBookCardTransitionName();
+            detailCoverImg.style.viewTransitionName = '';
+        });
+    } else {
+        overlay.classList.remove('show');
+        detailCard.classList.remove('show');
+        document.body.style.overflow = '';
+        detailCoverImg.style.viewTransitionName = '';
+        _clearBookCardTransitionName();
+    }
 }
 
 // Attach to window for external/inline access
