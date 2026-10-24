@@ -280,8 +280,8 @@ const translations = {
     }
 };
 
-const JSON_URL_EN = "https://gist.githubusercontent.com/pbvmuluberia/b6bf520cce8c1b0167a6657b2c60e4d2/raw/2bbf9075e9fda328037853f1821e0ac0228ad5bf/book.json";
-const JSON_URL_BN = "https://gist.githubusercontent.com/pbvmuluberia/e5e2122ddf3ac7489e61be9f81e475fd/raw/2d5eab4f04b181dec69ff7db5c7a303d714d8311/book_bn.json";
+const JSON_URL_EN = "https://gist.githubusercontent.com/pbvmuluberia/b6bf520cce8c1b0167a6657b2c60e4d2/raw/4d50bd96c875be07d6e5c499e6e2f93f801dcab8/book.json";
+const JSON_URL_BN = "https://gist.githubusercontent.com/pbvmuluberia/e5e2122ddf3ac7489e61be9f81e475fd/raw/1f9b3e72d2a00165383ccff57c83385a72340c0c/book_bn.json";
 
 // Global data store for fetched book data
 window.bookData = { en: null, bn: null };
