@@ -129,33 +129,31 @@ function showBookDetails(cardElement) {
     const cardImg = cardElement.querySelector('img');
 
     if (document.startViewTransition && cardImg) {
-        // Clear any stale name from a previous card first
         _clearBookCardTransitionName();
 
-        // ── OLD STATE snapshot ──────────────────────────────────────────────
-        // Set the transition-name on the CARD image BEFORE startViewTransition
-        // so the browser captures it in the "old" snapshot.
+        // ── OLD STATE: name on card img BEFORE startViewTransition ──────────
         cardImg.style.viewTransitionName = 'book-cover-hero';
         _lastTransitionCardImg = cardImg;
 
         const transition = document.startViewTransition(() => {
-            // ── NEW STATE snapshot ──────────────────────────────────────────
-            // Transfer the name to the MODAL image, remove it from the card.
-            // Browser will now see: old=card-img, new=modal-img → morphs between them.
+            // ── NEW STATE: transfer name to modal img ───────────────────────
             cardImg.style.viewTransitionName = '';
             detailCoverImg.style.viewTransitionName = 'book-cover-hero';
             detailCoverImg.src = book.url;
 
-            // Show the modal; use vt-active to suppress competing CSS transitions
+            // Show overlay (backdrop). Card expand plays AFTER view transition.
+            // vt-active suppresses the overlay's own CSS opacity transition.
             overlay.classList.add('show', 'vt-active');
-            detailCard.classList.add('show', 'vt-active');
+            // Card gets vt-active but NOT .show yet — stays invisible during morph.
+            //detailCard.classList.add('vt-active');
             document.body.style.overflow = 'hidden';
         });
 
         transition.finished.finally(() => {
             overlay.classList.remove('vt-active');
             detailCard.classList.remove('vt-active');
-            // Keep view-transition-name on modal img so close can transition back
+            // ▶ Trigger the height/width expand animation NOW, after cover has landed.
+            detailCard.classList.add('show');
         });
     } else {
         // Fallback: no View Transition API support
@@ -172,31 +170,51 @@ function hideBookDetails() {
     const detailCoverImg = document.getElementById('detailBookCover');
 
     if (document.startViewTransition && _lastTransitionCardImg) {
-        // ── OLD STATE snapshot ──────────────────────────────────────────────
-        // detailCoverImg already has viewTransitionName = 'book-cover-hero'
-        // _lastTransitionCardImg is where we want to morph back to.
-
         const cardImg = _lastTransitionCardImg;
 
-        const transition = document.startViewTransition(() => {
-            // ── NEW STATE snapshot ──────────────────────────────────────────
-            // Transfer name back to the card image so browser can morph back.
-            detailCoverImg.style.viewTransitionName = '';
-            cardImg.style.viewTransitionName = 'book-cover-hero';
+        // ▶ Step 1: start the height/width collapse animation immediately.
+        detailCard.classList.remove('show');
+        document.body.style.overflow = '';
 
-            overlay.classList.remove('show');
-            overlay.classList.add('vt-active');
-            detailCard.classList.remove('show');
-            detailCard.classList.add('vt-active');
-            document.body.style.overflow = '';
-        });
+        // ▶ Step 2: once height (mobile) or width (desktop) finishes collapsing,
+        //   kick off the view transition so the cover morphs back to the card.
+        let vtStarted = false;
 
-        transition.finished.finally(() => {
-            overlay.classList.remove('vt-active');
-            detailCard.classList.remove('vt-active');
-            _clearBookCardTransitionName();
-            detailCoverImg.style.viewTransitionName = '';
-        });
+        const startCloseVT = () => {
+            if (vtStarted) return;
+            vtStarted = true;
+
+            const transition = document.startViewTransition(() => {
+                // ── OLD STATE already captured (card collapsed, overlay visible) ─
+                // ── NEW STATE: transfer name back to card img, hide overlay ──────
+                detailCoverImg.style.viewTransitionName = '';
+                cardImg.style.viewTransitionName = 'book-cover-hero';
+
+                overlay.classList.remove('show');
+                overlay.classList.add('vt-active');
+                // Freeze any remaining card CSS transitions during the morph.
+                detailCard.classList.add('vt-active');
+            });
+
+            transition.finished.finally(() => {
+                overlay.classList.remove('vt-active');
+                detailCard.classList.remove('vt-active');
+                _clearBookCardTransitionName();
+                detailCoverImg.style.viewTransitionName = '';
+            });
+        };
+
+        // Listen for the structural collapse (height on mobile, width on desktop).
+        const onCollapse = (e) => {
+            if (e.propertyName === 'height' || e.propertyName === 'width') {
+                detailCard.removeEventListener('transitionend', onCollapse);
+                startCloseVT();
+            }
+        };
+        detailCard.addEventListener('transitionend', onCollapse);
+
+        // Safety fallback in case transitionend never fires (reduced-motion etc).
+        setTimeout(startCloseVT, 500);
     } else {
         overlay.classList.remove('show');
         detailCard.classList.remove('show');

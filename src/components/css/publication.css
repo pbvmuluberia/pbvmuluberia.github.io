@@ -154,13 +154,12 @@
 }
 
 .book-detail-card {
-    background-color: var(--surface-color);
+    background-color: transparent;
     /* FIX: Add border for Dark Mode */
     border: var(--card-border-color);
     color: var(--text-color-primary);
     padding: var(--space-md);
     border-radius: var(--border-radius-large);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     max-width: 90vw;
     max-height: 90vh;
 
@@ -169,23 +168,18 @@
     height: calc(300px + 2 * var(--space-xl));
     position: relative;
 
-    transform: scale(0.5);
-    opacity: 0;
     overflow-y: hidden;
 
     /* Reverse animation: shrink width first, then fade out */
-    transition: height 0.2s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s,
-        opacity 0.2s ease 0.7s,
-        transform 0.2s ease 0.7s;
+    transition: background-color 0.2s linear 0.4s,
+            height 0.2s ease 0.2s;
 
     &.show {
-        transform: scale(1);
-        opacity: 1;
         /* Expanded size (Cover + Gap + Text + Padding) */
         height: calc(640px + 2 * var(--space-md));
+        background-color: var(--surface-color);
         /* Forward animation: fade in first, then expand width */
-        transition: opacity 0.3s ease 0s,
-            transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.27) 0s,
+        transition: background-color 0.2s linear 0s,
             height 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) 0.4s;
 
     }
@@ -315,15 +309,15 @@
         width: calc(200px + 2 * var(--space-md));
         height: auto !important;
         overflow: hidden;
-        transition: width 0.2s cubic-bezier(0.2, 0.8, 0.2, 1) 0.2s,
-            opacity 0.2s ease 0.7s,
-            transform 0.2s ease 0.7s;
+        transition: background-color 0.2s linear 0.4s,
+            width 0.2s ease 0.2s;
+        background-color: transparent;
 
         &.show {
             width: calc(600px + 2 * var(--space-md));
+            background-color: var(--surface-color);
             /* Forward animation: fade in first, then expand width */
-            transition: opacity 0.3s ease 0s,
-                transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.27) 0s,
+            transition: background-color 0.2s ease 0s,
                 width 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) 0.4s;
         }
     }
