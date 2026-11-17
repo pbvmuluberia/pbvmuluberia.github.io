@@ -146,16 +146,15 @@ function showBookDetails(cardElement) {
             detailCoverImg.style.viewTransitionName = 'book-cover-hero';
             detailCoverImg.src = book.url;
 
-            // Show the modal. vt-active only on overlay (suppresses its own
-            // opacity/visibility CSS transition; the card's expand + description
-            // fade-in animations are left intact so they play as designed).
+            // Show the modal; use vt-active to suppress competing CSS transitions
             overlay.classList.add('show', 'vt-active');
-            detailCard.classList.add('show');
+            detailCard.classList.add('show', 'vt-active');
             document.body.style.overflow = 'hidden';
         });
 
         transition.finished.finally(() => {
             overlay.classList.remove('vt-active');
+            detailCard.classList.remove('vt-active');
             // Keep view-transition-name on modal img so close can transition back
         });
     } else {
@@ -188,11 +187,13 @@ function hideBookDetails() {
             overlay.classList.remove('show');
             overlay.classList.add('vt-active');
             detailCard.classList.remove('show');
+            detailCard.classList.add('vt-active');
             document.body.style.overflow = '';
         });
 
         transition.finished.finally(() => {
             overlay.classList.remove('vt-active');
+            detailCard.classList.remove('vt-active');
             _clearBookCardTransitionName();
             detailCoverImg.style.viewTransitionName = '';
         });

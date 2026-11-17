@@ -1,3 +1,40 @@
+/* ============================================================
+   VIEW TRANSITION: Book cover card → modal shared element
+   ============================================================ */
+
+/* 1. Suppress the global page-change root transition while a book modal
+      transition runs (the circle-in animation from style.css). */
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+}
+
+/* 2. Shared element: cover image morphs between card and modal. */
+::view-transition-image-pair(book-cover-hero) {
+    isolation: auto;
+}
+
+::view-transition-old(book-cover-hero),
+::view-transition-new(book-cover-hero) {
+    animation-duration: 350ms;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 10px;
+    overflow: hidden;
+    mix-blend-mode: normal;
+}
+
+/* 3. While the view transition runs, suppress competing CSS transitions
+      on the overlay and detail card so they don't fight the morph. */
+.book-detail-overlay.vt-active {
+    transition: none !important;
+}
+
+.book-detail-card.vt-active {
+    transition: none !important;
+}
+
+/* ============================================================ */
 /* ------------------------- PUBLICATION SECTION ------------------------- */
 
 .book-carousel-wrapper {
