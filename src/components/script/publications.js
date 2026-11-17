@@ -127,6 +127,7 @@ function showBookDetails(cardElement) {
     document.getElementById('detailBookDescription').textContent = book.description || langDict.book_no_description;
 
     const cardImg = cardElement.querySelector('img');
+    
 
     if (document.startViewTransition && cardImg) {
         _clearBookCardTransitionName();
@@ -135,31 +136,75 @@ function showBookDetails(cardElement) {
         cardImg.style.viewTransitionName = 'book-cover-hero';
         _lastTransitionCardImg = cardImg;
 
-        const transition = document.startViewTransition(() => {
-            // ── NEW STATE: transfer name to modal img ───────────────────────
-            cardImg.style.viewTransitionName = '';
-            detailCoverImg.style.viewTransitionName = 'book-cover-hero';
-            detailCoverImg.src = book.url;
+        const container = cardImg.closest('.book-covers-container');
+        const card = cardImg.closest('.book-card');
 
-            // Show overlay (backdrop). Card expand plays AFTER view transition.
-            // vt-active suppresses the overlay's own CSS opacity transition.
-            overlay.classList.add('show', 'vt-active');
-            // Card gets vt-active but NOT .show yet — stays invisible during morph.
-            //detailCard.classList.add('vt-active');
-            document.body.style.overflow = 'hidden';
-        });
+        // Function to run the view transition once ready
+        const startTransitionWhenReady = () => {
+            // Updated to match your CSS class: 'nav-hidden'
+            document.querySelector('.menu')?.classList.add('nav-hidden');
 
-        transition.finished.finally(() => {
-            overlay.classList.remove('vt-active');
-            detailCard.classList.remove('vt-active');
-            // ▶ Trigger the height/width expand animation NOW, after cover has landed.
-            detailCard.classList.add('show');
-        });
+            const transition = document.startViewTransition(() => {
+                // ── NEW STATE: transfer name to modal img ───────────────────────
+                cardImg.style.viewTransitionName = '';
+                detailCoverImg.style.viewTransitionName = 'book-cover-hero';
+                detailCoverImg.src = book.url;
+
+                // Show overlay (backdrop). Card expand plays AFTER view transition.
+                overlay?.classList.add('show', 'vt-active');
+                document.body.style.overflow = 'hidden';
+            });
+
+            transition.finished.finally(() => {
+                overlay?.classList.remove('vt-active');
+                detailCard?.classList.remove('vt-active');
+                // ▶ Trigger height/width expand animation NOW, after cover has landed.
+                detailCard?.classList.add('show');
+            });
+        };
+
+        if (container && card) {
+            const targetLeft = card.offsetLeft
+                - (container.clientWidth / 2)
+                + (card.offsetWidth / 2);
+
+            // If we are already at the target position, start immediately!
+            if (Math.abs(container.scrollLeft - targetLeft) < 1) {
+                startTransitionWhenReady();
+            } else {
+                // Otherwise, scroll into view
+                container.scrollTo({
+                    left: targetLeft,
+                    behavior: 'smooth',
+                });
+
+                let hasStarted = false;
+                const triggerOnce = () => {
+                    if (!hasStarted) {
+                        hasStarted = true;
+                        container.removeEventListener('scrollend', triggerOnce);
+                        startTransitionWhenReady();
+                    }
+                };
+
+                // Wait for smooth scroll to finish using 'scrollend' event
+                if ('onscrollend' in window) {
+                    container.addEventListener('scrollend', triggerOnce, { once: true });
+                }
+                
+                // Safety fallback timeout in case scrollend is missed or doesn't fire
+                setTimeout(triggerOnce, 400);
+            }
+        } else {
+            // Fallback if container or card element is missing
+            startTransitionWhenReady();
+        }
     } else {
         // Fallback: no View Transition API support
+        document.querySelector('.menu')?.classList.add('nav-hidden');
         detailCoverImg.src = book.url;
-        overlay.classList.add('show');
-        detailCard.classList.add('show');
+        overlay?.classList.add('show');
+        detailCard?.classList.add('show');
         document.body.style.overflow = 'hidden';
     }
 }
@@ -199,6 +244,7 @@ function hideBookDetails() {
             transition.finished.finally(() => {
                 overlay.classList.remove('vt-active');
                 detailCard.classList.remove('vt-active');
+                document.querySelector('.menu')?.classList.remove('nav-hidden');
                 _clearBookCardTransitionName();
                 detailCoverImg.style.viewTransitionName = '';
             });

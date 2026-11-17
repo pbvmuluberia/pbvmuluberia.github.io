@@ -17,7 +17,7 @@ const ComponentGenerator = {
         };
 
         return `
-        <nav class="menu">
+        <nav id="menu" class="menu">
           <img src="https://raw.githubusercontent.com/t4saha/PBVM-Uluberia-Vigyan-Kendra/main/Logo/pvbm_logo_gold.png" alt="Logo" class="nav-logo" onerror="this.onerror=null; this.src='https://placehold.co/50x50/d79921/3c3836?text=LOGO'">
           
           <div class="menu-controls-mobile">
